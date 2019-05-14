@@ -6,22 +6,22 @@
 *************************************************************************/
 
 //---------- Interface de la classe <Utilisateur> (fichier Utilisateur.h) ------
-#if ! defined ( XXX_H )
-#define XXX_H
+#if ! defined ( UTILISATEUR_H )
+#define UTILISATEUR_H
 
 //--------------------------------------------------- Interfaces utilisées
+#include <string>
+//------------------------------------------------------------- Constantes
 
-//------------------------------------------------------------- Constantes 
+//------------------------------------------------------------------ Types
 
-//------------------------------------------------------------------ Types 
-
-//------------------------------------------------------------------------ 
+//------------------------------------------------------------------------
 // Rôle de la classe <Utilisateur>
 //
 //
-//------------------------------------------------------------------------ 
+//------------------------------------------------------------------------
 
-class Utilisateur 
+class Utilisateur
 {
 //----------------------------------------------------------------- PUBLIC
 
@@ -35,11 +35,12 @@ public:
 
 
 //------------------------------------------------- Surcharge d'opérateurs
-    Utilisateur & operator = ( const Utilisateur & unUtilisateur );
+    /*Utilisateur & operator = ( const Utilisateur & unUtilisateur );
     // Mode d'emploi :
     //
     // Contrat :
     //
+     */
 
 
 //-------------------------------------------- Constructeurs - destructeur
@@ -61,7 +62,7 @@ public:
     // Contrat :
     //
 
-//------------------------------------------------------------------ PRIVE 
+//------------------------------------------------------------------ PRIVE
 
 protected:
 //----------------------------------------------------- Méthodes protégées
@@ -71,8 +72,8 @@ private:
 
 protected:
 //----------------------------------------------------- Attributs protégés
-String mail;
-String password;
+string mail;
+string password;
 bool isAdmin;
 
 private:
@@ -88,4 +89,4 @@ private:
 
 //----------------------------------------- Types dépendants de <Utilisateur>
 
-#endif // XXX_H 
+#endif // UTILISATEUR_H
