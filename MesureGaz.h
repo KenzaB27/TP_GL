@@ -44,14 +44,13 @@ public:
     void setDate(Date d);
     void setValeur(double val);
     void setIdCapteur(int c);
+    void setDescription(string d);
+    void setUnite(string u);
 
+    //-------------------------------------------- Constructeurs - destructeur
+    MesureGaz(const MesureGaz &unMesureGaz);
 
-    
-
-//-------------------------------------------- Constructeurs - destructeur
-    MesureGaz ( const MesureGaz & unMesureGaz );
-
-    MesureGaz(int typegaz, Date hr, double v, int c);
+    MesureGaz(int typegaz, Date hr, double v, int c, string d, string u);
 
     MesureGaz();
 
@@ -62,6 +61,7 @@ public:
     protected:
     int gazId; //a changer dans le diagramme de classes
     string unite;
+    string description;
     Date date;
     double valeur;
     int idCapteur;

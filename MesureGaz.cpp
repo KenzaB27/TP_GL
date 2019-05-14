@@ -29,6 +29,11 @@ string MesureGaz::getUnite(){
     return unite;
 }
 
+string MesureGaz::getUnite()
+{
+    return description;
+}
+
 Date MesureGaz::getDate(){
     return date;
 }
@@ -53,7 +58,16 @@ void  MesureGaz::setIdCapteur(int c){
     idCapteur = c;
 }
 
- 
+void MesureGaz::setUnite(string u)
+{
+    unite = u;
+}
+
+void MesureGaz::setDescription(string d)
+{
+    description = d;
+}
+
 //-------------------------------------------- Constructeurs - destructeur
 MesureGaz::MesureGaz ( const MesureGaz & unMesureGaz )
 // Algorithme :
@@ -67,8 +81,7 @@ MesureGaz::MesureGaz ( const MesureGaz & unMesureGaz )
 
 } //----- Fin de MesureGaz (constructeur de copie)
 
-
-MesureGaz::MesureGaz (int typegaz, Date hr, double v, int c)
+MesureGaz::MesureGaz(int typegaz, Date hr, double v, int c, string d, string u = "µg/m3")
 // Algorithme :
 //
 {
@@ -76,7 +89,8 @@ MesureGaz::MesureGaz (int typegaz, Date hr, double v, int c)
         cout << "Appel au constructeur de <MesureGaz>" << endl;
     #endif
     gazId=typegaz; //(doit faire partie de l'enum) 
-    unite = "µg/m3";
+    unite = u;
+    description = d;
     date = hr;
     valeur = v;
     idCapteur = c;
