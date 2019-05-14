@@ -30,3 +30,10 @@ ipch
 .vscode/ipch/137455ee0d317e6f/mmap_address.bin
 .vscode/ipch/137455ee0d317e6f/Capteur.ipch
 .vscode/ipch/34cbf273016fb5ab/mmap_address.bin
+test.cpp
+testGLUML/.vs/testGLUML/v16/Browse.VC.db
+testGLUML/.vs/testGLUML/v16/Browse.VC.opendb
+testGLUML/testGLUML.sln
+testGLUML/testGLUML/testGLUML.vcxproj
+testGLUML/testGLUML/testGLUML.vcxproj.filters
+testGLUML/testGLUML/testGLUML.vcxproj.user

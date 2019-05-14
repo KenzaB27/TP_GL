@@ -25,6 +25,11 @@ using namespace std;
 
 //----------------------------------------------------------------- PUBLIC
 //-------------------------------------------------------- Fonctions amies
+/*ostream& operator<<(ostream & out, Seuil& unSeuil)
+{
+	cout << "min : " << unSeuil.min<<"  max : "<<unSeuil.max<<" indice : "<< unSeuil.indice;
+	return out;
+}*/
 
 //----------------------------------------------------- M�thodes publiques
 // type Seuil::M�thode ( liste de param�tres )
@@ -35,12 +40,12 @@ using namespace std;
 
 
 //------------------------------------------------- Surcharge d'op�rateurs
-Seuil & Seuil::operator = ( const Seuil & unSeuil )
+/*Seuil & Seuil::operator = ( const Seuil & unSeuil )
 // Algorithme :
 //
 {
 } //----- Fin de operator =
-
+*/
 
 //-------------------------------------------- Constructeurs - destructeur
 Seuil::Seuil ( const Seuil & unSeuil )
@@ -53,7 +58,7 @@ Seuil::Seuil ( const Seuil & unSeuil )
 } //----- Fin de Seuil (constructeur de copie)
 
 
-Seuil::Seuil (int unMin,int unMax,int unIndice)
+Seuil::Seuil(int unMin,int unMax,int unIndice)
 // Algorithme :
 //
 {
