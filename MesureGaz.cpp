@@ -33,6 +33,10 @@ Date MesureGaz::getDate(){
     return date;
 }
 
+int MesureGaz::getIdCapteur(){
+    return idCapteur;
+}
+
 double MesureGaz::getValeur(){
     return valeur;
 }
@@ -45,8 +49,8 @@ void  MesureGaz::setDate(Date d){
 void  MesureGaz::setValeur(double val){
     valeur=val;
 }
-void  MesureGaz::setCapteur(Capteur c){
-    capteur=c;
+void  MesureGaz::setIdCapteur(int c){
+    idCapteur = c;
 }
 
  
@@ -64,7 +68,7 @@ MesureGaz::MesureGaz ( const MesureGaz & unMesureGaz )
 } //----- Fin de MesureGaz (constructeur de copie)
 
 
-MesureGaz::MesureGaz (int typegaz, Date hr, double v, Capteur c)
+MesureGaz::MesureGaz (int typegaz, Date hr, double v, int c)
 // Algorithme :
 //
 {
@@ -75,7 +79,7 @@ MesureGaz::MesureGaz (int typegaz, Date hr, double v, Capteur c)
     unite = "µg/m3";
     date = hr;
     valeur = v;
-    capteur = c;
+    idCapteur = c;
 
 } //----- Fin de MesureGaz
 

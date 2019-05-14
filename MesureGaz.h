@@ -38,11 +38,12 @@ public:
     string getDescription();
     Date getDate();
     double getValeur();
+    int getIdCapteur();
 
     void setGazId(int val);
     void setDate(Date d);
     void setValeur(double val);
-    void setCapteur(Capteur c);
+    void setIdCapteur(int c);
 
 
     
@@ -50,7 +51,7 @@ public:
 //-------------------------------------------- Constructeurs - destructeur
     MesureGaz ( const MesureGaz & unMesureGaz );
 
-    MesureGaz(int typegaz, Date hr, double v, Capteur c);
+    MesureGaz(int typegaz, Date hr, double v, int c);
 
     MesureGaz();
 
@@ -63,8 +64,7 @@ public:
     string unite;
     Date date;
     double valeur;
-    Capteur capteur;
-
+    int idCapteur;
  };
 
 //----------------------------------------- Types dépendants de <MesureGaz>
