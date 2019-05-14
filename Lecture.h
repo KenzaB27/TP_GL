@@ -25,6 +25,13 @@ using namespace std;
 //------------------------------------------------------------------ Types
 typedef enum gazId {O3,SO2,NO2,PM10};
 
+struct gazInfos
+{
+    int id;
+    string unit;
+    string description;
+};
+
 //------------------------------------------------------------- Constantes
 
 //------------------------------------------------------------------------
@@ -84,6 +91,12 @@ private:
     // Contrat :
     //
 
+    void initTypeGaz(string fichier);
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
+
     void LectureMesure(ifstream &ifs, MesureGaz *mesure);
     // Mode d'emploi : Parcours tout le fichier et le stocke dans un catalogue
     //
@@ -103,6 +116,8 @@ private:
     //------------------------------------------------------- Attributs privés
     string fichier;
     unordered_map<string, gazId> gazMap;
+    gazInfos gazDescription[4];
+
     //---------------------------------------------------------- Classes amies
 
     //-------------------------------------------------------- Classes privées

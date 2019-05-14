@@ -68,7 +68,6 @@ Lecture::Lecture(string f):fichier(f)
     gazMap["NO2"] = NO2;
     gazMap["PM10"] = PM10;
 
-
 } //----- Fin de Lecture
 
 Lecture::~Lecture()
@@ -120,8 +119,36 @@ vector<Capteur> Lecture::initCapteur(string fichierCapteurs)
     }
 
     return liste;
-}
+}//---- Fin de initCapteur
 
+void Lecture::initTypeGaz(string fichierGaz)
+{
+    ifstream monFlux(fichierGaz.c_str());
+
+    if (monFlux)
+    {
+        while (monFlux.good())
+        {
+            string gazName;
+            int gazId;
+            string unit;
+            string description;
+
+            getline(monFlux, gazName, ';');
+            gazId = gazMap[gazName];
+
+            getline(monFlux, unit, ';');
+            getline(monFlux, description, ';');
+
+            gazInfos g;
+            g.id = gazId;
+            g.unit = unit;
+            g.description = description;
+
+            gazDescription[gazId] = g;
+        }
+    }
+}
 
 Catalogue Lecture::parcourir(list<Capteur> listeCapteurs, Date debut, Date fin)
 {
@@ -197,11 +224,13 @@ void Lecture::LectureMesure(ifstream &ifs, MesureGaz *mesure)
 
     getline(ifs, valueString, ';'); // value
     value = atof(valueString.c_str());
-
+    
     //On remplit la mesureGaz
-    mesure->setGazId(gazMap[gaz]);
+    mesure->setGazId( gazMap[gaz] );
     mesure->setDate(d); 
     mesure->setValeur(value);
     mesure->setIdCapteur(sensorid);
+    mesure->setDescription( gazDescription[gazMap[gaz]].description);
+    mesure->setUnite(gazDescription[gazMap[gaz]].unit);
 
 } //--- Fin de LectureMesure
