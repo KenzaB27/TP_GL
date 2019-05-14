@@ -9,6 +9,11 @@
 #if ! defined ( Capteur_H )
 #define Capteur_H
 
+#include <iostream>;
+#include <cstream>;
+using namespace std;
+
+
 //--------------------------------------------------- Interfaces utilisées
 
 //------------------------------------------------------------- Constantes 
@@ -21,7 +26,7 @@
 //
 //------------------------------------------------------------------------ 
 
-class Capteur : public Ancetre
+class Capteur
 {
 //----------------------------------------------------------------- PUBLIC
 
@@ -35,7 +40,7 @@ public:
 
 
 //------------------------------------------------- Surcharge d'opérateurs
-    Capteur & operator = ( const Capteur & unCapteur );
+    //Capteur & operator = ( const Capteur & unCapteur );
     // Mode d'emploi :
     //
     // Contrat :
@@ -49,7 +54,9 @@ public:
     // Contrat :
     //
 
-    Capteur ( );
+    Capteur(int capteurid, String description, double latitude, double longitude, int etat);   );
+
+    Capteur();
     // Mode d'emploi :
     //
     // Contrat :
