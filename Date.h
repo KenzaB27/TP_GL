@@ -78,6 +78,12 @@ public :
 	// Contrat:
 	//	Aucun contrat.
 
+	Date(string date, string heure);
+	// Mode d'emploi :
+	//	Permet de creer une date à partir d'un string contenant jour-mois-année
+	// Et d'un autre string contenant heure:minute:secondes
+	// Contrat:
+	//	Aucun contrat.
 
 	Date ( const Date & date );
 	// Mode d'emploi :

@@ -33,13 +33,13 @@ class MesureGaz
 
 public:
 //----------------------------------------------------- Méthodes publiques
-    id getGazId();
+    int getGazId();
     string getUnite();
     string getDescription();
     Date getDate();
     double getValeur();
 
-    void setGazId(id val);
+    void setGazId(int val);
     void setDate(Date d);
     void setValeur(double val);
     void setCapteur(Capteur c);
@@ -50,7 +50,7 @@ public:
 //-------------------------------------------- Constructeurs - destructeur
     MesureGaz ( const MesureGaz & unMesureGaz );
 
-    MesureGaz(id typegaz, Date hr, double v, Capteur c);
+    MesureGaz(int typegaz, Date hr, double v, Capteur c);
 
     MesureGaz();
 
@@ -59,7 +59,7 @@ public:
 //----------------------------------Attributs
 
     protected:
-    id gazId; //a changer dans le diagramme de classes
+    int gazId; //a changer dans le diagramme de classes
     string unite;
     Date date;
     double valeur;

@@ -21,7 +21,7 @@ using namespace std;
 
 //---------------------------------------------Methodes publiques
 
-id MesureGaz ::getGazId(){
+int MesureGaz ::getGazId(){
     return gazId;
 }
 
@@ -36,7 +36,7 @@ Date MesureGaz::getDate(){
 double MesureGaz::getValeur(){
     return valeur;
 }
-void MesureGaz::setGazId(id val){
+void MesureGaz::setGazId(int val){
     gazId=val;
 }
 void  MesureGaz::setDate(Date d){
@@ -64,7 +64,7 @@ MesureGaz::MesureGaz ( const MesureGaz & unMesureGaz )
 } //----- Fin de MesureGaz (constructeur de copie)
 
 
-MesureGaz::MesureGaz (id typegaz, Date hr, double v, Capteur c)
+MesureGaz::MesureGaz (int typegaz, Date hr, double v, Capteur c)
 // Algorithme :
 //
 {

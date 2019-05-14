@@ -118,7 +118,7 @@ Catalogue Lecture::parcourir(list<Capteur> listeCapteurs, Date debut, Date fin)
             }
         }
 
-        if(listeMesure.size() == 4 ) c->Ajouter(Liste);
+        if(listeMesure.size() == 4 ) c.Ajouter(listeMesure);
 
     }
     
@@ -126,17 +126,17 @@ Catalogue Lecture::parcourir(list<Capteur> listeCapteurs, Date debut, Date fin)
 
 void Lecture::LectureMesure(ifstream &ifs, MesureGaz *mesure)
 {
-    string date;
+    string dateD;
     string heure;
     string sensor;
     string gaz;
     string valueString;
     double value;
 
-    getline(ifs, date, 'T'); //La Date
+    getline(ifs, dateD, 'T'); //La Date
     getline(ifs, heure, ';'); //L'heure
 
-    Date d(date, heure);
+    Date d(dateD, heure);
 
     //L'id du capteur 
     getline(ifs, sensor, ';');
@@ -151,4 +151,11 @@ void Lecture::LectureMesure(ifstream &ifs, MesureGaz *mesure)
     mesure->setDate(d); 
     mesure->setValeur(value);
     mesure->setCapteur();
+} //--- Fin de LectureMesure
+
+bool ValideRecherche(list<Capteur> listeCapteurs, Date debut, Date fin)
+{
+    //Verification de la provenance de la mesure (Capteur appartient à la liste de Capteurs)
+    
+    //On regarde si des dates de début puis de fin son passées en paramètre
 }

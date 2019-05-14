@@ -104,6 +104,13 @@ Date::Date(int lannee,int lmois, int ljour,int lHeure , int lesMinutes, double l
 #endif
 }//--- Fin de Date
 
+Date::Date(string date, string temps)
+{
+#ifdef MAP
+	cout << "Construction Date : heure=" << heure << " minutes="
+		 << minutes << endl;
+#endif
+} //--- Fin de Date
 
 Date::Date ( const Date & date ) : heure(date.heure), minutes(date.minutes)
 {
