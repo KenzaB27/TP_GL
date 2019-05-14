@@ -93,10 +93,14 @@ ostream & operator << ( ostream & out, const Date & date )
 	return out;
 }//--- Fin de operator <<
 
+bool Date::operator == (const Date &date) const 
+{
+	return (jour == date.jour) && (mois == date.mois) && (annee == date.annee) && (heure == date.heure) && (minutes == date.minutes) && (secondes == date.secondes);
+} //--- Fin de operator ==
 
 //---------------------------------------------- Constructeurs - Destructeur --
-Date::Date(int lannee,int lmois, int ljour,int lHeure , int lesMinutes, double lesSecondes): annee(lannee), 
-	mois(lmois), jour(ljour),heure(lHeure),minutes(lesMinutes), secondes(lesSecondes)
+Date::Date(int lannee, int lmois, int ljour, int lHeure, int lesMinutes, double lesSecondes) : annee(lannee),
+																							   mois(lmois), jour(ljour), heure(lHeure), minutes(lesMinutes), secondes(lesSecondes)
 {
 #ifdef MAP
 	cout << "Construction Date : heure=" << heure << " minutes="
