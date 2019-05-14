@@ -36,7 +36,7 @@ class Catalogue
 
 public:
 //----------------------------------------------------- Méthodes publiques
-
+    void Ajouter(IdCatalogue id, list<MesureGaz> liste);
 //-------------------------------------------- Constructeurs - destructeur
     Catalogue ( const Catalogue & unCatalogue );
 

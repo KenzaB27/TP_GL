@@ -10,6 +10,8 @@
 //---------------------------------------------------------------- INCLUDE
 #include "Date.h"
 #include "Catalogue.h"
+#include <list>
+
 
 //-------------------------------------------------------- Include syst�me
 using namespace std;
@@ -18,6 +20,11 @@ using namespace std;
 
 
 //---------------------------------------------Methodes publiques
+
+void Catalogue::Ajouter(IdCatalogue id, list<MesureGaz> liste){
+    map.insert(make_pair<IdCatalogue, list<MesureGaz>>(id, liste));
+}
+
 //-------------------------------------------- Constructeurs - destructeur
 Catalogue::Catalogue ( const Catalogue & unCatalogue )
 // Algorithme :
