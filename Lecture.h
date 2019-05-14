@@ -95,12 +95,6 @@ private:
     // Contrat :
     //
 
-    bool ValideRecherche(list<Capteur> l, Date d, Date f);
-    // Mode d'emploi : Parcours tout le fichier en ne prenant en compte que les capteurs et la date passés en paramètre
-    //
-    // Contrat :
-    //
-
 protected:
     //----------------------------------------------------- Attributs protégés
 

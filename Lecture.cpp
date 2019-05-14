@@ -18,6 +18,7 @@ using namespace std;
 
 //------------------------------------------------------ Include personnel
 #include "Lecture.h"
+#include "IdCatalogue.h"
 
 //------------------------------------------------------------- Constantes
 
@@ -111,15 +112,35 @@ Catalogue Lecture::parcourir(list<Capteur> listeCapteurs, Date debut, Date fin)
         {
             MesureGaz m;
             LectureMesure(monFlux, &m);
-
-            if (ValideRecherche(listeCapteurs, debut, fin))
-            {
-                listeMesure.push_back(m);
-            }
+            listeMesure.push_back(m);
         }
 
-        if(listeMesure.size() == 4 ) c.Ajouter(listeMesure);
+        // On vérifie la cohérence des données mesurées
+        list<MesureGaz>::iterator i;
+        int idCapteur = (*listeMesure.begin()).getIdCapteur();
+        Date dateMesure = (*listeMesure.begin()).getDate();
 
+        bool same = true;
+        for (i = listeMesure.begin(); i != listeMesure.end(); i++)
+        {
+            if ((*i).getIdCapteur() != idCapteur && !((*i).getDate() == dateMesure))
+            {
+                same = false;
+                break;
+                #ifdef MAP
+                    cout << "Erreurs lors de la composition de 4 valeurs " << endl;
+                    unsigned int iLigne = 0;
+                #endif // MAP
+            }
+        }
+         
+        if(same)
+        {
+            IdCatalogue index(idCapteur, dateMesure);
+            if (listeMesure.size() == 4)
+                c.Ajouter(index, listeMesure);
+        }
+    
     }
     
 } //--- Fin de Parcourir
@@ -147,15 +168,10 @@ void Lecture::LectureMesure(ifstream &ifs, MesureGaz *mesure)
     getline(ifs, valueString, ';'); // value
     value = atof(valueString.c_str());
 
+    //On remplit la mesureGaz
     mesure->setGazId(gazMap[gaz]);
     mesure->setDate(d); 
     mesure->setValeur(value);
-    mesure->setCapteur();
-} //--- Fin de LectureMesure
+    mesure->setIdCapteur(sensorid);
 
-bool ValideRecherche(list<Capteur> listeCapteurs, Date debut, Date fin)
-{
-    //Verification de la provenance de la mesure (Capteur appartient à la liste de Capteurs)
-    
-    //On regarde si des dates de début puis de fin son passées en paramètre
-}
+} //--- Fin de LectureMesure
