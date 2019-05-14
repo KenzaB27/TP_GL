@@ -47,7 +47,7 @@ using namespace std;
 } //----- Fin de operator =
 */
 
-//-------------------------------------------- Constructeurs - destructeur
+//-------------------------------------------- Constructeurs  - destructeur
 Seuil::Seuil ( const Seuil & unSeuil )
 // Algorithme :
 //
