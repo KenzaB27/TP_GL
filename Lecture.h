@@ -16,6 +16,10 @@ using namespace std;
 #include <list>
 #include <unordered_map>
 #include <algorithm>
+#include "Date.h"
+#include "MesureGaz.h"
+#include "Capteur.h"
+#include "Catalogue.h"
 
 //------------------------------------------------------------------ Types
 typedef enum gazId {O3,SO2,NO2,PM10};
