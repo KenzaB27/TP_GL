@@ -44,13 +44,13 @@ public:
 
 
 //-------------------------------------------- Constructeurs - destructeur
-    Seuil ( const Seuil & unSeuil );
+    /*Seuil ( const Seuil & unSeuil );
     // Mode d'emploi (constructeur de copie) :
     //
     // Contrat :
     //
-
-	Seuil(int min, int max, int indice);
+*/
+	Seuil(int unMin,int unMax,int unIndice);
     // Mode d'emploi :
     //
     // Contrat :
