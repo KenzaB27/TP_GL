@@ -32,7 +32,7 @@ public:
     //
     // Contrat :
     //
-
+void afficher();
 
 //------------------------------------------------- Surcharge d'opérateurs
     /*Seuil & operator = ( const Seuil & unSeuil );

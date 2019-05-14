@@ -25,7 +25,7 @@ using namespace std;
 
 //----------------------------------------------------------------- PUBLIC
 //-------------------------------------------------------- Fonctions amies
-	
+
 
 
 //----------------------------------------------------- M�thodes publiques
@@ -35,6 +35,9 @@ using namespace std;
 //{
 //} //----- Fin de M�thode
 
+void Seuil::afficher() {
+	cout<<"min : "<<min<<"  max : "<<max<<" indice : "<<indice<<endl;
+}
 
 //------------------------------------------------- Surcharge d'op�rateurs
 /*Seuil & Seuil::operator = ( const Seuil & unSeuil )
