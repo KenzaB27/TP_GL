@@ -15,13 +15,7 @@
 *.a
 
 
-.vscode/ipch/5bea61e01f7c090e/mmap_address.bin
-.vscode/ipch/7388f036293dee8a/mmap_address.bin
-.vscode/ipch/756536d2e7db8216/mmap_address.bin
-.vscode/ipch/b0afbe7405a4e933/mmap_address.bin
-.vscode/ipch/137455ee0d317e6f/mmap_address.bin
-.vscode/ipch/137455ee0d317e6f/Capteur.ipch
-.vscode/ipch/34cbf273016fb5ab/mmap_address.bin
+
 542f223fd38f9ec4/mmap_address.bin
 
 *.bin
@@ -32,4 +26,7 @@ testGL/testGL.sln
 testGL/testGL/testGL.vcxproj
 testGL/testGL/testGL.vcxproj.filters
 testGL/testGL/testGL.vcxproj.user
+
+.vscode/
+
 
