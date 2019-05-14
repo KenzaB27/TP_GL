@@ -35,12 +35,12 @@ using namespace std;
 
 
 //------------------------------------------------- Surcharge d'op�rateurs
-Utilisateur & Utilisateur::operator = ( const Utilisateur & unUtilisateur )
+/*Utilisateur & Utilisateur::operator = ( const Utilisateur & unUtilisateur )
 // Algorithme :
 //
 {
 } //----- Fin de operator =
-
+*/
 
 //-------------------------------------------- Constructeurs - destructeur
 Utilisateur::Utilisateur ( const Utilisateur & unUtilisateur )

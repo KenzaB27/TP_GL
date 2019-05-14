@@ -33,14 +33,57 @@ using namespace std;
 //{
 //} //----- Fin de M�thode
 
+/*void Gestion::creerUtilisateur(Utilisateur unUtilisateur)
+{
 
+}
+
+void Gestion::supprimerUtilisateur(Utilisateur unUtilisateur)
+{
+
+}*/
+
+void Gestion::ajouterCapteur(Capteur unCapteur)
+{
+
+}
+
+void Gestion::changerSeuil(Seuil unSeuil)
+{
+
+}
+
+
+
+
+void Gestion::mettreEnVeilleCapteur(Capteur unCapteur)
+{
+
+}
+
+void Gestion::restaurerCapteur(Capteur unCapteur)
+{
+
+}
+
+void Gestion::supprimerCapteur(int numCapteur)
+{
+
+}
+
+int Gestion::evaluerCapteur(Capteur)
+{
+
+    return 0;
+}
 //------------------------------------------------- Surcharge d'op�rateurs
+/*
 Gestion & Gestion::operator = ( const Gestion & unGestion )
 // Algorithme :
 //
 {
 } //----- Fin de operator =
-
+*/
 
 //-------------------------------------------- Constructeurs - destructeur
 Gestion::Gestion ( const Gestion & unGestion )
