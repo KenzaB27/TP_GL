@@ -16,6 +16,7 @@ using namespace std;
 #include <list>
 #include <unordered_map>
 #include <algorithm>
+#include <vector>
 #include "Date.h"
 #include "MesureGaz.h"
 #include "Capteur.h"
@@ -77,7 +78,7 @@ protected:
 
 private:
     //------------------------------------------------------- Méthodes privées
-    void initCapteur(ifstream &ifs);
+    vector<Capteur> initCapteur(string fichier);
     // Mode d'emploi :
     //
     // Contrat :

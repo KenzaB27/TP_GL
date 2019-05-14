@@ -86,10 +86,40 @@ Lecture::~Lecture()
 
 //------------------------------------------------------- M�thodes priv�es
 
-void Lecture::initCapteur(ifstream &ifs)
+vector<Capteur> Lecture::initCapteur(string fichierCapteurs)
 {
+    ifstream monFlux(fichierCapteurs.c_str());
+    vector<Capteur> liste;
 
+    if (monFlux)
+    {
+        string line;
+        while (monFlux.good())
+        {
+            int capteurId;
+            string tempString; //utilisé avant le cast
+            double latitude;
+            double longitude;
+            string description;
 
+            // extraction des informations
+            getline(monFlux, tempString, ';');
+            capteurId = atoi((tempString.substr(tempString.length() - 1, tempString.length())).c_str());
+
+            getline(monFlux, tempString, ';');
+            latitude = atof(tempString.c_str());
+
+            getline(monFlux, tempString, ';');
+            longitude = atof(tempString.c_str());
+
+            getline(monFlux, description, ';');
+
+            Capteur c(capteurId, description, latitude, longitude);
+            liste.push_back(c);
+        }
+    }
+
+    return liste;
 }
 
 
