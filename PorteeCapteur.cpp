@@ -33,30 +33,47 @@ using namespace std;
 //{
 //} //----- Fin de M�thode
 
+    double PorteeCapteur::getLatitudeMax(){
+        return latitudeMax; 
+    }
+    double PorteeCapteur::getLatitudeMin(){
+        return latitudeMin; 
+    } 
+    double PorteeCapteur::getLongitudeMax(){
+        return longitudeMax; 
+    }
+    double PorteeCapteur::getLongitudeMin(){
+        return longitudeMin; 
+    }
+    bool PorteeCapteur::contient (PorteeCapteur portee){
+        if ((portee.latitudeMin>latitudeMin || portee.latitudeMin<latitudeMax) && (portee.longitudeMin>longitudeMin||portee.longitudeMax<longitudeMax))
+        {
+            return true; 
+        }
+        else {
+            return false; 
+        }
+    } 
 
-//------------------------------------------------- Surcharge d'op�rateurs
-PorteeCapteur & PorteeCapteur::operator = ( const PorteeCapteur & unPorteeCapteur )
+PorteeCapteur::PorteeCapteur (double longitude, double latitude , double rayon)
 // Algorithme :
 //
 {
-} //----- Fin de operator =
+    //définition des bornes max et min de latitude et longitude notre territoire 
+    // 1° de latitude = 111,11 Km, on fait donc un produit en croix
+    double offSetLat = rayon / 111110;
+   // 1° de longitude à 'latitude' degrés de latitude correspond à
+   // OneLongitudeDegree mètres. On passe à la méthode Math.Cos
+   // des radians
+    double oneLongitudeDegree = 111110 * cos(latitude * M_PI / 180);
+   // Produit en croix pour trouver le nombre de degrés de longitude auquel
+   // correspond la longueur de notre rayon
+    double offSetLong = rayon / oneLongitudeDegree;
 
-
-//-------------------------------------------- Constructeurs - destructeur
-PorteeCapteur::PorteeCapteur ( const PorteeCapteur & unPorteeCapteur )
-// Algorithme :
-//
-{
-#ifdef MAP
-    cout << "Appel au constructeur de copie de <PorteeCapteur>" << endl;
-#endif
-} //----- Fin de PorteeCapteur (constructeur de copie)
-
-
-PorteeCapteur::PorteeCapteur ( )
-// Algorithme :
-//
-{
+    latitudeMax = latitude + offSetLat;
+    latitudeMin = latitude - offSetLat; 
+    longitudeMax = longitude + offSetLong; 
+    longitudeMin = longitude - offSetLong;
 #ifdef MAP
     cout << "Appel au constructeur de <PorteeCapteur>" << endl;
 #endif
@@ -71,10 +88,3 @@ PorteeCapteur::~PorteeCapteur ( )
     cout << "Appel au destructeur de <PorteeCapteur>" << endl;
 #endif
 } //----- Fin de ~PorteeCapteur
-
-
-//------------------------------------------------------------------ PRIVE
-
-//----------------------------------------------------- M�thodes prot�g�es
-
-//------------------------------------------------------- M�thodes priv�es

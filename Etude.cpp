@@ -21,8 +21,6 @@ using namespace std;
 //---------------------------------------------------- Variables de classe
 
 //----------------------------------------------------------- Types priv�s
-
-
 //----------------------------------------------------------------- PUBLIC
 //-------------------------------------------------------- Fonctions amies
 
@@ -32,8 +30,20 @@ using namespace std;
 //
 //{
 //} //----- Fin de M�thode
+void Etude::Evaluer(double latitude, double longitude, Date dateF, Date dateD, double rayon){
 
-
+}
+vector<Capteur> Etude::getCapteur( vector<Capteur>listCapteur,double latitude, double longitude ,double rayon = 0 ){
+    PorteeCapteur territoire (latitude, longitude, rayon); 
+    vector<Capteur> capteurTerritoire; 
+    for ( vector<Capteur>::iterator it=listCapteur.begin(); it!=listCapteur.end(); it++)
+    {
+        if (territoire.contient(it->getPortee())){
+            capteurTerritoire.push_back(it); 
+        }
+    }
+    return capteurTerritoire; 
+}
 //------------------------------------------------- Surcharge d'op�rateurs
 Etude & Etude::operator = ( const Etude & unEtude )
 // Algorithme :

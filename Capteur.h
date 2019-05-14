@@ -1,21 +1,20 @@
 /*************************************************************************
-                           ${file_base}  -  description
+                           ${Capteur}  -  description
                              -------------------
     début                : ${date}
     copyright            : (C) ${year} par ${user}
 *************************************************************************/
 
-//---------- Interface de la classe <${file_base}> (fichier ${file_name}) ------
+//---------- Interface de la classe <Capteur> (fichier ${file_name}) ------
 #if ! defined ( Capteur_H )
 #define Capteur_H
 
+
+//--------------------------------------------------- Interfaces utilisées
 #include <iostream>
 #include <string>
 using namespace std;
-
-
-//--------------------------------------------------- Interfaces utilisées
-
+#include "PorteeCapteur.h"
 //------------------------------------------------------------- Constantes 
 
 //------------------------------------------------------------------ Types 
@@ -34,10 +33,9 @@ public:
 //----------------------------------------------------- Méthodes publiques
     int getCapteurId();
     string getDescription();
-    int getLatitude();
-    int getLongitude();
+    PorteeCapteur getPortee();
     int getEtat();
-
+    void definirPortee(double latitude, double longitude); 
 //-------------------------------------------- Constructeurs - destructeur
     Capteur ( const Capteur & unCapteur );
     // Mode d'emploi (constructeur de copie) :
@@ -61,12 +59,10 @@ public:
 //----------------------------------Attributs
 
     protected:
-
     int capteurId;
     string description;
-    double latitude;
-    double longitude;
     int etat;
+    PorteeCapteur portee; 
 
  };
 

@@ -10,6 +10,12 @@
 #define ETUDE_H
 
 //--------------------------------------------------- Interfaces utilisées
+#include <vector>
+#include <math.h>
+#include "Date.h"
+#include "Capteur.h"
+#include "PorteeCapteur.h"
+
 
 //------------------------------------------------------------- Constantes
 
@@ -21,7 +27,7 @@
 //
 //------------------------------------------------------------------------
 
-class Etude : public Ancetre
+class Etude 
 {
 //----------------------------------------------------------------- PUBLIC
 
@@ -32,8 +38,8 @@ public:
     //
     // Contrat :
     //
-    Evaluer (double latitude, double longitude,double rayon = 0, date )
-
+    void Evaluer (double latitude, double longitude, Date dateF, Date dateD, double rayon = 0 ); 
+    vector<Capteur> getCapteur( vector<Capteur>listCapteur,double latitude, double longitude ,double rayon = 0 ); 
 
 //------------------------------------------------- Surcharge d'opérateurs
     Etude & operator = ( const Etude & unEtude );

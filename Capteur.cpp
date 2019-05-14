@@ -28,19 +28,15 @@ string Capteur::getDescription()
     return description;
 }
 
-int Capteur::getLatitude()
-{
-    return latitude;
+PorteeCapteur Capteur::getPortee(){
+    return portee; 
 }
-
-int Capteur::getLongitude()
-{
-    return longitude;
-}
-
 int Capteur::getEtat()
 {
     return etat;
+}
+void Capteur::definirPortee(double latitude, double longitude){
+
 }
 
 //-------------------------------------------- Constructeurs - destructeur

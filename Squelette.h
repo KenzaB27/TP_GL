@@ -1,11 +1,11 @@
 /*************************************************************************
-                           ${file_base}  -  description
+                           PorteeCapteur  -  description
                              -------------------
     début                : ${date}
     copyright            : (C) ${year} par ${user}
 *************************************************************************/
 
-//---------- Interface de la classe <${file_base}> (fichier ${file_name}) ------
+//---------- Interface de la classe <PorteeCapteur> (fichier ${file_name}) ------
 #if ! defined ( XXX_H )
 #define XXX_H
 
@@ -16,12 +16,12 @@
 //------------------------------------------------------------------ Types 
 
 //------------------------------------------------------------------------ 
-// Rôle de la classe <${file_base}>
+// Rôle de la classe <PorteeCapteur>
 //
 //
 //------------------------------------------------------------------------ 
 
-class ${file_base} : public Ancetre
+class PorteeCapteur : public Ancetre
 {
 //----------------------------------------------------------------- PUBLIC
 
@@ -35,7 +35,7 @@ public:
 
 
 //------------------------------------------------- Surcharge d'opérateurs
-    ${file_base} & operator = ( const ${file_base} & un${file_base} );
+    PorteeCapteur & operator = ( const PorteeCapteur & unPorteeCapteur );
     // Mode d'emploi :
     //
     // Contrat :
@@ -43,19 +43,19 @@ public:
 
 
 //-------------------------------------------- Constructeurs - destructeur
-    ${file_base} ( const ${file_base} & un${file_base} );
+    PorteeCapteur ( const PorteeCapteur & unPorteeCapteur );
     // Mode d'emploi (constructeur de copie) :
     //
     // Contrat :
     //
 
-    ${file_base} ( );
+    PorteeCapteur ( );
     // Mode d'emploi :
     //
     // Contrat :
     //
 
-    virtual ~${file_base} ( );
+    virtual ~PorteeCapteur ( );
     // Mode d'emploi :
     //
     // Contrat :
@@ -83,6 +83,6 @@ private:
 
 };
 
-//----------------------------------------- Types dépendants de <${file_base}>
+//----------------------------------------- Types dépendants de <PorteeCapteur>
 
 #endif // XXX_H

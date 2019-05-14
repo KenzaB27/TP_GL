@@ -1,11 +1,11 @@
 /*************************************************************************
-                           ${file_base}  -  description
+                           PorteeCapteur  -  description
                              -------------------
     début                : ${date}
     copyright            : (C) ${year} par ${user}
 *************************************************************************/
 
-//---------- Interface de la classe <${file_base}> (fichier ${file_name}) ------
+//---------- Interface de la classe <PorteeCapteur> (fichier ${file_name}) ------
 #if ! defined ( MesureGaz_H )
 #define MesureGaz_H
 
