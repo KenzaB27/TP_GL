@@ -13,22 +13,13 @@
 #include <string>
 using namespace std;
 
+#include "Date.h"
 
 //--------------------------------------------------- Interfaces utilisées
 
 //------------------------------------------------------------- Constantes 
 //------------------------------------------------------------------ Types 
-
-    struct date {
-        int jour;
-        int mois;
-        int annee;
-        int secondes;
-        int minutes;
-        int heures;
-    };
-
-    enum id{O3, SO2, NO2, PM10};
+enum id{O3, SO2, NO2, PM10};
 //------------------------------------------------------------------------ 
 // Rôle de la classe <MesureGaz>
 //
@@ -44,13 +35,13 @@ public:
     id getAttributId();
     string getUnite();
     string getDescription();
-    date getDate();
+    Date getDate();
     double getValeur();
 
 //-------------------------------------------- Constructeurs - destructeur
     MesureGaz ( const MesureGaz & unMesureGaz );
 
-    MesureGaz(id typegaz, string u, string d, date hr, double v);
+    MesureGaz(id typegaz, string u, string d, Date hr, double v);
 
     MesureGaz();
 
@@ -62,7 +53,7 @@ public:
     id attributId;
     string unite;
     string description;
-    date Date;
+    Date date;
     double valeur;
 
  };

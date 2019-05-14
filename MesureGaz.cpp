@@ -8,6 +8,7 @@
 //---------- R�alisation de la classe <MesureGaz> (fichier ${file_name}) --
 
 //---------------------------------------------------------------- INCLUDE
+#include "Date.h"
 #include "MesureGaz.h"
 
 //-------------------------------------------------------- Include syst�me
@@ -30,8 +31,8 @@ string MesureGaz::getDescription(){
     return description;
 }
 
-date MesureGaz::getDate(){
-    return Date;
+Date MesureGaz::getDate(){
+    return date;
 }
 
 double MesureGaz::getValeur(){
@@ -52,7 +53,7 @@ MesureGaz::MesureGaz ( const MesureGaz & unMesureGaz )
 } //----- Fin de MesureGaz (constructeur de copie)
 
 
-MesureGaz::MesureGaz (id typegaz, string u, string d, date hr, double v)
+MesureGaz::MesureGaz (id typegaz, string u, string d, Date hr, double v)
 // Algorithme :
 //
 {
@@ -62,7 +63,7 @@ MesureGaz::MesureGaz (id typegaz, string u, string d, date hr, double v)
     attributId=typegaz; //(doit faire partie de l'enum) 
     unite = u;
     description=d;
-    Date = hr;
+    date = hr;
     valeur = v;
 
 } //----- Fin de MesureGaz

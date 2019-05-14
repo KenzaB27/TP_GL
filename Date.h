@@ -86,6 +86,8 @@ public :
 	// Contrat :
 	//	Aucun contrat.
 
+	Date();
+
 
 	virtual ~Date();
 	// Mode d'emploi :
