@@ -39,3 +39,9 @@ testGLUML/testGLUML/testGLUML.vcxproj.user
 .vscode/ipch/d0f70d645d0e37fc/mmap_address.bin
 .vscode/ipch/542f223fd38f9ec4/mmap_address.bin
 >>>>>>> 21c14e0eeeb4922402f42fd9654eea044cf81d25
+testGL/.vs/testGL/v16/Browse.VC.db
+testGL/.vs/testGL/v16/Browse.VC.opendb
+testGL/testGL.sln
+testGL/testGL/testGL.vcxproj
+testGL/testGL/testGL.vcxproj.filters
+testGL/testGL/testGL.vcxproj.user
