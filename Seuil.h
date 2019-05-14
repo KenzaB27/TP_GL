@@ -1,13 +1,13 @@
 /*************************************************************************
-                           ${file_base}  -  description
+                           Seuil  -  description
                              -------------------
     début                : ${date}
     copyright            : (C) ${year} par ${user}
 *************************************************************************/
 
-//---------- Interface de la classe <${file_base}> (fichier ${file_name}) ------
-#if ! defined ( XXX_H )
-#define XXX_H
+//---------- Interface de la classe <Seuil> (fichier ${file_name}) ------
+#if ! defined ( Seuil_H )
+#define Seuil_H
 
 //--------------------------------------------------- Interfaces utilisées
 
@@ -16,12 +16,12 @@
 //------------------------------------------------------------------ Types 
 
 //------------------------------------------------------------------------ 
-// Rôle de la classe <${file_base}>
+// Rôle de la classe <Seuil>
 //
 //
 //------------------------------------------------------------------------ 
 
-class ${file_base} : public Ancetre
+class Seuil
 {
 //----------------------------------------------------------------- PUBLIC
 
@@ -32,30 +32,32 @@ public:
     //
     // Contrat :
     //
-
+void afficher();
 
 //------------------------------------------------- Surcharge d'opérateurs
-    ${file_base} & operator = ( const ${file_base} & un${file_base} );
+    /*Seuil & operator = ( const Seuil & unSeuil );
     // Mode d'emploi :
     //
     // Contrat :
     //
+    */
 
 
 //-------------------------------------------- Constructeurs - destructeur
-    ${file_base} ( const ${file_base} & un${file_base} );
+    /*Seuil ( const Seuil & unSeuil );
     // Mode d'emploi (constructeur de copie) :
     //
     // Contrat :
     //
-
-    ${file_base} ( );
+*/
+    Seuil();
+	Seuil(int unMin,int unMax,int unIndice);
     // Mode d'emploi :
     //
     // Contrat :
     //
 
-    virtual ~${file_base} ( );
+    virtual ~Seuil ( );
     // Mode d'emploi :
     //
     // Contrat :
@@ -74,7 +76,9 @@ protected:
 
 private:
 //------------------------------------------------------- Attributs privés
-
+	int min;
+	int max;
+	int indice;
 //---------------------------------------------------------- Classes amies
 
 //-------------------------------------------------------- Classes privées
@@ -83,6 +87,6 @@ private:
 
 };
 
-//----------------------------------------- Types dépendants de <${file_base}>
+//----------------------------------------- Types dépendants de <Seuil>
 
-#endif // XXX_H
+#endif // Seuil_H

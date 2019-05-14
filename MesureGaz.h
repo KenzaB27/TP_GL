@@ -6,70 +6,58 @@
 *************************************************************************/
 
 //---------- Interface de la classe <${file_base}> (fichier ${file_name}) ------
-#if ! defined ( Capteur_H )
-#define Capteur_H
+#if ! defined ( MesureGaz_H )
+#define MesureGaz_H
 
 #include <iostream>
 #include <string>
 using namespace std;
 
+#include "Date.h"
 
 //--------------------------------------------------- Interfaces utilisées
 
 //------------------------------------------------------------- Constantes 
-
 //------------------------------------------------------------------ Types 
-
+enum id{O3, SO2, NO2, PM10};
 //------------------------------------------------------------------------ 
-// Rôle de la classe <Capteur>
+// Rôle de la classe <MesureGaz>
 //
 //
 //------------------------------------------------------------------------ 
 
-class Capteur
+class MesureGaz
 {
 //----------------------------------------------------------------- PUBLIC
 
 public:
 //----------------------------------------------------- Méthodes publiques
-    int getCapteurId();
+    id getAttributId();
+    string getUnite();
     string getDescription();
-    int getLatitude();
-    int getLongitude();
-    int getEtat();
+    Date getDate();
+    double getValeur();
 
 //-------------------------------------------- Constructeurs - destructeur
-    Capteur ( const Capteur & unCapteur );
-    // Mode d'emploi (constructeur de copie) :
-    //
-    // Contrat :
-    //
+    MesureGaz ( const MesureGaz & unMesureGaz );
 
-    Capteur(int capteurid, string d, double lat, double lon);
+    MesureGaz(id typegaz, string u, string d, Date hr, double v);
 
-    Capteur();
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
+    MesureGaz();
 
-    virtual ~Capteur ( );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
+    virtual ~MesureGaz ( );
+
 //----------------------------------Attributs
 
     protected:
-
-    int capteurId;
+    id attributId;
+    string unite;
     string description;
-    double latitude;
-    double longitude;
-    int etat;
+    Date date;
+    double valeur;
 
  };
 
-//----------------------------------------- Types dépendants de <Capteur>
+//----------------------------------------- Types dépendants de <MesureGaz>
 
-#endif // Capteur_H
+#endif // MesureGaz_H

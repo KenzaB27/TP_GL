@@ -6,70 +6,52 @@
 *************************************************************************/
 
 //---------- Interface de la classe <${file_base}> (fichier ${file_name}) ------
-#if ! defined ( Capteur_H )
-#define Capteur_H
+#if ! defined ( IdCatalogue_H )
+#define IdCatalogue_H
 
 #include <iostream>
 #include <string>
 using namespace std;
 
+#include "Date.h"
 
 //--------------------------------------------------- Interfaces utilisées
 
 //------------------------------------------------------------- Constantes 
-
 //------------------------------------------------------------------ Types 
-
 //------------------------------------------------------------------------ 
-// Rôle de la classe <Capteur>
+// Rôle de la classe <IdCatalogue>
 //
 //
 //------------------------------------------------------------------------ 
 
-class Capteur
+class IdCatalogue
 {
 //----------------------------------------------------------------- PUBLIC
 
 public:
 //----------------------------------------------------- Méthodes publiques
+
     int getCapteurId();
-    string getDescription();
-    int getLatitude();
-    int getLongitude();
-    int getEtat();
+    Date getDateMesure();
 
 //-------------------------------------------- Constructeurs - destructeur
-    Capteur ( const Capteur & unCapteur );
-    // Mode d'emploi (constructeur de copie) :
-    //
-    // Contrat :
-    //
+    IdCatalogue ( const IdCatalogue & unIdCatalogue );
 
-    Capteur(int capteurid, string d, double lat, double lon);
+    IdCatalogue(int cI, Date dm);
 
-    Capteur();
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
+    IdCatalogue();
 
-    virtual ~Capteur ( );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
+    virtual ~IdCatalogue ( );
+
 //----------------------------------Attributs
 
     protected:
-
     int capteurId;
-    string description;
-    double latitude;
-    double longitude;
-    int etat;
+    Date dateMesure;
 
  };
 
-//----------------------------------------- Types dépendants de <Capteur>
+//----------------------------------------- Types dépendants de <IdCatalogue>
 
-#endif // Capteur_H
+#endif // IdCatalogue_H

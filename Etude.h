@@ -1,27 +1,27 @@
 /*************************************************************************
-                           ${file_base}  -  description
+                           Etude  -  description
                              -------------------
     début                : ${date}
     copyright            : (C) ${year} par ${user}
 *************************************************************************/
 
-//---------- Interface de la classe <${file_base}> (fichier ${file_name}) ------
-#if ! defined ( XXX_H )
-#define XXX_H
+//---------- Interface de la classe <Etude> (fichier ${file_name}) ------
+#if ! defined (ETUDE_H)
+#define ETUDE_H
 
 //--------------------------------------------------- Interfaces utilisées
 
-//------------------------------------------------------------- Constantes 
+//------------------------------------------------------------- Constantes
 
-//------------------------------------------------------------------ Types 
+//------------------------------------------------------------------ Types
 
-//------------------------------------------------------------------------ 
-// Rôle de la classe <${file_base}>
+//------------------------------------------------------------------------
+// Rôle de la classe <Etude>
 //
 //
-//------------------------------------------------------------------------ 
+//------------------------------------------------------------------------
 
-class ${file_base} : public Ancetre
+class Etude : public Ancetre
 {
 //----------------------------------------------------------------- PUBLIC
 
@@ -32,10 +32,11 @@ public:
     //
     // Contrat :
     //
+    Evaluer (double latitude, double longitude,double rayon = 0, date )
 
 
 //------------------------------------------------- Surcharge d'opérateurs
-    ${file_base} & operator = ( const ${file_base} & un${file_base} );
+    Etude & operator = ( const Etude & unEtude );
     // Mode d'emploi :
     //
     // Contrat :
@@ -43,25 +44,25 @@ public:
 
 
 //-------------------------------------------- Constructeurs - destructeur
-    ${file_base} ( const ${file_base} & un${file_base} );
+    Etude ( const Etude & unEtude );
     // Mode d'emploi (constructeur de copie) :
     //
     // Contrat :
     //
 
-    ${file_base} ( );
+    Etude ( );
     // Mode d'emploi :
     //
     // Contrat :
     //
 
-    virtual ~${file_base} ( );
+    virtual ~Etude ( );
     // Mode d'emploi :
     //
     // Contrat :
     //
 
-//------------------------------------------------------------------ PRIVE 
+//------------------------------------------------------------------ PRIVE
 
 protected:
 //----------------------------------------------------- Méthodes protégées
@@ -83,6 +84,6 @@ private:
 
 };
 
-//----------------------------------------- Types dépendants de <${file_base}>
+//----------------------------------------- Types dépendants de <Etude>
 
-#endif // XXX_H
+#endif // Etude

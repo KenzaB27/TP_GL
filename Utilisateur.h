@@ -1,11 +1,11 @@
 /*************************************************************************
-                           ${file_base}  -  description
+                           Utilisateur  -  description
                              -------------------
     début                : ${date}
     copyright            : (C) ${year} par ${user}
 *************************************************************************/
 
-//---------- Interface de la classe <${file_base}> (fichier ${file_name}) ------
+//---------- Interface de la classe <Utilisateur> (fichier Utilisateur.h) ------
 #if ! defined ( XXX_H )
 #define XXX_H
 
@@ -16,12 +16,12 @@
 //------------------------------------------------------------------ Types 
 
 //------------------------------------------------------------------------ 
-// Rôle de la classe <${file_base}>
+// Rôle de la classe <Utilisateur>
 //
 //
 //------------------------------------------------------------------------ 
 
-class ${file_base} : public Ancetre
+class Utilisateur 
 {
 //----------------------------------------------------------------- PUBLIC
 
@@ -35,7 +35,7 @@ public:
 
 
 //------------------------------------------------- Surcharge d'opérateurs
-    ${file_base} & operator = ( const ${file_base} & un${file_base} );
+    Utilisateur & operator = ( const Utilisateur & unUtilisateur );
     // Mode d'emploi :
     //
     // Contrat :
@@ -43,19 +43,19 @@ public:
 
 
 //-------------------------------------------- Constructeurs - destructeur
-    ${file_base} ( const ${file_base} & un${file_base} );
+    Utilisateur ( const Utilisateur & unUtilisateur );
     // Mode d'emploi (constructeur de copie) :
     //
     // Contrat :
     //
 
-    ${file_base} ( );
+    Utilisateur ( );
     // Mode d'emploi :
     //
     // Contrat :
     //
 
-    virtual ~${file_base} ( );
+    virtual ~Utilisateur ( );
     // Mode d'emploi :
     //
     // Contrat :
@@ -71,6 +71,9 @@ private:
 
 protected:
 //----------------------------------------------------- Attributs protégés
+String mail;
+String password;
+bool isAdmin;
 
 private:
 //------------------------------------------------------- Attributs privés
@@ -83,6 +86,6 @@ private:
 
 };
 
-//----------------------------------------- Types dépendants de <${file_base}>
+//----------------------------------------- Types dépendants de <Utilisateur>
 
-#endif // XXX_H
+#endif // XXX_H 

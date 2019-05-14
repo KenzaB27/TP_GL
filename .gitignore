@@ -14,22 +14,17 @@
 *.la
 *.a
 
-# Visual Studio Files
-Debug
-Release
-*.suo
-*.csproj.user
-*.vbproj.user
-ipch
-*sdf
 
-.vscode/ipch/5bea61e01f7c090e/mmap_address.bin
-.vscode/ipch/7388f036293dee8a/mmap_address.bin
-.vscode/ipch/756536d2e7db8216/mmap_address.bin
-.vscode/ipch/b0afbe7405a4e933/mmap_address.bin
-.vscode/ipch/137455ee0d317e6f/mmap_address.bin
-.vscode/ipch/a0d3d4c94d8f9604/mmap_address.bin
-.vscode/ipch/1a7a4c3568013a85/mmap_address.bin
-.vscode/ipch/99c4b01d025481b6/mmap_address.bin
-FlexiSensor/.vs
-.vscode/settings.json
+
+542f223fd38f9ec4/mmap_address.bin
+
+*.bin
+
+test.cpp
+makefile
+.vscode/main.o reader.o top10.o graphGen.o
+
+
+*.json
+*.ipch
+FlexiSensor/.vs/FlexiSensor/v15/Browse.VC.db
