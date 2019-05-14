@@ -17,7 +17,6 @@ using namespace std;
 //--------------------------------------------------- Interfaces utilisées
 
 //------------------------------------------------------------- Constantes 
-
 //------------------------------------------------------------------ Types 
 
     struct date {
@@ -28,6 +27,8 @@ using namespace std;
         int minutes;
         int heures;
     };
+
+    enum id{O3, SO2, NO2, PM10};
 //------------------------------------------------------------------------ 
 // Rôle de la classe <MesureGaz>
 //
@@ -40,7 +41,7 @@ class MesureGaz
 
 public:
 //----------------------------------------------------- Méthodes publiques
-    int getAttributId();
+    id getAttributId();
     string getUnite();
     string getDescription();
     date getDate();
@@ -49,7 +50,7 @@ public:
 //-------------------------------------------- Constructeurs - destructeur
     MesureGaz ( const MesureGaz & unMesureGaz );
 
-    MesureGaz(string u, string d, date hr, double v);
+    MesureGaz(id typegaz, string u, string d, date hr, double v);
 
     MesureGaz();
 
@@ -58,13 +59,10 @@ public:
 //----------------------------------Attributs
 
     protected:
-
-    int attributId;
+    id attributId;
     string unite;
     string description;
-
-    date d;
-
+    date Date;
     double valeur;
 
  };
