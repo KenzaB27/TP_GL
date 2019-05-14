@@ -25,11 +25,8 @@ using namespace std;
 
 //----------------------------------------------------------------- PUBLIC
 //-------------------------------------------------------- Fonctions amies
-/*ostream& operator<<(ostream & out, Seuil& unSeuil)
-{
-	cout << "min : " << unSeuil.min<<"  max : "<<unSeuil.max<<" indice : "<< unSeuil.indice;
-	return out;
-}*/
+	
+
 
 //----------------------------------------------------- M�thodes publiques
 // type Seuil::M�thode ( liste de param�tres )

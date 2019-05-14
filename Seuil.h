@@ -50,7 +50,7 @@ public:
     // Contrat :
     //
 */
-	Seuil(int unMin,int unMax,int unIndice;
+	Seuil(int unMin,int unMax,int unIndice);
     // Mode d'emploi :
     //
     // Contrat :
