@@ -26,7 +26,7 @@ testGL/testGL.sln
 testGL/testGL/testGL.vcxproj
 testGL/testGL/testGL.vcxproj.filters
 testGL/testGL/testGL.vcxproj.user
-
-.vscode/
+makefile
+.vscode/main.o reader.o top10.o graphGen.o
 
 
