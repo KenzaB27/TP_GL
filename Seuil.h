@@ -35,11 +35,12 @@ public:
 
 
 //------------------------------------------------- Surcharge d'opérateurs
-    Seuil & operator = ( const Seuil & unSeuil );
+    /*Seuil & operator = ( const Seuil & unSeuil );
     // Mode d'emploi :
     //
     // Contrat :
     //
+    */
 
 
 //-------------------------------------------- Constructeurs - destructeur

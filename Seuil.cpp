@@ -47,8 +47,8 @@ using namespace std;
 } //----- Fin de operator =
 */
 
-//-------------------------------------------- Constructeurs  - destructeur
-Seuil::Seuil ( const Seuil & unSeuil )
+//-------------------------------------------- Constructeurs - destructeur
+/*Seuil::Seuil ( const Seuil & unSeuil )
 // Algorithme :
 //
 {
@@ -56,7 +56,7 @@ Seuil::Seuil ( const Seuil & unSeuil )
     cout << "Appel au constructeur de copie de <Seuil>" << endl;
 #endif
 } //----- Fin de Seuil (constructeur de copie)
-
+*/
 
 Seuil::Seuil(int unMin,int unMax,int unIndice)
 // Algorithme :
