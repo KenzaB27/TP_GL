@@ -49,7 +49,7 @@ public:
     // Contrat :
     //
 
-    Seuil ( );
+	Seuil(int min, int max, int indice);
     // Mode d'emploi :
     //
     // Contrat :
@@ -74,7 +74,9 @@ protected:
 
 private:
 //------------------------------------------------------- Attributs privés
-
+	int min;
+	int max;
+	int indice;
 //---------------------------------------------------------- Classes amies
 
 //-------------------------------------------------------- Classes privées

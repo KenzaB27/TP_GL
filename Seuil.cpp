@@ -1,11 +1,11 @@
 /*************************************************************************
-                           ${file_base}  -  description
+                           Seuil  -  description
                              -------------------
     d�but                : ${date}
     copyright            : (C) ${year} par ${user}
 *************************************************************************/
 
-//---------- R�alisation de la classe <${file_base}> (fichier ${file_name}) --
+//---------- R�alisation de la classe <Seuil> (fichier ${file_name}) --
 
 //---------------------------------------------------------------- INCLUDE
 
@@ -14,7 +14,7 @@ using namespace std;
 #include <iostream>
 
 //------------------------------------------------------ Include personnel
-#include "${file_base}.h"
+#include "Seuil.h"
 
 //------------------------------------------------------------- Constantes
 
@@ -27,7 +27,7 @@ using namespace std;
 //-------------------------------------------------------- Fonctions amies
 
 //----------------------------------------------------- M�thodes publiques
-// type ${file_base}::M�thode ( liste de param�tres )
+// type Seuil::M�thode ( liste de param�tres )
 // Algorithme :
 //
 //{
@@ -35,7 +35,7 @@ using namespace std;
 
 
 //------------------------------------------------- Surcharge d'op�rateurs
-${file_base} & ${file_base}::operator = ( const ${file_base} & un${file_base} )
+Seuil & Seuil::operator = ( const Seuil & unSeuil )
 // Algorithme :
 //
 {
@@ -43,34 +43,37 @@ ${file_base} & ${file_base}::operator = ( const ${file_base} & un${file_base} )
 
 
 //-------------------------------------------- Constructeurs - destructeur
-${file_base}::${file_base} ( const ${file_base} & un${file_base} )
+Seuil::Seuil ( const Seuil & unSeuil )
 // Algorithme :
 //
 {
 #ifdef MAP
-    cout << "Appel au constructeur de copie de <${file_base}>" << endl;
+    cout << "Appel au constructeur de copie de <Seuil>" << endl;
 #endif
-} //----- Fin de ${file_base} (constructeur de copie)
+} //----- Fin de Seuil (constructeur de copie)
 
 
-${file_base}::${file_base} ( )
+Seuil::Seuil (int unMin,int unMax,int unIndice)
+// Algorithme :
+//
+{
+	min = unMin;
+	max = unMax;
+	indice = unIndice;
+#ifdef MAP
+    cout << "Appel au constructeur de <Seuil>" << endl;
+#endif
+} //----- Fin de Seuil
+
+
+Seuil::~Seuil ( )
 // Algorithme :
 //
 {
 #ifdef MAP
-    cout << "Appel au constructeur de <${file_base}>" << endl;
+    cout << "Appel au destructeur de <Seuil>" << endl;
 #endif
-} //----- Fin de ${file_base}
-
-
-${file_base}::~${file_base} ( )
-// Algorithme :
-//
-{
-#ifdef MAP
-    cout << "Appel au destructeur de <${file_base}>" << endl;
-#endif
-} //----- Fin de ~${file_base}
+} //----- Fin de ~Seuil
 
 
 //------------------------------------------------------------------ PRIVE
