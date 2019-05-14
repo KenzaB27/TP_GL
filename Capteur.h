@@ -9,8 +9,8 @@
 #if ! defined ( Capteur_H )
 #define Capteur_H
 
-#include <iostream>;
-#include <cstream>;
+#include <iostream>
+#include <string>
 using namespace std;
 
 
@@ -32,20 +32,11 @@ class Capteur
 
 public:
 //----------------------------------------------------- Méthodes publiques
-    // type Méthode ( liste de paramètres );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
-
-
-//------------------------------------------------- Surcharge d'opérateurs
-    //Capteur & operator = ( const Capteur & unCapteur );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
-
+    int getCapteurId();
+    string getDescription();
+    int getLatitude();
+    int getLongitude();
+    int getEtat();
 
 //-------------------------------------------- Constructeurs - destructeur
     Capteur ( const Capteur & unCapteur );
@@ -54,7 +45,7 @@ public:
     // Contrat :
     //
 
-    Capteur(int capteurid, String description, double latitude, double longitude, int etat);   );
+    Capteur(int capteurid, string d, double lat, double lon);
 
     Capteur();
     // Mode d'emploi :
@@ -67,28 +58,17 @@ public:
     //
     // Contrat :
     //
+//----------------------------------Attributs
 
-//------------------------------------------------------------------ PRIVE 
+    protected:
 
-protected:
-//----------------------------------------------------- Méthodes protégées
+    int capteurId;
+    string description;
+    double latitude;
+    double longitude;
+    int etat;
 
-private:
-//------------------------------------------------------- Méthodes privées
-
-protected:
-//----------------------------------------------------- Attributs protégés
-
-private:
-//------------------------------------------------------- Attributs privés
-
-//---------------------------------------------------------- Classes amies
-
-//-------------------------------------------------------- Classes privées
-
-//----------------------------------------------------------- Types privés
-
-};
+ };
 
 //----------------------------------------- Types dépendants de <Capteur>
 
