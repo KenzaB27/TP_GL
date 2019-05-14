@@ -50,6 +50,7 @@ void afficher();
     // Contrat :
     //
 */
+    Seuil();
 	Seuil(int unMin,int unMax,int unIndice);
     // Mode d'emploi :
     //

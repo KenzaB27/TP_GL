@@ -10,7 +10,8 @@
 #define GESTION_H
 
 //--------------------------------------------------- Interfaces utilisées
-
+#include "Utilisateur.h"
+#include "Capteur.h"
 //------------------------------------------------------------- Constantes
 
 //------------------------------------------------------------------ Types
@@ -32,6 +33,14 @@ public:
 //
 // Contrat :
 //
+void supprimerUtilisateur(Utilisateur unUtilisateur);
+void creerUtilisateur(Utilisateur unUtilisateur);
+void supprimerCapteur(int numCapteur);
+void ajouterCapteur(Capteur unCapteur);
+void restaurerCapteur(Capteur unCapteur);
+void mettreEnVeilleCapteur(Capteur unCapteur);
+int evaluerCapteur(Capteur);
+void changerSeuil(Seuil unSeuil);
 
 
 //------------------------------------------------- Surcharge d'opérateurs

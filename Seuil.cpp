@@ -57,6 +57,17 @@ void Seuil::afficher() {
 #endif
 } //----- Fin de Seuil (constructeur de copie)
 */
+Seuil::Seuil()
+// Algorithme :
+//
+{
+	min = 0;
+	max = 0;
+	indice = 0;
+#ifdef MAP
+    cout << "Appel au constructeur de <Seuil>" << endl;
+#endif
+} 
 
 Seuil::Seuil(int unMin,int unMax,int unIndice)
 // Algorithme :

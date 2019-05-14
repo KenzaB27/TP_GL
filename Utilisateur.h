@@ -74,6 +74,7 @@ protected:
 String mail;
 String password;
 bool isAdmin;
+
 private:
 //------------------------------------------------------- Attributs privés
 
