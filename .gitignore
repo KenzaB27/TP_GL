@@ -16,4 +16,17 @@
 
 
 
+542f223fd38f9ec4/mmap_address.bin
+
+*.bin
+
+testGL/.vs/testGL/v16/Browse.VC.db
+testGL/.vs/testGL/v16/Browse.VC.opendb
+testGL/testGL.sln
+testGL/testGL/testGL.vcxproj
+testGL/testGL/testGL.vcxproj.filters
+testGL/testGL/testGL.vcxproj.user
+
 .vscode/
+
+
