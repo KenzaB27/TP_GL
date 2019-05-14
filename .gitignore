@@ -14,14 +14,6 @@
 *.la
 *.a
 
-# Visual Studio Files
-Debug
-Release
-*.suo
-*.csproj.user
-*.vbproj.user
-ipch
-*sdf
 
 .vscode/ipch/5bea61e01f7c090e/mmap_address.bin
 .vscode/ipch/7388f036293dee8a/mmap_address.bin
@@ -30,6 +22,7 @@ ipch
 .vscode/ipch/137455ee0d317e6f/mmap_address.bin
 .vscode/ipch/137455ee0d317e6f/Capteur.ipch
 .vscode/ipch/34cbf273016fb5ab/mmap_address.bin
+<<<<<<< HEAD
 test.cpp
 testGLUML/.vs/testGLUML/v16/Browse.VC.db
 testGLUML/.vs/testGLUML/v16/Browse.VC.opendb
@@ -37,3 +30,12 @@ testGLUML/testGLUML.sln
 testGLUML/testGLUML/testGLUML.vcxproj
 testGLUML/testGLUML/testGLUML.vcxproj.filters
 testGLUML/testGLUML/testGLUML.vcxproj.user
+=======
+.vscode/settings.json
+.vscode/ipch/31b52c15ebc20773/mmap_address.bin
+.vscode/ipch/7388f036293dee8a/Capteur.ipch
+.vscode/ipch/9c775e3badc986ac/Catalogue.ipch
+.vscode/ipch/9c775e3badc986ac/mmap_address.bin
+.vscode/ipch/d0f70d645d0e37fc/mmap_address.bin
+.vscode/ipch/542f223fd38f9ec4/mmap_address.bin
+>>>>>>> 21c14e0eeeb4922402f42fd9654eea044cf81d25
