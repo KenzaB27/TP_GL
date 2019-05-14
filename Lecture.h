@@ -10,22 +10,33 @@
 #define XXX_H
 
     //--------------------------------------------------- Interfaces utilisées
+using namespace std;
+#include <iostream>
+#include <algorithm>
+#include <list>
+#include <unordered_map>
+#include <algorithm>
+#include "Date.h"
+#include "MesureGaz.h"
+#include "Capteur.h"
+#include "Catalogue.h"
 
-    //------------------------------------------------------------- Constantes
+//------------------------------------------------------------------ Types
+typedef enum gazId {O3,SO2,NO2,PM10};
 
-    //------------------------------------------------------------------ Types
+//------------------------------------------------------------- Constantes
 
-    //------------------------------------------------------------------------
-    // Rôle de la classe <Lecture>
-    //
-    //
-    //------------------------------------------------------------------------
+//------------------------------------------------------------------------
+// Rôle de la classe <Lecture>
+//
+//
+//------------------------------------------------------------------------
 
 class Lecture
 {
     //----------------------------------------------------------------- PUBLIC
 
-public:
+public:    
     //----------------------------------------------------- Méthodes publiques
     // type Méthode ( liste de paramètres );
     // Mode demploi
@@ -47,7 +58,7 @@ public:
     // Contrat :
     //
 
-    Lecture();
+    Lecture(string f);
     // Mode d'emploi :
     //
     // Contrat :
@@ -66,13 +77,37 @@ protected:
 
 private:
     //------------------------------------------------------- Méthodes privées
+    void initCapteur(ifstream &ifs);
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
+
+    void LectureMesure(ifstream &ifs, MesureGaz *mesure);
+    // Mode d'emploi : Parcours tout le fichier et le stocke dans un catalogue
+    //
+    // Contrat :
+    //
+
+    Catalogue parcourir(list<Capteur> l , Date d, Date f);
+    // Mode d'emploi : Parcours tout le fichier en ne prenant en compte que les capteurs et la date passés en paramètre
+    //
+    // Contrat :
+    //
+
+    bool ValideRecherche(list<Capteur> l, Date d, Date f);
+    // Mode d'emploi : Parcours tout le fichier en ne prenant en compte que les capteurs et la date passés en paramètre
+    //
+    // Contrat :
+    //
 
 protected:
     //----------------------------------------------------- Attributs protégés
 
 private:
     //------------------------------------------------------- Attributs privés
-
+    string fichier;
+    unordered_map<string, gazId> gazMap;
     //---------------------------------------------------------- Classes amies
 
     //-------------------------------------------------------- Classes privées

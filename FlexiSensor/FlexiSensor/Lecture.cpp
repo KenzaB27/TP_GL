@@ -1,11 +1,11 @@
-/*************************************************************************
-                           Seuil  -  description
-                             -------------------
-    d�but                : ${date}
-    copyright            : (C) ${year} par ${user}
+﻿/*************************************************************************
+						   Lecture  -  description
+							 -------------------
+	d�but                : ${date}
+	copyright            : (C) ${year} par ${user}
 *************************************************************************/
 
-//---------- R�alisation de la classe <Seuil> (fichier ${file_name}) --
+//---------- R�alisation de la classe <Lecture> (fichier ${file_name}) --
 
 //---------------------------------------------------------------- INCLUDE
 
@@ -14,7 +14,7 @@ using namespace std;
 #include <iostream>
 
 //------------------------------------------------------ Include personnel
-#include "Seuil.h"
+#include "Lecture.h"
 
 //------------------------------------------------------------- Constantes
 
@@ -22,75 +22,50 @@ using namespace std;
 
 //----------------------------------------------------------- Types priv�s
 
-
 //----------------------------------------------------------------- PUBLIC
 //-------------------------------------------------------- Fonctions amies
 
-
-
 //----------------------------------------------------- M�thodes publiques
-// type Seuil::M�thode ( liste de param�tres )
+// type Lecture::M�thode ( liste de param�tres )
 // Algorithme :
 //
 //{
 //} //----- Fin de M�thode
 
-void Seuil::afficher() {
-	cout<<"min : "<<min<<"  max : "<<max<<" indice : "<<indice<<endl;
-}
-
 //------------------------------------------------- Surcharge d'op�rateurs
-/*Seuil & Seuil::operator = ( const Seuil & unSeuil )
+Lecture & Lecture::operator=(const Lecture & unLecture)
 // Algorithme :
 //
 {
 } //----- Fin de operator =
-*/
 
 //-------------------------------------------- Constructeurs - destructeur
-/*Seuil::Seuil ( const Seuil & unSeuil )
+Lecture::Lecture(const Lecture & unLecture)
 // Algorithme :
 //
 {
 #ifdef MAP
-    cout << "Appel au constructeur de copie de <Seuil>" << endl;
+	cout << "Appel au constructeur de copie de <Lecture>" << endl;
 #endif
-} //----- Fin de Seuil (constructeur de copie)
-*/
-Seuil::Seuil()
-// Algorithme :
-//
-{
-	min = 0;
-	max = 0;
-	indice = 0;
-#ifdef MAP
-    cout << "Appel au constructeur de <Seuil>" << endl;
-#endif
-} 
+} //----- Fin de Lecture (constructeur de copie)
 
-Seuil::Seuil(int unMin,int unMax,int unIndice)
-// Algorithme :
-//
-{
-	min = unMin;
-	max = unMax;
-	indice = unIndice;
-#ifdef MAP
-    cout << "Appel au constructeur de <Seuil>" << endl;
-#endif
-} //----- Fin de Seuil
-
-
-Seuil::~Seuil ( )
+Lecture::Lecture()
 // Algorithme :
 //
 {
 #ifdef MAP
-    cout << "Appel au destructeur de <Seuil>" << endl;
+	cout << "Appel au constructeur de <Lecture>" << endl;
 #endif
-} //----- Fin de ~Seuil
+} //----- Fin de Lecture
 
+Lecture::~Lecture()
+// Algorithme :
+//
+{
+#ifdef MAP
+	cout << "Appel au destructeur de <Lecture>" << endl;
+#endif
+} //----- Fin de ~Lecture
 
 //------------------------------------------------------------------ PRIVE
 

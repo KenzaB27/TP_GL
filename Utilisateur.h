@@ -1,27 +1,27 @@
 /*************************************************************************
-                           Seuil  -  description
+                           Utilisateur  -  description
                              -------------------
     début                : ${date}
     copyright            : (C) ${year} par ${user}
 *************************************************************************/
 
-//---------- Interface de la classe <Seuil> (fichier ${file_name}) ------
-#if ! defined ( Seuil_H )
-#define Seuil_H
+//---------- Interface de la classe <Utilisateur> (fichier Utilisateur.h) ------
+#if ! defined ( UTILISATEUR_H )
+#define UTILISATEUR_H
 
 //--------------------------------------------------- Interfaces utilisées
+#include <string>
+//------------------------------------------------------------- Constantes
 
-//------------------------------------------------------------- Constantes 
+//------------------------------------------------------------------ Types
 
-//------------------------------------------------------------------ Types 
-
-//------------------------------------------------------------------------ 
-// Rôle de la classe <Seuil>
+//------------------------------------------------------------------------
+// Rôle de la classe <Utilisateur>
 //
 //
-//------------------------------------------------------------------------ 
+//------------------------------------------------------------------------
 
-class Seuil
+class Utilisateur
 {
 //----------------------------------------------------------------- PUBLIC
 
@@ -32,38 +32,37 @@ public:
     //
     // Contrat :
     //
-void afficher();
+
 
 //------------------------------------------------- Surcharge d'opérateurs
-    /*Seuil & operator = ( const Seuil & unSeuil );
+    /*Utilisateur & operator = ( const Utilisateur & unUtilisateur );
     // Mode d'emploi :
     //
     // Contrat :
     //
-    */
+     */
 
 
 //-------------------------------------------- Constructeurs - destructeur
-    /*Seuil ( const Seuil & unSeuil );
+    Utilisateur ( const Utilisateur & unUtilisateur );
     // Mode d'emploi (constructeur de copie) :
     //
     // Contrat :
     //
-*/
-    Seuil();
-	Seuil(int unMin,int unMax,int unIndice);
+
+    Utilisateur ( );
     // Mode d'emploi :
     //
     // Contrat :
     //
 
-    virtual ~Seuil ( );
+    virtual ~Utilisateur ( );
     // Mode d'emploi :
     //
     // Contrat :
     //
 
-//------------------------------------------------------------------ PRIVE 
+//------------------------------------------------------------------ PRIVE
 
 protected:
 //----------------------------------------------------- Méthodes protégées
@@ -73,12 +72,13 @@ private:
 
 protected:
 //----------------------------------------------------- Attributs protégés
+string mail;
+string password;
+bool isAdmin;
 
 private:
 //------------------------------------------------------- Attributs privés
-	int min;
-	int max;
-	int indice;
+
 //---------------------------------------------------------- Classes amies
 
 //-------------------------------------------------------- Classes privées
@@ -87,6 +87,6 @@ private:
 
 };
 
-//----------------------------------------- Types dépendants de <Seuil>
+//----------------------------------------- Types dépendants de <Utilisateur>
 
-#endif // Seuil_H
+#endif // UTILISATEUR_H

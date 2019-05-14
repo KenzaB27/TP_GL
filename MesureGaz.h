@@ -13,21 +13,14 @@
 #include <string>
 using namespace std;
 
+#include "Date.h"
+#include "Capteur.h"
 
 //--------------------------------------------------- Interfaces utilisées
 
 //------------------------------------------------------------- Constantes 
-
 //------------------------------------------------------------------ Types 
-
-    struct date {
-        int jour;
-        int mois;
-        int annee;
-        int secondes;
-        int minutes;
-        int heures;
-    };
+enum id{O3, SO2, NO2, PM10};
 //------------------------------------------------------------------------ 
 // Rôle de la classe <MesureGaz>
 //
@@ -40,16 +33,24 @@ class MesureGaz
 
 public:
 //----------------------------------------------------- Méthodes publiques
-    int getAttributId();
+    id getGazId();
     string getUnite();
     string getDescription();
-    date getDate();
+    Date getDate();
     double getValeur();
+
+    void setGazId(id val);
+    void setDate(Date d);
+    void setValeur(double val);
+    void setCapteur(Capteur c);
+
+
+    
 
 //-------------------------------------------- Constructeurs - destructeur
     MesureGaz ( const MesureGaz & unMesureGaz );
 
-    MesureGaz(string u, string d, date hr, double v);
+    MesureGaz(id typegaz, Date hr, double v, Capteur c);
 
     MesureGaz();
 
@@ -58,14 +59,11 @@ public:
 //----------------------------------Attributs
 
     protected:
-
-    int attributId;
+    id gazId; //a changer dans le diagramme de classes
     string unite;
-    string description;
-
-    date d;
-
+    Date date;
     double valeur;
+    Capteur capteur;
 
  };
 

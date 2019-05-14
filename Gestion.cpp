@@ -1,11 +1,11 @@
 /*************************************************************************
-                           Seuil  -  description
+                           Gestion  -  description
                              -------------------
     d�but                : ${date}
     copyright            : (C) ${year} par ${user}
 *************************************************************************/
 
-//---------- R�alisation de la classe <Seuil> (fichier ${file_name}) --
+//---------- R�alisation de la classe <Gestion> (fichier Gestion.cpp) --
 
 //---------------------------------------------------------------- INCLUDE
 
@@ -14,7 +14,7 @@ using namespace std;
 #include <iostream>
 
 //------------------------------------------------------ Include personnel
-#include "Seuil.h"
+#include "Gestion.h"
 
 //------------------------------------------------------------- Constantes
 
@@ -26,21 +26,59 @@ using namespace std;
 //----------------------------------------------------------------- PUBLIC
 //-------------------------------------------------------- Fonctions amies
 
-
-
 //----------------------------------------------------- M�thodes publiques
-// type Seuil::M�thode ( liste de param�tres )
+// type Gestion::M�thode ( liste de param�tres )
 // Algorithme :
 //
 //{
 //} //----- Fin de M�thode
 
-void Seuil::afficher() {
-	cout<<"min : "<<min<<"  max : "<<max<<" indice : "<<indice<<endl;
+/*void Gestion::creerUtilisateur(Utilisateur unUtilisateur)
+{
+
 }
 
+void Gestion::supprimerUtilisateur(Utilisateur unUtilisateur)
+{
+
+}*/
+
+void Gestion::ajouterCapteur(Capteur unCapteur)
+{
+
+}
+
+void Gestion::changerSeuil(Seuil unSeuil)
+{
+
+}
+
+
+
+
+void Gestion::mettreEnVeilleCapteur(Capteur unCapteur)
+{
+
+}
+
+void Gestion::restaurerCapteur(Capteur unCapteur)
+{
+
+}
+
+void Gestion::supprimerCapteur(int numCapteur)
+{
+
+}
+
+int Gestion::evaluerCapteur(Capteur)
+{
+
+    return 0;
+}
 //------------------------------------------------- Surcharge d'op�rateurs
-/*Seuil & Seuil::operator = ( const Seuil & unSeuil )
+/*
+Gestion & Gestion::operator = ( const Gestion & unGestion )
 // Algorithme :
 //
 {
@@ -48,48 +86,34 @@ void Seuil::afficher() {
 */
 
 //-------------------------------------------- Constructeurs - destructeur
-/*Seuil::Seuil ( const Seuil & unSeuil )
+Gestion::Gestion ( const Gestion & unGestion )
 // Algorithme :
 //
 {
 #ifdef MAP
-    cout << "Appel au constructeur de copie de <Seuil>" << endl;
+    cout << "Appel au constructeur de copie de <Gestion>" << endl;
 #endif
-} //----- Fin de Seuil (constructeur de copie)
-*/
-Seuil::Seuil()
-// Algorithme :
-//
-{
-	min = 0;
-	max = 0;
-	indice = 0;
-#ifdef MAP
-    cout << "Appel au constructeur de <Seuil>" << endl;
-#endif
-} 
-
-Seuil::Seuil(int unMin,int unMax,int unIndice)
-// Algorithme :
-//
-{
-	min = unMin;
-	max = unMax;
-	indice = unIndice;
-#ifdef MAP
-    cout << "Appel au constructeur de <Seuil>" << endl;
-#endif
-} //----- Fin de Seuil
+} //----- Fin de Gestion (constructeur de copie)
 
 
-Seuil::~Seuil ( )
+Gestion::Gestion ( )
 // Algorithme :
 //
 {
 #ifdef MAP
-    cout << "Appel au destructeur de <Seuil>" << endl;
+    cout << "Appel au constructeur de <Gestion>" << endl;
 #endif
-} //----- Fin de ~Seuil
+} //----- Fin de Gestion
+
+
+Gestion::~Gestion ( )
+// Algorithme :
+//
+{
+#ifdef MAP
+    cout << "Appel au destructeur de <Gestion>" << endl;
+#endif
+} //----- Fin de ~Gestion
 
 
 //------------------------------------------------------------------ PRIVE
@@ -97,3 +121,4 @@ Seuil::~Seuil ( )
 //----------------------------------------------------- M�thodes prot�g�es
 
 //------------------------------------------------------- M�thodes priv�es
+ 

@@ -20,13 +20,12 @@
 
 *.bin
 
-testGL/.vs/testGL/v16/Browse.VC.db
-testGL/.vs/testGL/v16/Browse.VC.opendb
-testGL/testGL.sln
-testGL/testGL/testGL.vcxproj
-testGL/testGL/testGL.vcxproj.filters
-testGL/testGL/testGL.vcxproj.user
-
-.vscode/
+test.cpp
+makefile
+.vscode/main.o reader.o top10.o graphGen.o
 
 
+*.json
+*.ipch
+FlexiSensor/.vs/FlexiSensor/v15/Browse.VC.db
+FlexiSensor/.vs/FlexiSensor/v15/.suo

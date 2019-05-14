@@ -1,11 +1,11 @@
 /*************************************************************************
-                           Seuil  -  description
+                           Utilisateur  -  description
                              -------------------
     d�but                : ${date}
     copyright            : (C) ${year} par ${user}
 *************************************************************************/
 
-//---------- R�alisation de la classe <Seuil> (fichier ${file_name}) --
+//---------- R�alisation de la classe <Utilisateur> (fichier ${file_name}) --
 
 //---------------------------------------------------------------- INCLUDE
 
@@ -14,7 +14,7 @@ using namespace std;
 #include <iostream>
 
 //------------------------------------------------------ Include personnel
-#include "Seuil.h"
+#include "Utilisateur.h"
 
 //------------------------------------------------------------- Constantes
 
@@ -26,21 +26,16 @@ using namespace std;
 //----------------------------------------------------------------- PUBLIC
 //-------------------------------------------------------- Fonctions amies
 
-
-
 //----------------------------------------------------- M�thodes publiques
-// type Seuil::M�thode ( liste de param�tres )
+// type Utilisateur::M�thode ( liste de param�tres )
 // Algorithme :
 //
 //{
 //} //----- Fin de M�thode
 
-void Seuil::afficher() {
-	cout<<"min : "<<min<<"  max : "<<max<<" indice : "<<indice<<endl;
-}
 
 //------------------------------------------------- Surcharge d'op�rateurs
-/*Seuil & Seuil::operator = ( const Seuil & unSeuil )
+/*Utilisateur & Utilisateur::operator = ( const Utilisateur & unUtilisateur )
 // Algorithme :
 //
 {
@@ -48,48 +43,34 @@ void Seuil::afficher() {
 */
 
 //-------------------------------------------- Constructeurs - destructeur
-/*Seuil::Seuil ( const Seuil & unSeuil )
+Utilisateur::Utilisateur ( const Utilisateur & unUtilisateur )
 // Algorithme :
 //
 {
 #ifdef MAP
-    cout << "Appel au constructeur de copie de <Seuil>" << endl;
+    cout << "Appel au constructeur de copie de <Utilisateur>" << endl;
 #endif
-} //----- Fin de Seuil (constructeur de copie)
-*/
-Seuil::Seuil()
-// Algorithme :
-//
-{
-	min = 0;
-	max = 0;
-	indice = 0;
-#ifdef MAP
-    cout << "Appel au constructeur de <Seuil>" << endl;
-#endif
-} 
-
-Seuil::Seuil(int unMin,int unMax,int unIndice)
-// Algorithme :
-//
-{
-	min = unMin;
-	max = unMax;
-	indice = unIndice;
-#ifdef MAP
-    cout << "Appel au constructeur de <Seuil>" << endl;
-#endif
-} //----- Fin de Seuil
+} //----- Fin de Utilisateur (constructeur de copie)
 
 
-Seuil::~Seuil ( )
+Utilisateur::Utilisateur ( )
 // Algorithme :
 //
 {
 #ifdef MAP
-    cout << "Appel au destructeur de <Seuil>" << endl;
+    cout << "Appel au constructeur de <Utilisateur>" << endl;
 #endif
-} //----- Fin de ~Seuil
+} //----- Fin de Utilisateur
+
+
+Utilisateur::~Utilisateur ( )
+// Algorithme :
+//
+{
+#ifdef MAP
+    cout << "Appel au destructeur de <Utilisateur>" << endl;
+#endif
+} //----- Fin de ~Utilisateur
 
 
 //------------------------------------------------------------------ PRIVE
