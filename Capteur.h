@@ -9,8 +9,8 @@
 #if ! defined ( Capteur_H )
 #define Capteur_H
 
-#include <iostream>;
-#include <cstream>;
+#include <iostream>
+#include <string>
 using namespace std;
 
 
@@ -32,20 +32,15 @@ class Capteur
 
 public:
 //----------------------------------------------------- Méthodes publiques
-    // type Méthode ( liste de paramètres );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
+    int getCapteurId(Capteur c);
 
+    int getDescription(Capteur c);
 
-//------------------------------------------------- Surcharge d'opérateurs
-    //Capteur & operator = ( const Capteur & unCapteur );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
+    int getLatitude(Capteur c);
 
+    int getLongitude(Capteur c);
+
+    int getEtat(Capteur c);
 
 //-------------------------------------------- Constructeurs - destructeur
     Capteur ( const Capteur & unCapteur );
@@ -54,7 +49,7 @@ public:
     // Contrat :
     //
 
-    Capteur(int capteurid, String description, double latitude, double longitude, int etat);   );
+    Capteur(int capteurid, string d, double lat, double lon);
 
     Capteur();
     // Mode d'emploi :
@@ -71,22 +66,12 @@ public:
 //------------------------------------------------------------------ PRIVE 
 
 protected:
-//----------------------------------------------------- Méthodes protégées
 
-private:
-//------------------------------------------------------- Méthodes privées
-
-protected:
-//----------------------------------------------------- Attributs protégés
-
-private:
-//------------------------------------------------------- Attributs privés
-
-//---------------------------------------------------------- Classes amies
-
-//-------------------------------------------------------- Classes privées
-
-//----------------------------------------------------------- Types privés
+int capteurId;
+string description;
+double latitude;
+double longitude;
+int etat;
 
 };
 
