@@ -1,35 +1,36 @@
 /*************************************************************************
-                           idCatalogue
+                           Catalogue
                              -------------------
     début                : 14/05/2019
     copyright            : (C) 2019 par Margaux Cavagna
 *************************************************************************/
 
-#if ! defined ( IdCatalogue_H )
-#define IdCatalogue_H
+#if ! defined ( Catalogue_H )
+#define Catalogue_H
 
 #include <iostream>
 #include <string>
+#include <unordered_map>
+#include <iterator> 
+#include <list>
 using namespace std;
 
+#include "IdCatalogue.h"
+#include "MesureGaz.h"
 #include "Date.h"
+
 
 //--------------------------------------------------- Interfaces utilisées
 
 //------------------------------------------------------------- Constantes 
 //------------------------------------------------------------------ Types 
 //------------------------------------------------------------------------ 
-// Rôle de la classe <IdCatalogue>
+// Rôle de la classe <Catalogue>
 //
 //
 //------------------------------------------------------------------------ 
 
-size_t Date_hash( const Date & date )
-{
-    return hash<int>()(date.annee)^hash<int>()(date.mois)^hash<int>()(date.jour)^hash<int>()(date.heure)^hash<int>()(date.minutes)^hash<int>()(date.secondes);
-}
-
-struct IdCatalogue
+class Catalogue
 {
 //----------------------------------------------------------------- PUBLIC
 
@@ -37,31 +38,20 @@ public:
 //----------------------------------------------------- Méthodes publiques
 
 //-------------------------------------------- Constructeurs - destructeur
-    IdCatalogue ( const IdCatalogue & unIdCatalogue );
+    Catalogue ( const Catalogue & unCatalogue );
 
-    IdCatalogue(int cI, Date dm);
+    Catalogue();
 
-    IdCatalogue();
-
-    virtual ~IdCatalogue ( );
+    virtual ~Catalogue ( );
 
 //----------------------------------Attributs
-    int capteurId;
-    Date dateMesure;
+
+    protected:
+    unordered_multimap<IdCatalogue,list<MesureGaz>> map;
+
 
  };
 
-//----------------------------------------- Types dépendants de <IdCatalogue>
-namespace std {
-  template<>
-  class hash<IdCatalogue> {
-  public:
-      size_t operator()(const IdCatalogue &k) const
-      {
-          size_t h1 = hash<int>()(k.capteurId);
-          size_t h2 = Date_hash(k.dateMesure);
-          return h1 ^ ( h2 << 1 );
-      }
-  };
-}
-#endif // IdCatalogue_H
+//----------------------------------------- Types dépendants de <Catalogue>
+
+#endif // Catalogue_H

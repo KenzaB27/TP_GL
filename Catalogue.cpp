@@ -1,15 +1,15 @@
 /*************************************************************************
-                           IdCatalogue  -  description
+                           Catalogue  -  description
                              -------------------
     d�but                : ${date}
     copyright            : (C) ${year} par ${user}
 *************************************************************************/
 
-//---------- R�alisation de la classe <IdCatalogue> (fichier ${file_name}) --
+//---------- R�alisation de la classe <Catalogue> (fichier ${file_name}) --
 
 //---------------------------------------------------------------- INCLUDE
 #include "Date.h"
-#include "IdCatalogue.h"
+#include "Catalogue.h"
 
 //-------------------------------------------------------- Include syst�me
 using namespace std;
@@ -19,40 +19,27 @@ using namespace std;
 
 //---------------------------------------------Methodes publiques
 //-------------------------------------------- Constructeurs - destructeur
-IdCatalogue::IdCatalogue ( const IdCatalogue & unIdCatalogue )
+Catalogue::Catalogue ( const Catalogue & unCatalogue )
 // Algorithme :
 //
 {
     #ifdef MAP
-        cout << "Appel au constructeur de copie de <IdCatalogue>" << endl;
+        cout << "Appel au constructeur de copie de <Catalogue>" << endl;
     #endif
-} //----- Fin de IdCatalogue (constructeur de copie)
+} //----- Fin de Catalogue (constructeur de copie)
 
-
-IdCatalogue::IdCatalogue(int cI, Date dm)
-// Algorithme :
-//
-{
-    #ifdef MAP
-        cout << "Appel au constructeur de <IdCatalogue>" << endl;
-    #endif
-    capteurId=cI;
-    dateMesure=dm;
-
-} //----- Fin de IdCatalogue
-
-IdCatalogue::IdCatalogue(){
+Catalogue::Catalogue(){
     //Constructeur par défaut ------ l'objet est vide
 }
 
-IdCatalogue::~IdCatalogue ( )
+Catalogue::~Catalogue ( )
 // Algorithme :
 //
 {
 #ifdef MAP
-    cout << "Appel au destructeur de <IdCatalogue>" << endl;
+    cout << "Appel au destructeur de <Catalogue>" << endl;
 #endif
-} //----- Fin de ~IdCatalogue
+} //----- Fin de ~Catalogue
 
 
 //------------------------------------------------------------------ PRIVE
