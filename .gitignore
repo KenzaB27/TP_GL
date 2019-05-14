@@ -30,3 +30,5 @@ makefile
 .vscode/main.o reader.o top10.o graphGen.o
 
 
+*.json
+*.ipch
