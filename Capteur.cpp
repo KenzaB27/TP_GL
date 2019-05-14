@@ -16,22 +16,44 @@ using namespace std;
 #include <string>
 
 
-//------------------------------------------------- Surcharge d'op�rateurs
-Capteur & Capteur::operator = ( const Capteur & unCapteur )
-// Algorithme :
-//
-{
-} //----- Fin de operator =
+//---------------------------------------------Methodes publiques
 
+int Capteur::getCapteurId()
+{
+    return capteurId;
+}
+
+string Capteur::getDescription()
+{
+    return description;
+}
+
+int Capteur::getLatitude()
+{
+    return latitude;
+}
+
+int Capteur::getLongitude()
+{
+    return longitude;
+}
+
+int Capteur::getEtat()
+{
+    return etat;
+}
 
 //-------------------------------------------- Constructeurs - destructeur
 Capteur::Capteur ( const Capteur & unCapteur )
 // Algorithme :
 //
 {
-#ifdef MAP
-    cout << "Appel au constructeur de copie de <Capteur>" << endl;
-#endif
+    #ifdef MAP
+        cout << "Appel au constructeur de copie de <Capteur>" << endl;
+    #endif
+
+
+
 } //----- Fin de Capteur (constructeur de copie)
 
 
@@ -47,6 +69,9 @@ Capteur::Capteur (int capteurid, string d, double lat, double lon)
     description = d;
     latitude = lat;
     longitude = lon;
+
+    etat = 1; //Etat = 1 signifie qu ele capteur marche, Etat = 0 signifie qu'il ne marche plus. Quand on ajoute un capteur, 
+                //on fait l'hypothèse que celui ci marche, d'où on initialise la valeur à 1.
 } //----- Fin de Capteur
 
 Capteur::Capteur(){

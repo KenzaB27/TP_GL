@@ -32,15 +32,11 @@ class Capteur
 
 public:
 //----------------------------------------------------- Méthodes publiques
-    int getCapteurId(Capteur c);
-
-    int getDescription(Capteur c);
-
-    int getLatitude(Capteur c);
-
-    int getLongitude(Capteur c);
-
-    int getEtat(Capteur c);
+    int getCapteurId();
+    string getDescription();
+    int getLatitude();
+    int getLongitude();
+    int getEtat();
 
 //-------------------------------------------- Constructeurs - destructeur
     Capteur ( const Capteur & unCapteur );
@@ -62,18 +58,17 @@ public:
     //
     // Contrat :
     //
+//----------------------------------Attributs
 
-//------------------------------------------------------------------ PRIVE 
+    protected:
 
-protected:
+    int capteurId;
+    string description;
+    double latitude;
+    double longitude;
+    int etat;
 
-int capteurId;
-string description;
-double latitude;
-double longitude;
-int etat;
-
-};
+ };
 
 //----------------------------------------- Types dépendants de <Capteur>
 
