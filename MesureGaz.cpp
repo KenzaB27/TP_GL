@@ -10,6 +10,8 @@
 //---------------------------------------------------------------- INCLUDE
 #include "Date.h"
 #include "MesureGaz.h"
+#include "Capteur.h"
+
 
 //-------------------------------------------------------- Include syst�me
 using namespace std;
@@ -19,16 +21,12 @@ using namespace std;
 
 //---------------------------------------------Methodes publiques
 
-id MesureGaz ::getAttributId(){
-    return attributId;
+id MesureGaz ::getGazId(){
+    return gazId;
 }
 
 string MesureGaz::getUnite(){
     return unite;
-}
-
-string MesureGaz::getDescription(){
-    return description;
 }
 
 Date MesureGaz::getDate(){
@@ -38,6 +36,19 @@ Date MesureGaz::getDate(){
 double MesureGaz::getValeur(){
     return valeur;
 }
+void MesureGaz::setGazId(id val){
+    gazId=val;
+}
+void  MesureGaz::setDate(Date d){
+    date=d;
+}
+void  MesureGaz::setValeur(double val){
+    valeur=val;
+}
+void  MesureGaz::setCapteur(Capteur c){
+    capteur=c;
+}
+
  
 //-------------------------------------------- Constructeurs - destructeur
 MesureGaz::MesureGaz ( const MesureGaz & unMesureGaz )
@@ -53,18 +64,18 @@ MesureGaz::MesureGaz ( const MesureGaz & unMesureGaz )
 } //----- Fin de MesureGaz (constructeur de copie)
 
 
-MesureGaz::MesureGaz (id typegaz, string u, string d, Date hr, double v)
+MesureGaz::MesureGaz (id typegaz, Date hr, double v, Capteur c)
 // Algorithme :
 //
 {
     #ifdef MAP
         cout << "Appel au constructeur de <MesureGaz>" << endl;
     #endif
-    attributId=typegaz; //(doit faire partie de l'enum) 
-    unite = u;
-    description=d;
+    gazId=typegaz; //(doit faire partie de l'enum) 
+    unite = "µg/m3";
     date = hr;
     valeur = v;
+    capteur = c;
 
 } //----- Fin de MesureGaz
 
