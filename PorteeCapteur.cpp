@@ -46,8 +46,8 @@ using namespace std;
         return longitudeMin; 
     }
     bool PorteeCapteur::contient (PorteeCapteur portee){
-        if ((portee.latitudeCentre>latitudeMin && portee.latitudeCentre<latitudeMax)
-        && (portee.longitudeCentre>longitudeMin||portee.longitudeCentre<longitudeMax))
+        if ((portee.latitudeCentre>=latitudeMin && portee.latitudeCentre<=latitudeMax)
+        && (portee.longitudeCentre>=longitudeMin||portee.longitudeCentre<=longitudeMax))
         {
             return true; 
         }
