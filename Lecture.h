@@ -66,7 +66,7 @@ public:
     // Contrat :
     //
 
-    Lecture(string f);
+    Lecture();
     // Mode d'emploi :
     //
     // Contrat :
@@ -103,7 +103,7 @@ private:
     // Contrat :
     //
 
-    Catalogue parcourir(list<Capteur> l , Date d, Date f);
+    Catalogue parcourir(string fichier);
     // Mode d'emploi : Parcours tout le fichier en ne prenant en compte que les capteurs et la date passés en paramètre
     //
     // Contrat :
@@ -114,7 +114,6 @@ protected:
 
 private:
     //------------------------------------------------------- Attributs privés
-    string fichier;
     unordered_map<string, gazId> gazMap;
     gazInfos gazDescription[4];
 

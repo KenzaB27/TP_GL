@@ -55,7 +55,7 @@ Lecture::Lecture(const Lecture & unLecture)
 #endif
 } //----- Fin de Lecture (constructeur de copie)
 
-Lecture::Lecture(string f):fichier(f)
+Lecture::Lecture()
 // Algorithme :
 //
 {
@@ -150,7 +150,7 @@ void Lecture::initTypeGaz(string fichierGaz)
     }
 }
 
-Catalogue Lecture::parcourir(list<Capteur> listeCapteurs, Date debut, Date fin)
+Catalogue Lecture::parcourir(string fichier)
 {
     Catalogue c;
 
