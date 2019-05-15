@@ -30,16 +30,16 @@ using namespace std;
 //
 //{
 //} //----- Fin de M�thode
-void Etude::Evaluer(double latitude, double longitude, Date dateF, Date dateD, double rayon){
+vector<double> Etude::Evaluer(vector<int> capteurTerritoire , Date dateF, Date dateD ){
 
 }
-vector<Capteur> Etude::getCapteur( vector<Capteur>listCapteur,double latitude, double longitude ,double rayon = 0 ){
+vector<int> Etude::getCapteur( vector<Capteur>listCapteur,double latitude, double longitude ,double rayon = 0 ){
     PorteeCapteur territoire (latitude, longitude, rayon); 
-    vector<Capteur> capteurTerritoire; 
+    vector<int> capteurTerritoire; 
     for ( vector<Capteur>::iterator it=listCapteur.begin(); it!=listCapteur.end(); it++)
     {
         if (territoire.contient(it->getPortee())){
-            capteurTerritoire.push_back(it); 
+            capteurTerritoire.push_back(it->getCapteurId()); 
         }
     }
     return capteurTerritoire; 

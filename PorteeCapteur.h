@@ -48,9 +48,12 @@ public:
     //
     // Contrat :
     //
+    PorteeCapteur(); 
     ~PorteeCapteur(); 
    
     protected:
+    double latitudeCentre; 
+    double longitudeCentre; 
     double latitudeMax; 
     double latitudeMin; 
     double longitudeMax; 

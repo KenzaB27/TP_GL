@@ -46,7 +46,15 @@ using namespace std;
         return longitudeMin; 
     }
     bool PorteeCapteur::contient (PorteeCapteur portee){
-        if ((portee.latitudeMin>latitudeMin || portee.latitudeMin<latitudeMax) && (portee.longitudeMin>longitudeMin||portee.longitudeMax<longitudeMax))
+        if ((portee.latitudeCentre>latitudeMin && portee.latitudeCentre<latitudeMax)
+        && (portee.longitudeCentre>longitudeMin||portee.longitudeCentre<longitudeMax))
+        {
+            return true; 
+        }
+        else if (((portee.latitudeMin>=latitudeMin && portee.latitudeMin<=latitudeMax)||
+        (portee.latitudeMax>=latitudeMin && portee.latitudeMax<=latitudeMax))
+        &&((portee.longitudeMin>longitudeMin && portee.longitudeMax<longitudeMax)||
+        (portee.longitudeMin>longitudeMin && portee.longitudeMax<longitudeMax)))
         {
             return true; 
         }
@@ -55,7 +63,7 @@ using namespace std;
         }
     } 
 
-PorteeCapteur::PorteeCapteur (double longitude, double latitude , double rayon)
+PorteeCapteur::PorteeCapteur (double longitude, double latitude , double rayon) : longitudeCentre(longitude),latitudeCentre(latitude)
 // Algorithme :
 //
 {
