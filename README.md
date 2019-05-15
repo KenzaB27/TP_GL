@@ -1,2 +1,2 @@
 # TP_GL
-GL et UML c'est bien 
+Conception d'un outils d'exploitation et de calcul de l'indice de qualité de l'air (ATMO)
