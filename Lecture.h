@@ -78,6 +78,24 @@ public:
     // Contrat :
     //
 
+    Catalogue Parcourir(string fichier);
+    // Mode d'emploi : Parcours tout le fichier en ne prenant en compte que les capteurs et la date passés en paramètre
+    //
+    // Contrat :
+    //
+
+    vector<Capteur> InitCapteur(string fichier);
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
+
+    void InitTypeGaz(string fichier);
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
+
     //------------------------------------------------------------------ PRIVE
 
 protected:
@@ -85,29 +103,13 @@ protected:
 
 private:
     //------------------------------------------------------- Méthodes privées
-    vector<Capteur> initCapteur(string fichier);
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
-
-    void initTypeGaz(string fichier);
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
-
     void LectureMesure(ifstream &ifs, MesureGaz *mesure);
     // Mode d'emploi : Parcours tout le fichier et le stocke dans un catalogue
     //
     // Contrat :
     //
 
-    Catalogue parcourir(string fichier);
-    // Mode d'emploi : Parcours tout le fichier en ne prenant en compte que les capteurs et la date passés en paramètre
-    //
-    // Contrat :
-    //
+    
 
 protected:
     //----------------------------------------------------- Attributs protégés

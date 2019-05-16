@@ -31,6 +31,123 @@ using namespace std;
 //-------------------------------------------------------- Fonctions amies
 
 //----------------------------------------------------- M�thodes publiques
+Catalogue Lecture::Parcourir(string fichier)
+{
+    Catalogue c;
+
+    ifstream monFlux(fichier.c_str());
+
+#ifdef MAP
+    cout << "Flux ouvert. " << endl;
+    unsigned int iLigne = 0;
+#endif // MAP
+
+    while (monFlux.good())
+    {
+        list<MesureGaz> listeMesure;
+        for (int i = 0; i < 4; i++)
+        {
+            MesureGaz m;
+            LectureMesure(monFlux, &m);
+            listeMesure.push_back(m);
+        }
+
+        // On vérifie la cohérence des données mesurées
+        list<MesureGaz>::iterator i;
+        int idCapteur = (*listeMesure.begin()).getIdCapteur();
+        Date dateMesure = (*listeMesure.begin()).getDate();
+
+        bool same = true;
+        for (i = listeMesure.begin(); i != listeMesure.end(); i++)
+        {
+            if ((*i).getIdCapteur() != idCapteur && !((*i).getDate() == dateMesure))
+            {
+                same = false;
+                break;
+#ifdef MAP
+                cout << "Erreurs lors de la composition de 4 valeurs " << endl;
+                unsigned int iLigne = 0;
+#endif // MAP
+            }
+        }
+
+        if (same)
+        {
+            IdCatalogue index(idCapteur, dateMesure);
+            if (listeMesure.size() == 4)
+                c.Ajouter(index, listeMesure);
+        }
+    }
+
+    return c;
+
+} //--- Fin de Parcourir
+
+vector<Capteur> Lecture::InitCapteur(string fichierCapteurs)
+{
+    ifstream monFlux(fichierCapteurs.c_str());
+    vector<Capteur> liste;
+
+    if (monFlux)
+    {
+        string line;
+        while (monFlux.good())
+        {
+            int capteurId;
+            string tempString; //utilisé avant le cast
+            double latitude;
+            double longitude;
+            string description;
+
+            // extraction des informations
+            getline(monFlux, tempString, ';');
+            capteurId = atoi((tempString.substr(tempString.length() - 1, tempString.length())).c_str());
+
+            getline(monFlux, tempString, ';');
+            latitude = atof(tempString.c_str());
+
+            getline(monFlux, tempString, ';');
+            longitude = atof(tempString.c_str());
+
+            getline(monFlux, description, ';');
+
+            Capteur c(capteurId, description, latitude, longitude);
+            liste.push_back(c);
+        }
+    }
+
+    return liste;
+} //---- Fin de initCapteur
+
+void Lecture::InitTypeGaz(string fichierGaz)
+{
+    ifstream monFlux(fichierGaz.c_str());
+
+    if (monFlux)
+    {
+        while (monFlux.good())
+        {
+            string gazName;
+            int gazId;
+            string unit;
+            string description;
+
+            getline(monFlux, gazName, ';');
+            gazId = gazMap[gazName];
+
+            getline(monFlux, unit, ';');
+            getline(monFlux, description, ';');
+
+            gazInfos g;
+            g.id = gazId;
+            g.unit = unit;
+            g.description = description;
+
+            gazDescription[gazId] = g;
+        }
+    }
+}//-- Fin initTypeGaz
+
 // type Lecture::M�thode ( liste de param�tres )
 // Algorithme :
 //
@@ -84,123 +201,6 @@ Lecture::~Lecture()
 //----------------------------------------------------- M�thodes prot�g�es
 
 //------------------------------------------------------- M�thodes priv�es
-
-vector<Capteur> Lecture::initCapteur(string fichierCapteurs)
-{
-    ifstream monFlux(fichierCapteurs.c_str());
-    vector<Capteur> liste;
-
-    if (monFlux)
-    {
-        string line;
-        while (monFlux.good())
-        {
-            int capteurId;
-            string tempString; //utilisé avant le cast
-            double latitude;
-            double longitude;
-            string description;
-
-            // extraction des informations
-            getline(monFlux, tempString, ';');
-            capteurId = atoi((tempString.substr(tempString.length() - 1, tempString.length())).c_str());
-
-            getline(monFlux, tempString, ';');
-            latitude = atof(tempString.c_str());
-
-            getline(monFlux, tempString, ';');
-            longitude = atof(tempString.c_str());
-
-            getline(monFlux, description, ';');
-
-            Capteur c(capteurId, description, latitude, longitude);
-            liste.push_back(c);
-        }
-    }
-
-    return liste;
-}//---- Fin de initCapteur
-
-void Lecture::initTypeGaz(string fichierGaz)
-{
-    ifstream monFlux(fichierGaz.c_str());
-
-    if (monFlux)
-    {
-        while (monFlux.good())
-        {
-            string gazName;
-            int gazId;
-            string unit;
-            string description;
-
-            getline(monFlux, gazName, ';');
-            gazId = gazMap[gazName];
-
-            getline(monFlux, unit, ';');
-            getline(monFlux, description, ';');
-
-            gazInfos g;
-            g.id = gazId;
-            g.unit = unit;
-            g.description = description;
-
-            gazDescription[gazId] = g;
-        }
-    }
-}
-
-Catalogue Lecture::parcourir(string fichier)
-{
-    Catalogue c;
-
-    ifstream monFlux(fichier.c_str());
-
-    #ifdef MAP
-        cout << "Flux ouvert. " << endl;
-        unsigned int iLigne = 0;
-    #endif // MAP
-
-    
-    while (monFlux.good())
-    {
-        list<MesureGaz> listeMesure;
-        for (int i = 0; i < 4; i++)
-        {
-            MesureGaz m;
-            LectureMesure(monFlux, &m);
-            listeMesure.push_back(m);
-        }
-
-        // On vérifie la cohérence des données mesurées
-        list<MesureGaz>::iterator i;
-        int idCapteur = (*listeMesure.begin()).getIdCapteur();
-        Date dateMesure = (*listeMesure.begin()).getDate();
-
-        bool same = true;
-        for (i = listeMesure.begin(); i != listeMesure.end(); i++)
-        {
-            if ((*i).getIdCapteur() != idCapteur && !((*i).getDate() == dateMesure))
-            {
-                same = false;
-                break;
-                #ifdef MAP
-                    cout << "Erreurs lors de la composition de 4 valeurs " << endl;
-                    unsigned int iLigne = 0;
-                #endif // MAP
-            }
-        }
-         
-        if(same)
-        {
-            IdCatalogue index(idCapteur, dateMesure);
-            if (listeMesure.size() == 4)
-                c.Ajouter(index, listeMesure);
-        }
-    
-    }
-    
-} //--- Fin de Parcourir
 
 void Lecture::LectureMesure(ifstream &ifs, MesureGaz *mesure)
 {
