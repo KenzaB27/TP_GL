@@ -292,3 +292,4 @@ makefile
 *.json
 *.ipch
 FlexiSensor/*
+Flexisensor.sln
