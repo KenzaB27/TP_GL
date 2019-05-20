@@ -57,6 +57,13 @@ public :
 	// Contrat :
 	//	Aucun contrat.
 
+	bool operator==(const Date &date) const;
+	// Mode d'emploi :
+	//	Permet de comparer la date entre deux dates. Compare heure et minutes.
+	//	date : la date a comparer
+	//	retour : suivant le resultat de la comparaison
+	// Contrat :
+	//	Aucun contrat.
 
 	friend ostream & operator << ( ostream & out, const Date & date );
 	// Mode d'emploi :
