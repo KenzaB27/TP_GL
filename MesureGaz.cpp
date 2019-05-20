@@ -29,7 +29,7 @@ string MesureGaz::getUnite(){
     return unite;
 }
 
-string MesureGaz::getUnite()
+string MesureGaz::getDescription()
 {
     return description;
 }
@@ -66,6 +66,12 @@ void MesureGaz::setUnite(string u)
 void MesureGaz::setDescription(string d)
 {
     description = d;
+}
+
+//------------------------------------------------- Surcharge d'operateurs
+
+ostream &operator<<(ostream &out, const MesureGaz &mesureGaz)
+{
 }
 
 //-------------------------------------------- Constructeurs - destructeur

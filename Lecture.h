@@ -23,7 +23,13 @@ using namespace std;
 #include "Catalogue.h"
 
 //------------------------------------------------------------------ Types
-typedef enum gazId {O3,SO2,NO2,PM10};
+/*enum id
+{
+    O3,
+    SO2,
+    NO2,
+    PM10
+};*/
 
 struct gazInfos
 {
@@ -48,13 +54,6 @@ public:
     //----------------------------------------------------- Méthodes publiques
     // type Méthode ( liste de paramètres );
     // Mode demploi
-    //
-    // Contrat :
-    //
-
-    //------------------------------------------------- Surcharge d'opérateurs
-    Lecture &operator=(const Lecture & unLecture);
-    // Mode d'emploi :
     //
     // Contrat :
     //
@@ -103,7 +102,7 @@ protected:
 
 private:
     //------------------------------------------------------- Méthodes privées
-    void LectureMesure(ifstream &ifs, MesureGaz *mesure);
+    bool LectureMesure(ifstream &ifs, MesureGaz *mesure);
     // Mode d'emploi : Parcours tout le fichier et le stocke dans un catalogue
     //
     // Contrat :
@@ -116,7 +115,7 @@ protected:
 
 private:
     //------------------------------------------------------- Attributs privés
-    unordered_map<string, gazId> gazMap;
+    unordered_map<string, id> gazMap;
     gazInfos gazDescription[4];
 
     //---------------------------------------------------------- Classes amies

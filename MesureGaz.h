@@ -47,6 +47,9 @@ public:
     void setDescription(string d);
     void setUnite(string u);
 
+    //------------------------------------------------- Surcharge d'operateurs
+    friend ostream &operator<<(ostream &out, const MesureGaz &mesureGaz);
+
     //-------------------------------------------- Constructeurs - destructeur
     MesureGaz(const MesureGaz &unMesureGaz);
 
