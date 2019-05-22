@@ -72,7 +72,7 @@ public:
     // Contrat :
     //
 
-    PorteeCapteur (double longitude, double latitude , double rayon=2);
+    PorteeCapteur (double longitude, double latitude , double rayon=2000);
     // Mode d'emploi :
     //
     // Contrat :
