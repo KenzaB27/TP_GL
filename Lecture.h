@@ -6,8 +6,8 @@
 *************************************************************************/
 
 //---------- Interface de la classe <Lecture> (fichier ${file_name}) ------
-#if !defined(XXX_H)
-#define XXX_H
+#if !defined(LECTURE_H)
+#define LECTURE_H
 
     //--------------------------------------------------- Interfaces utilisées
 using namespace std;
@@ -126,4 +126,4 @@ private:
 
     //----------------------------------------- Types dépendants de <Lecture>
 
-#endif // XXX_H
+#endif // LECTURE_H

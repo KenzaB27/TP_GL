@@ -222,18 +222,9 @@ void Lecture::LectureMesure(ifstream &ifs, MesureGaz *mesure)
 
 	//L'heure
 	heure = atoi((heureS.substr(0, 2)).c_str());
-<<<<<<< HEAD
-<<<<<<< HEAD
-    temp = heureS.substr(3, 3);
-	minute = atoi((temp.substr(0, 2)).c_str());
-=======
+
 	string temp1 = heureS.substr(3, 3);
 	minute = atoi((temp1.substr(0, 2)).c_str());
->>>>>>> 4e4e27f472c43ef5a061b8c77c35e0bfb5cb98bc
-=======
-	string temp1 = heureS.substr(3, 3);
-	minute = atoi((temp1.substr(0, 2)).c_str());
->>>>>>> 4e4e27f472c43ef5a061b8c77c35e0bfb5cb98bc
 	seconde = atof((heureS.substr(6, heureS.length())).c_str());
 
 	Date d(annee, mois, jour, heure, minute, seconde);
@@ -245,6 +236,10 @@ void Lecture::LectureMesure(ifstream &ifs, MesureGaz *mesure)
 	int sensorid = atoi((sensor.substr(sensor.length() - 1, sensor.length())).c_str());
 	cout << "idC : " << sensorid << endl;
 
+
+	getline(ifs, valueString); // value
+	valueString = valueString.substr(0, valueString.length());
+	value = atof(valueString.c_str());
 	cout << "value : " << value << endl;
 	//On remplit la mesureGaz
 	mesure->setGazId(gazMap[gaz]);
