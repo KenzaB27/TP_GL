@@ -53,7 +53,7 @@ public:
     //-------------------------------------------- Constructeurs - destructeur
     MesureGaz(const MesureGaz &unMesureGaz);
 
-    MesureGaz(int typegaz, Date hr, double v, int c, string d, string u);
+    MesureGaz(int typegaz, Date hr, double v, int c, string d);
 
     MesureGaz();
 

@@ -72,6 +72,7 @@ void MesureGaz::setDescription(string d)
 
 ostream &operator<<(ostream &out, const MesureGaz &mesureGaz)
 {
+    
 }
 
 //-------------------------------------------- Constructeurs - destructeur
@@ -87,7 +88,7 @@ MesureGaz::MesureGaz ( const MesureGaz & unMesureGaz )
 
 } //----- Fin de MesureGaz (constructeur de copie)
 
-MesureGaz::MesureGaz(int typegaz, Date hr, double v, int c, string d, string u = "µg/m3")
+MesureGaz::MesureGaz(int typegaz, Date hr, double v, int c, string d)
 // Algorithme :
 //
 {
@@ -99,6 +100,7 @@ MesureGaz::MesureGaz(int typegaz, Date hr, double v, int c, string d, string u =
     description = d;
     date = hr;
     valeur = v;
+    unite="µg/m3";
     idCapteur = c;
 
 } //----- Fin de MesureGaz
