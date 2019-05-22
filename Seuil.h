@@ -26,6 +26,8 @@ class Seuil
 //----------------------------------------------------------------- PUBLIC
 
 public:
+	Seuil & operator = (const Seuil & Seuil );
+	friend ostream & operator << ( ostream & out, const Seuil & Seuil );
 //----------------------------------------------------- Méthodes publiques
     // type Méthode ( liste de paramètres );
     // Mode d'emploi :
@@ -44,12 +46,12 @@ void afficher();
 
 
 //-------------------------------------------- Constructeurs - destructeur
-    /*Seuil ( const Seuil & unSeuil );
+    Seuil ( const Seuil & unSeuil );
     // Mode d'emploi (constructeur de copie) :
     //
     // Contrat :
     //
-*/
+
     Seuil();
 	Seuil(int unMin,int unMax,int unIndice);
     // Mode d'emploi :

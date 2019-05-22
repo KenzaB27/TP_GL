@@ -13,6 +13,8 @@
 #include "Capteur.h"
 #include "Seuil.h"
 #include <vector>
+#include <list>
+#include <unordered_map>
 using namespace std;
 //------------------------------------------------------------- Constantes
 
@@ -42,7 +44,7 @@ void ajouterCapteur(Capteur unCapteur, vector<Capteur> &listeCapteurs);
 void restaurerCapteur(Capteur unCapteur, vector<Capteur> &listeCapteurs);
 void mettreEnVeilleCapteur(Capteur unCapteur, vector<Capteur> &listeCapteurs);
 int evaluerCapteur(Capteur unCapteur);
-void changerSeuil(Seuil unSeuil);
+void changerSeuil(unordered_map<string,list<Seuil>> &tabSeuil, list<Seuil> PM10, list<Seuil> SO2, list<Seuil> NO2, list<Seuil> O3);
 
 
 //------------------------------------------------- Surcharge d'opérateurs

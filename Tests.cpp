@@ -23,6 +23,7 @@ using namespace std;
 #include <string>
 #include <iterator> 
 #include <list>
+#include <unordered_map>
 
 //-------------------------------------------------------- Méthodes publiques
 
@@ -98,7 +99,34 @@ void TestCatalogue(){
 
 }
 
+void TestChangerSeuil()
+{
+    unordered_map<string,list<Seuil>> umap;
+    list<Seuil> PM10;
+    list<Seuil> SO2;
+    list<Seuil> NO2;
+    list<Seuil> O3;
+
+    for(int i=0;i<10;i++)
+    {
+        PM10.push_back(Seuil());
+        SO2.push_back(Seuil());
+        NO2.push_back(Seuil());
+        O3.push_back(Seuil());
+    }
+
+    umap.insert(make_pair("PM10",PM10));
+    umap.insert(make_pair("SO2",SO2));
+    umap.insert(make_pair("NO2",NO2));
+    umap.insert(make_pair("O3",O3));
+
+    for (list<Seuil>::iterator it = umap["PM10"].begin(); it != umap["PM10"].end(); ++it) {
+        cout <<"d"<<endl;
+    }
+}
+
 int main(){
     //TestMesureGaz();
     TestCatalogue();
+    TestChangerSeuil();
 }

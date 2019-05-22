@@ -19,6 +19,7 @@ using namespace std;
 #include "Capteur.h"
 #include "PorteeCapteur.h"
 
+
 //------------------------------------------------------------- Constantes
 
 //---------------------------------------------------- Variables de classe
@@ -63,9 +64,35 @@ void Gestion::ajouterCapteur(Capteur unCapteur, vector <Capteur> &listeCapteurs)
 
 }
 
-void Gestion::changerSeuil(Seuil unSeuil) {
+void Gestion::changerSeuil(unordered_map<string,list<Seuil>> &tabSeuil, list<Seuil> PM10, list<Seuil> SO2, list<Seuil> NO2, list<Seuil> O3)
+{
+    list<Seuil>::iterator itGaz = PM10.begin();
+    for (list<Seuil>::iterator it = tabSeuil["PM10"].begin(); it != tabSeuil["PM10"].end(); ++it)
+    {
+        (*it)=*itGaz;
+        ++itGaz;
+    }
 
+    itGaz=SO2.begin();
+    for (list<Seuil>::iterator it = tabSeuil["SO2"].begin(); it != tabSeuil["SO2"].end(); ++it)
+    {
+        (*it)=*itGaz;
+        ++itGaz;
+    }
 
+    itGaz=NO2.begin();
+    for (list<Seuil>::iterator it = tabSeuil["NO2"].begin(); it != tabSeuil["NO2"].end(); ++it)
+    {
+        (*it)=*itGaz;
+        ++itGaz;
+    }
+
+    itGaz=O3.begin();
+    for (list<Seuil>::iterator it = tabSeuil["O3"].begin(); it != tabSeuil["O3"].end(); ++it)
+    {
+        (*it)=*itGaz;
+        ++itGaz;
+    }
 }
 
 

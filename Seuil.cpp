@@ -40,23 +40,37 @@ void Seuil::afficher() {
 }
 
 //------------------------------------------------- Surcharge d'op�rateurs
-/*Seuil & Seuil::operator = ( const Seuil & unSeuil )
+Seuil & Seuil::operator = ( const Seuil & unSeuil )
 // Algorithme :
 //
 {
+	min=unSeuil.min;
+	max=unSeuil.max;
+	indice=unSeuil.indice;
+	return *this;
 } //----- Fin de operator =
-*/
+
+
+ostream & operator << ( ostream & out, const Seuil & unSeuil )
+{
+	out << "min : " <<unSeuil.min<<" max : "<<unSeuil.max<<" indice : "<<unSeuil.indice<<endl;
+	return out;
+}//--- Fin de operator <<
 
 //-------------------------------------------- Constructeurs - destructeur
-/*Seuil::Seuil ( const Seuil & unSeuil )
+Seuil::Seuil ( const Seuil & unSeuil )
 // Algorithme :
 //
 {
 #ifdef MAP
     cout << "Appel au constructeur de copie de <Seuil>" << endl;
 #endif
+
+    min=unSeuil.min;
+    max=unSeuil.max;
+    indice=unSeuil.indice;
 } //----- Fin de Seuil (constructeur de copie)
-*/
+
 Seuil::Seuil()
 // Algorithme :
 //
