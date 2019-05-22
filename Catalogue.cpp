@@ -51,6 +51,12 @@ Catalogue::~Catalogue ( )
 #endif
 } //----- Fin de ~Catalogue
 
+ostream & operator<<(ostream &out, const Catalogue &catalogue)
+{
+	out << mesureGaz.gazId << " " << mesureGaz.valeur << " " << mesureGaz.unite << " " << mesureGaz.description << " " << mesureGaz.idCapteur << " " <<mesureGaz.date << endl;
+	return out; 
+}
+
 
 //------------------------------------------------------------------ PRIVE
 

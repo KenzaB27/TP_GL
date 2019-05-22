@@ -43,6 +43,7 @@ public:
     Catalogue();
 
     virtual ~Catalogue ( );
+    friend ostream &operator<<(ostream &out, const Catalogue &catalogue);
 
 //----------------------------------Attributs
 
