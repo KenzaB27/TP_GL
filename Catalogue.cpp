@@ -22,8 +22,8 @@ using namespace std;
 
 //---------------------------------------------Methodes publiques
 
-void Catalogue::Ajouter(IdCatalogue id, list<MesureGaz> liste){
-    pair<IdCatalogue, list<MesureGaz>> paire;
+void Catalogue::Ajouter(IdCatalogue id, vector<MesureGaz> liste){
+    pair<IdCatalogue, vector<MesureGaz>> paire;
     paire = make_pair(id, liste);
     map.insert(paire);
 }

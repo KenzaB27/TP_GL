@@ -27,7 +27,7 @@ using namespace std;
 
 //-------------------------------------------------------- Méthodes publiques
 
-void TestMesureGaz(){
+void Tests::TestMesureGaz(){
     Date d = Date(2019, 02, 01, 10, 12, 55);
     MesureGaz m = MesureGaz(O3, d, 10.95, 12, "Capteur12");
 
@@ -49,7 +49,7 @@ void TestMesureGaz(){
     cout << m;
 }
 
-void TestGestion() {
+void Tests::TestGestion() {
     Capteur c1 = Capteur(1, "d", 12.012, 32.002);
     Capteur c2 = Capteur(2, "d", 12.012, 32.002);
     Capteur c3 = Capteur(3, "d", 12.012, 32.002);
@@ -75,7 +75,7 @@ void TestGestion() {
     }
 }
 
-void TestCatalogue(){
+void Tests::TestCatalogue(){
     Date d = Date(2019, 02, 01, 10, 12, 55);
     MesureGaz m = MesureGaz(O3, d, 10.95, 12, "Capteur12");
     MesureGaz m1 = MesureGaz(0, d, 10, 13, "Capteur13");
@@ -96,9 +96,9 @@ void TestCatalogue(){
     c.Ajouter(id, liste);
 
     cout << c;
-
 }
 
+<<<<<<< HEAD
 void TestChangerSeuil()
 {
     unordered_map<string,list<Seuil>> umap;
@@ -129,4 +129,12 @@ int main(){
     //TestMesureGaz();
     TestCatalogue();
     TestChangerSeuil();
+=======
+int Tests::main(){
+    //TestMesureGaz();
+    //TestCatalogue();
+
+	return 0;
+
+>>>>>>> 2541cb9be5110f76acfd7a77458f26fe5b9f79e6
 }

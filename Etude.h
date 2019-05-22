@@ -17,6 +17,9 @@
 #include "PorteeCapteur.h"
 #include "Catalogue.h"
 
+using namespace std; 
+
+typedef enum {O3, SO2, NO2, PM10}gaz;
 
 //------------------------------------------------------------- Constantes
 
@@ -39,8 +42,8 @@ public:
     //
     // Contrat :
     //
-	vector<double> Evaluer (Catalogue cat,double latitude, double longitude, Date dateF, Date dateD, double rayon =2);
-    vector<int> getCapteur( vector<Capteur>listCapteur,double latitude, double longitude ,double rayon = 2);
+	vector<double> Evaluer (Catalogue cat, vector<int>listCapteur, Date dateF, Date dateD);
+    vector<int> getCapteur( vector<Capteur>listCapteur,double latitude, double longitude ,double rayon = 2000);
 
 //------------------------------------------------- Surcharge d'opérateursp
     Etude & operator = ( const Etude & unEtude );
