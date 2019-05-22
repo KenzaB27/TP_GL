@@ -29,8 +29,17 @@ string MesureGaz::getUnite(){
     return unite;
 }
 
+string MesureGaz::getDescription()
+{
+    return description;
+}
+
 Date MesureGaz::getDate(){
     return date;
+}
+
+int MesureGaz::getIdCapteur(){
+    return idCapteur;
 }
 
 double MesureGaz::getValeur(){
@@ -45,11 +54,26 @@ void  MesureGaz::setDate(Date d){
 void  MesureGaz::setValeur(double val){
     valeur=val;
 }
-void  MesureGaz::setCapteur(Capteur c){
-    capteur=c;
+void  MesureGaz::setIdCapteur(int c){
+    idCapteur = c;
 }
 
- 
+void MesureGaz::setUnite(string u)
+{
+    unite = u;
+}
+
+void MesureGaz::setDescription(string d)
+{
+    description = d;
+}
+
+//------------------------------------------------- Surcharge d'operateurs
+
+ostream &operator<<(ostream &out, const MesureGaz &mesureGaz)
+{
+}
+
 //-------------------------------------------- Constructeurs - destructeur
 MesureGaz::MesureGaz ( const MesureGaz & unMesureGaz )
 // Algorithme :
@@ -63,8 +87,7 @@ MesureGaz::MesureGaz ( const MesureGaz & unMesureGaz )
 
 } //----- Fin de MesureGaz (constructeur de copie)
 
-
-MesureGaz::MesureGaz (int typegaz, Date hr, double v, Capteur c)
+MesureGaz::MesureGaz(int typegaz, Date hr, double v, int c, string d, string u = "µg/m3")
 // Algorithme :
 //
 {
@@ -72,10 +95,11 @@ MesureGaz::MesureGaz (int typegaz, Date hr, double v, Capteur c)
         cout << "Appel au constructeur de <MesureGaz>" << endl;
     #endif
     gazId=typegaz; //(doit faire partie de l'enum) 
-    unite = "µg/m3";
+    unite = u;
+    description = d;
     date = hr;
     valeur = v;
-    capteur = c;
+    idCapteur = c;
 
 } //----- Fin de MesureGaz
 
