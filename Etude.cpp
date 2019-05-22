@@ -30,7 +30,8 @@ using namespace std;
 //
 //{
 //} //----- Fin de M�thode
-vector<double> Etude::Evaluer(double latitude, double longitude, Date dateF, Date dateD, double rayon) {
+vector<double> Etude::Evaluer(Catalogue cat, double latitude, double longitude, Date dateF, Date dateD, double rayon) {
+
 
 }
 vector<int> Etude::getCapteur( vector<Capteur>listCapteur,double latitude, double longitude ,double rayon){
