@@ -32,27 +32,27 @@ using namespace std;
 //{
 //} //----- Fin de M�thode
 
-double PorteeCapteur::getLatitudeMax()
+long PorteeCapteur::getLatitudeMax()
 {
     return latitudeMax;
 }
-double PorteeCapteur::getLatitudeMin()
+long PorteeCapteur::getLatitudeMin()
 {
     return latitudeMin;
 }
-double PorteeCapteur::getLongitudeMax()
+long PorteeCapteur::getLongitudeMax()
 {
     return longitudeMax;
 }
-double PorteeCapteur::getLongitudeMin()
+long PorteeCapteur::getLongitudeMin()
 {
     return longitudeMin;
 }
-double PorteeCapteur::getLatitudeCentre()
+long PorteeCapteur::getLatitudeCentre()
 {
     return latitudeCentre;
 }
-double PorteeCapteur::getLongitudeCentre()
+long PorteeCapteur::getLongitudeCentre()
 {
     return longitudeCentre;
 }
@@ -76,20 +76,20 @@ bool PorteeCapteur::contient(PorteeCapteur portee)
     }
 }
 
-PorteeCapteur::PorteeCapteur(double longitude, double latitude, double rayon) : longitudeCentre(longitude), latitudeCentre(latitude)
+PorteeCapteur::PorteeCapteur(long longitude, long latitude, long rayon) : longitudeCentre(longitude), latitudeCentre(latitude)
 // Algorithme :
 //
 {
     //définition des bornes max et min de latitude et longitude notre territoire
     // 1° de latitude = 111,11 Km, on fait donc un produit en croix
-    double offSetLat = rayon / 111110;
+    long offSetLat = rayon / 111110;
     // 1° de longitude à 'latitude' degrés de latitude correspond à
     // OneLongitudeDegree mètres. On passe à la méthode Math.Cos
     // des radians
-    double oneLongitudeDegree = 111110*cos(latitude * M_PI / 180);
+    long oneLongitudeDegree = 111110*cos(latitude * M_PI / 180);
     // Produit en croix pour trouver le nombre de degrés de longitude auquel
     // correspond la longueur de notre rayon
-    double offSetLong = rayon / oneLongitudeDegree;
+    long offSetLong = rayon / oneLongitudeDegree;
 
     latitudeMax = latitude + offSetLat;
     latitudeMin = latitude - offSetLat;

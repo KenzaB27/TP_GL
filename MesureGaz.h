@@ -51,8 +51,6 @@ public:
     friend ostream &operator<<(ostream &out, const MesureGaz &mesureGaz);
 
     //-------------------------------------------- Constructeurs - destructeur
-    MesureGaz(const MesureGaz &unMesureGaz);
-
     MesureGaz(int typegaz, Date hr, double v, int c, string d);
 
     MesureGaz();
