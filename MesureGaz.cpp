@@ -42,7 +42,7 @@ int MesureGaz::getIdCapteur(){
     return idCapteur;
 }
 
-double MesureGaz::getValeur(){
+long MesureGaz::getValeur(){
     return valeur;
 }
 void MesureGaz::setGazId(int val){
@@ -51,7 +51,7 @@ void MesureGaz::setGazId(int val){
 void  MesureGaz::setDate(Date d){
     date=d;
 }
-void  MesureGaz::setValeur(double val){
+void  MesureGaz::setValeur(long val){
     valeur=val;
 }
 void  MesureGaz::setIdCapteur(int c){
@@ -77,19 +77,8 @@ ostream & operator<<(ostream &out, const MesureGaz &mesureGaz)
 }
 
 //-------------------------------------------- Constructeurs - destructeur
-MesureGaz::MesureGaz ( const MesureGaz & unMesureGaz )
-// Algorithme :
-//
-{
-    #ifdef MAP
-        cout << "Appel au constructeur de copie de <MesureGaz>" << endl;
-    #endif
 
-
-
-} //----- Fin de MesureGaz (constructeur de copie)
-
-MesureGaz::MesureGaz(int typegaz, Date hr, double v, int c, string d)
+MesureGaz::MesureGaz(int typegaz, Date hr, long v, int c, string d)
 // Algorithme :
 //
 {
