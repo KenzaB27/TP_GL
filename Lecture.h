@@ -107,7 +107,6 @@ private:
     //
     // Contrat :
     //
-
     
 
 protected:

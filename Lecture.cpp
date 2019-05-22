@@ -60,8 +60,8 @@ Catalogue Lecture::Parcourir(string fichier)
 		Date dateMesure = (*listeMesure.begin()).getDate();
 
 		bool same = true;
-		/*
-		Verifie la cohérence des données récupérées
+		
+		//Verifie la cohérence des données récupérées
 		for (i = listeMesure.begin(); i != listeMesure.end(); i++)
 		{
 			if ((*i).getIdCapteur() != idCapteur && !((*i).getDate() == dateMesure))
@@ -73,20 +73,12 @@ Catalogue Lecture::Parcourir(string fichier)
 					unsigned int iLigne = 0;
 				#endif // MAP
 			}
-		}*/
+		}
 
 		if (same)
 		{
-			//IdCatalogue index(idCapteur, dateMesure);
-			if (listeMesure.size() == 4)
-			{
-				for (auto m : listeMesure)
-				{
-					cout << "{" << idCapteur << "|" << dateMesure << "  :  " << m << "}\n";
-				}
-				cout << "-------------------------------------------" << endl;
-			}
-			//c.Ajouter(index, listeMesure);
+			IdCatalogue index(idCapteur, dateMesure);
+			c.Ajouter(index, listeMesure);
 		}
 	}
 
@@ -202,20 +194,6 @@ Lecture::~Lecture()
 
 void Lecture::LectureMesure(ifstream &ifs, MesureGaz *mesure)
 {
-	/*
-	if (ifs.good())
-	{
-		string test;
-		getline(ifs, test, ' ');
-		if (ifs.eof())
-		{
-			return false;
-		}
-	}
-	else
-	{
-		return false;
-	}*/
 
 	string dateS;
 	int annee;
@@ -231,10 +209,12 @@ void Lecture::LectureMesure(ifstream &ifs, MesureGaz *mesure)
 	string valueString;
 	double value;
 
-	getline(ifs, dateS, 'T'); //La Date
+	getline(ifs, dateS, 'T');  //La Date
+	cout << "Date : " << dateS << endl;
 	getline(ifs, heureS, ';'); //L'heure
+	cout << "Heure : " << heureS << endl;
 
-	//La date 
+	//La date
 	string temp = dateS.substr(5, 5);
 	mois = atoi((temp.substr(0, 2)).c_str());
 	annee = atoi((dateS.substr(0, 4)).c_str());
@@ -242,21 +222,26 @@ void Lecture::LectureMesure(ifstream &ifs, MesureGaz *mesure)
 
 	//L'heure
 	heure = atoi((heureS.substr(0, 2)).c_str());
-	string temp = heureS.substr(3, 3);
-	minute = atoi((temp.substr(0, 2)).c_str());
+	string temp1 = heureS.substr(3, 3);
+	minute = atoi((temp1.substr(0, 2)).c_str());
 	seconde = atof((heureS.substr(6, heureS.length())).c_str());
 
-	Date d(annee, mois, jour , heure, minute, seconde);
+	Date d(annee, mois, jour, heure, minute, seconde);
 
-	//L'id du capteur 
+	cout << annee << "-" << mois << "-" << jour << "-" << "T" << heure << "/" << minute << "/" << seconde << endl;
+
+	//L'id du capteur
 	getline(ifs, sensor, ';');
 	int sensorid = atoi((sensor.substr(sensor.length() - 1, sensor.length())).c_str());
+	cout << "idC : " << sensorid << endl;
 
 	getline(ifs, gaz, ';'); //Type de Gaz
+	cout << "idG : " << gaz << endl;
 
-	getline(ifs, valueString, ';'); // value
+	getline(ifs, valueString); // value
+	valueString = valueString.substr(0, valueString.length());
 	value = atof(valueString.c_str());
-
+	cout << "value : " << value << endl;
 	//On remplit la mesureGaz
 	mesure->setGazId(gazMap[gaz]);
 
@@ -267,11 +252,6 @@ void Lecture::LectureMesure(ifstream &ifs, MesureGaz *mesure)
 
 	mesure->setDescription(gazDescription[gazMap[gaz]].description);
 	mesure->setUnite(gazDescription[gazMap[gaz]].unit);
-	
-	
-	//return true; 
-
-
-
 
 } //--- Fin de LectureMesure
+
