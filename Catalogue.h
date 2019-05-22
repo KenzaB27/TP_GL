@@ -43,11 +43,12 @@ public:
     Catalogue();
 
     virtual ~Catalogue ( );
+    friend ostream &operator<<(ostream &out, const Catalogue &catalogue);
 
 //----------------------------------Attributs
 
     protected:
-    unordered_multimap<IdCatalogue,list<MesureGaz>> map;
+    unordered_map<IdCatalogue,list<MesureGaz>> map;
 
 
  };

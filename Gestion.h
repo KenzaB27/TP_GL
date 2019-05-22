@@ -10,7 +10,6 @@
 #define GESTION_H
 
 //--------------------------------------------------- Interfaces utilisées
-#include "Utilisateur.h"
 #include "Capteur.h"
 #include "Seuil.h"
 #include <vector>
