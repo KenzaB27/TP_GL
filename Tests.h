@@ -30,7 +30,9 @@ class Tests
 public:
 //----------------------------------------------------- Méthodes publiques
 
-    void Test();
+    void TestMesureGaz();
+
+    int main();
     //------------------------------------------------- Surcharge d'operateurs
   
     //-------------------------------------------- Constructeurs - destructeur

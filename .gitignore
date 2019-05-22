@@ -285,7 +285,6 @@ __pycache__/
 
 test.cpp
 test.h
-makefile
 .vscode/main.o reader.o top10.o graphGen.o
 
 
@@ -582,7 +581,6 @@ __pycache__/
 
 test.cpp
 test.h
-makefile
 .vscode/main.o reader.o top10.o graphGen.o
 
 
@@ -594,3 +592,7 @@ Flexisensor.sln
 Flexisensor/Flexisensor.vcxproj
 Flexisensor/Flexisensor.vcxproj.filters
 FlexiSensor/*
+CMakeLists.txt  
+make-build-debug
+cmake-build-debug/
+
