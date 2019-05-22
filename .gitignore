@@ -293,3 +293,4 @@ makefile
 *.ipch
 FlexiSensor/*
 Flexisensor.sln
+FlexiSensor/.vs/FlexiSensor/v15/Browse.VC.db
