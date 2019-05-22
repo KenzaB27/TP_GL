@@ -53,8 +53,15 @@ Catalogue::~Catalogue ( )
 
 ostream & operator<<(ostream &out, const Catalogue &catalogue)
 {
-	out << mesureGaz.gazId << " " << mesureGaz.valeur << " " << mesureGaz.unite << " " << mesureGaz.description << " " << mesureGaz.idCapteur << " " <<mesureGaz.date << endl;
-	return out; 
+  for ( auto it = catalogue.map.begin(); it != catalogue.map.end(); ++it ){//enventuellement switcher avec un getMap()
+      out << it->first.capteurId << " " <<it->first.dateMesure<< " ";
+
+    for (auto l = it->second.begin(); l != it->second.end(); ++l){
+            out << *l << " "; // les itérateurs sont des pointeurs
+    }
+      out << endl;
+  }
+  return out;
 }
 
 
