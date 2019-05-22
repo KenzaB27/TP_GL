@@ -77,17 +77,6 @@ ostream & operator<<(ostream &out, const MesureGaz &mesureGaz)
 }
 
 //-------------------------------------------- Constructeurs - destructeur
-MesureGaz::MesureGaz ( const MesureGaz & unMesureGaz )
-// Algorithme :
-//
-{
-    #ifdef MAP
-        cout << "Appel au constructeur de copie de <MesureGaz>" << endl;
-    #endif
-
-
-
-} //----- Fin de MesureGaz (constructeur de copie)
 
 MesureGaz::MesureGaz(int typegaz, Date hr, double v, int c, string d)
 // Algorithme :

@@ -35,7 +35,7 @@ int Capteur::getEtat()
 {
     return etat;
 }
-void Capteur::definirPortee(double latitude, double longitude){
+void Capteur::definirPortee(long latitude, long longitude){
 
 }
 
@@ -43,7 +43,7 @@ void Capteur::definirPortee(double latitude, double longitude){
 
 
 
-Capteur::Capteur (int capteurid, string d, double lat, double lon)
+Capteur::Capteur (int capteurid, string d, long lat, long lon)
 // Algorithme :
 //
 {
