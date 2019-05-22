@@ -15,6 +15,8 @@ using namespace std;
 
 //------------------------------------------------------ Include personnel
 #include "Gestion.h"
+#include "Capteur.h"
+#include "PorteeCapteur.h"
 
 //------------------------------------------------------------- Constantes
 
@@ -57,7 +59,13 @@ void Gestion::changerSeuil(Seuil unSeuil)
 
 void Gestion::mettreEnVeilleCapteur(Capteur unCapteur, vector<Capteur> listeCapteurs)
 {
-
+    for (vector<Capteur>::iterator it = listeCapteurs.begin() ; it != listeCapteurs.end(); ++it)
+    {
+        if(it->getCapteurId()==unCapteur.getCapteurId())
+        {
+            
+        }
+    }
 }
 
 void Gestion::restaurerCapteur(Capteur unCapteur, vector<Capteur> listeCapteurs)
@@ -69,8 +77,7 @@ void Gestion::supprimerCapteur(int numCapteur, vector<Capteur> listeCapteurs)
 {
     for (vector<Capteur>::iterator it = listeCapteurs.begin() ; it != listeCapteurs.end(); ++it)
     {
-        Capteur c;
-        if(numCapteur)
+        if(it->getCapteurId() ==numCapteur)
         {
             listeCapteurs.erase(it);
         }
