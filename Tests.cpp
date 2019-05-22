@@ -27,7 +27,7 @@ using namespace std;
 
 //-------------------------------------------------------- Méthodes publiques
 
-void TestMesureGaz(){
+void Tests::TestMesureGaz(){
     Date d = Date(2019, 02, 01, 10, 12, 55);
     MesureGaz m = MesureGaz(O3, d, 10.95, 12, "Capteur12");
 
@@ -49,7 +49,7 @@ void TestMesureGaz(){
     cout << m;
 }
 
-void TestGestion() {
+void Tests::TestGestion() {
     Capteur c1 = Capteur(1, "d", 12.012, 32.002);
     Capteur c2 = Capteur(2, "d", 12.012, 32.002);
     Capteur c3 = Capteur(3, "d", 12.012, 32.002);
@@ -75,9 +75,8 @@ void TestGestion() {
     }
 }
 
-void TestCatalogue(){
-    Date d(2019, 2, 1, 10, 12, 55);
-   // cout<<d<<endl;
+void Tests::TestCatalogue(){
+    Date d = Date(2019, 02, 01, 10, 12, 55);
     MesureGaz m = MesureGaz(O3, d, 10.95, 12, "Capteur12");
     MesureGaz m1 = MesureGaz(0, d, 10, 12, "Capteur12");
     //MesureGaz m2 = MesureGaz();
@@ -99,7 +98,10 @@ void TestCatalogue(){
 
 }
 
-int main(){
+int Tests::main(){
     //TestMesureGaz();
-    TestCatalogue();
+    //TestCatalogue();
+
+	return 0;
+
 }
