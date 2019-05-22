@@ -30,7 +30,7 @@ using namespace std;
 //
 //{
 //} //----- Fin de M�thode
-vector<double> Etude::Evaluer(double latitude, double longitude, Date dateF, Date dateD, double rayon = 2){
+vector<double> Etude::Evaluer(double latitude, double longitude, Date dateF, Date dateD, double rayon) {
 
 }
 vector<int> Etude::getCapteur( vector<Capteur>listCapteur,double latitude, double longitude ,double rayon){
@@ -49,6 +49,7 @@ Etude & Etude::operator = ( const Etude & unEtude )
 // Algorithme :
 //
 {
+	return *this; 
 } //----- Fin de operator =
 
 

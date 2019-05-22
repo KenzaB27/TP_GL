@@ -10,8 +10,8 @@
 
 #include <iostream>
 #include <string>
+#include <functional>
 using namespace std;
-
 #include "Date.h"
 
 //--------------------------------------------------- Interfaces utilisées
@@ -24,18 +24,13 @@ using namespace std;
 //
 //------------------------------------------------------------------------ 
 
-size_t Date_hash( const Date & date )
-{
-    return hash<int>()(date.annee)^hash<int>()(date.mois)^hash<int>()(date.jour)^hash<int>()(date.heure)^hash<int>()(date.minutes)^hash<int>()(date.secondes);
-}
-
 struct IdCatalogue
 {
 //----------------------------------------------------------------- PUBLIC
 
 public:
 //----------------------------------------------------- Méthodes publiques
-	friend bool operator == (const IdCatalogue & unIdCatalogue1, const IdCatalogue & unIdCatalogue1);
+	friend bool operator == (const IdCatalogue & unIdCatalogue1, const IdCatalogue & unIdCatalogue2);
 //-------------------------------------------- Constructeurs - destructeur
     IdCatalogue ( const IdCatalogue & unIdCatalogue );
 
@@ -59,7 +54,9 @@ namespace std {
       size_t operator()(const IdCatalogue &k) const
       {
           size_t h1 = hash<int>()(k.capteurId);
-          size_t h2 = Date_hash(k.dateMesure);
+          size_t h2 = hash<int>()(k.dateMesure.annee)^hash<int>()(k.dateMesure.mois) 
+					^ hash<int>()(k.dateMesure.jour)^hash<int>()(k.dateMesure.heure) 
+					^ hash<int>()(k.dateMesure.minutes)^hash<double>()(k.dateMesure.secondes);
           return h1 ^ ( h2 << 1 );
       }
   };
