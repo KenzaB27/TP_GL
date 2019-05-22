@@ -10,28 +10,29 @@
 //---------------------------------------------------------------- INCLUDE
 #include "Tests.h"
 #include "MesureGaz.h"
+#include "IdCatalogue.h"
+#include "Catalogue.h"
 
 //-------------------------------------------------------- Include syst�me
 using namespace std;
 #include <iostream>
 #include <string>
+#include <iterator> 
+#include <list>
 
 //-------------------------------------------------------- Méthodes publiques
 
 void TestMesureGaz(){
-    Date d = Date();
+    Date d = Date(2019, 02, 01, 10, 12, 55);
     MesureGaz m = MesureGaz(O3, d, 10.95, 12, "Capteur12");
 
     MesureGaz m1 = MesureGaz(0, d, 10, 13, "Capteur13");
 
     MesureGaz m2 = MesureGaz();
 
-    MesureGaz m3 = MesureGaz(m1);
-
     cout << m;
     cout << m1;
     cout << m2;
-    cout << m3;
 
     m.setValeur(23);
     cout << m;
@@ -43,7 +44,31 @@ void TestMesureGaz(){
     cout<<m;
 }
 
+void TestCatalogue(){
+    Date d = Date();
+    MesureGaz m = MesureGaz(O3, d, 10.95, 12, "Capteur12");
+    MesureGaz m1 = MesureGaz(0, d, 10, 13, "Capteur13");
+    MesureGaz m2 = MesureGaz();
+
+    list<MesureGaz> liste;
+    liste.push_back(m);
+    liste.push_back(m1);
+    liste.push_back(m2);
+
+    IdCatalogue id = IdCatalogue(12, d);
+
+    Catalogue c = Catalogue();
+
+    c.Ajouter(id, liste);
+
+    cout << c;
+
+}
+
 int main(){
     TestMesureGaz();
+    TestCatalogue();
+
+
 
 }

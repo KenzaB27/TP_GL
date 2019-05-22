@@ -33,6 +33,8 @@ public:
     void TestMesureGaz();
 
     int main();
+
+    void TestCatalogue();
     //------------------------------------------------- Surcharge d'operateurs
   
     //-------------------------------------------- Constructeurs - destructeur
