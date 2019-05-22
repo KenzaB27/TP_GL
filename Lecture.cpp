@@ -242,7 +242,7 @@ void Lecture::LectureMesure(ifstream &ifs, MesureGaz *mesure)
 
 	//L'heure
 	heure = atoi((heureS.substr(0, 2)).c_str());
-	string temp = heureS.substr(3, 3);
+    temp = heureS.substr(3, 3);
 	minute = atoi((temp.substr(0, 2)).c_str());
 	seconde = atof((heureS.substr(6, heureS.length())).c_str());
 
