@@ -40,17 +40,7 @@ void Capteur::definirPortee(double latitude, double longitude){
 }
 
 //-------------------------------------------- Constructeurs - destructeur
-Capteur::Capteur ( const Capteur & unCapteur )
-// Algorithme :
-//
-{
-    #ifdef MAP
-        cout << "Appel au constructeur de copie de <Capteur>" << endl;
-    #endif
 
-
-
-} //----- Fin de Capteur (constructeur de copie)
 
 
 Capteur::Capteur (int capteurid, string d, double lat, double lon)
@@ -63,16 +53,11 @@ Capteur::Capteur (int capteurid, string d, double lat, double lon)
 
     capteurId=capteurid;
     description = d;
-    latitude = lat;
-    longitude = lon;
-
-    etat = 1; //Etat = 1 signifie qu ele capteur marche, Etat = 0 signifie qu'il ne marche plus. Quand on ajoute un capteur, 
-                //on fait l'hypothèse que celui ci marche, d'où on initialise la valeur à 1.
+    portee =PorteeCapteur(lat,lon); 
+    etat = 1; //Etat = 1 signifie que le capteur marche, Etat = 0 signifie qu'il ne marche plus. Quand on ajoute un capteur, 
+            //on fait l'hypothèse que celui ci marche, d'où on initialise la valeur à 1.
 } //----- Fin de Capteur
 
-Capteur::Capteur(){
-    //Constructeur par défaut ------ l'objet est vide
-}
 
 Capteur::~Capteur ( )
 // Algorithme :

@@ -38,10 +38,10 @@ public:
     //
     // Contrat :
     //
-    void Evaluer (double latitude, double longitude, Date dateF, Date dateD, double rayon = 0 ); 
-    vector<Capteur> getCapteur( vector<Capteur>listCapteur,double latitude, double longitude ,double rayon = 0 ); 
+    void Evaluer (double latitude, double longitude, Date dateF, Date dateD, double rayon =2); 
+    vector<Capteur> getCapteur( vector<Capteur>listCapteur,double latitude, double longitude ,double rayon = 2);
 
-//------------------------------------------------- Surcharge d'opérateurs
+//------------------------------------------------- Surcharge d'opérateursp
     Etude & operator = ( const Etude & unEtude );
     // Mode d'emploi :
     //
