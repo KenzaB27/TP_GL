@@ -72,7 +72,7 @@ void MesureGaz::setDescription(string d)
 
 ostream & operator<<(ostream &out, const MesureGaz &mesureGaz)
 {
-	out << mesureGaz.gazId << " " << mesureGaz.unite; 
+	out << mesureGaz.gazId << " " << mesureGaz.getValeur << " " << mesureGaz.unite << " " << mesureGaz.description << " " << mesureGaz.idCapteur << " " <<mesureGaz.date << '\r\n';
 	return out; 
 }
 
@@ -97,7 +97,6 @@ MesureGaz::MesureGaz(int typegaz, Date hr, double v, int c, string d)
         cout << "Appel au constructeur de <MesureGaz>" << endl;
     #endif
     gazId=typegaz; //(doit faire partie de l'enum) 
-    unite = u;
     description = d;
     date = hr;
     valeur = v;
