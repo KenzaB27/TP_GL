@@ -35,22 +35,63 @@ public:
     //
     // Contrat :
     //
-
+     double getLatitudeCentre(); 
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
+    double getLongitudeCentre(); 
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
     double getLatitudeMax(); 
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
     double getLatitudeMin(); 
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
     double getLongitudeMax(); 
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
     double getLongitudeMin();
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
 
     bool contient (PorteeCapteur portee); 
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
 
     PorteeCapteur (double longitude, double latitude , double rayon=2);
     // Mode d'emploi :
     //
     // Contrat :
     //
+    PorteeCapteur();
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
+
     ~PorteeCapteur(); 
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
    
     protected:
+    double latitudeCentre; 
+    double longitudeCentre; 
     double latitudeMax; 
     double latitudeMin; 
     double longitudeMax; 

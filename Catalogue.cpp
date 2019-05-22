@@ -17,12 +17,15 @@
 using namespace std;
 #include <iostream>
 #include <string>
-
+#include <utility>
+#include <functional>
 
 //---------------------------------------------Methodes publiques
 
 void Catalogue::Ajouter(IdCatalogue id, list<MesureGaz> liste){
-    map.insert(make_pair<IdCatalogue, list<MesureGaz>>(id, liste));
+    pair<IdCatalogue, list<MesureGaz>> paire;
+    paire = make_pair(id, liste);
+    map.insert(paire);
 }
 
 //-------------------------------------------- Constructeurs - destructeur

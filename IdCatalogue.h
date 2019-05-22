@@ -35,7 +35,7 @@ struct IdCatalogue
 
 public:
 //----------------------------------------------------- Méthodes publiques
-
+	friend bool operator == (const IdCatalogue & unIdCatalogue1, const IdCatalogue & unIdCatalogue1);
 //-------------------------------------------- Constructeurs - destructeur
     IdCatalogue ( const IdCatalogue & unIdCatalogue );
 
