@@ -92,7 +92,7 @@ public :
 	// Contrat:
 	//	Aucun contrat.
 
-	Date ( const Date & date );
+	//Date ( const Date & date );
 	// Mode d'emploi :
 	//	Constructeur de copie de la classe Date.
 	//	date : la date a copier.

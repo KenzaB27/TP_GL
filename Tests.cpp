@@ -25,6 +25,7 @@ using namespace std;
 #include <list>
 #include <unordered_map>
 
+
 //-------------------------------------------------------- Méthodes publiques
 
 void Tests::TestMesureGaz(){
@@ -78,24 +79,24 @@ void Tests::TestGestion() {
 void Tests::TestCatalogue(){
     Date d = Date(2019, 02, 01, 10, 12, 55);
     MesureGaz m = MesureGaz(O3, d, 10.95, 12, "Capteur12");
-    MesureGaz m1 = MesureGaz(0, d, 10, 13, "Capteur13");
-    MesureGaz m2 = MesureGaz();
+    MesureGaz m1 = MesureGaz(0, d, 10, 12, "Capteur12");
+    //MesureGaz m2 = MesureGaz();
 
     list<MesureGaz> liste;
     liste.push_back(m);
     liste.push_back(m1);
-    liste.push_back(m2);
+    //liste.push_back(m2);
 
-    IdCatalogue id = IdCatalogue(12, d);
+    IdCatalogue id = IdCatalogue(12,d);
+    cout << id;
 
-    cout<<id.capteurId<<endl;
-    cout <<id.dateMesure<<endl;
-
-    Catalogue c = Catalogue();
+    Catalogue c;
 
     c.Ajouter(id, liste);
+    cout<< c.map.find(id)<<endl;
 
-    cout << c;
+    cout << c << endl;
+
 }
 
 <<<<<<< HEAD

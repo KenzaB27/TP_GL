@@ -18,14 +18,11 @@ using namespace std;
 #include <iostream>
 #include <string>
 #include <utility>
-#include <functional>
 
 //---------------------------------------------Methodes publiques
 
-void Catalogue::Ajouter(IdCatalogue id, vector<MesureGaz> liste){
-    pair<IdCatalogue, vector<MesureGaz>> paire;
-    paire = make_pair(id, liste);
-    map.insert(paire);
+void Catalogue::Ajouter(IdCatalogue id, list<MesureGaz> liste){
+    map.emplace(id,liste); 
 }
 
 //-------------------------------------------- Constructeurs - destructeur
@@ -54,12 +51,12 @@ Catalogue::~Catalogue ( )
 ostream & operator<<(ostream &out, const Catalogue &catalogue)
 {
   for ( auto it = catalogue.map.begin(); it != catalogue.map.end(); ++it ){//enventuellement switcher avec un getMap()
-      out << it->first.capteurId << " " <<it->first.dateMesure<< " ";
+      out << (it->first) << " ";
 
     for (auto l = it->second.begin(); l != it->second.end(); ++l){
             out << *l << " "; // les itérateurs sont des pointeurs
     }
-      out << endl;
+    out << endl;
   }
   return out;
 }

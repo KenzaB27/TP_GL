@@ -31,6 +31,8 @@ struct IdCatalogue
 public:
 //----------------------------------------------------- Méthodes publiques
 	friend bool operator == (const IdCatalogue & unIdCatalogue1, const IdCatalogue & unIdCatalogue2);
+  friend ostream &operator<<(ostream &out, const IdCatalogue &idCatalogue);
+
 //-------------------------------------------- Constructeurs - destructeur
     IdCatalogue ( const IdCatalogue & unIdCatalogue );
 

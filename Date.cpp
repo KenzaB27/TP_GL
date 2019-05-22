@@ -115,12 +115,12 @@ Date::Date(string date, string temps)
 #endif
 } //--- Fin de Date
 
-Date::Date ( const Date & date ) : heure(date.heure), minutes(date.minutes)
+/*Date::Date ( const Date & date ) : heure(date.heure), minutes(date.minutes) 
 {
 #ifdef MAP
 	cout << "Construction Date par copie" << endl;
 #endif
-}//--- Fin de Date
+}//--- Fin de Date*/
 
 Date::Date() 
 {

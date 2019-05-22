@@ -26,6 +26,12 @@ bool operator==(const IdCatalogue & unIdCatalogue1, const IdCatalogue & unIdCata
 	}
 	return false;
 }
+
+ostream & operator<<(ostream &out, const IdCatalogue &idCatalogue)
+{
+	out << idCatalogue.capteurId << " " << idCatalogue.dateMesure<< endl;
+	return out; 
+}
 //-------------------------------------------- Constructeurs - destructeur
 IdCatalogue::IdCatalogue ( const IdCatalogue & unIdCatalogue )
 // Algorithme :
@@ -38,12 +44,11 @@ IdCatalogue::IdCatalogue ( const IdCatalogue & unIdCatalogue )
 
 
 IdCatalogue::IdCatalogue(int cI, Date dm)
-// Algorithme :
-//
 {
     #ifdef MAP
         cout << "Appel au constructeur de <IdCatalogue>" << endl;
     #endif
+
     capteurId=cI;
     dateMesure=dm;
 
