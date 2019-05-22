@@ -70,8 +70,10 @@ void MesureGaz::setDescription(string d)
 
 //------------------------------------------------- Surcharge d'operateurs
 
-ostream &operator<<(ostream &out, const MesureGaz &mesureGaz)
+ostream & operator<<(ostream &out, const MesureGaz &mesureGaz)
 {
+	out << mesureGaz.gazId << " " << mesureGaz.unite; 
+	return out; 
 }
 
 //-------------------------------------------- Constructeurs - destructeur
