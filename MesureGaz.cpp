@@ -42,7 +42,7 @@ int MesureGaz::getIdCapteur(){
     return idCapteur;
 }
 
-long MesureGaz::getValeur(){
+double MesureGaz::getValeur(){
     return valeur;
 }
 void MesureGaz::setGazId(int val){
@@ -51,7 +51,7 @@ void MesureGaz::setGazId(int val){
 void  MesureGaz::setDate(Date d){
     date=d;
 }
-void  MesureGaz::setValeur(long val){
+void  MesureGaz::setValeur(double val){
     valeur=val;
 }
 void  MesureGaz::setIdCapteur(int c){
@@ -78,7 +78,7 @@ ostream & operator<<(ostream &out, const MesureGaz &mesureGaz)
 
 //-------------------------------------------- Constructeurs - destructeur
 
-MesureGaz::MesureGaz(int typegaz, Date hr, long v, int c, string d)
+MesureGaz::MesureGaz(int typegaz, Date hr, double v, int c, string d)
 // Algorithme :
 //
 {
