@@ -35,7 +35,10 @@ public:
     int main();
 
     void TestCatalogue();
-    //------------------------------------------------- Surcharge d'operateurs
+
+	void TestGestion();
+ 
+//------------------------------------------------- Surcharge d'operateurs
   
     //-------------------------------------------- Constructeurs - destructeur
 
