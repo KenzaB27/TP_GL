@@ -12,7 +12,7 @@
 //-------------------------------------------------------- Include syst�me
 using namespace std;
 #include <iostream>
-
+#include <algorithm>    // std::any_of
 //------------------------------------------------------ Include personnel
 #include "Etude.h"
 
@@ -31,10 +31,34 @@ using namespace std;
 //{
 //} //----- Fin de M�thode
 
+vector<double> Etude::Evaluer(Catalogue cat, vector<int>listCapteur , Date dateF, Date dateD)
+{
+	vector<double>concentrations;
+	int compteur = 0; 
+
+	for (auto it = cat.getMap().begin(); it != cat.getMap().end(); it++)
+	{
+		for (auto l = listCapteur.begin(); l != listCapteur.end(); l++)
+		{
+			if (it->first.capteurId == *l )
+			{
+				compteur++; 
+				concentrations[O3] += it->second[O3].getValeur(); 
+				concentrations[SO2] += it->second[SO2].getValeur();
+				concentrations[NO2] += it->second[NO2].getValeur();
+				concentrations[PM10] += it->second[PM10].getValeur();
+			}
+		}
+	}
+	for (auto l = concentrations.begin(); l != concentrations.end(); *l / compteur, l++); 
+
+	return vector<double>();
+}
+
 vector<int> Etude::getCapteur( vector<Capteur>listCapteur,double latitude, double longitude ,double rayon){
     PorteeCapteur territoire (latitude, longitude, rayon); 
     vector<int> capteurTerritoire; 
-    for ( vector<Capteur>::iterator it=listCapteur.begin(); it!=listCapteur.end(); it++)
+    for ( auto it=listCapteur.begin(); it!=listCapteur.end(); it++)
     {
         if (territoire.contient(it->getPortee())){
             capteurTerritoire.push_back(it->getCapteurId()); 
