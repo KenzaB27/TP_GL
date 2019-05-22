@@ -72,7 +72,7 @@ void MesureGaz::setDescription(string d)
 
 ostream & operator<<(ostream &out, const MesureGaz &mesureGaz)
 {
-	out << mesureGaz.gazId << " " << mesureGaz.getValeur << " " << mesureGaz.unite << " " << mesureGaz.description << " " << mesureGaz.idCapteur << " " <<mesureGaz.date << '\r\n';
+	out << mesureGaz.gazId << " " << mesureGaz.valeur << " " << mesureGaz.unite << " " << mesureGaz.description << " " << mesureGaz.idCapteur << " " <<mesureGaz.date << endl;
 	return out; 
 }
 
