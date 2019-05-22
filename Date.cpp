@@ -95,7 +95,7 @@ ostream & operator << ( ostream & out, const Date & date )
 
 bool Date::operator == (const Date &date) const 
 {
-	return (jour == date.jour) && (mois == date.mois) && (annee == date.annee) && (heure == date.heure) && (minutes == date.minutes) && (secondes == date.secondes);
+	return *this>=date; 
 } //--- Fin de operator ==
 
 //---------------------------------------------- Constructeurs - Destructeur --
