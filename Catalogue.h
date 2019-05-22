@@ -37,7 +37,11 @@ class Catalogue
 
 public:
 //----------------------------------------------------- Méthodes publiques
-    void Ajouter(IdCatalogue id, list<MesureGaz> liste);
+    void Ajouter(IdCatalogue id, vector<MesureGaz> liste);
+    
+	unordered_map<IdCatalogue, vector<MesureGaz>> getMap() {
+		return map; 
+	}
 //-------------------------------------------- Constructeurs - destructeur
     Catalogue ( const Catalogue & unCatalogue );
 
@@ -48,8 +52,8 @@ public:
 
 //----------------------------------Attributs
 
-    public:
-    unordered_map<IdCatalogue,list<MesureGaz>> map;
+    protected:
+    unordered_map<IdCatalogue,vector<MesureGaz>> map;
 
 
  };
