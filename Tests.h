@@ -6,68 +6,38 @@
 *************************************************************************/
 
 //---------- Interface de la classe <PorteeCapteur> (fichier ${file_name}) ------
-#if ! defined ( MesureGaz_H )
-#define MesureGaz_H
+#if ! defined ( Tests_h )
+#define Tests_h
 
 #include <iostream>
 #include <string>
 using namespace std;
 
-#include "Date.h"
-#include "Capteur.h"
-
 //--------------------------------------------------- Interfaces utilisées
 
 //------------------------------------------------------------- Constantes 
 //------------------------------------------------------------------ Types 
-enum id{O3, SO2, NO2, PM10};
 //------------------------------------------------------------------------ 
 // Rôle de la classe <MesureGaz>
 //
 //
 //------------------------------------------------------------------------ 
 
-class MesureGaz
-{
 //----------------------------------------------------------------- PUBLIC
+class Tests
+{
 
 public:
 //----------------------------------------------------- Méthodes publiques
-    int getGazId();
-    string getUnite();
-    string getDescription();
-    Date getDate();
-    double getValeur();
-    int getIdCapteur();
 
-    void setGazId(int val);
-    void setDate(Date d);
-    void setValeur(double val);
-    void setIdCapteur(int c);
-    void setDescription(string d);
-    void setUnite(string u);
+    void TestMesureGaz();
 
+    int main();
     //------------------------------------------------- Surcharge d'operateurs
-    friend ostream &operator<<(ostream &out, const MesureGaz &mesureGaz);
-
+  
     //-------------------------------------------- Constructeurs - destructeur
-    MesureGaz(const MesureGaz &unMesureGaz);
 
-    MesureGaz(int typegaz, Date hr, double v, int c, string d);
-
-    MesureGaz();
-
-    virtual ~MesureGaz ( );
-
-//----------------------------------Attributs
-
-    protected:
-    int gazId; //a changer dans le diagramme de classes
-    string unite;
-    string description;
-    Date date;
-    double valeur;
-    int idCapteur;
+//----------------------------------Attributs:
  };
 
 //----------------------------------------- Types dépendants de <MesureGaz>

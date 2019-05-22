@@ -15,6 +15,7 @@
 #include "Date.h"
 #include "Capteur.h"
 #include "PorteeCapteur.h"
+#include "Catalogue.h"
 
 
 //------------------------------------------------------------- Constantes
@@ -38,8 +39,8 @@ public:
     //
     // Contrat :
     //
-    void Evaluer (double latitude, double longitude, Date dateF, Date dateD, double rayon =2); 
-    vector<Capteur> getCapteur( vector<Capteur>listCapteur,double latitude, double longitude ,double rayon = 2);
+	vector<double> Evaluer (Catalogue cat,double latitude, double longitude, Date dateF, Date dateD, double rayon =2);
+    vector<int> getCapteur( vector<Capteur>listCapteur,double latitude, double longitude ,double rayon = 2);
 
 //------------------------------------------------- Surcharge d'opérateursp
     Etude & operator = ( const Etude & unEtude );

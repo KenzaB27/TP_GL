@@ -101,6 +101,15 @@ PorteeCapteur::PorteeCapteur(double longitude, double latitude, double rayon) : 
 #endif
 } //----- Fin de PorteeCapteur
 
+PorteeCapteur::PorteeCapteur()
+// Algorithme :
+//
+{
+#ifdef MAP
+	cout << "Appel au destructeur de <PorteeCapteur>" << endl;
+#endif
+} //----- Fin de ~PorteeCapteur
+
 PorteeCapteur::~PorteeCapteur()
 // Algorithme :
 //

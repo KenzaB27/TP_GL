@@ -122,6 +122,14 @@ Date::Date ( const Date & date ) : heure(date.heure), minutes(date.minutes)
 #endif
 }//--- Fin de Date
 
+Date::Date() 
+{
+#ifdef MAP
+	cout << "Construction Date par copie" << endl;
+#endif
+}//--- Fin de Date
+
+
 Date::~Date ()
 {
 #ifdef MAP

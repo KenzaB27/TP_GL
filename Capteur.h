@@ -37,11 +37,6 @@ public:
     int getEtat();
     void definirPortee(double latitude, double longitude); 
 //-------------------------------------------- Constructeurs - destructeur
-    Capteur ( const Capteur & unCapteur );
-    // Mode d'emploi (constructeur de copie) :
-    //
-    // Contrat :
-    //
 
     Capteur(int capteurid, string d, double lat, double lon);
 

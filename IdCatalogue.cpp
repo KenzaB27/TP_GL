@@ -20,7 +20,7 @@ using namespace std;
 //---------------------------------------------Methodes publiques
 bool operator==(const IdCatalogue & unIdCatalogue1, const IdCatalogue & unIdCatalogue2)
 {
-	if (unIdCatalogue1.capteurId == unIdCalatogue2.capteurId && unIdCatalogue1.dateMesure == unIdCalatogue2.dateMesure)
+	if (unIdCatalogue1.capteurId == unIdCatalogue2.capteurId && unIdCatalogue1.dateMesure == unIdCatalogue2.dateMesure)
 	{
 		return true;
 	}

@@ -200,21 +200,53 @@ Lecture::~Lecture()
 
 //------------------------------------------------------- M�thodes priv�es
 
-bool Lecture::LectureMesure(ifstream &ifs, MesureGaz *mesure)
+void Lecture::LectureMesure(ifstream &ifs, MesureGaz *mesure)
 {
-	string dateD;
-	string heure;
+	/*
+	if (ifs.good())
+	{
+		string test;
+		getline(ifs, test, ' ');
+		if (ifs.eof())
+		{
+			return false;
+		}
+	}
+	else
+	{
+		return false;
+	}*/
+
+	string dateS;
+	int annee;
+	int mois;
+	int jour;
+	int heure;
+	int minute;
+	double seconde;
+
+	string heureS;
 	string sensor;
 	string gaz;
 	string valueString;
 	double value;
 
-	getline(ifs, dateD, 'T'); //La Date
-	cout << "date : " << dateD << endl;
-	getline(ifs, heure, ';'); //L'heure
-	cout << "heure : " << heure << endl;
+	getline(ifs, dateS, 'T'); //La Date
+	getline(ifs, heureS, ';'); //L'heure
 
-	Date d(dateD, heure);
+	//La date 
+	string temp = dateS.substr(5, 5);
+	mois = atoi((temp.substr(0, 2)).c_str());
+	annee = atoi((dateS.substr(0, 4)).c_str());
+	jour = atoi((dateS.substr(8, 10)).c_str());
+
+	//L'heure
+	heure = atoi((heureS.substr(0, 2)).c_str());
+	string temp = heureS.substr(3, 3);
+	minute = atoi((temp.substr(0, 2)).c_str());
+	seconde = atof((heureS.substr(6, heureS.length())).c_str());
+
+	Date d(annee, mois, jour , heure, minute, seconde);
 
 	//L'id du capteur 
 	getline(ifs, sensor, ';');
@@ -235,5 +267,11 @@ bool Lecture::LectureMesure(ifstream &ifs, MesureGaz *mesure)
 
 	mesure->setDescription(gazDescription[gazMap[gaz]].description);
 	mesure->setUnite(gazDescription[gazMap[gaz]].unit);
+	
+	
+	//return true; 
+
+
+
 
 } //--- Fin de LectureMesure
