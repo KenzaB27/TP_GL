@@ -582,7 +582,6 @@ __pycache__/
 
 test.cpp
 test.h
-makefile
 .vscode/main.o reader.o top10.o graphGen.o
 
 
