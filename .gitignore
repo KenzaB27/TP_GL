@@ -592,3 +592,7 @@ Flexisensor.sln
 Flexisensor/Flexisensor.vcxproj
 Flexisensor/Flexisensor.vcxproj.filters
 FlexiSensor/*
+CMakeLists.txt  
+make-build-debug
+cmake-build-debug/
+
