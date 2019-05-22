@@ -267,6 +267,7 @@ void Lecture::LectureMesure(ifstream &ifs, MesureGaz *mesure)
 
 	mesure->setDescription(gazDescription[gazMap[gaz]].description);
 	mesure->setUnite(gazDescription[gazMap[gaz]].unit);
+	return true; 
 
 
 

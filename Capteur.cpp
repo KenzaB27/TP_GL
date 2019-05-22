@@ -59,7 +59,16 @@ Capteur::Capteur (int capteurid, string d, double lat, double lon)
 } //----- Fin de Capteur
 
 
-Capteur::~Capteur ( )
+Capteur::Capteur()
+// Algorithme :
+//
+{
+#ifdef MAP
+	cout << "Appel au destructeur de <Capteur>" << endl;
+#endif
+} //----- Fin de ~Capteur
+
+Capteur::~Capteur()
 // Algorithme :
 //
 {

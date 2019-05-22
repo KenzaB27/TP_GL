@@ -13,6 +13,8 @@
 #include "Utilisateur.h"
 #include "Capteur.h"
 #include "Seuil.h"
+#include <vector>
+using namespace std;
 //------------------------------------------------------------- Constantes
 
 //------------------------------------------------------------------ Types
@@ -36,10 +38,10 @@ public:
 //
 //void supprimerUtilisateur(Utilisateur unUtilisateur);
 //void creerUtilisateur(Utilisateur unUtilisateur);
-void supprimerCapteur(int numCapteur);
-void ajouterCapteur(Capteur unCapteur);
-void restaurerCapteur(Capteur unCapteur);
-void mettreEnVeilleCapteur(Capteur unCapteur);
+void supprimerCapteur(int numCapteur, vector<Capteur> listeCapteurs);
+void ajouterCapteur(Capteur unCapteur, vector<Capteur> listeCapteurs);
+void restaurerCapteur(Capteur unCapteur, vector<Capteur> listeCapteurs);
+void mettreEnVeilleCapteur(Capteur unCapteur, vector<Capteur> listeCapteurs);
 int evaluerCapteur(Capteur unCapteur);
 void changerSeuil(Seuil unSeuil);
 

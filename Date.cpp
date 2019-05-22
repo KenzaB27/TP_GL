@@ -30,7 +30,6 @@ Date & Date::operator = ( const Date & date )
 	heure = date.heure;
 	minutes = date.minutes;
 	secondes=date.secondes;
-
 	return *this;
 }//--- FIn de operator =
 
@@ -93,9 +92,9 @@ ostream & operator << ( ostream & out, const Date & date )
 	return out;
 }//--- Fin de operator <<
 
-bool Date::operator == (const Date &date) const 
+bool operator==(const Date &date1, const Date &date2)
 {
-	return *this>=date; 
+	return date1>=date2; 
 } //--- Fin de operator ==
 
 //---------------------------------------------- Constructeurs - Destructeur --
@@ -123,7 +122,12 @@ Date::Date ( const Date & date ) : heure(date.heure), minutes(date.minutes)
 #endif
 }//--- Fin de Date
 
-
+Date::Date() 
+{
+#ifdef MAP
+	cout << "Construction Date par copie" << endl;
+#endif
+}//--- Fin de Date
 
 
 Date::~Date ()

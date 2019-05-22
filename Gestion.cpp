@@ -43,8 +43,9 @@ void Gestion::supprimerUtilisateur(Utilisateur unUtilisateur)
 
 }*/
 
-void Gestion::ajouterCapteur(Capteur unCapteur)
+void Gestion::ajouterCapteur(Capteur unCapteur, vector<Capteur> listeCapteurs)
 {
+
 
 }
 
@@ -54,21 +55,26 @@ void Gestion::changerSeuil(Seuil unSeuil)
 }
 
 
-
-
-void Gestion::mettreEnVeilleCapteur(Capteur unCapteur)
+void Gestion::mettreEnVeilleCapteur(Capteur unCapteur, vector<Capteur> listeCapteurs)
 {
 
 }
 
-void Gestion::restaurerCapteur(Capteur unCapteur)
+void Gestion::restaurerCapteur(Capteur unCapteur, vector<Capteur> listeCapteurs)
 {
 
 }
 
-void Gestion::supprimerCapteur(int numCapteur)
+void Gestion::supprimerCapteur(int numCapteur, vector<Capteur> listeCapteurs)
 {
-
+    for (vector<Capteur>::iterator it = listeCapteurs.begin() ; it != listeCapteurs.end(); ++it)
+    {
+        Capteur c;
+        if(numCapteur)
+        {
+            listeCapteurs.erase(it);
+        }
+    }
 }
 
 int Gestion::evaluerCapteur(Capteur)
