@@ -48,7 +48,7 @@ public:
 //----------------------------------Attributs
 
     protected:
-    unordered_multimap<IdCatalogue,list<MesureGaz>> map;
+    unordered_map<IdCatalogue,list<MesureGaz>> map;
 
 
  };
