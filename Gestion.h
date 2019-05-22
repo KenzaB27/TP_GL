@@ -37,10 +37,10 @@ public:
 //
 //void supprimerUtilisateur(Utilisateur unUtilisateur);
 //void creerUtilisateur(Utilisateur unUtilisateur);
-void supprimerCapteur(int numCapteur, vector<Capteur> listeCapteurs);
-void ajouterCapteur(Capteur unCapteur, vector<Capteur> listeCapteurs);
-void restaurerCapteur(Capteur unCapteur, vector<Capteur> listeCapteurs);
-void mettreEnVeilleCapteur(Capteur unCapteur, vector<Capteur> listeCapteurs);
+void supprimerCapteur(int numCapteur, vector<Capteur> &listeCapteurs);
+void ajouterCapteur(Capteur unCapteur, vector<Capteur> &listeCapteurs);
+void restaurerCapteur(Capteur unCapteur, vector<Capteur> &listeCapteurs);
+void mettreEnVeilleCapteur(Capteur unCapteur, vector<Capteur> &listeCapteurs);
 int evaluerCapteur(Capteur unCapteur);
 void changerSeuil(Seuil unSeuil);
 

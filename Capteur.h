@@ -28,7 +28,7 @@ using namespace std;
 class Capteur
 {
 //----------------------------------------------------------------- PUBLIC
-
+    friend class Gestion;
 public:
 //----------------------------------------------------- Méthodes publiques
     int getCapteurId();
