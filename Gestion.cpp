@@ -65,7 +65,7 @@ void Gestion::ajouterCapteur(Capteur unCapteur, vector <Capteur> &listeCapteurs)
 
 void Gestion::changerSeuil(Seuil unSeuil) {
 
-    
+
 }
 
 
