@@ -24,6 +24,7 @@ using namespace std;
 #include <iterator> 
 #include <list>
 
+
 //-------------------------------------------------------- Méthodes publiques
 
 void TestMesureGaz(){
@@ -75,26 +76,26 @@ void TestGestion() {
 }
 
 void TestCatalogue(){
-    Date d = Date(2019, 02, 01, 10, 12, 55);
+    Date d(2019, 2, 1, 10, 12, 55);
+   // cout<<d<<endl;
     MesureGaz m = MesureGaz(O3, d, 10.95, 12, "Capteur12");
-    MesureGaz m1 = MesureGaz(0, d, 10, 13, "Capteur13");
-    MesureGaz m2 = MesureGaz();
+    MesureGaz m1 = MesureGaz(0, d, 10, 12, "Capteur12");
+    //MesureGaz m2 = MesureGaz();
 
     list<MesureGaz> liste;
     liste.push_back(m);
     liste.push_back(m1);
-    liste.push_back(m2);
+    //liste.push_back(m2);
 
-    IdCatalogue id = IdCatalogue(12, d);
+    IdCatalogue id = IdCatalogue(12,d);
+    cout << id;
 
-    cout<<id.capteurId<<endl;
-    cout <<id.dateMesure<<endl;
-
-    Catalogue c = Catalogue();
+    Catalogue c;
 
     c.Ajouter(id, liste);
+    cout<< c.map.find(id)<<endl;
 
-    cout << c;
+    cout << c << endl;
 
 }
 

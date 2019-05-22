@@ -13,6 +13,7 @@
 #include <unordered_map>
 #include <iterator> 
 #include <list>
+#include <functional>
 using namespace std;
 
 #include "IdCatalogue.h"
@@ -47,7 +48,7 @@ public:
 
 //----------------------------------Attributs
 
-    protected:
+    public:
     unordered_map<IdCatalogue,list<MesureGaz>> map;
 
 
