@@ -31,9 +31,9 @@ using namespace std;
 //{
 //} //----- Fin de M�thode
 
-vector<double> Etude::Evaluer(Catalogue &cat, vector<int>&listCapteur , Date dateF, Date dateD)
+vector<long double> Etude::Evaluer(Catalogue &cat, vector<int>&listCapteur , Date dateF, Date dateD)
 {
-	vector<double>concentrations;
+	vector<long double>concentrations;
 	int compteur = 0; 
 
 	for (auto it = cat.getMap().begin(); it != cat.getMap().end(); it++)
@@ -52,11 +52,11 @@ vector<double> Etude::Evaluer(Catalogue &cat, vector<int>&listCapteur , Date dat
 	}
 	for (auto l = concentrations.begin(); l != concentrations.end(); *l /=compteur, l++); 
 
-	return vector<double>();
+	return vector<long double>();
 }
 
 
-vector<int> Etude::getCapteur( vector<Capteur>&listCapteur,double latitude, double longitude ,double rayon){
+vector<int> Etude::getCapteur( vector<Capteur>&listCapteur,long double latitude, long double longitude ,long double rayon){
     PorteeCapteur territoire (latitude, longitude, rayon); 
     vector<int> capteurTerritoire; 
     for ( auto it=listCapteur.begin(); it!=listCapteur.end(); it++)
@@ -68,7 +68,7 @@ vector<int> Etude::getCapteur( vector<Capteur>&listCapteur,double latitude, doub
     return capteurTerritoire; 
 }
 
-int Etude::calculAtmo(vector<double>&mesures, unordered_map<int, vector<Seuil>>& tabSeuil)
+int Etude::calculAtmo(vector<long double>&mesures, unordered_map<int, vector<Seuil>>& tabSeuil)
 {
 	int indiceO3 = 0; 
 	int indiceSO2 = 0;

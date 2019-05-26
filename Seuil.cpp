@@ -29,11 +29,6 @@ using namespace std;
 
 
 //----------------------------------------------------- M�thodes publiques
-// type Seuil::M�thode ( liste de param�tres )
-// Algorithme :
-//
-//{
-//} //----- Fin de M�thode
 
 void Seuil::afficher() {
 	cout<<"min : "<<min<<"  max : "<<max<<" indice : "<<indice<<endl;

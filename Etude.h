@@ -41,9 +41,9 @@ public:
     //
     // Contrat :
     //
-	vector<double> Evaluer (Catalogue &cat, vector<int>&listCapteur, Date dateF, Date dateD);
-    vector<int> getCapteur( vector<Capteur>&listCapteur,double latitude, double longitude ,double rayon = 2000);
-	int calculAtmo(vector<double>&mesures , unordered_map<int, vector<Seuil>> &tabSeuil);
+	vector<long double> Evaluer (Catalogue &cat, vector<int>&listCapteur, Date dateF, Date dateD);
+    vector<int> getCapteur(vector<Capteur>&listCapteur, long double latitude, long double longitude, long double rayon=2000);
+	int calculAtmo(vector<long double>&mesures , unordered_map<int, vector<Seuil>> &tabSeuil);
 
 //------------------------------------------------- Surcharge d'opérateursp
 
