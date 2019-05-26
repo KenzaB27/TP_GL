@@ -21,10 +21,6 @@ using namespace std;
 
 //---------------------------------------------Methodes publiques
 
-void Catalogue::Ajouter(IdCatalogue id, list<MesureGaz> liste){
-    map.emplace(id,liste); 
-}
-
 //-------------------------------------------- Constructeurs - destructeur
 Catalogue::Catalogue ( const Catalogue & unCatalogue )
 // Algorithme :
@@ -50,7 +46,7 @@ Catalogue::~Catalogue ( )
 
 ostream & operator<<(ostream &out, const Catalogue &catalogue)
 {
-  for ( auto it = catalogue.map.begin(); it != catalogue.map.end(); ++it ){//enventuellement switcher avec un getMap()
+  for ( auto it = catalogue.getMap()	.begin(); it != catalogue.getMap().end(); ++it ){//enventuellement switcher avec un getMap()
       out << (it->first) << " ";
 
     for (auto l = it->second.begin(); l != it->second.end(); ++l){

@@ -46,7 +46,7 @@ Catalogue Lecture::Parcourir(string fichier)
 
 	while (monFlux.good())
 	{
-		list<MesureGaz> listeMesure;
+		vector<MesureGaz> listeMesure;
 		for (int i = 0; i < 4; i++)
 		{
 			MesureGaz m;
@@ -55,14 +55,13 @@ Catalogue Lecture::Parcourir(string fichier)
 		}
 
 		// On vérifie la cohérence des données mesurées
-		list<MesureGaz>::iterator i;
 		int idCapteur = (*listeMesure.begin()).getIdCapteur();
 		Date dateMesure = (*listeMesure.begin()).getDate();
 
 		bool same = true;
 		
 		//Verifie la cohérence des données récupérées
-		for (i = listeMesure.begin(); i != listeMesure.end(); i++)
+		for (auto i = listeMesure.begin(); i != listeMesure.end(); i++)
 		{
 			if ((*i).getIdCapteur() != idCapteur && !((*i).getDate() == dateMesure))
 			{
@@ -78,7 +77,7 @@ Catalogue Lecture::Parcourir(string fichier)
 		if (same)
 		{
 			IdCatalogue index(idCapteur, dateMesure);
-			c.Ajouter(index, listeMesure);
+			c.getMap().emplace(make_pair(index, listeMesure)); 
 		}
 	}
 
