@@ -98,8 +98,8 @@ vector<Capteur> Lecture::InitCapteur(string fichierCapteurs)
 		{
 			int capteurId;
 			string tempString; //utilisé avant le cast
-			double latitude;
-			double longitude;
+			long double latitude;
+			long double longitude;
 			string description;
 
 			// extraction des informations
@@ -200,13 +200,13 @@ void Lecture::LectureMesure(ifstream &ifs, MesureGaz *mesure)
 	int jour;
 	int heure;
 	int minute;
-	double seconde;
+	long double seconde;
 
 	string heureS;
 	string sensor;
 	string gaz;
 	string valueString;
-	double value;
+	long double value;
 
 	getline(ifs, dateS, 'T');  //La Date
 	cout << "Date : " << dateS << endl;

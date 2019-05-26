@@ -58,7 +58,7 @@ namespace std {
           size_t h1 = hash<int>()(k.capteurId);
           size_t h2 = hash<int>()(k.dateMesure.annee)^hash<int>()(k.dateMesure.mois) 
 					^ hash<int>()(k.dateMesure.jour)^hash<int>()(k.dateMesure.heure) 
-					^ hash<int>()(k.dateMesure.minutes)^hash<double>()(k.dateMesure.secondes);
+					^ hash<int>()(k.dateMesure.minutes)^hash<long double>()(k.dateMesure.secondes);
           return h1 ^ ( h2 << 1 );
       }
   };

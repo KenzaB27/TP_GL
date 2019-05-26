@@ -98,7 +98,7 @@ bool operator==(const Date &date1, const Date &date2)
 } //--- Fin de operator ==
 
 //---------------------------------------------- Constructeurs - Destructeur --
-Date::Date(int lannee, int lmois, int ljour, int lHeure, int lesMinutes, double lesSecondes) : annee(lannee),
+Date::Date(int lannee, int lmois, int ljour, int lHeure, int lesMinutes, long double lesSecondes) : annee(lannee),
 																							   mois(lmois), jour(ljour), heure(lHeure), minutes(lesMinutes), secondes(lesSecondes)
 {
 #ifdef MAP

@@ -37,12 +37,12 @@ public:
     string getUnite();
     string getDescription();
     Date getDate();
-    double getValeur();
+    long double getValeur();
     int getIdCapteur();
 
     void setGazId(int val);
     void setDate(Date d);
-    void setValeur(double val);
+    void setValeur(long double val);
     void setIdCapteur(int c);
     void setDescription(string d);
     void setUnite(string u);
@@ -51,7 +51,7 @@ public:
     friend ostream &operator<<(ostream &out, const MesureGaz &mesureGaz);
 
     //-------------------------------------------- Constructeurs - destructeur
-    MesureGaz(int typegaz, Date hr, double v, int c, string d);
+    MesureGaz(int typegaz, Date hr, long double v, int c, string d);
 
     MesureGaz();
 
@@ -64,7 +64,7 @@ public:
     string unite;
     string description;
     Date date;
-    double valeur;
+    long double valeur;
     int idCapteur;
  };
 
