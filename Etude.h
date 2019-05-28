@@ -11,15 +11,14 @@
 
 //--------------------------------------------------- Interfaces utilisées
 #include <vector>
-#include <math.h>
+#include <math.h>	
 #include "Date.h"
 #include "Capteur.h"
 #include "PorteeCapteur.h"
 #include "Catalogue.h"
+#include "Seuil.h"
 
 using namespace std; 
-
-typedef enum {O3, SO2, NO2, PM10}gaz;
 
 //------------------------------------------------------------- Constantes
 
@@ -42,25 +41,16 @@ public:
     //
     // Contrat :
     //
-	vector<double> Evaluer (Catalogue cat, vector<int>listCapteur, Date dateF, Date dateD);
-    vector<int> getCapteur( vector<Capteur>listCapteur,double latitude, double longitude ,double rayon = 2000);
+	vector<long double> Evaluer (Catalogue &cat, vector<int>&listCapteur, Date dateF, Date dateD);
+    vector<int> getCapteur(vector<Capteur>&listCapteur, long double latitude, long double longitude, long double rayon=2000);
+	int calculAtmo(vector<long double>&mesures , unordered_map<int, vector<Seuil>> &tabSeuil);
 
 //------------------------------------------------- Surcharge d'opérateursp
-    Etude & operator = ( const Etude & unEtude );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
-
 
 //-------------------------------------------- Constructeurs - destructeur
-    Etude ( const Etude & unEtude );
-    // Mode d'emploi (constructeur de copie) :
-    //
-    // Contrat :
-    //
+//-------------------------------------------- Constructeurs - destructeur
 
-    Etude ( );
+    Etude ();
     // Mode d'emploi :
     //
     // Contrat :

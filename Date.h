@@ -76,7 +76,7 @@ public :
 
 
 	//-------------------------------------- Constructeurs - Destructeur --
-	Date (int lannee,int lmois, int ljour,int lHeure , int lesMinutes, double lesSecondes);
+	Date (int lannee,int lmois, int ljour,int lHeure , int lesMinutes, long double lesSecondes);
 	// Mode d'emploi :
 	//	Permet de creer une date
 	//	lHeure : l'heure de la date.
@@ -114,7 +114,7 @@ public :
 	int annee; 
 	int heure;		
 	int minutes;
-	double secondes; 	
+	long double secondes; 	
 
 };
 

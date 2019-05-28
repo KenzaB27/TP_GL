@@ -31,16 +31,16 @@ using namespace std;
 //{
 //} //----- Fin de M�thode
 
-vector<double> Etude::Evaluer(Catalogue cat, vector<int>listCapteur , Date dateF, Date dateD)
+vector<long double> Etude::Evaluer(Catalogue &cat, vector<int>&listCapteur , Date dateF, Date dateD)
 {
-	vector<double>concentrations;
+	vector<long double>concentrations;
 	int compteur = 0; 
 
 	for (auto it = cat.getMap().begin(); it != cat.getMap().end(); it++)
 	{
 		for (auto l = listCapteur.begin(); l != listCapteur.end(); l++)
 		{
-			if (it->first.capteurId == *l )
+			if (it->first.capteurId == *l && it->second[03].getDate()>=dateD && it->second[03].getDate()<dateF)
 			{
 				compteur++; 
 				concentrations[O3] += it->second[O3].getValeur(); 
@@ -50,12 +50,13 @@ vector<double> Etude::Evaluer(Catalogue cat, vector<int>listCapteur , Date dateF
 			}
 		}
 	}
-	for (auto l = concentrations.begin(); l != concentrations.end(); *l / compteur, l++); 
+	for (auto l = concentrations.begin(); l != concentrations.end(); *l /=compteur, l++); 
 
-	return vector<double>();
+	return vector<long double>();
 }
 
-vector<int> Etude::getCapteur( vector<Capteur>listCapteur,double latitude, double longitude ,double rayon){
+
+vector<int> Etude::getCapteur( vector<Capteur>&listCapteur,long double latitude, long double longitude ,long double rayon){
     PorteeCapteur territoire (latitude, longitude, rayon); 
     vector<int> capteurTerritoire; 
     for ( auto it=listCapteur.begin(); it!=listCapteur.end(); it++)
@@ -66,25 +67,45 @@ vector<int> Etude::getCapteur( vector<Capteur>listCapteur,double latitude, doubl
     }
     return capteurTerritoire; 
 }
-//------------------------------------------------- Surcharge d'op�rateurs
-Etude & Etude::operator = ( const Etude & unEtude )
-// Algorithme :
-//
-{
-	return *this; 
-} //----- Fin de operator =
 
+int Etude::calculAtmo(vector<long double>&mesures, unordered_map<int, vector<Seuil>>& tabSeuil)
+{
+	int indiceO3 = 0; 
+	int indiceSO2 = 0;
+	int indiceNO2 = 0;
+	int indicePM10 = 0;
+
+	for (auto it = tabSeuil[O3].begin(); it != tabSeuil[O3].end(); ++it)
+	{
+		if (mesures[O3] >= it->getMin() && mesures[O3] <= it->getMax()) {
+			indiceO3 = it->getIndice();
+		}
+	}
+
+	for (auto it = tabSeuil[SO2].begin(); it != tabSeuil[SO2].end(); ++it)
+	{
+		if (mesures[SO2] >= it->getMin() && mesures[SO2] <= it->getMax()) {
+			indiceSO2 = it->getIndice();
+		}
+	}
+
+	for (auto it = tabSeuil[NO2].begin(); it != tabSeuil[NO2].end(); ++it)
+	{
+		if (mesures[NO2] >= it->getMin() && mesures[NO2] <= it->getMax()) {
+			indiceNO2 = it->getIndice();
+		}
+	}
+
+	for (auto it = tabSeuil[PM10].begin(); it != tabSeuil[PM10].end(); ++it)
+	{
+		if (mesures[PM10] >= it->getMin() && mesures[PM10] <= it->getMax()) {
+			indicePM10 = it->getIndice(); 
+		}
+	}
+	return max(max(indiceNO2, indiceO3), max(indicePM10, indiceSO2));
+}
 
 //-------------------------------------------- Constructeurs - destructeur
-Etude::Etude ( const Etude & unEtude )
-// Algorithme :
-//
-{
-#ifdef MAP
-    cout << "Appel au constructeur de copie de <Etude>" << endl;
-#endif
-} //----- Fin de Etude (constructeur de copie)
-
 
 Etude::Etude ( )
 // Algorithme :

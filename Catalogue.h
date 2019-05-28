@@ -12,7 +12,7 @@
 #include <string>
 #include <unordered_map>
 #include <iterator> 
-#include <list>
+#include <vector>
 #include <functional>
 using namespace std;
 
@@ -37,9 +37,8 @@ class Catalogue
 
 public:
 //----------------------------------------------------- Méthodes publiques
-    void Ajouter(IdCatalogue id, vector<MesureGaz> liste);
-    
-	unordered_map<IdCatalogue, vector<MesureGaz>> getMap() {
+
+	unordered_map<IdCatalogue, vector<MesureGaz>> getMap() const{
 		return map; 
 	}
 //-------------------------------------------- Constructeurs - destructeur

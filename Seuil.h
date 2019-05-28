@@ -26,6 +26,14 @@ class Seuil
 //----------------------------------------------------------------- PUBLIC
 
 public:
+	int getMin(); 
+	int getMax(); 
+	int getIndice();
+
+	void setMin(int mi);
+	void setMax( int ma);
+	void setIndice(int ind);
+
 	Seuil & operator = (const Seuil & Seuil );
 	friend ostream & operator << ( ostream & out, const Seuil & Seuil );
 //----------------------------------------------------- Méthodes publiques
@@ -65,16 +73,7 @@ void afficher();
     // Contrat :
     //
 
-//------------------------------------------------------------------ PRIVE 
 
-protected:
-//----------------------------------------------------- Méthodes protégées
-
-private:
-//------------------------------------------------------- Méthodes privées
-
-protected:
-//----------------------------------------------------- Attributs protégés
 
 private:
 //------------------------------------------------------- Attributs privés

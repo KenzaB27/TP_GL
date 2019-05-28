@@ -35,15 +35,12 @@ int Capteur::getEtat()
 {
     return etat;
 }
-void Capteur::definirPortee(long latitude, long longitude){
-
-}
 
 //-------------------------------------------- Constructeurs - destructeur
 
 
 
-Capteur::Capteur (int capteurid, string d, long lat, long lon)
+Capteur::Capteur (int capteurid, string d, long double lat, long double lon)
 // Algorithme :
 //
 {

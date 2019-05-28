@@ -29,15 +29,42 @@ using namespace std;
 
 
 //----------------------------------------------------- M�thodes publiques
-// type Seuil::M�thode ( liste de param�tres )
-// Algorithme :
-//
-//{
-//} //----- Fin de M�thode
 
 void Seuil::afficher() {
 	cout<<"min : "<<min<<"  max : "<<max<<" indice : "<<indice<<endl;
 }
+
+int Seuil::getMin()
+{
+	return min;
+}
+
+int Seuil::getMax()
+{
+	return max;
+}
+
+
+int Seuil::getIndice()
+{
+	return indice;
+}
+
+void Seuil::setMin(int mi)
+{
+	min = mi;
+}
+
+void Seuil::setMax(int ma)
+{
+	max = ma; 
+}
+
+void Seuil::setIndice(int ind)
+{
+	indice = ind; 
+}
+
 
 //------------------------------------------------- Surcharge d'op�rateurs
 Seuil & Seuil::operator = ( const Seuil & unSeuil )

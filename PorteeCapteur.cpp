@@ -32,27 +32,27 @@ using namespace std;
 //{
 //} //----- Fin de M�thode
 
-long PorteeCapteur::getLatitudeMax()
+long double PorteeCapteur::getLatitudeMax()
 {
     return latitudeMax;
 }
-long PorteeCapteur::getLatitudeMin()
+long double PorteeCapteur::getLatitudeMin()
 {
     return latitudeMin;
 }
-long PorteeCapteur::getLongitudeMax()
+long double PorteeCapteur::getLongitudeMax()
 {
     return longitudeMax;
 }
-long PorteeCapteur::getLongitudeMin()
+long double PorteeCapteur::getLongitudeMin()
 {
     return longitudeMin;
 }
-long PorteeCapteur::getLatitudeCentre()
+long double PorteeCapteur::getLatitudeCentre()
 {
     return latitudeCentre;
 }
-long PorteeCapteur::getLongitudeCentre()
+long double PorteeCapteur::getLongitudeCentre()
 {
     return longitudeCentre;
 }
@@ -76,25 +76,25 @@ bool PorteeCapteur::contient(PorteeCapteur portee)
     }
 }
 
-PorteeCapteur::PorteeCapteur(long longitude, long latitude, long rayon) : longitudeCentre(longitude), latitudeCentre(latitude)
+PorteeCapteur::PorteeCapteur(long double longitude, long double latitude, long double rayon) :longitudeCentre(longitude), latitudeCentre(latitude)
 // Algorithme :
 //
 {
-    //définition des bornes max et min de latitude et longitude notre territoire
+    //définition des bornes max et min de latitude et long doubleitude notre territoire
     // 1° de latitude = 111,11 Km, on fait donc un produit en croix
-    long offSetLat = rayon / 111110;
-    // 1° de longitude à 'latitude' degrés de latitude correspond à
-    // OneLongitudeDegree mètres. On passe à la méthode Math.Cos
+    long double offSetLat = rayon / 111110.;
+    // 1° de long doubleitude à 'latitude' degrés de latitude correspond à
+    // Onelong doubleitudeDegree mètres. On passe à la méthode Math.Cos
     // des radians
-    long oneLongitudeDegree = 111110*cos(latitude * M_PI / 180);
-    // Produit en croix pour trouver le nombre de degrés de longitude auquel
-    // correspond la longueur de notre rayon
-    long offSetLong = rayon / oneLongitudeDegree;
+    long double oneLongitudeDegree = 111110*cos(latitude * M_PI / 180);
+    // Produit en croix pour trouver le nombre de degrés de long doubleitude auquel
+    // correspond la long doubleueur de notre rayon
+	long double offSetLong = rayon / oneLongitudeDegree;
 
     latitudeMax = latitude + offSetLat;
     latitudeMin = latitude - offSetLat;
-    longitudeMax = longitude + offSetLong;
-    longitudeMin = longitude - offSetLong;
+	longitudeMax = longitude + offSetLong;
+	longitudeMin = longitude - offSetLong;
     
 #ifdef MAP
     cout << "Appel au constructeur de <PorteeCapteur>" << endl;
