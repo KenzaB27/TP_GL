@@ -70,10 +70,14 @@ namespace TestUnitaire
 		{
 			Date d1(2017, 1, 1, 0, 25, 25.3);
 			Date d2 (2016, 3, 31, 0, 25, 25.3);
+			Logger::WriteMessage("Test de l'opérateur ==");
 			Assert::IsTrue(d1==d1);
 			Assert::IsFalse(d1 == d2);
+			Logger::WriteMessage("Test de l'opérateur >=");
 			Assert::IsTrue(d1 >= d2); 
+			Logger::WriteMessage("Test de l'opérateur <");
 			Assert::IsFalse(d1 < d2); 
+			Logger::WriteMessage("Test de l'opérateur <=");
 			Assert::IsFalse(d1 <= d2);
 		}
 
