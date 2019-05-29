@@ -106,9 +106,7 @@ namespace TestUnitaire
 			Logger::WriteMessage("Test du bon fonctionnement des dates");
 			Assert::IsTrue(m.date == d);
 		}
-	}
-
-
+	};
 
 
 	TEST_CLASS(TestUnitaireSeuil)
