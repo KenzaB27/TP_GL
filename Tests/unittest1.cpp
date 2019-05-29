@@ -119,8 +119,18 @@ namespace TestUnitaire
 			Seuil s2 = Seuil(1, 2, 3);
 			Seuil s3 = Seuil(1, 2, 4);
 			Logger::WriteMessage("Test de l'op�rateur ==");
-			Assert::IsTrue(s1== s1);
+			Assert::IsTrue(s1== s2);
 			Assert::IsFalse(s3 == s2);
+		}
+
+		TEST_METHOD(TestOperateurNotEqual)
+		{
+			Seuil s1 = Seuil(1, 2, 3);
+			Seuil s2 = Seuil(1, 2, 3);
+			Seuil s3 = Seuil(1, 2, 4);
+			Logger::WriteMessage("Test de l'op�rateur !=");
+			Assert::IsTrue(s1 != s3);
+			Assert::IsFalse(s1 != s2);
 		}
 
 
