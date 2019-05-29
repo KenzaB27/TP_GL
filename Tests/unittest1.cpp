@@ -105,6 +105,15 @@ namespace TestUnitaire
 			Assert::IsTrue(m1.gazId == O3);
 			Logger::WriteMessage("Test du bon fonctionnement des dates");
 			Assert::IsTrue(m.date == d);
+			Logger::WriteMessage("Test methode setValeur");
+			m.setValeur(23);
+			Assert::IsTrue(m.valeur==23);
+			Logger::WriteMessage("Test methode setDescription");
+			m.setDescription("test");
+			Assert::IsFalse(m.description=="Capteur12");
+			Logger::WriteMessage("Test methode setUnite");
+			m.setUnite("test");
+			Assert::IsFalse(m.unite.compare("µg/m3")==0);
 		}
 	};
 
@@ -171,7 +180,8 @@ namespace TestUnitaire
 			Logger::WriteMessage("Test idCatalogue dans le catalogue");
 			Assert::IsTrue(c.getMap()->first.capteurId==id.capteurId);
 			Logger::WriteMessage("Test liste mesure dans le catalogue");
-			Assert::IsTrue(c.getMap()->second.begin().gazId==0);//checker si le second.begin() fonctionne correctement		
+			Assert::IsTrue(c.getMap()->second.begin().gazId==0);//checker si le second.begin() fonctionne correctement	
+				
 		}
 
 		TEST_METHOD(TestIdCatalogue)
