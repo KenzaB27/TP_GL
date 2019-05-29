@@ -15,6 +15,8 @@
 #include "Gestion.h"
 #include "Etude.h"
 #include "Lecture.h"
+#include <vector>
+#include "Capteur.h"
 
 using namespace std;
 
@@ -91,6 +93,7 @@ private:
     Gestion g;
     Etude e;
     Lecture l;
+    vector<Capteur> listeCapteurs;
 
     //---------------------------------------------------------- Classes amies
 
