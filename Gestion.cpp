@@ -96,12 +96,12 @@ void Gestion::changerSeuil(unordered_map<string,list<Seuil>> &tabSeuil, list<Seu
 }
 
 
-void Gestion::mettreEnVeilleCapteur(Capteur unCapteur, vector <Capteur> &listeCapteurs) {
+void Gestion::mettreEnVeilleCapteur(int  numCapteur, vector <Capteur> &listeCapteurs) {
     bool capteurAbsent = true;
     for (vector<Capteur>::iterator it = listeCapteurs.begin(); it != listeCapteurs.end(); ++it) {
-        if (it->getCapteurId() == unCapteur.getCapteurId()) {
+        if (it->getCapteurId() == numCapteur) {
             if (it->etat==0) {
-                cerr << "Impossible de mettre en veille le capteur : Capteur n°" << unCapteur.capteurId
+                cerr << "Impossible de mettre en veille le capteur : Capteur n°" << numCapteur
                      << " est déjà en veille" << endl;
 
             } else {
@@ -114,17 +114,17 @@ void Gestion::mettreEnVeilleCapteur(Capteur unCapteur, vector <Capteur> &listeCa
     }
 
     if (capteurAbsent) {
-        cerr << "Impossible de mettre en veille le capteur : Capteur n°" << unCapteur.capteurId
+        cerr << "Impossible de mettre en veille le capteur : Capteur n°" << numCapteur
              << " absent de la liste des capteurs" << endl;
     }
 }
 
-void Gestion::restaurerCapteur(Capteur unCapteur, vector <Capteur> &listeCapteurs) {
+void Gestion::restaurerCapteur(int numCapteur, vector <Capteur> &listeCapteurs) {
     bool capteurAbsent = true;
     for (vector<Capteur>::iterator it = listeCapteurs.begin(); it != listeCapteurs.end(); ++it) {
-        if (it->getCapteurId() == unCapteur.getCapteurId()) {
+        if (it->getCapteurId() == numCapteur) {
             if (it->etat) {
-                cerr << "Impossible de restaurer le capteur : Capteur n°" << unCapteur.capteurId
+                cerr << "Impossible de restaurer le capteur : Capteur n°" << numCapteur
                      << " est déjà en fonctionnement" << endl;
 
             } else {
@@ -137,7 +137,7 @@ void Gestion::restaurerCapteur(Capteur unCapteur, vector <Capteur> &listeCapteur
     }
 
     if (capteurAbsent) {
-        cerr << "Impossible de restaurer le capteur : Capteur n°" << unCapteur.capteurId
+        cerr << "Impossible de restaurer le capteur : Capteur n°" << numCapteur
              << " absent de la liste des capteurs" << endl;
     }
 }
@@ -162,14 +162,6 @@ int Gestion::evaluerCapteur(Capteur) {
 
     return 0;
 }
-//------------------------------------------------- Surcharge d'op�rateurs
-/*
-Gestion & Gestion::operator = ( const Gestion & unGestion )
-// Algorithme :
-//
-{
-} //----- Fin de operator =
-*/
 
 //-------------------------------------------- Constructeurs - destructeur
 Gestion::Gestion(const Gestion &unGestion)

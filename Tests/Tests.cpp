@@ -9,18 +9,18 @@
 
 //---------------------------------------------------------------- INCLUDE
 #include "Tests.h"
-#include "MesureGaz.h"
-#include "IdCatalogue.h"
-#include "Catalogue.h"
-#include "Gestion.h"
-#include "Capteur.h"
-#include "PorteeCapteur.h"
+#include "../MesureGaz.h"
+#include "../IdCatalogue.h"
+#include "../Catalogue.h"
+#include "../Gestion.h"
+#include "../Capteur.h"
+#include "../PorteeCapteur.h"
 
 //-------------------------------------------------------- Include syst�me
 using namespace std;
 
-#include <iostream>
-#include <string>
+//#include <iostream>
+//#include <string>
 #include <iterator> 
 #include <list>
 #include <unordered_map>
@@ -61,7 +61,7 @@ void Tests::TestGestion() {
     v.push_back(c1);
     g.ajouterCapteur(c2, v);
     g.ajouterCapteur(c3, v);
-    g.mettreEnVeilleCapteur(c3,v);
+    g.mettreEnVeilleCapteur(3,v);
 
 
     for (vector<Capteur>::iterator it = v.begin(); it != v.end(); ++it) {
@@ -75,7 +75,7 @@ void Tests::TestGestion() {
         //process on el...
     }
 }
-
+/*
 void Tests::TestCatalogue(){
     Date d = Date(2019, 02, 01, 10, 12, 55);
     MesureGaz m = MesureGaz(O3, d, 10.95, 12, "Capteur12");
@@ -92,15 +92,15 @@ void Tests::TestCatalogue(){
 
     Catalogue c;
 
-    c.Ajouter(id, liste);
-    cout<< c.map.find(id)<<endl;
+    c.getMap().emplace(id, liste);
 
     cout << c << endl;
 
-}
+}*/
 
-<<<<<<< HEAD
-void TestChangerSeuil()
+
+void Tests::TestChangerSeuil()
+
 {
     unordered_map<string,list<Seuil>> umap;
     list<Seuil> PM10;
@@ -126,16 +126,14 @@ void TestChangerSeuil()
     }
 }
 
-int main(){
-    //TestMesureGaz();
-    TestCatalogue();
-    TestChangerSeuil();
-=======
-int Tests::main(){
-    //TestMesureGaz();
-    //TestCatalogue();
+
+
+int main() {
+	//TestMesureGaz();
+	//TestCatalogue();
+	//TestChangerSeuil();
 
 	return 0;
 
->>>>>>> 2541cb9be5110f76acfd7a77458f26fe5b9f79e6
+
 }

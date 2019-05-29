@@ -37,6 +37,8 @@ public:
     void TestCatalogue();
 
 	void TestGestion();
+
+    void TestChangerSeuil();
  
 //------------------------------------------------- Surcharge d'operateurs
   
