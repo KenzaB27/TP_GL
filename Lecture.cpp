@@ -33,9 +33,9 @@ using namespace std;
 //-------------------------------------------------------- Fonctions amies
 
 //----------------------------------------------------- M�thodes publiques
-Catalogue Lecture::Parcourir(string fichier)
+void Lecture::Parcourir(Catalogue &c, string fichier)
 {
-	Catalogue c;
+	//Catalogue c;
 
 	ifstream monFlux(fichier.c_str());
 
@@ -82,15 +82,14 @@ Catalogue Lecture::Parcourir(string fichier)
 		}
 	}
 
-	return c;
+	//return c;
 
 } //--- Fin de Parcourir
 
-
-vector<Capteur> Lecture::InitCapteur(string fichierCapteurs)
+void Lecture::InitCapteur(vector<Capteur> &liste, string fichierCapteurs)
 {
 	ifstream monFlux(fichierCapteurs.c_str());
-	vector<Capteur> liste;
+	//vector<Capteur> liste;
 
 	if (monFlux)
 	{
@@ -120,7 +119,7 @@ vector<Capteur> Lecture::InitCapteur(string fichierCapteurs)
 		}
 	}
 
-	return liste;
+	//return liste;
 } //---- Fin de initCapteur
 
 void Lecture::InitTypeGaz(string fichierGaz)
