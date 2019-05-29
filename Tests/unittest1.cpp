@@ -133,17 +133,16 @@ namespace TestUnitaire
 
 			Capteur c1 = Capteur(1, "d", 12.012, 32.002);
 			Capteur c2 = Capteur(2, "d", 1.02, 32.002);
-			Capteur c3 = Capteur(3, "d", 4.32, 32.002);
-			Capteur c4 = Capteur(4, "d", 111.23, 32.002);
-
 			vector <Capteur> v;
 			Gestion g;
+
 			g.ajouterCapteur(c1, v);
 			bool ajoute = false;
 			if (find(v.begin(), v.end(), c1) != v.end()) {
 				ajoute = true;
 			}
 			Assert::IsTrue(ajoute);
+
 			g.ajouterCapteur(c1, v);
 			int size = v.size();
 			Assert::AreEqual(1, size);			
@@ -183,6 +182,75 @@ namespace TestUnitaire
 			Assert::IsTrue(id.dateMesure==d);
 			Logger::WriteMessage("Test fonctionnement id IdCatalogue");
 			Assert::IsTrue(id.capteurId==12);
+			ajoute = false;
+			g.ajouterCapteur(c2, v);
+			if (find(v.begin(), v.end(), c2) != v.end()) {
+				ajoute = true;
+			}
+			Assert::IsTrue(ajoute);
+		}
+
+		TEST_METHOD(TestSupprimerCapteur)
+		{
+			Capteur c1 = Capteur(1, "d", 12.012, 32.002);
+			vector <Capteur> v;
+			Gestion g;
+			v.push_back(c1);
+			bool present=false;
+			if (find(v.begin(), v.end(), c1) != v.end()) {
+				present = true;
+			}
+			Assert::IsTrue(present);
+			g.supprimerCapteur(2,v);
+			present = false;
+			if (find(v.begin(), v.end(), c1) != v.end()) {
+				present = true;
+			}
+			Assert::IsTrue(present);
+			present = false;
+			g.supprimerCapteur(1, v);
+			if (find(v.begin(), v.end(), c1) != v.end()) {
+				present = true;
+			}
+			Assert::IsFalse(present);
+		}
+
+		TEST_METHOD(TestMettreEnVeilleCapteur)
+		{
+			Capteur c1 = Capteur(1, "d", 12.012, 32.002);
+			vector <Capteur> v;
+			Gestion g;
+			v.push_back(c1);
+			auto it = find(v.begin(), v.end(), c1);
+			Assert::AreEqual(it->getEtat(), 1);
+			g.mettreEnVeilleCapteur(2, v);
+			it = find(v.begin(), v.end(), c1);
+			Assert::AreEqual(it->getEtat(), 1);
+			g.mettreEnVeilleCapteur(1, v);
+			it = find(v.begin(), v.end(), c1);
+			Assert::AreEqual(it->getEtat(), 0);
+
+		}
+
+		TEST_METHOD(TestRestaurerCapteur)
+		{
+			Capteur c1 = Capteur(1, "d", 12.012, 32.002);
+			vector <Capteur> v;
+			Gestion g;
+			c1.setEtat(0);
+			Assert::AreEqual(c1.getEtat(), 0);
+			v.push_back(c1);
+			g.restaurerCapteur(2, v);
+			auto it = find(v.begin(), v.end(), c1);
+			Assert::AreEqual(it->getEtat(), 0);
+			g.restaurerCapteur(1, v);
+			it = find(v.begin(), v.end(), c1);
+			Assert::AreEqual(it->getEtat(), 1);
+		}
+
+		TEST_METHOD(TestChangerSeuil)
+		{
+
 		}
 	};
 

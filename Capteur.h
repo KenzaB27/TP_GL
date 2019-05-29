@@ -35,6 +35,7 @@ public:
     string getDescription();
     PorteeCapteur getPortee();
     int getEtat();
+	void setEtat(int unEtat);
 //-------------------------------------------- Constructeurs - destructeur
 
     Capteur(int capteurid, string d, long double lat, long double lon);
