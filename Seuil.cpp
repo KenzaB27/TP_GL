@@ -89,6 +89,11 @@ bool operator==(const Seuil& seuil1, const Seuil& seuil2)
 	return ((seuil1.max==seuil2.max) && (seuil1.min == seuil2.min) && (seuil1.indice == seuil2.indice));
 }
 
+bool operator!=(const Seuil& seuil1, const Seuil& seuil2)
+{
+	return ((seuil1.max != seuil2.max) || (seuil1.min != seuil2.min) || (seuil1.indice != seuil2.indice));
+}
+
 //-------------------------------------------- Constructeurs - destructeur
 Seuil::Seuil ( const Seuil & unSeuil )
 // Algorithme :

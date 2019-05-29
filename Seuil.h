@@ -38,6 +38,7 @@ public:
 	Seuil & operator = (const Seuil & Seuil );
 	friend ostream & operator << ( ostream & out, const Seuil & Seuil );
 	friend bool operator==(const Seuil& seuil1, const Seuil& seuil2);
+	friend bool operator!=(const Seuil& seuil1, const Seuil& seuil2);
 //----------------------------------------------------- Méthodes publiques
     // type Méthode ( liste de paramètres );
     // Mode d'emploi :

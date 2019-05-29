@@ -5,6 +5,7 @@
 #include "../Capteur.h"
 #include "../Gestion.h"
 
+
 #include <iterator> 
 #include <list>
 #include <unordered_map>
@@ -90,7 +91,7 @@ namespace TestUnitaire
 		}
 
 	};
-
+	/*
 	TEST_CLASS(TestUnitaireMesureGaz)
 	{
 	public:
@@ -107,7 +108,7 @@ namespace TestUnitaire
 			Assert::IsTrue(m.date == d);
 		}
 	};
-
+	*/
 
 	TEST_CLASS(TestUnitaireSeuil)
 	{
@@ -215,6 +216,147 @@ namespace TestUnitaire
 
 		TEST_METHOD(TestChangerSeuil)
 		{
+
+			unordered_map<string, list<Seuil>> umap;
+			list<Seuil> PM10;
+			list<Seuil> SO2;
+			list<Seuil> NO2;
+			list<Seuil> O3;
+			Gestion g;
+
+			for (int i = 0; i < 10; i++)
+			{
+				PM10.push_back(Seuil(0,0,0));
+				SO2.push_back(Seuil(0, 0, 0));
+				NO2.push_back(Seuil(0, 0, 0));
+				O3.push_back(Seuil(0, 0, 0));
+			}
+
+			umap.insert(make_pair("PM10", PM10));
+			umap.insert(make_pair("SO2", SO2));
+			umap.insert(make_pair("NO2", NO2));
+			umap.insert(make_pair("O3", O3));
+
+			list<Seuil> unPM10;
+			list<Seuil> unSO2;
+			list<Seuil> unNO2;
+			list<Seuil> unO3;
+
+			for (int i = 0; i < 10; i++)
+			{
+				unPM10.push_back(Seuil(i, i, i));
+				unSO2.push_back(Seuil(i, i, i));
+				unNO2.push_back(Seuil(i, i, i));
+				unO3.push_back(Seuil(i, i, i));
+			}
+			bool diff = false;
+			list<Seuil>::iterator itGaz = PM10.begin();
+			for (list<Seuil>::iterator it = umap["PM10"].begin(); it != umap["PM10"].end(); ++it)
+			{
+				if ((*it) != (*itGaz))
+				{
+					diff = true;
+					break;
+				}
+				++itGaz;
+			}
+			Assert::IsFalse(diff);
+			diff = false;
+			itGaz = SO2.begin();
+			for (list<Seuil>::iterator it = umap["SO2"].begin(); it != umap["SO2"].end(); ++it)
+			{
+				if ((*it) != (*itGaz))
+				{
+					diff = true;
+					break;
+				}
+				++itGaz;
+			}
+
+			Assert::IsFalse(diff);
+			diff = false;
+			itGaz = NO2.begin();
+			for (list<Seuil>::iterator it = umap["NO2"].begin(); it != umap["NO2"].end(); ++it)
+			{
+				if ((*it) != (*itGaz))
+				{
+					diff = true;
+					break;
+				}
+				++itGaz;
+			}
+
+			Assert::IsFalse(diff);
+
+			diff = false;
+			itGaz = O3.begin();
+			for (list<Seuil>::iterator it = umap["O3"].begin(); it != umap["O3"].end(); ++it)
+			{
+				if ((*it) != (*itGaz))
+				{
+					diff = true;
+					break;
+				}
+				++itGaz;
+			}
+
+			Assert::IsFalse(diff);
+
+			g.changerSeuil(umap, unPM10, unSO2, unNO2, unO3);
+
+			diff = false;
+			itGaz = unPM10.begin();
+			for (list<Seuil>::iterator it = umap["PM10"].begin(); it != umap["PM10"].end(); ++it)
+			{
+				if ((*it) != (*itGaz))
+				{
+					diff = true;
+					break;
+				}
+				++itGaz;
+			}
+			Assert::IsFalse(diff);
+			diff = false;
+			itGaz = unSO2.begin();
+			for (list<Seuil>::iterator it = umap["SO2"].begin(); it != umap["SO2"].end(); ++it)
+			{
+				if ((*it) != (*itGaz))
+				{
+					diff = true;
+					break;
+				}
+				++itGaz;
+			}
+
+			Assert::IsFalse(diff);
+			diff = false;
+			itGaz = unNO2.begin();
+			for (list<Seuil>::iterator it = umap["NO2"].begin(); it != umap["NO2"].end(); ++it)
+			{
+				if ((*it) != (*itGaz))
+				{
+					diff = true;
+					break;
+				}
+				++itGaz;
+			}
+
+			Assert::IsFalse(diff);
+			diff = false;
+			itGaz = unO3.begin();
+			for (list<Seuil>::iterator it = umap["O3"].begin(); it != umap["O3"].end(); ++it)
+			{
+				if ((*it) != (*itGaz))
+				{
+					diff = true;
+					break;
+				}
+				++itGaz;
+			}
+
+			Assert::IsFalse(diff);
+
+
 
 		}
 	};
