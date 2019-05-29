@@ -184,12 +184,12 @@ bool Menu::traitement(string input)
 
 		if (argList[1].compare("exclude"))
 		{
-			//g.mettreEnVeilleCapteur(atoi(argList[2].c_str()), listeCapteurs);
+			g.mettreEnVeilleCapteur(atoi(argList[2].c_str()), listeCapteurs);
 		}
 
 		if (argList[1].compare("include"))
 		{
-			//g.restaurerCapteur(atoi(argList[2].c_str()), listeCapteurs);
+			g.restaurerCapteur(atoi(argList[2].c_str()), listeCapteurs);
 		}
 	}
 
