@@ -36,6 +36,11 @@ int Capteur::getEtat()
     return etat;
 }
 
+void Capteur::setEtat(int unEtat)
+{
+	etat = unEtat;
+}
+
 bool operator==(const Capteur& capteur1, const Capteur& capteur2)
 {
 	return (capteur1.capteurId == capteur2.capteurId);

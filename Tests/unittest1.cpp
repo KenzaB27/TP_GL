@@ -182,6 +182,22 @@ namespace TestUnitaire
 
 		TEST_METHOD(TestRestaurerCapteur)
 		{
+			Capteur c1 = Capteur(1, "d", 12.012, 32.002);
+			vector <Capteur> v;
+			Gestion g;
+			c1.setEtat(0);
+			Assert::AreEqual(c1.getEtat(), 0);
+			v.push_back(c1);
+			g.restaurerCapteur(2, v);
+			auto it = find(v.begin(), v.end(), c1);
+			Assert::AreEqual(it->getEtat(), 0);
+			g.restaurerCapteur(1, v);
+			it = find(v.begin(), v.end(), c1);
+			Assert::AreEqual(it->getEtat(), 1);
+		}
+
+		TEST_METHOD(TestChangerSeuil)
+		{
 
 		}
 	};
