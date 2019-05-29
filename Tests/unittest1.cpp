@@ -1,6 +1,5 @@
-#include "stdafx.h"
 #include "CppUnitTest.h"
-#include "../../Tests/PorteeCapteur.h"
+#include "../PorteeCapteur.h"
 using namespace std; 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
