@@ -129,6 +129,7 @@ void TestChangerSeuil()
 int main(){
     //TestMesureGaz();
     //TestCatalogue();
+	TestChangerSeuil();
 
 	return 0;
 
