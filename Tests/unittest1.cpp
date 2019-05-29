@@ -106,6 +106,15 @@ namespace TestUnitaire
 			Assert::IsTrue(m1.gazId == O3);
 			Logger::WriteMessage("Test du bon fonctionnement des dates");
 			Assert::IsTrue(m.date == d);
+			Logger::WriteMessage("Test methode setValeur");
+			m.setValeur(23);
+			Assert::IsTrue(m.valeur==23);
+			Logger::WriteMessage("Test methode setDescription");
+			m.setDescription("test");
+			Assert::IsFalse(m.description=="Capteur12");
+			Logger::WriteMessage("Test methode setUnite");
+			m.setUnite("test");
+			Assert::IsFalse(m.unite.compare("µg/m3")==0);
 		}
 	};
 	*/
@@ -156,8 +165,44 @@ namespace TestUnitaire
 
 			g.ajouterCapteur(c1, v);
 			int size = v.size();
-			Assert::AreEqual(1, size);
+			Assert::AreEqual(1, size);			
+		}
 
+	};
+
+	TEST_CLASS(TestUnitaireCatalogue)
+	{
+	public:
+		TEST_METHOD(TestConstructionCatalogue)
+		{
+			Date d = Date(2019, 02, 01, 10, 12, 55);
+    		MesureGaz m = MesureGaz(O3, d, 10.95, 12, "Capteur12");
+    		MesureGaz m1 = MesureGaz(0, d, 10, 12, "Capteur12");
+
+			IdCatalogue id = IdCatalogue(12,d);
+
+			list<MesureGaz> liste;
+    		liste.push_back(m);
+   			liste.push_back(m1);
+			
+			Catalogue c;
+    		c.getMap().emplace(id, liste);
+
+			Logger::WriteMessage("Test idCatalogue dans le catalogue");
+			Assert::IsTrue(c.getMap()->first.capteurId==id.capteurId);
+			Logger::WriteMessage("Test liste mesure dans le catalogue");
+			Assert::IsTrue(c.getMap()->second.begin().gazId==0);//checker si le second.begin() fonctionne correctement	
+				
+		}
+
+		TEST_METHOD(TestIdCatalogue)
+		{
+			Date d = Date(2019, 02, 01, 10, 12, 55);
+			IdCatalogue id = IdCatalogue(12,d);
+			Logger::WriteMessage("Test fonctionnement date IdCatalogue");
+			Assert::IsTrue(id.dateMesure==d);
+			Logger::WriteMessage("Test fonctionnement id IdCatalogue");
+			Assert::IsTrue(id.capteurId==12);
 			ajoute = false;
 			g.ajouterCapteur(c2, v);
 			if (find(v.begin(), v.end(), c2) != v.end()) {
@@ -370,5 +415,6 @@ namespace TestUnitaire
 
 		}
 	};
+
 }
 
