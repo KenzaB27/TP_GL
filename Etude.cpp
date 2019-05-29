@@ -34,7 +34,7 @@ using namespace std;
 
 //-------------------------------------------- Constructeurs - destructeur
 
-vector<long double> Etude::Evaluer(Catalogue & cat, vector<Capteur>& listCapteur, long double latitude, long double longitude, Date dateDebut, long double rayon, Date dateFin)
+vector<long double> Etude::Evaluer(Catalogue &cat, vector<Capteur> &listCapteur, long double latitude, long double longitude, Date dateDebut, Date dateFin, long double rayon)
 {
 	vector<int> listeCapteur = getCapteur(listCapteur, latitude, longitude, rayon); 
 	return evaluer(cat, listeCapteur, dateDebut, dateFin);

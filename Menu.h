@@ -80,8 +80,6 @@ private:
     // Contrat :
     //
 
-    Date stringToDate(string s);
-
     void init();
 
 protected:

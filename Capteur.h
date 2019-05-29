@@ -39,6 +39,9 @@ public:
 
     Capteur(int capteurid, string d, long double lat, long double lon);
 
+
+	friend bool operator==(const Capteur& capteur1, const Capteur& capteur2);
+
     Capteur();
     // Mode d'emploi :
     //

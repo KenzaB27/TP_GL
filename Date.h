@@ -39,7 +39,11 @@ public :
 	// Contrat :
 	//	Aucun contrat.
 
-	Date suivant(); 
+	Date suivant();
+
+	Date precedent();
+
+	Date now();
 
 	bool operator < ( const Date & date ) const;
 	// Mode d'emploi :
@@ -86,7 +90,7 @@ public :
 	// Contrat:
 	//	Aucun contrat.
 
-	Date(string date, string heure);
+	Date(string date);
 	// Mode d'emploi :
 	//	Permet de creer une date à partir d'un string contenant jour-mois-année
 	// Et d'un autre string contenant heure:minute:secondes

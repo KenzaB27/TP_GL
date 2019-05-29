@@ -84,6 +84,11 @@ ostream & operator << ( ostream & out, const Seuil & unSeuil )
 	return out;
 }//--- Fin de operator <<
 
+bool operator==(const Seuil& seuil1, const Seuil& seuil2)
+{
+	return ((seuil1.max==seuil2.max) && (seuil1.min == seuil2.min) && (seuil1.indice == seuil2.indice));
+}
+
 //-------------------------------------------- Constructeurs - destructeur
 Seuil::Seuil ( const Seuil & unSeuil )
 // Algorithme :
