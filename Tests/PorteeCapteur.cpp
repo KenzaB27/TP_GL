@@ -12,7 +12,7 @@
 //-------------------------------------------------------- Include syst�me
 
 #include <iostream>
-
+#include "stdafx.h"
 //------------------------------------------------------ Include personnel
 #include "PorteeCapteur.h"
 using namespace std;
