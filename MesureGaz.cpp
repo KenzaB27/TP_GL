@@ -74,9 +74,15 @@ ostream & operator<<(ostream &out, const MesureGaz &mesureGaz)
 {
 	out << mesureGaz.gazId << " " << mesureGaz.valeur << " " << mesureGaz.unite << " " << mesureGaz.description << " " << mesureGaz.idCapteur << " " <<mesureGaz.date << endl;
 	return out; 
+
+}MesureGaz::operator long double() const
+{
+	return valeur; 
 }
 
 //-------------------------------------------- Constructeurs - destructeur
+
+
 
 MesureGaz::MesureGaz(int typegaz, Date hr, long double v, int c, string d)
 // Algorithme :

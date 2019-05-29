@@ -37,7 +37,7 @@ public:
     IdCatalogue ( const IdCatalogue & unIdCatalogue );
 
     IdCatalogue(int cI, Date dm);
-
+	
     IdCatalogue();
 
     virtual ~IdCatalogue ( );

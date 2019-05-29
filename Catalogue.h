@@ -38,17 +38,18 @@ class Catalogue
 public:
 //----------------------------------------------------- Méthodes publiques
 
-	unordered_map<IdCatalogue, vector<MesureGaz>> getMap() const{
-		return map; 
-	}
+	unordered_map<IdCatalogue, vector<MesureGaz>> getMap() const; 
+		
+//----------------------------------------------------- Surcharges d'opérateurs
+	friend ostream &operator<<(ostream &out, const Catalogue &catalogue);
+	operator unordered_multimap<int, vector<long double>>()const;
 //-------------------------------------------- Constructeurs - destructeur
     Catalogue ( const Catalogue & unCatalogue );
 
     Catalogue();
 
     virtual ~Catalogue ( );
-    friend ostream &operator<<(ostream &out, const Catalogue &catalogue);
-
+   
 //----------------------------------Attributs
 
     protected:
