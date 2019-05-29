@@ -1,6 +1,14 @@
 #include "CppUnitTest.h"
 #include "../PorteeCapteur.h"
 #include "../Date.h"
+#include "../Seuil.h"
+#include "../Capteur.h"
+#include "../Gestion.h"
+
+#include <iterator> 
+#include <list>
+#include <unordered_map>
+
 using namespace std; 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
@@ -79,6 +87,49 @@ namespace TestUnitaire
 			Assert::IsFalse(d1 < d2); 
 			Logger::WriteMessage("Test de l'opérateur <=");
 			Assert::IsFalse(d1 <= d2);
+		}
+
+	};
+
+
+	TEST_CLASS(TestUnitaireSeuil)
+	{
+	public:
+		TEST_METHOD(TestOperateurEgalite)
+		{
+			Seuil s1 = Seuil(1, 2, 3);
+			Seuil s2 = Seuil(1, 2, 3);
+			Seuil s3 = Seuil(1, 2, 4);
+			Logger::WriteMessage("Test de l'opérateur ==");
+			Assert::IsTrue(s1== s1);
+			Assert::IsFalse(s3 == s2);
+		}
+
+
+	};
+
+	TEST_CLASS(TestUnitaireGestion)
+	{
+	public:
+		TEST_METHOD(TestAjouterCapteur)
+		{
+
+			Capteur c1 = Capteur(1, "d", 12.012, 32.002);
+			Capteur c2 = Capteur(2, "d", 1.02, 32.002);
+			Capteur c3 = Capteur(3, "d", 4.32, 32.002);
+			Capteur c4 = Capteur(4, "d", 111.23, 32.002);
+
+			vector <Capteur> v;
+			Gestion g;
+			g.ajouterCapteur(c1, v);
+			bool ajoute = false;/*
+			if (find(v.begin(), v.end(), c1) != v.end()) {
+				ajoute = true;
+			}
+			Assert::IsTrue(ajoute);
+			*/
+
+			
 		}
 
 	};

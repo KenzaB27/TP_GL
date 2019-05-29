@@ -61,7 +61,7 @@ void Tests::TestGestion() {
     v.push_back(c1);
     g.ajouterCapteur(c2, v);
     g.ajouterCapteur(c3, v);
-    g.mettreEnVeilleCapteur(c3,v);
+    g.mettreEnVeilleCapteur(3,v);
 
 
     for (vector<Capteur>::iterator it = v.begin(); it != v.end(); ++it) {
