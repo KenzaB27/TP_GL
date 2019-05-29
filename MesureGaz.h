@@ -49,7 +49,7 @@ public:
 
     //------------------------------------------------- Surcharge d'operateurs
     friend ostream &operator<<(ostream &out, const MesureGaz &mesureGaz);
-
+	operator long double()const;
     //-------------------------------------------- Constructeurs - destructeur
     MesureGaz(int typegaz, Date hr, long double v, int c, string d);
 

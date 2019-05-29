@@ -41,10 +41,10 @@ public:
     //
     // Contrat :
     //
-	vector<long double> Evaluer (Catalogue &cat, vector<int>&listCapteur, Date dateF, Date dateD);
-    vector<int> getCapteur(vector<Capteur>&listCapteur, long double latitude, long double longitude, long double rayon=2000);
-	int calculAtmo(vector<long double>&mesures , unordered_map<int, vector<Seuil>> &tabSeuil);
-
+	vector<long double> Evaluer(Catalogue &cat, vector<Capteur>&listCapteur, 
+		long double latitude, long double longitude, Date dateDebut, long double rayon = 2000, Date dateFin = Date());
+	int CalculAtmo(vector <long double>&mesures, unordered_map<int, vector<Seuil>>& tabSeuil);
+	unordered_map <int, vector<int>> DetecterCapteursSimilaires(Catalogue &c, int nbCapteurs);
 //------------------------------------------------- Surcharge d'opérateursp
 
 //-------------------------------------------- Constructeurs - destructeur
@@ -66,7 +66,9 @@ public:
 
 protected:
 //----------------------------------------------------- Méthodes protégées
-
+	vector<long double> evaluer(Catalogue &cat, vector<int>&listCapteur, Date dateD, Date dateF);
+	vector<int> getCapteur(vector<Capteur>&listCapteur, long double latitude, long double longitude, long double rayon = 2000);
+	bool comparerMesures(vector<long double> &mes1, vector<long double>&mes2); 
 private:
 //------------------------------------------------------- Méthodes privées
 

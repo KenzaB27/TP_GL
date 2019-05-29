@@ -20,6 +20,42 @@ using namespace std;
 #include <utility>
 
 //---------------------------------------------Methodes publiques
+	
+
+
+ostream & operator<<(ostream &out, const Catalogue &catalogue)
+{
+	for (auto it = catalogue.getMap().begin(); it != catalogue.getMap().end(); ++it) {//enventuellement switcher avec un getMap()
+		out << (it->first) << " ";
+
+		for (auto l = it->second.begin(); l != it->second.end(); ++l) {
+			out << *l << " "; // les itérateurs sont des pointeurs
+		}
+		out << endl;
+	}
+	return out;
+}
+
+Catalogue::operator unordered_multimap<int, vector<long double>>() const
+{
+	unordered_multimap<int, vector<long double>> nouvelleMap;
+	for (auto it = map.begin(); it != map.end(); it++) {
+		vector<long double > valeurMesures;
+		for (auto i = it->second.begin(); i != it->second.begin(); i++)
+		{
+			valeurMesures.emplace_back((long double)*i);
+		}
+		nouvelleMap.emplace(make_pair(it->first.capteurId, valeurMesures));
+	}
+	return nouvelleMap;
+}
+
+unordered_map<IdCatalogue, vector<MesureGaz>> Catalogue::getMap() const
+{
+	return map;
+}
+
+
 
 //-------------------------------------------- Constructeurs - destructeur
 Catalogue::Catalogue ( const Catalogue & unCatalogue )
@@ -44,18 +80,6 @@ Catalogue::~Catalogue ( )
 #endif
 } //----- Fin de ~Catalogue
 
-ostream & operator<<(ostream &out, const Catalogue &catalogue)
-{
-  for ( auto it = catalogue.getMap()	.begin(); it != catalogue.getMap().end(); ++it ){//enventuellement switcher avec un getMap()
-      out << (it->first) << " ";
-
-    for (auto l = it->second.begin(); l != it->second.end(); ++l){
-            out << *l << " "; // les itérateurs sont des pointeurs
-    }
-    out << endl;
-  }
-  return out;
-}
 
 
 //------------------------------------------------------------------ PRIVE
