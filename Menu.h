@@ -10,17 +10,16 @@
 #define MENU_H
 
 //--------------------------------------------------- Interfaces utilisées
-#include <vector>
-#include <math.h>
 #include "Date.h"
-#include "Capteur.h"
-#include "PorteeCapteur.h"
 #include "Catalogue.h"
-#include "Seuil.h"
+#include "Gestion.h"
+#include "Etude.h"
+#include "Lecture.h"
 
 using namespace std;
 
 //------------------------------------------------------------- Constantes
+#define MAX_PARAM_COMMAND 10
 
 //------------------------------------------------------------------ Types
 
@@ -79,11 +78,19 @@ private:
     // Contrat :
     //
 
+    Date stringToDate(string s);
+
+    void init();
+
 protected:
     //----------------------------------------------------- Attributs protégés
 
 private:
     //------------------------------------------------------- Attributs privés
+    Catalogue c;
+    Gestion g;
+    Etude e;
+    Lecture l;
 
     //---------------------------------------------------------- Classes amies
 

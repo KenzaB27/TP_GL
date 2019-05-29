@@ -63,7 +63,8 @@ Catalogue Lecture::Parcourir(string fichier)
 		//Verifie la cohérence des données récupérées
 		for (auto i = listeMesure.begin(); i != listeMesure.end(); i++)
 		{
-			if ((*i).getIdCapteur() != idCapteur && !((*i).getDate() == dateMesure))
+
+			if ((*i).getIdCapteur() != idCapteur)
 			{
 				same = false;
 				break;
