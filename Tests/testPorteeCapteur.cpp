@@ -1,5 +1,5 @@
-#include "stdafx.h"
-#include "CppUnitTest.h"
+//#include "stdafx.h"
+//#include "CppUnitTest.h"
 #include "../PorteeCapteur.h"
 #include <iostream>
 using namespace std; 

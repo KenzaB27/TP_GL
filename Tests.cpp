@@ -19,8 +19,8 @@
 //-------------------------------------------------------- Include syst�me
 using namespace std;
 
-#include <iostream>
-#include <string>
+//#include <iostream>
+//#include <string>
 #include <iterator> 
 #include <list>
 #include <unordered_map>
@@ -92,15 +92,13 @@ void Tests::TestCatalogue(){
 
     Catalogue c;
 
-    c.Ajouter(id, liste);
-    cout<< c.map.find(id)<<endl;
+    c.getMap().emplace(id, liste);
 
     cout << c << endl;
 
 }
 
-<<<<<<< HEAD
-void TestChangerSeuil()
+void Tests::TestChangerSeuil()
 {
     unordered_map<string,list<Seuil>> umap;
     list<Seuil> PM10;
@@ -126,16 +124,9 @@ void TestChangerSeuil()
     }
 }
 
-int main(){
+int Tests::main(){
     //TestMesureGaz();
     TestCatalogue();
     TestChangerSeuil();
-=======
-int Tests::main(){
-    //TestMesureGaz();
-    //TestCatalogue();
-
-	return 0;
-
->>>>>>> 2541cb9be5110f76acfd7a77458f26fe5b9f79e6
+    return 0;
 }
