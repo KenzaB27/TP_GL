@@ -63,6 +63,13 @@ Menu::Menu()
 	cout << "Appel au constructeur de <Menu>" << endl;
 #endif
 
+	string fichierCapteurs = "";
+	string fichierGaz = "";
+	string fichierMesures = "";
+	l.InitCapteur(listeCapteurs ,fichierCapteurs);
+	l.InitTypeGaz(fichierGaz);
+	l.Parcourir(c, fichierMesures);
+
 } //----- Fin de Menu
 
 Menu::~Menu()
@@ -111,10 +118,10 @@ bool Menu::traitement(string input)
 		return true;
 	}
 
-
-
-	if(argList[0].compare("search"))
+	if(argList[0].compare("atmo"))
 	{
+		//On a toujours lat et long 
+		//La date si elle n'est pas mise est celle d'hier
 		//Param a mettre -r -d si date et rayon, sinon que latitude et longitude
 		//Ordre lat(1) long(2) -r(3) -d(4) rayon(5) dateD(6) dateF(7)
 		long double lat;
@@ -122,6 +129,8 @@ bool Menu::traitement(string input)
 		double rayon;
 		Date dateD;
 		Date dateF;
+		dateF = dateF.now();
+		dateD = dateF.precedent();
 
 		lat = atof(argList[1].c_str());
 		lon = atof(argList[2].c_str());
@@ -131,121 +140,61 @@ bool Menu::traitement(string input)
 			if (argList[4].compare("-d"))
 			{
 				rayon = atof(argList[5].c_str());
-				dateD = stringToDate(argList[6]);
-				dateF = stringToDate(argList[7]);
+				dateD = Date(argList[6]);
+				dateF = Date(argList[7]);
 
-				//TODO: Appel recherche
-				
-				
+				e.Evaluer(c, listeCapteurs, lat, lon, dateD, dateF, rayon);
 			}
-			rayon = atof(argList[4].c_str());
-
-			//TODO: Appel recherche
+			else
+			{
+				rayon = atof(argList[4].c_str());
+				e.Evaluer(c, listeCapteurs, lat, lon, dateD, dateF, rayon);
+			}
 		}
 		else if (argList[3].compare("-d"))
 		{
-			dateD = stringToDate(argList[4]);
-			dateF = stringToDate(argList[5]);
+			dateD = Date(argList[4]);
+			dateF = Date(argList[5]);
 
-			//TODO: Appel recherche
-
+			e.Evaluer(c, listeCapteurs, lat, lon, dateD, dateF);
 		}
-
-		//TODO: Appel recherche
-
+		else 
+		{
+			e.Evaluer(c, listeCapteurs, lat, lon, dateD, dateF);
+		}
 	}
-
 
 
 	if (argList[0].compare("stats"))
 	{
-		
+		//TODO : capteurs similaires
 	}
 
 	if (argList[0].compare("sensor"))
 	{
 		if (argList[1].compare("add"))
 		{
-			
+			//g.ajouterCapteur(atoi(argList[2].c_str()), listeCapteurs);
 		}
 
 		if (argList[1].compare("remove"))
 		{
-			//Numero capteur en argList[2]
+			g.supprimerCapteur(atoi(argList[2].c_str()), listeCapteurs);
 		}
 
 		if (argList[1].compare("exclude"))
 		{
-
+			g.mettreEnVeilleCapteur(atoi(argList[2].c_str()), listeCapteurs);
 		}
 
 		if (argList[1].compare("include"))
 		{
-
+			g.restaurerCapteur(atoi(argList[2].c_str()), listeCapteurs);
 		}
 	}
 
-	if (argList[0].compare("param"))
+	if (argList[0].compare("seuil"))
 	{
-		
+		//TODO : gestion modification des seuils
 	}
-
-	if (argList[0].compare("test"))
-	{
-
-	}
-}
-
-
-
-Date Menu::stringToDate(string s)
-{
-	// string to date
-	int annee;
-	int mois;
-	int jour;
-	int heure;
-	int minute;
-	long double seconde;
-
-	string datePart = s.substr(0, s.find("T"));
-	string heurePart = s.substr(s.find("T") + 1, s.length());
-
-	//Traitement de la date
-	string delimiter = "-";
-	auto pos = datePart.find(delimiter);
-	string temp = datePart.substr(0, pos);
-	annee = atoi(temp.c_str());
-	datePart.erase(0, pos + delimiter.length());
-
-	pos = datePart.find(delimiter);
-	temp = datePart.substr(0, pos);
-	mois = atoi(temp.c_str());
-	datePart.erase(0, pos + delimiter.length());
-
-	pos = datePart.find(delimiter);
-	temp = datePart.substr(0, pos);
-	jour = atoi(temp.c_str());
-	datePart.erase(0, pos + delimiter.length());
-
-	//Traitement de l'heure
-	delimiter = ":";
-	pos = heurePart.find(delimiter);
-	temp = heurePart.substr(0, pos);
-	heure = atoi(temp.c_str());
-	heurePart.erase(0, pos + delimiter.length());
-
-	pos = heurePart.find(delimiter);
-	temp = heurePart.substr(0, pos);
-	minute = atoi(temp.c_str());
-	heurePart.erase(0, pos + delimiter.length());
-
-	pos = heurePart.find(delimiter);
-	temp = heurePart.substr(0, pos);
-	seconde = atof(temp.c_str());
-	heurePart.erase(0, pos + delimiter.length());
-
-	Date d(annee, mois, jour, heure, minute, seconde);
-
-	return d;
 }

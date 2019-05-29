@@ -12,6 +12,7 @@
 #include <iostream>
 #include <algorithm>    // std::any_of
 #include <array>
+#include <ctime>
 using namespace std;
 
 //------------------------------------------------------ Includes personnels --
@@ -56,6 +57,68 @@ Date Date::suivant()
 		jourSuivant.jour++; 
 	}
 	return jourSuivant; 
+}
+
+Date Date::precedent()
+{
+	array<int, 7> phalange = {1, 3, 5, 7, 8, 10, 12}; //mois de 31 jours
+	array<int, 7> normal = {4, 6, 9, 11}; //mois de 30 jours
+	Date jourPrecedent = *this;
+
+	if(this->jour == 1) // Si on est le premier fois d'un mois on repasse au mois précédent
+	{
+		if(this->mois != 1)
+		{
+			if(find(phalange.begin(), phalange.end(), this->mois-1) != phalange.end()) // Si le mois précédent est un mois de 31 jours
+			{
+				jourPrecedent.jour = 31;
+			}
+			else if (find(normal.begin(), normal.end(), this->mois - 1) != normal.end()) // Si c'est un mois de 30 jours
+			{
+				jourPrecedent.jour = 31;
+			}
+			else if(this->mois-1 == 2)
+			{
+				if(this->annee % 4 != 0)
+				{
+					jourPrecedent.jour = 28;
+				}
+				if (this->annee % 4 == 0)
+				{
+					jourPrecedent.jour = 29;
+				}
+			}
+			jourPrecedent.mois--;
+		}
+		else { //on est le premier janvier
+			jourPrecedent.jour = 31;
+			jourPrecedent.mois = 12;
+			jourPrecedent.annee--;
+		}
+	}
+	else
+	{
+		jourPrecedent.jour--;
+		jourPrecedent.mois--;
+	}
+
+	return jourPrecedent;
+}
+
+Date Date::now()
+{
+	Date nowDate = *this;
+	time_t now = time(0);
+	tm *gmtm = gmtime(&now);
+
+	this->annee = gmtm->tm_year+1970;
+	this->mois = gmtm->tm_mon+1;
+	this->jour = gmtm->tm_mday;
+	this->heure = gmtm->tm_hour;
+	this->minutes = gmtm->tm_min;
+	this->secondes = (double)gmtm->tm_sec;
+
+	return nowDate;
 }
 
 bool Date::operator < ( const Date & date ) const
@@ -134,12 +197,51 @@ Date::Date(int lannee, int lmois, int ljour, int lHeure, int lesMinutes, long do
 #endif
 }//--- Fin de Date
 
-Date::Date(string date, string temps)
+Date::Date(string s)
 {
 #ifdef MAP
 	cout << "Construction Date : heure=" << heure << " minutes="
 		 << minutes << endl;
 #endif
+
+	// string to date
+	string datePart = s.substr(0, s.find("T"));
+	string heurePart = s.substr(s.find("T") + 1, s.length());
+
+	//Traitement de la date
+	string delimiter = "-";
+	auto pos = datePart.find(delimiter);
+	string temp = datePart.substr(0, pos);
+	annee = atoi(temp.c_str());
+	datePart.erase(0, pos + delimiter.length());
+
+	pos = datePart.find(delimiter);
+	temp = datePart.substr(0, pos);
+	mois = atoi(temp.c_str());
+	datePart.erase(0, pos + delimiter.length());
+
+	pos = datePart.find(delimiter);
+	temp = datePart.substr(0, pos);
+	jour = atoi(temp.c_str());
+	datePart.erase(0, pos + delimiter.length());
+
+	//Traitement de l'heure
+	delimiter = ":";
+	pos = heurePart.find(delimiter);
+	temp = heurePart.substr(0, pos);
+	heure = atoi(temp.c_str());
+	heurePart.erase(0, pos + delimiter.length());
+
+	pos = heurePart.find(delimiter);
+	temp = heurePart.substr(0, pos);
+	minutes = atoi(temp.c_str());
+	heurePart.erase(0, pos + delimiter.length());
+
+	pos = heurePart.find(delimiter);
+	temp = heurePart.substr(0, pos);
+	secondes = atof(temp.c_str());
+	heurePart.erase(0, pos + delimiter.length());
+
 } //--- Fin de Date
 
 /*Date::Date ( const Date & date ) : heure(date.heure), minutes(date.minutes) 
