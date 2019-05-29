@@ -586,13 +586,12 @@ test.h
 
 *.json
 *.ipch
-FlexiSensor/.vs/FlexiSensor/v15/Browse.VC.db
-FlexiSensor/.vs/FlexiSensor/v15/.suo
-Flexisensor.sln
-Flexisensor/Flexisensor.vcxproj
-Flexisensor/Flexisensor.vcxproj.filters
+Project1.vcxproj
+Project1.vcxproj.filters
+Project1.vcxproj.user
 FlexiSensor/*
 CMakeLists.txt  
 make-build-debug
 cmake-build-debug/
 
+Flexisensor.sln

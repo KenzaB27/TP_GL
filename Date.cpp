@@ -10,7 +10,8 @@
 ////////////////////////////////////////////////////////////////////// INCLUDES
 //--------------------------------------------------------- Includes systeme --
 #include <iostream>
-
+#include <algorithm>    // std::any_of
+#include <array>
 using namespace std;
 
 //------------------------------------------------------ Includes personnels --
@@ -33,6 +34,29 @@ Date & Date::operator = ( const Date & date )
 	return *this;
 }//--- FIn de operator =
 
+
+Date Date::suivant()
+{
+	array<int, 7> phalange = { 1,3,5,7,8,10,12};
+	array<int, 7> normal = {4,6,9,11};
+	Date jourSuivant = *this;
+	if ((find(phalange.begin(), phalange.end(), this->mois) != phalange.end() && this->jour == 31) ||
+		(find(normal.begin(), normal.end(), this->mois) != normal.end() && this->jour == 30)||
+		(this->mois == 2 && ((this->annee % 4 == 0 && this->jour == 29) || (this->annee % 4 != 0 && this->jour == 28))))
+	{
+		jourSuivant.mois++;
+		jourSuivant.jour = 1;
+		if (this->mois == 12)
+		{
+			jourSuivant.mois = 1;
+			jourSuivant.annee++;
+		}
+	}
+	else {
+		jourSuivant.jour++; 
+	}
+	return jourSuivant; 
+}
 
 bool Date::operator < ( const Date & date ) const
 {
@@ -66,23 +90,25 @@ bool Date::operator < ( const Date & date ) const
 					}
 					else if (minutes==date.minutes)
 					{
-							return secondes<date.secondes ; 
+						return secondes<date.secondes ; 
 					}
 				}
 			}
 		}
 	}
-	else
-	{
-		return false;
-	}
+	return false; 
 }//--- Fin de operator <
 
 
 bool Date::operator >= ( const Date & date ) const
 {
 	return ! ( *this < date );
-}//--- Fin de operator >=
+}
+bool Date::operator<=(const Date & date) const
+{
+	return (*this < date ||*this == date); 
+}
+//--- Fin de operator >=
 
 
 
@@ -94,7 +120,8 @@ ostream & operator << ( ostream & out, const Date & date )
 
 bool operator==(const Date &date1, const Date &date2)
 {
-	return date1>=date2; 
+	return (date1.annee==date2.annee && date1.mois == date2.mois && date1.jour == date2.jour
+			&& date1.heure == date2.heure && date1.minutes == date2.minutes && date1.jour == date2.jour);
 } //--- Fin de operator ==
 
 //---------------------------------------------- Constructeurs - Destructeur --

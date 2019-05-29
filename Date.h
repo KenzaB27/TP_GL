@@ -39,6 +39,7 @@ public :
 	// Contrat :
 	//	Aucun contrat.
 
+	Date suivant(); 
 
 	bool operator < ( const Date & date ) const;
 	// Mode d'emploi :
@@ -48,7 +49,6 @@ public :
 	// Contrat :
 	//	Aucun contrat.
 
-
 	bool operator >= ( const Date & date ) const;
 	// Mode d'emploi :
 	//	Permet de comparer la date entre deux dates. Compare heure et minutes.
@@ -56,6 +56,7 @@ public :
 	//	retour : suivant le resultat de la comparaison
 	// Contrat :
 	//	Aucun contrat.
+	bool operator <= (const Date & date) const;
 
 	friend bool operator==(const Date &date1 , const Date &date2);
 	// Mode d'emploi :
