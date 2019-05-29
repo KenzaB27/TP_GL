@@ -128,11 +128,12 @@ void Tests::TestChangerSeuil()
 
 
 
-int main(){
-    //TestMesureGaz();
-    //TestCatalogue();
-	TestChangerSeuil();
+int main() {
+	//TestMesureGaz();
+	//TestCatalogue();
+	//TestChangerSeuil();
 
 	return 0;
 
 
+}

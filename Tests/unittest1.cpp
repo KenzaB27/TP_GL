@@ -122,12 +122,16 @@ namespace TestUnitaire
 			vector <Capteur> v;
 			Gestion g;
 			g.ajouterCapteur(c1, v);
-			bool ajoute = false;/*
+			bool ajoute = false;
 			if (find(v.begin(), v.end(), c1) != v.end()) {
 				ajoute = true;
 			}
 			Assert::IsTrue(ajoute);
-			*/
+			g.ajouterCapteur(c1, v);
+			int size = v.size();
+			Assert::AreEqual(1, size);
+
+			
 
 			
 		}
