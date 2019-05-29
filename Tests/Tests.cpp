@@ -9,12 +9,12 @@
 
 //---------------------------------------------------------------- INCLUDE
 #include "Tests.h"
-#include "MesureGaz.h"
-#include "IdCatalogue.h"
-#include "Catalogue.h"
-#include "Gestion.h"
-#include "Capteur.h"
-#include "PorteeCapteur.h"
+#include "../MesureGaz.h"
+#include "../IdCatalogue.h"
+#include "../Catalogue.h"
+#include "../Gestion.h"
+#include "../Capteur.h"
+#include "../PorteeCapteur.h"
 
 //-------------------------------------------------------- Include syst�me
 using namespace std;
@@ -75,7 +75,7 @@ void Tests::TestGestion() {
         //process on el...
     }
 }
-
+/*
 void Tests::TestCatalogue(){
     Date d = Date(2019, 02, 01, 10, 12, 55);
     MesureGaz m = MesureGaz(O3, d, 10.95, 12, "Capteur12");
@@ -97,9 +97,8 @@ void Tests::TestCatalogue(){
 
     cout << c << endl;
 
-}
+}*/
 
-<<<<<<< HEAD
 void TestChangerSeuil()
 {
     unordered_map<string,list<Seuil>> umap;
@@ -126,16 +125,11 @@ void TestChangerSeuil()
     }
 }
 
+
 int main(){
-    //TestMesureGaz();
-    TestCatalogue();
-    TestChangerSeuil();
-=======
-int Tests::main(){
     //TestMesureGaz();
     //TestCatalogue();
 
 	return 0;
 
->>>>>>> 2541cb9be5110f76acfd7a77458f26fe5b9f79e6
 }
