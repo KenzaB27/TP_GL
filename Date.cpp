@@ -34,6 +34,25 @@ Date & Date::operator = ( const Date & date )
 }//--- FIn de operator =
 
 
+Date Date::suivant()
+{
+	Date jourSuivant = *this;
+	if ((this->mois == 2 && (this->annee % 4 == 0 && this->jour == 29) || (this->annee % 4 != 0 && this->jour == 28)) 
+		|| (this->mois != 2 && (this->mois % 2 == 1 && this->jour == 31) || (this->mois % 2 == 0 && this->jour == 30)))
+	{
+		jourSuivant.mois++;
+		jourSuivant.jour = 1;
+	}
+	else if (this->mois == 12) 
+	{
+		jourSuivant.annee ++; 
+	}
+	else {
+		jourSuivant.jour++; 
+	}
+	return jourSuivant; 
+}
+
 bool Date::operator < ( const Date & date ) const
 {
 	if ( annee < date.annee )
@@ -82,7 +101,13 @@ bool Date::operator < ( const Date & date ) const
 bool Date::operator >= ( const Date & date ) const
 {
 	return ! ( *this < date );
-}//--- Fin de operator >=
+}
+bool Date::
+operator<=(const Date & date) const
+{
+	return (*this < date || *this == date); 
+}
+//--- Fin de operator >=
 
 
 

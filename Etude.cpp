@@ -106,7 +106,6 @@ unordered_map<int,vector<int>> Etude::DetecterCapteursSimilaires(Catalogue & c, 
 			}
 		}
 	}
-
 	return capteursSimilaires; 
 }
 
@@ -137,8 +136,12 @@ Etude::~Etude ( )
 //------------------------------------------------------------------ PRIVE
 
 //----------------------------------------------------- M�thodes prot�g�es
-vector<long double> Etude::evaluer(Catalogue &cat, vector<int>&listCapteur, Date dateF, Date dateD)
+vector<long double> Etude::evaluer(Catalogue &cat, vector<int>&listCapteur, Date dateD, Date dateF)
 {
+	if (dateF == Date())
+	{
+		dateF = dateD.suivant(); 
+	}
 	vector<long double>concentrations;
 	int compteur = 0;
 
@@ -146,7 +149,7 @@ vector<long double> Etude::evaluer(Catalogue &cat, vector<int>&listCapteur, Date
 	{
 		for (auto l = listCapteur.begin(); l != listCapteur.end(); l++)
 		{
-			if (it->first.capteurId == *l && it->second[03].getDate() >= dateD && it->second[03].getDate() < dateF)
+			if (it->first.capteurId == *l && it->second[03].getDate() >= dateD && it->second[03].getDate() <= dateF)
 			{
 				compteur++;
 				concentrations[O3] += it->second[O3].getValeur();
