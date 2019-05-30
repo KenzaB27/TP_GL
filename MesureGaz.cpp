@@ -95,7 +95,7 @@ MesureGaz::MesureGaz(int typegaz, Date hr, long double v, int c, string d)
     description = d;
     date = hr;
     valeur = v;
-    unite="µg/m3";
+    unite="microg/m3";
     idCapteur = c;
 
 } //----- Fin de MesureGaz

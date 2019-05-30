@@ -16,10 +16,10 @@ int main()
 	l.Parcourir(c, "../../Fichiers/fichier1000.csv");
 
 	unordered_map<IdCatalogue, vector<MesureGaz>> map;
-	
+
 	cout << *c << endl;
-	
+
 	system("pause");
-	
+
 	return 0;
 }
