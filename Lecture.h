@@ -90,7 +90,7 @@ public:
     // Contrat :
     //
 
-    void InitSeuils(unordered_map<int, list<Seuil>> &l, string fichier);
+    void InitSeuils(unordered_map<int, vector<Seuil>> &l, string fichier);
     // Mode d'emploi : Initialise la liste des gaz et leur description à partir du fichier passé en paramètre
     //
     // Contrat :
