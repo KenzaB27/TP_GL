@@ -149,7 +149,7 @@ vector<long double> Etude::evaluer(Catalogue &cat, vector<int>&listCapteur, Date
 	{
 		for (auto l = listCapteur.begin(); l != listCapteur.end(); l++)
 		{
-			if (it->first.capteurId == *l && it->second[03].getDate() >= dateD && it->second[03].getDate() <= dateF)
+			if (it->first.getCapteurId() == *l && it->second[03].getDate() >= dateD && it->second[03].getDate() <= dateF)
 			{
 				compteur++;
 				concentrations[O3] += it->second[O3].getValeur();

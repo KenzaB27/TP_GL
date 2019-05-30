@@ -31,13 +31,14 @@ struct IdCatalogue
 public:
 //----------------------------------------------------- Méthodes publiques
 	friend bool operator == (const IdCatalogue & unIdCatalogue1, const IdCatalogue & unIdCatalogue2);
-  friend ostream &operator<<(ostream &out, const IdCatalogue &idCatalogue);
+	friend ostream &operator<<(ostream &out, const IdCatalogue &idCatalogue);
+
+	int getCapteurId() const;
+
+	Date getDateMesure() const;
 
 //-------------------------------------------- Constructeurs - destructeur
 
-    int getCapteurId() const;
-
-    Date getDateMesure() const;
     IdCatalogue ( const IdCatalogue & unIdCatalogue );
 
     IdCatalogue(int cI, Date dm);

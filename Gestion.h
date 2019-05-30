@@ -11,6 +11,7 @@
 
 //--------------------------------------------------- Interfaces utilisées
 #include "Capteur.h"
+#include "Catalogue.h"
 #include "Seuil.h"
 #include <vector>
 #include <list>
@@ -40,7 +41,7 @@ public:
 //void supprimerUtilisateur(Utilisateur unUtilisateur);
 //void creerUtilisateur(Utilisateur unUtilisateur);
 void supprimerCapteur(int numCapteur, vector<Capteur> &listeCapteurs);
-int evaluerCapteur(Catalogue& c, int num);
+int evaluerCapteur(Catalogue &c, int num);
 void ajouterCapteur(Capteur unCapteur, vector<Capteur> &listeCapteurs);
 void mettreEnVeilleCapteur(int numCapteur, vector<Capteur>& listeCapteurs);
 void restaurerCapteur(int numCapteur, vector<Capteur>& listeCapteurs);

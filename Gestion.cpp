@@ -166,7 +166,7 @@ void Gestion::supprimerCapteur(int numCapteur, vector <Capteur> &listeCapteurs) 
     }
 }
 
-int Gestion::evaluerCapteur(int num) {
+int Gestion::evaluerCapteur(Catalogue &c, int num) {
 
 
 

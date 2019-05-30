@@ -595,3 +595,5 @@ make-build-debug
 cmake-build-debug/
 
 Flexisensor.sln
+
+unitTest1/

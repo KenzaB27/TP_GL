@@ -19,11 +19,11 @@ using namespace std;
 
 //---------------------------------------------Methodes publiques
 
-int IdCatalogue::getCapteurId(){
+int IdCatalogue::getCapteurId() const{
     return capteurId;
 }
 
-Date IdCatalogue::getDateMesure(){
+Date IdCatalogue::getDateMesure() const{
     return dateMesure;
 }
 
@@ -41,6 +41,7 @@ ostream & operator<<(ostream &out, const IdCatalogue &idCatalogue)
 	out << idCatalogue.capteurId << " " << idCatalogue.dateMesure<< endl;
 	return out; 
 }
+
 //-------------------------------------------- Constructeurs - destructeur
 IdCatalogue::IdCatalogue ( const IdCatalogue & unIdCatalogue )
 // Algorithme :
