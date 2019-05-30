@@ -178,9 +178,9 @@ int Gestion::evaluerCapteur(Catalogue &c, int num) {
 		{
 			for (auto i = it->second.begin(); i != it->second.begin(); i++)
 			{
-				
+				valeursMesures.emplace_back(i->getValeur(),i->getDate());
 			}
-			
+			liste.emplace_back(valeursMesures);
 		}
 	}
 
