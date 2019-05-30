@@ -426,9 +426,9 @@ namespace TestUnitaire
 			umap.insert(make_pair(SO2, so2));
 			umap.insert(make_pair(NO2, no2));
 			umap.insert(make_pair(O3, o3));
-			Seuil s = Seuil(34, 32, 11);
+			Seuil s = Seuil(34, 33, 4);
 			int num = 4;
-			g.ChangerUnSeuil(umap, SO2, num, s);
+			g.ChangerUnSeuil(umap, SO2, s);
 			vector<Seuil>::iterator it = umap[SO2].begin();
 
 			for (int i = 1; i < num; i++)

@@ -95,10 +95,10 @@ void Gestion::ChangerSeuil(unordered_map<int,vector<Seuil>> &tabSeuil, vector<Se
         ++itGaz;
     }
 }
-void Gestion::ChangerUnSeuil(unordered_map<int, vector<Seuil>>& tabSeuil, int gaz, int num,Seuil s)
+void Gestion::ChangerUnSeuil(unordered_map<int, vector<Seuil>>& tabSeuil, int gaz, Seuil s)
 {
 	vector<Seuil>::iterator it = tabSeuil[gaz].begin();
-	for (int i = 1; i < num; i++)
+	for (int i = 1; i < s.getIndice(); i++)
 	{
 		++it;
 	}
