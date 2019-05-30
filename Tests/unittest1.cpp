@@ -433,11 +433,11 @@ namespace TestUnitaire
 
     		c.getMap().emplace(id, liste);
 
-			Logger::WriteMessage("Test idCatalogue dans le catalogue");
-			Assert::IsTrue(c.getMap()->first.capteurId==id.capteurId);
+			Logger::WriteMessage("Tes  idCatalogue dans le catalogue");
+			Assert::IsTrue(c.getMap().find(id)->first.getCapteurId()==id.getCapteurId());
 
 			Logger::WriteMessage("Test liste mesure dans le catalogue");
-			Assert::IsTrue(c.getMap()->second.begin().gazId==0);//checker si le second.begin() fonctionne correctement	
+			Assert::IsTrue(c.getMap().find()->second.getGazId()==0);//checker si le second.begin() fonctionne correctement	
 				
 		}
 
@@ -447,10 +447,10 @@ namespace TestUnitaire
 			IdCatalogue id = IdCatalogue(12,d);
 
 			Logger::WriteMessage("Test fonctionnement date IdCatalogue");
-			Assert::IsTrue(id.dateMesure==d);
+			Assert::IsTrue(id.getDateMesure()==d);
 		
 			Logger::WriteMessage("Test fonctionnement id IdCatalogue");
-			Assert::IsTrue(id.capteurId==12);
+			Assert::IsTrue(id.getCapteurId()==12);
 		}
 
 		
