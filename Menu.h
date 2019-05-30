@@ -82,6 +82,7 @@ private:
 
     void init();
 
+
 protected:
     //----------------------------------------------------- Attributs protégés
 
