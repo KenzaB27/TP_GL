@@ -34,6 +34,10 @@ public:
   friend ostream &operator<<(ostream &out, const IdCatalogue &idCatalogue);
 
 //-------------------------------------------- Constructeurs - destructeur
+
+    int getCapteurId();
+
+    Date getDateMesure();
     IdCatalogue ( const IdCatalogue & unIdCatalogue );
 
     IdCatalogue(int cI, Date dm);
@@ -43,6 +47,8 @@ public:
     virtual ~IdCatalogue ( );
 
 //----------------------------------Attributs
+
+  protected:
     int capteurId;
     Date dateMesure;
 
@@ -55,10 +61,10 @@ namespace std {
   public:
       size_t operator()(const IdCatalogue &k) const
       {
-          size_t h1 = hash<int>()(k.capteurId);
-          size_t h2 = hash<int>()(k.dateMesure.annee)^hash<int>()(k.dateMesure.mois) 
-					^ hash<int>()(k.dateMesure.jour)^hash<int>()(k.dateMesure.heure) 
-					^ hash<int>()(k.dateMesure.minutes)^hash<long double>()(k.dateMesure.secondes);
+          size_t h1 = hash<int>()(k.getCapteurId());
+          size_t h2 = hash<int>()(k.getDateMesure().annee)^hash<int>()(k.getDateMesure().mois) 
+					^ hash<int>()(k.getDateMesure().jour)^hash<int>()(k.getDateMesure().heure) 
+					^ hash<int>()(k.getDateMesure().minutes)^hash<long double>()(k.getDateMesure().secondes);
           return h1 ^ ( h2 << 1 );
       }
   };
