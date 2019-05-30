@@ -25,14 +25,19 @@ using namespace std;
 
 ostream & operator<<(ostream &out, const Catalogue &catalogue)
 {
-	for (auto it = catalogue.getMap().begin(); it != catalogue.getMap().end(); ++it) {//enventuellement switcher avec un getMap()
-		out << (it->first) << " ";
+	unordered_map<IdCatalogue, vector<MesureGaz>> map = catalogue.getMap();
 
-		for (auto l = it->second.begin(); l != it->second.end(); ++l) {
-			out << *l << " "; // les itérateurs sont des pointeurs
+	for (auto itr = map.begin(); itr != map.end(); ++itr)
+	{
+		out << itr->first << " ";
+
+		for (int i = 0; i < itr->second.size(); i++)
+		{
+			out << itr->second[i] << " ";
 		}
 		out << endl;
 	}
+
 	return out;
 }
 
@@ -57,15 +62,7 @@ unordered_map<IdCatalogue, vector<MesureGaz>> Catalogue::getMap() const
 
 void Catalogue::Ajouter(IdCatalogue i, vector<MesureGaz> m)
 {
-	for (int i = 0; i < m.size(); i++)
-	{
-		cout << m[i] << endl;
-	}
-	cout << i << endl;
-
 	bool r = map.emplace(make_pair(i, m)).second;
-	
-	cout << "insertion : " << r << endl;
 }
 
 

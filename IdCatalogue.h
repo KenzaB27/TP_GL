@@ -39,7 +39,7 @@ public:
 
 //-------------------------------------------- Constructeurs - destructeur
 
-    IdCatalogue ( const IdCatalogue & unIdCatalogue );
+    //IdCatalogue ( const IdCatalogue & unIdCatalogue );
 
     IdCatalogue(int cI, Date dm);
 	
@@ -67,7 +67,6 @@ namespace std {
 					^ hash<int>()(k.getDateMesure().jour)^hash<int>()(k.getDateMesure().heure) 
 					^ hash<int>()(k.getDateMesure().minutes)^hash<int>()((int)k.getDateMesure().secondes);
           
-		  cout << "hashage" << (h1 ^ (h2 << 1)) << endl;
 		return h1 ^ ( h2 << 1 );
 
       }
