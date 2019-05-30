@@ -20,6 +20,7 @@ using namespace std;
 #include "PorteeCapteur.h"
 
 
+
 //------------------------------------------------------------- Constantes
 
 //---------------------------------------------------- Variables de classe
@@ -47,7 +48,7 @@ void Gestion::supprimerUtilisateur(Utilisateur unUtilisateur)
 
 }*/
 
-void Gestion::ajouterCapteur(Capteur unCapteur, vector <Capteur> &listeCapteurs) {
+void Gestion::AjouterCapteur(Capteur unCapteur, vector <Capteur> &listeCapteurs) {
     bool dejaPresent = false;
     for (vector<Capteur>::iterator it = listeCapteurs.begin(); it != listeCapteurs.end(); ++it) {
         if (it->getCapteurId() == unCapteur.getCapteurId()) {
@@ -64,47 +65,47 @@ void Gestion::ajouterCapteur(Capteur unCapteur, vector <Capteur> &listeCapteurs)
 
 }
 
-void Gestion::changerSeuil(unordered_map<string,list<Seuil>> &tabSeuil, list<Seuil> PM10, list<Seuil> SO2, list<Seuil> NO2, list<Seuil> O3)
+void Gestion::ChangerSeuil(unordered_map<int,vector<Seuil>> &tabSeuil, vector<Seuil> pm10, vector<Seuil> so2, vector<Seuil> no2, vector<Seuil> o3)
 {
-    list<Seuil>::iterator itGaz = PM10.begin();
-    for (list<Seuil>::iterator it = tabSeuil["PM10"].begin(); it != tabSeuil["PM10"].end(); ++it)
+    vector<Seuil>::iterator itGaz = pm10.begin(); 
+    for (vector<Seuil>::iterator it = tabSeuil[PM10].begin(); it != tabSeuil[PM10].end(); ++it)
     {
         (*it)=*itGaz;
         ++itGaz;
     }
 
-    itGaz=SO2.begin();
-    for (list<Seuil>::iterator it = tabSeuil["SO2"].begin(); it != tabSeuil["SO2"].end(); ++it)
+    itGaz=so2.begin();
+    for (vector<Seuil>::iterator it = tabSeuil[SO2].begin(); it != tabSeuil[SO2].end(); ++it)
     {
         (*it)=*itGaz;
         ++itGaz;
     }
 
-    itGaz=NO2.begin();
-    for (list<Seuil>::iterator it = tabSeuil["NO2"].begin(); it != tabSeuil["NO2"].end(); ++it)
+    itGaz=no2.begin();
+    for (vector<Seuil>::iterator it = tabSeuil[NO2].begin(); it != tabSeuil[NO2].end(); ++it)
     {
         (*it)=*itGaz;
         ++itGaz;
     }
 
-    itGaz=O3.begin();
-    for (list<Seuil>::iterator it = tabSeuil["O3"].begin(); it != tabSeuil["O3"].end(); ++it)
+    itGaz=o3.begin();
+    for (vector<Seuil>::iterator it = tabSeuil[O3].begin(); it != tabSeuil[O3].end(); ++it)
     {
         (*it)=*itGaz;
         ++itGaz;
     }
 }
-void Gestion::changerUnSeuil(unordered_map<string, list<Seuil>>& tabSeuil, string gaz, int num,Seuil s)
+void Gestion::ChangerUnSeuil(unordered_map<int, vector<Seuil>>& tabSeuil, int gaz, Seuil s)
 {
-	list<Seuil>::iterator it = tabSeuil[gaz].begin();
-	for (int i = 1; i < num; i++)
+	vector<Seuil>::iterator it = tabSeuil[gaz].begin();
+	for (int i = 1; i < s.getIndice(); i++)
 	{
 		++it;
 	}
 	(*it) = s;
 }
 
-void Gestion::mettreEnVeilleCapteur(int  numCapteur, vector <Capteur> &listeCapteurs) {
+void Gestion::MettreEnVeilleCapteur(int  numCapteur, vector <Capteur> &listeCapteurs) {
     bool capteurAbsent = true;
     for (vector<Capteur>::iterator it = listeCapteurs.begin(); it != listeCapteurs.end(); ++it) {
         if (it->getCapteurId() == numCapteur) {
@@ -127,7 +128,7 @@ void Gestion::mettreEnVeilleCapteur(int  numCapteur, vector <Capteur> &listeCapt
     }
 }
 
-void Gestion::restaurerCapteur(int numCapteur, vector <Capteur> &listeCapteurs) {
+void Gestion::RestaurerCapteur(int numCapteur, vector <Capteur> &listeCapteurs) {
     bool capteurAbsent = true;
     for (vector<Capteur>::iterator it = listeCapteurs.begin(); it != listeCapteurs.end(); ++it) {
         if (it->getCapteurId() == numCapteur) {
@@ -150,7 +151,7 @@ void Gestion::restaurerCapteur(int numCapteur, vector <Capteur> &listeCapteurs) 
     }
 }
 
-void Gestion::supprimerCapteur(int numCapteur, vector <Capteur> &listeCapteurs) {
+void Gestion::SupprimerCapteur(int numCapteur, vector <Capteur> &listeCapteurs) {
     bool capteurAbsent = true;
     for (vector<Capteur>::iterator it = listeCapteurs.begin(); it != listeCapteurs.end(); ++it) {
         if (it->getCapteurId() == numCapteur) {
@@ -166,7 +167,7 @@ void Gestion::supprimerCapteur(int numCapteur, vector <Capteur> &listeCapteurs) 
     }
 }
 
-int Gestion::evaluerCapteur(Catalogue &c, int num) {
+int Gestion::EvaluerCapteur(Catalogue &c, int num) {
 
 	bool defectueux = false;
 

@@ -38,7 +38,7 @@ bool operator==(const IdCatalogue & unIdCatalogue1, const IdCatalogue & unIdCata
 
 ostream & operator<<(ostream &out, const IdCatalogue &idCatalogue)
 {
-	out << idCatalogue.capteurId << " " << idCatalogue.dateMesure << endl;
+	out << "Id du capteur : " << idCatalogue.getCapteurId() << " Date de mesure :  " << idCatalogue.getDateMesure() << endl;
 	return out; 
 }
 

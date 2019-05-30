@@ -8,6 +8,7 @@
 #include "../MesureGaz.h"
 #include "../Catalogue.h"
 #include "../IdCatalogue.h"
+#include "../Etude.h"
 
 #include <iterator> 
 #include <list>
@@ -173,7 +174,14 @@ namespace TestUnitaire
 
 
 	};
+	TEST_CLASS(TestUnitaireEtude)
+	{
+		TEST_METHOD(TestCalculAtmo)
+		{
+			Etude e; 
+		}
 
+	};
 	TEST_CLASS(TestUnitaireGestion)
 	{
 	public:
@@ -185,14 +193,14 @@ namespace TestUnitaire
 			vector <Capteur> v;
 			Gestion g;
 
-			g.ajouterCapteur(c1, v);
+			g.AjouterCapteur(c1, v);
 			bool ajoute = false;
 			if (find(v.begin(), v.end(), c1) != v.end()) {
 				ajoute = true;
 			}
 			Assert::IsTrue(ajoute);
 
-			g.ajouterCapteur(c1, v);
+			g.AjouterCapteur(c1, v);
 			int size = v.size();
 			Assert::AreEqual(1, size);			
 		}
@@ -207,14 +215,14 @@ namespace TestUnitaire
 				present = true;
 			}
 			Assert::IsTrue(present);
-			g.supprimerCapteur(2, v);
+			g.SupprimerCapteur(2, v);
 			present = false;
 			if (find(v.begin(), v.end(), c1) != v.end()) {
 				present = true;
 			}
 			Assert::IsTrue(present);
 			present = false;
-			g.supprimerCapteur(1, v);
+			g.SupprimerCapteur(1, v);
 			if (find(v.begin(), v.end(), c1) != v.end()) {
 				present = true;
 			}
@@ -229,10 +237,10 @@ namespace TestUnitaire
 			v.push_back(c1);
 			auto it = find(v.begin(), v.end(), c1);
 			Assert::AreEqual(it->getEtat(), 1);
-			g.mettreEnVeilleCapteur(2, v);
+			g.MettreEnVeilleCapteur(2, v);
 			it = find(v.begin(), v.end(), c1);
 			Assert::AreEqual(it->getEtat(), 1);
-			g.mettreEnVeilleCapteur(1, v);
+			g.MettreEnVeilleCapteur(1, v);
 			it = find(v.begin(), v.end(), c1);
 			Assert::AreEqual(it->getEtat(), 0);
 
@@ -246,10 +254,10 @@ namespace TestUnitaire
 			c1.setEtat(0);
 			Assert::AreEqual(c1.getEtat(), 0);
 			v.push_back(c1);
-			g.restaurerCapteur(2, v);
+			g.RestaurerCapteur(2, v);
 			auto it = find(v.begin(), v.end(), c1);
 			Assert::AreEqual(it->getEtat(), 0);
-			g.restaurerCapteur(1, v);
+			g.RestaurerCapteur(1, v);
 			it = find(v.begin(), v.end(), c1);
 			Assert::AreEqual(it->getEtat(), 1);
 		}
@@ -257,30 +265,30 @@ namespace TestUnitaire
 		TEST_METHOD(TestChangerSeuil)
 		{
 
-			unordered_map<string, list<Seuil>> umap;
-			list<Seuil> PM10;
-			list<Seuil> SO2;
-			list<Seuil> NO2;
-			list<Seuil> O3;
+			unordered_map<int, vector<Seuil>> umap;
+			vector<Seuil> pm10;
+			vector<Seuil> so2;
+			vector<Seuil> no2;
+			vector<Seuil> o3;
 			Gestion g;
 
 			for (int i = 0; i < 10; i++)
 			{
-				PM10.push_back(Seuil(0, 0, 0));
-				SO2.push_back(Seuil(0, 0, 0));
-				NO2.push_back(Seuil(0, 0, 0));
-				O3.push_back(Seuil(0, 0, 0));
+				pm10.push_back(Seuil(0, 0, 0));
+				so2.push_back(Seuil(0, 0, 0));
+				no2.push_back(Seuil(0, 0, 0));
+				o3.push_back(Seuil(0, 0, 0));
 			}
 
-			umap.insert(make_pair("PM10", PM10));
-			umap.insert(make_pair("SO2", SO2));
-			umap.insert(make_pair("NO2", NO2));
-			umap.insert(make_pair("O3", O3));
+			umap.insert(make_pair(PM10, pm10));
+			umap.insert(make_pair(SO2, so2));
+			umap.insert(make_pair(NO2, no2));
+			umap.insert(make_pair(O3, o3));
 
-			list<Seuil> unPM10;
-			list<Seuil> unSO2;
-			list<Seuil> unNO2;
-			list<Seuil> unO3;
+			vector<Seuil> unPM10;
+			vector<Seuil> unSO2;
+			vector<Seuil> unNO2;
+			vector<Seuil> unO3;
 
 			for (int i = 0; i < 10; i++)
 			{
@@ -290,8 +298,8 @@ namespace TestUnitaire
 				unO3.push_back(Seuil(i, i, i));
 			}
 			bool diff = false;
-			list<Seuil>::iterator itGaz = PM10.begin();
-			for (list<Seuil>::iterator it = umap["PM10"].begin(); it != umap["PM10"].end(); ++it)
+			vector<Seuil>::iterator itGaz = pm10.begin();
+			for (vector<Seuil>::iterator it = umap[PM10].begin(); it != umap[PM10].end(); ++it)
 			{
 				if ((*it) != (*itGaz))
 				{
@@ -302,8 +310,8 @@ namespace TestUnitaire
 			}
 			Assert::IsFalse(diff);
 			diff = false;
-			itGaz = SO2.begin();
-			for (list<Seuil>::iterator it = umap["SO2"].begin(); it != umap["SO2"].end(); ++it)
+			itGaz = so2.begin();
+			for (vector<Seuil>::iterator it = umap[SO2].begin(); it != umap[SO2].end(); ++it)
 			{
 				if ((*it) != (*itGaz))
 				{
@@ -315,8 +323,8 @@ namespace TestUnitaire
 
 			Assert::IsFalse(diff);
 			diff = false;
-			itGaz = NO2.begin();
-			for (list<Seuil>::iterator it = umap["NO2"].begin(); it != umap["NO2"].end(); ++it)
+			itGaz = no2.begin();
+			for (vector<Seuil>::iterator it = umap[NO2].begin(); it != umap[NO2].end(); ++it)
 			{
 				if ((*it) != (*itGaz))
 				{
@@ -329,8 +337,8 @@ namespace TestUnitaire
 			Assert::IsFalse(diff);
 
 			diff = false;
-			itGaz = O3.begin();
-			for (list<Seuil>::iterator it = umap["O3"].begin(); it != umap["O3"].end(); ++it)
+			itGaz = o3.begin();
+			for (vector<Seuil>::iterator it = umap[O3].begin(); it != umap[O3].end(); ++it)
 			{
 				if ((*it) != (*itGaz))
 				{
@@ -342,11 +350,11 @@ namespace TestUnitaire
 
 			Assert::IsFalse(diff);
 
-			g.changerSeuil(umap, unPM10, unSO2, unNO2, unO3);
+			g.ChangerSeuil(umap, unPM10, unSO2, unNO2, unO3);
 
 			diff = false;
 			itGaz = unPM10.begin();
-			for (list<Seuil>::iterator it = umap["PM10"].begin(); it != umap["PM10"].end(); ++it)
+			for (vector<Seuil>::iterator it = umap[PM10].begin(); it != umap[PM10].end(); ++it)
 			{
 				if ((*it) != (*itGaz))
 				{
@@ -358,7 +366,7 @@ namespace TestUnitaire
 			Assert::IsFalse(diff);
 			diff = false;
 			itGaz = unSO2.begin();
-			for (list<Seuil>::iterator it = umap["SO2"].begin(); it != umap["SO2"].end(); ++it)
+			for (vector<Seuil>::iterator it = umap[SO2].begin(); it != umap[SO2].end(); ++it)
 			{
 				if ((*it) != (*itGaz))
 				{
@@ -371,7 +379,7 @@ namespace TestUnitaire
 			Assert::IsFalse(diff);
 			diff = false;
 			itGaz = unNO2.begin();
-			for (list<Seuil>::iterator it = umap["NO2"].begin(); it != umap["NO2"].end(); ++it)
+			for (vector<Seuil>::iterator it = umap[NO2].begin(); it != umap[NO2].end(); ++it)
 			{
 				if ((*it) != (*itGaz))
 				{
@@ -384,7 +392,7 @@ namespace TestUnitaire
 			Assert::IsFalse(diff);
 			diff = false;
 			itGaz = unO3.begin();
-			for (list<Seuil>::iterator it = umap["O3"].begin(); it != umap["O3"].end(); ++it)
+			for (vector<Seuil>::iterator it = umap[O3].begin(); it != umap[O3].end(); ++it)
 			{
 				if ((*it) != (*itGaz))
 				{
@@ -399,29 +407,29 @@ namespace TestUnitaire
 
 		TEST_METHOD(TestChangerUnSeuil)
 		{
-			unordered_map<string, list<Seuil>> umap;
-			list<Seuil> PM10;
-			list<Seuil> SO2;
-			list<Seuil> NO2;
-			list<Seuil> O3;
+			unordered_map<int, vector<Seuil>> umap;
+			vector<Seuil> pm10;
+			vector<Seuil> so2;
+			vector<Seuil> no2;
+			vector<Seuil> o3;
 			Gestion g;
 
 			for (int i = 0; i < 10; i++)
 			{
-				PM10.push_back(Seuil(0, 0, 0));
-				SO2.push_back(Seuil(0, 0, 0));
-				NO2.push_back(Seuil(0, 0, 0));
-				O3.push_back(Seuil(0, 0, 0));
+				pm10.push_back(Seuil(0, 0, 0));
+				so2.push_back(Seuil(0, 0, 0));
+				no2.push_back(Seuil(0, 0, 0));
+				o3.push_back(Seuil(0, 0, 0));
 			}
 
-			umap.insert(make_pair("PM10", PM10));
-			umap.insert(make_pair("SO2", SO2));
-			umap.insert(make_pair("NO2", NO2));
-			umap.insert(make_pair("O3", O3));
-			Seuil s = Seuil(34, 32, 11);
+			umap.insert(make_pair(PM10, pm10));
+			umap.insert(make_pair(SO2, so2));
+			umap.insert(make_pair(NO2, no2));
+			umap.insert(make_pair(O3, o3));
+			Seuil s = Seuil(34, 33, 4);
 			int num = 4;
-			g.changerUnSeuil(umap, "SO2", num, s);
-			list<Seuil>::iterator it = umap["SO2"].begin();
+			g.ChangerUnSeuil(umap, SO2, s);
+			vector<Seuil>::iterator it = umap[SO2].begin();
 
 			for (int i = 1; i < num; i++)
 			{

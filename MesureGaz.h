@@ -33,12 +33,12 @@ class MesureGaz
 
 public:
 //----------------------------------------------------- Méthodes publiques
-    int getGazId();
-    string getUnite();
-    string getDescription();
-    Date getDate();
-    long double getValeur();
-    int getIdCapteur();
+    int getGazId() const;
+    string getUnite() const;
+    string getDescription() const;
+    Date getDate() const;
+    long double getValeur() const;
+    int getIdCapteur() const;
 
     void setGazId(int val);
     void setDate(Date d);
