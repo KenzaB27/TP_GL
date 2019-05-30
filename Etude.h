@@ -17,6 +17,7 @@
 #include "PorteeCapteur.h"
 #include "Catalogue.h"
 #include "Seuil.h"
+#include "ConcentrationIndice.h"
 
 using namespace std; 
 
@@ -41,9 +42,11 @@ public:
     //
     // Contrat :
     //
-    vector<long double> Evaluer(Catalogue &cat, vector<Capteur> &listCapteur,
-                                long double latitude, long double longitude, Date dateDebut, Date dateFin = Date(), long double rayon = 2000);
-    int CalculAtmo(vector <long double>&mesures, unordered_map<int, vector<Seuil>>& tabSeuil);
+    vector<ConcentrationIndice> Evaluer(Catalogue &cat, vector<Capteur> &listCapteur,
+								unordered_map<int, vector<Seuil>>&mapSeuils , 
+                                long double latitude, long double longitude, Date dateDebut, 
+								Date dateFin = Date(), long double rayon = 2000);
+    int CalculAtmo(vector<ConcentrationIndice>&mesures);
 	unordered_map <int, vector<int>> DetecterCapteursSimilaires(Catalogue &c, int nbCapteurs);
 //------------------------------------------------- Surcharge d'opérateursp
 
@@ -66,7 +69,7 @@ public:
 
 protected:
 //----------------------------------------------------- Méthodes protégées
-	vector<long double> evaluer(Catalogue &cat, vector<int>&listCapteur, Date dateD, Date dateF);
+	vector<ConcentrationIndice> evaluer(Catalogue &cat, vector<int>&listCapteur , unordered_map<int, vector<Seuil>>&mapSeuils, Date dateD, Date dateF);
 	vector<int> getCapteur(vector<Capteur>&listCapteur, long double latitude, long double longitude, long double rayon = 2000);
 	bool comparerMesures(vector<long double> &mes1, vector<long double>&mes2); 
 private:

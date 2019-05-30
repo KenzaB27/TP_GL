@@ -170,15 +170,6 @@ void Lecture::InitTypeGaz(string fichierGaz)
 }//-- Fin initTypeGaz
 
 //-------------------------------------------- Constructeurs - destructeur
-Lecture::Lecture(const Lecture & unLecture)
-// Algorithme :
-//
-{
-#ifdef MAP
-	cout << "Appel au constructeur de copie de <Lecture>" << endl;
-#endif
-} //----- Fin de Lecture (constructeur de copie)
-
 Lecture::Lecture()
 // Algorithme :
 //
@@ -266,4 +257,43 @@ void Lecture::LectureMesure(ifstream &ifs, MesureGaz &mesure)
 	mesure.setUnite(gazDescription[gazMap[gaz]].unit);
 
 } //--- Fin de LectureMesure
+
+void Lecture::InitSeuils(unordered_map<int, list<Seuil>> &l, string fichier)
+{
+	ifstream monFlux(fichier.c_str());
+
+	if (monFlux)
+	{
+		l.clear();
+		while (monFlux.good())
+		{
+			list<Seuil> liste;
+			int gazId;
+			for (int i = 0; i < 10; i++)
+			{
+				int indice;
+				int min;
+				int max;
+				string temp;
+
+				getline(monFlux, temp, ';');
+				gazId = gazMap[temp];
+
+				getline(monFlux, temp, ';');
+				indice = atoi(temp.c_str());
+
+				getline(monFlux, temp, ';');
+				min = atoi(temp.c_str());
+
+				getline(monFlux, temp);
+				max = atoi(temp.substr(0, temp.length()-1).c_str());
+
+				Seuil s(min, max, indice);
+
+				liste.push_back(s);
+			}
+			l.emplace(make_pair(gazId, liste));
+		}
+	}
+}
 

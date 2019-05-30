@@ -80,8 +80,8 @@ ostream & operator<<(ostream &out, const MesureGaz &mesureGaz)
 	out << " Gaz : " << mesureGaz.getGazId() << " Valeur :  " << mesureGaz.getValeur() << " " << mesureGaz.getUnite() << endl;
     //" " << mesureGaz.description << " " << mesureGaz.idCapteur << " " <<mesureGaz.date << endl;
 	return out; 
-
-}MesureGaz::operator long double() const
+}
+MesureGaz::operator long double() const
 {
 	return valeur; 
 }
