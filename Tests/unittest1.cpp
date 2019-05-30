@@ -417,6 +417,7 @@ namespace TestUnitaire
 	{
 	public:
 	
+		/*
 		TEST_METHOD(TestConstructionCatalogue)
 		{
 			Date d = Date(2019, 02, 01, 10, 12, 55);
@@ -439,7 +440,7 @@ namespace TestUnitaire
 			Logger::WriteMessage("Test liste mesure dans le catalogue");
 			Assert::IsTrue(c.getMap().find(id)->second.getGazId()==0);//checker si le second.begin() fonctionne correctement	
 				
-		}
+		}*/
 
 		TEST_METHOD(TestIdCatalogue)
 		{
@@ -454,6 +455,15 @@ namespace TestUnitaire
 		}
 
 		
+	};
+
+	TEST_CLASS(TestUnitaireLecture)
+	{
+	public:
+
+		
+
+
 	};
 
 }
