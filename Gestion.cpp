@@ -168,6 +168,21 @@ void Gestion::supprimerCapteur(int numCapteur, vector <Capteur> &listeCapteurs) 
 
 int Gestion::evaluerCapteur(Catalogue &c, int num) {
 
+	bool defectueux = false;
+
+	unordered_map<IdCatalogue, vector<MesureGaz>> map = c.getMap();
+	list<list<pair<long double, Date>>> liste;
+	for (auto it = map.begin(); it != map.end(); it++) {
+		list<pair<long double, Date>> valeursMesures;
+		if (it->first.getCapteurId()==num)
+		{
+			for (auto i = it->second.begin(); i != it->second.begin(); i++)
+			{
+				
+			}
+			
+		}
+	}
 
 
     return 0;
