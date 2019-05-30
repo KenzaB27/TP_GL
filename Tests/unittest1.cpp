@@ -105,23 +105,23 @@ namespace TestUnitaire
 			MesureGaz m2 = MesureGaz();
 
 			Logger::WriteMessage("Test des valeurs du mesuresGaz");
-			Assert::IsTrue(m.gazId == 0);
-			Assert::IsTrue(m1.gazId == O3);
+			Assert::IsTrue(m.getGazId() == 0);
+			Assert::IsTrue(m1.getGazId() == O3);
 
 			Logger::WriteMessage("Test du bon fonctionnement des dates");
-			Assert::IsTrue(m.date == d);
+			Assert::IsTrue(m.getDate() == d);
 
 			Logger::WriteMessage("Test methode setValeur");
 			m.setValeur(23);
-			Assert::IsTrue(m.valeur==23);
+			Assert::IsTrue(m.getValeur()==23);
 
 			Logger::WriteMessage("Test methode setDescription");
 			m.setDescription("test");
-			Assert::IsFalse(m.description=="Capteur12");
+			Assert::IsFalse(m.getDescription()=="Capteur12");
 
 			Logger::WriteMessage("Test methode setUnite");
 			m.setUnite("test");
-			Assert::IsFalse(m.unite.compare("µg/m3")==0);
+			Assert::IsFalse(m.getUnite().compare("µg/m3")==0);
 		}
 	};
 
