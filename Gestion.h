@@ -47,7 +47,7 @@ void MettreEnVeilleCapteur(int numCapteur, vector<Capteur>& listeCapteurs);
 void RestaurerCapteur(int numCapteur, vector<Capteur>& listeCapteurs);
 void ChangerSeuil(unordered_map<int, vector<Seuil>> &tabSeuil, vector<Seuil> pm10,
 	vector<Seuil> so2, vector<Seuil> no2, vector<Seuil> o3);
-void ChangerUnSeuil(unordered_map<int, vector<Seuil>>& tabSeuil, int gaz, int num, Seuil s);
+void ChangerUnSeuil(unordered_map<int, vector<Seuil>>& tabSeuil, int gaz, Seuil s);
 
 
 

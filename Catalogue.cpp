@@ -27,15 +27,20 @@ ostream & operator<<(ostream &out, const Catalogue &catalogue)
 {
 	unordered_map<IdCatalogue, vector<MesureGaz>> map = catalogue.getMap();
 
+	int compteur = 1;
+
 	for (auto itr = map.begin(); itr != map.end(); ++itr)
 	{
-		out << itr->first << " ";
+		out << "Page " << compteur << "du catalogue" <<endl;
+		out << itr->first;
 
 		for (int i = 0; i < itr->second.size(); i++)
 		{
-			out << itr->second[i] << " ";
+			out << itr->second[i];
 		}
 		out << endl;
+		out<< "---------------------------------------------------------------";
+		compteur++;
 	}
 
 	return out;

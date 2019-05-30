@@ -59,9 +59,9 @@ void Tests::TestGestion() {
     vector <Capteur> v;
     Gestion g;
     v.push_back(c1);
-    g.ajouterCapteur(c2, v);
-    g.ajouterCapteur(c3, v);
-    g.mettreEnVeilleCapteur(3,v);
+    g.AjouterCapteur(c2, v);
+    g.AjouterCapteur(c3, v);
+    g.MettreEnVeilleCapteur(3,v);
 
 
     for (vector<Capteur>::iterator it = v.begin(); it != v.end(); ++it) {
@@ -110,10 +110,10 @@ void Tests::TestChangerSeuil()
 
     for(int i=0;i<10;i++)
     {
-        PM10.push_back(Seuil());
-        SO2.push_back(Seuil());
-        NO2.push_back(Seuil());
-        O3.push_back(Seuil());
+        PM10.push_back(Seuil(i,i,i));
+        SO2.push_back(Seuil(i,i,i));
+        NO2.push_back(Seuil(i,i,i));
+        O3.push_back(Seuil(i,i,i));
     }
 
     umap.insert(make_pair("PM10",PM10));
