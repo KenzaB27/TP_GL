@@ -102,7 +102,7 @@ protected:
 
 private:
     //------------------------------------------------------- Méthodes privées
-    void LectureMesure(ifstream &ifs, MesureGaz *mesure);
+    void LectureMesure(ifstream &ifs, MesureGaz &mesure);
     // Mode d'emploi : Parcours tout le fichier et le stocke dans un catalogue
     //
     // Contrat :

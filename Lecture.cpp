@@ -44,43 +44,53 @@ void Lecture::Parcourir(Catalogue &c, string fichier)
 	unsigned int iLigne = 0;
 #endif // MAP
 
-	while (monFlux.good())
+	if (monFlux)
 	{
-		vector<MesureGaz> listeMesure;
-		for (int i = 0; i < 4; i++)
+		while (monFlux.good())
 		{
-			MesureGaz m;
-			LectureMesure(monFlux, &m);
-			listeMesure.push_back(m);
-		}
-
-		// On vérifie la cohérence des données mesurées
-		int idCapteur = (*listeMesure.begin()).getIdCapteur();
-		Date dateMesure = (*listeMesure.begin()).getDate();
-
-		bool same = true;
-		
-		//Verifie la cohérence des données récupérées
-		for (auto i = listeMesure.begin(); i != listeMesure.end(); i++)
-		{
-
-			if ((*i).getIdCapteur() != idCapteur)
+			vector<MesureGaz> listeMesure;
+			for (int i = 0; i < 4; i++)
 			{
-				same = false;
-				break;
+				MesureGaz m;
+				LectureMesure(monFlux, m);
+				listeMesure.push_back(m);
+			}
+
+			// On vérifie la cohérence des données mesurées
+			int idCapteur = (*listeMesure.begin()).getIdCapteur();
+			Date dateMesure = (*listeMesure.begin()).getDate();
+
+			bool same = true;
+
+			//Verifie la cohérence des données récupérées
+			for (auto i = listeMesure.begin(); i != listeMesure.end(); i++)
+			{
+
+				if ((*i).getIdCapteur() != idCapteur)
+				{
+					same = false;
+					break;
 				#ifdef MAP
 					cout << "Erreurs lors de la composition de 4 valeurs " << endl;
 					unsigned int iLigne = 0;
 				#endif // MAP
+				}
+			}
+
+			if (same)
+			{
+				IdCatalogue index(idCapteur, dateMesure);
+
+				//c.getMap()[index] = listeMesure;
+				c.getMap().emplace(make_pair(index, listeMesure));
 			}
 		}
-
-		if (same)
-		{
-			IdCatalogue index(idCapteur, dateMesure);
-			c.getMap().emplace(make_pair(index, listeMesure)); 
-		}
 	}
+
+		
+
+
+	
 
 	//return c;
 
@@ -94,6 +104,7 @@ void Lecture::InitCapteur(vector<Capteur> &liste, string fichierCapteurs)
 	if (monFlux)
 	{
 		string line;
+		int i = 0;
 		while (monFlux.good())
 		{
 			int capteurId;
@@ -107,15 +118,19 @@ void Lecture::InitCapteur(vector<Capteur> &liste, string fichierCapteurs)
 			capteurId = atoi((tempString.substr(tempString.length() - 1, tempString.length())).c_str());
 
 			getline(monFlux, tempString, ';');
+
 			latitude = atof(tempString.c_str());
 
 			getline(monFlux, tempString, ';');
+
 			longitude = atof(tempString.c_str());
 
 			getline(monFlux, description);
 
-			Capteur c(capteurId, description.substr(0, description.length() - 2), latitude, longitude);
+
+			Capteur c(capteurId, description.substr(0, description.length() - 1), latitude, longitude);
 			liste.push_back(c);
+			i++;
 		}
 	}
 
@@ -140,11 +155,11 @@ void Lecture::InitTypeGaz(string fichierGaz)
 
 			getline(monFlux, unit, ';');
 			getline(monFlux, description);
-
+			
 			gazInfos g;
 			g.id = gazId;
 			g.unit = unit;
-			g.description = description.substr(0, description.length() - 2);
+			g.description = description.substr(0, description.length() - 1);
 
 			gazDescription[gazId] = g;
 		}
@@ -191,7 +206,7 @@ Lecture::~Lecture()
 
 //------------------------------------------------------- M�thodes priv�es
 
-void Lecture::LectureMesure(ifstream &ifs, MesureGaz *mesure)
+void Lecture::LectureMesure(ifstream &ifs, MesureGaz &mesure)
 {
 
 	string dateS;
@@ -209,9 +224,7 @@ void Lecture::LectureMesure(ifstream &ifs, MesureGaz *mesure)
 	long double value;
 
 	getline(ifs, dateS, 'T');  //La Date
-	cout << "Date : " << dateS << endl;
 	getline(ifs, heureS, ';'); //L'heure
-	cout << "Heure : " << heureS << endl;
 
 	//La date
 	string temp = dateS.substr(5, 5);
@@ -228,28 +241,26 @@ void Lecture::LectureMesure(ifstream &ifs, MesureGaz *mesure)
 
 	Date d(annee, mois, jour, heure, minute, seconde);
 
-	cout << annee << "-" << mois << "-" << jour << "-" << "T" << heure << "/" << minute << "/" << seconde << endl;
-
 	//L'id du capteur
 	getline(ifs, sensor, ';');
 	int sensorid = atoi((sensor.substr(sensor.length() - 1, sensor.length())).c_str());
-	cout << "idC : " << sensorid << endl;
 
+	getline(ifs, gaz, ';');
 
 	getline(ifs, valueString); // value
 	valueString = valueString.substr(0, valueString.length());
 	value = atof(valueString.c_str());
-	cout << "value : " << value << endl;
+
 	//On remplit la mesureGaz
-	mesure->setGazId(gazMap[gaz]);
+	mesure.setGazId(gazMap[gaz]);
 
-	mesure->setDate(d);
-	mesure->setValeur(value);
+	mesure.setDate(d);
+	mesure.setValeur(value);
 
-	mesure->setIdCapteur(sensorid);
+	mesure.setIdCapteur(sensorid);
 
-	mesure->setDescription(gazDescription[gazMap[gaz]].description);
-	mesure->setUnite(gazDescription[gazMap[gaz]].unit);
+	mesure.setDescription(gazDescription[gazMap[gaz]].description);
+	mesure.setUnite(gazDescription[gazMap[gaz]].unit);
 
 } //--- Fin de LectureMesure
 
