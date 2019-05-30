@@ -17,11 +17,6 @@ using namespace std;
 #include "ConcentrationIndice.h"
 //------------------------------------------------------------- Constantes
 
-
-
-//----------------------------------------------------------------- PUBLIC
-//-------------------------------------------------------- Fonctions amies
-
 //----------------------------------------------------- M�thodes publiques
 void ConcentrationIndice::setIndice(vector<Seuil>& listeSeuils)
 {
@@ -32,6 +27,7 @@ void ConcentrationIndice::setIndice(vector<Seuil>& listeSeuils)
 		}
 	}
 }// fin de setIndice
+
 //------------------------------------------------- Surcharge d'op�rateurs
 
 ostream & operator<<(ostream &out, const ConcentrationIndice &concentration)

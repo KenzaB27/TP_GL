@@ -1,61 +1,58 @@
 /*************************************************************************
                            PorteeCapteur  -  description
                              -------------------
-    d�but                : ${date}
-    copyright            : (C) ${year} par ${user}
+	début                : 04/06/2019
+	copyright            : (C) 2019 par BOUZID Kenza    - JEANNE Nathan
+										HAMIDOVIC David - CAVAGNA Margaux
 *************************************************************************/
 
-//---------- R�alisation de la classe <PorteeCapteur> (fichier ${file_name}) --
+//---------- R�alisation de la classe <PorteeCapteur> (fichier PorteeCapteur.cpp) --
 
 //---------------------------------------------------------------- INCLUDE
 
 //-------------------------------------------------------- Include syst�me
-
 #include <iostream>
-
+using namespace std;
 //------------------------------------------------------ Include personnel
 #include "PorteeCapteur.h"
-using namespace std;
-//------------------------------------------------------------- Constantes
-
-//---------------------------------------------------- Variables de classe
-
-//----------------------------------------------------------- Types priv�s
-
-//----------------------------------------------------------------- PUBLIC
-//-------------------------------------------------------- Fonctions amies
-
+//------------------------------------------------- Surcharge d'op�rateurs
+ostream & operator<<(ostream & out, const PorteeCapteur & portee)
+{
+	out << "LatitudeCentre :" << portee.getLatitudeCentre() << " LongitudeCentre : " << portee.getLongitudeCentre() << endl;
+	out << "LatitudeMax:" << portee.getLatitudeMin() << " LatitudeMin : " << portee.getLatitudeMax() << endl;
+	out << "LongitudeMax:" << portee.getLongitudeMin() << " LongitudeMin : " << portee.getLongitudeMax() << endl;
+	return out;
+}
 //----------------------------------------------------- M�thodes publiques
-// type PorteeCapteur::M�thode ( liste de param�tres )
-// Algorithme :
-//
-//{
-//} //----- Fin de M�thode
-
-long double PorteeCapteur::getLatitudeMax()
+long double PorteeCapteur::getLatitudeMax()const
 {
     return latitudeMax;
-}
-long double PorteeCapteur::getLatitudeMin()
+}// Fin getLatitudeMax 
+
+long double PorteeCapteur::getLatitudeMin()const
 {
     return latitudeMin;
-}
-long double PorteeCapteur::getLongitudeMax()
+}// Fin getLatitudeMin
+
+long double PorteeCapteur::getLongitudeMax()const
 {
     return longitudeMax;
-}
-long double PorteeCapteur::getLongitudeMin()
+}// Fin getLongitudeMax
+
+long double PorteeCapteur::getLongitudeMin()const
 {
     return longitudeMin;
-}
-long double PorteeCapteur::getLatitudeCentre()
+}//Fin getLongitudeMin
+
+long double PorteeCapteur::getLatitudeCentre()const
 {
     return latitudeCentre;
-}
-long double PorteeCapteur::getLongitudeCentre()
+}// Fin getLatitudeCentre
+
+long double PorteeCapteur::getLongitudeCentre()const
 {
     return longitudeCentre;
-}
+}// Fin LongitudeCentre 
 
 bool PorteeCapteur::contient(PorteeCapteur portee)
 {
@@ -74,7 +71,7 @@ bool PorteeCapteur::contient(PorteeCapteur portee)
     {
         return false;
     }
-}
+}// fin contient 
 
 PorteeCapteur::PorteeCapteur(long double longitude, long double latitude, long double rayon) :longitudeCentre(longitude), latitudeCentre(latitude)
 // Algorithme :
@@ -118,3 +115,4 @@ PorteeCapteur::~PorteeCapteur()
     cout << "Appel au destructeur de <PorteeCapteur>" << endl;
 #endif
 } //----- Fin de ~PorteeCapteur
+

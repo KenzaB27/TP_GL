@@ -1,8 +1,9 @@
 /*************************************************************************
                            PorteeCapteur  -  description
                              -------------------
-    début                : ${date}
-    copyright            : (C) ${year} par ${user}
+	début                : 04/06/2019
+	copyright            : (C) 2019 par BOUZID Kenza    - JEANNE Nathan
+										HAMIDOVIC David - CAVAGNA Margaux
 *************************************************************************/
 
 //---------- Interface de la classe <PorteeCapteur> (fichier ${file_name}) ------
@@ -12,15 +13,15 @@
 //--------------------------------------------------- Interfaces utilisées
 #include <math.h>
 //------------------------------------------------------------- Constantes
-
-//------------------------------------------------------------------ Types
 #define _USE_MATH_DEFINES
 #ifndef M_PI
 #define M_PI 3.14159265358979323846
 #endif
+//------------------------------------------------------------------ Types
 //------------------------------------------------------------------------
 // Rôle de la classe <PorteeCapteur>
-//
+// Permet d'implémenter la portée d'un capteur délimitée par un carré 
+// de coordonnees latMin latMax LongMin longMax 
 //
 //------------------------------------------------------------------------
 
@@ -30,75 +31,79 @@ class PorteeCapteur
 
 public:
 //----------------------------------------------------- Méthodes publiques
-    // type Méthode ( liste de paramètres );
-    // Mode d'emploi :
+     long double getLatitudeCentre()const; 
+    // Mode d'emploi : getter de la latitude du centre 
     //
-    // Contrat :
+    // Contrat : Aucun  contrat 
     //
-     long double getLatitudeCentre(); 
-    // Mode d'emploi :
+    long double getLongitudeCentre()const; 
+    // Mode d'emploi :getter de la longitude du centre 
     //
-    // Contrat :
+    // Contrat :Aucun  contrat 
     //
-    long double getLongitudeCentre(); 
-    // Mode d'emploi :
+    long double getLatitudeMax() const; 
+    // Mode d'emploi : getter de la latitude max 
     //
-    // Contrat :
+    // Contrat :Aucun  contrat 
     //
-    long double getLatitudeMax(); 
-    // Mode d'emploi :
+    long double getLatitudeMin()const; 
+    // Mode d'emploi : getter de la latitude min 
     //
-    // Contrat :
+    // Contrat :Aucun  contrat 
     //
-    long double getLatitudeMin(); 
-    // Mode d'emploi :
+    long double getLongitudeMax()const; 
+    // Mode d'emploi : getter de la longitude max 
     //
-    // Contrat :
+    // Contrat :Aucun  contrat 
     //
-    long double getLongitudeMax(); 
-    // Mode d'emploi :
+    long double getLongitudeMin()const;
+    // Mode d'emploi : getter de la longitude min 
     //
-    // Contrat :
-    //
-    long double getLongitudeMin();
-    // Mode d'emploi :
-    //
-    // Contrat :
+    // Contrat :Aucun  contrat 
     //
 
     bool contient (PorteeCapteur portee); 
-    // Mode d'emploi :
+    // Mode d'emploi : permet de vérifier si un capteur de portee (portee) est contenu 
+	// la portee courante du territoire
     //
-    // Contrat :
+    // Contrat :Aucun  contrat 
     //
 
+//------------------------------------------------- Surcharge d'opérateurs
+
+	friend ostream & operator<<(ostream &out, const PorteeCapteur &portee);
+	// Mode d'emploi : surcharge de l'opérateur << pour la sortie standard 
+	//
+	// Contrat : Acun contrat
+	//
+
+//-------------------------------------------- Constructeurs - destructeur
     PorteeCapteur (long double longitude, long double latitude , long double rayon=2000);
     // Mode d'emploi :
-    //
-    // Contrat :
+    // longitude : la longitude du centre 
+	// latitude : la latitue du centre 
+	// rayon : le rayon du terriroire
+    // Contrat :Aucun  contrat 
     //
     PorteeCapteur();
-    // Mode d'emploi :
+    // Mode d'emploi : Construteur par defaut de PorteeCapteur 
     //
-    // Contrat :
+    // Contrat :Aucun  contrat 
     //
 
     ~PorteeCapteur(); 
-    // Mode d'emploi :
+    // Mode d'emploi : Destructeur de PorteeCapteur
     //
-    // Contrat :
+    // Contrat :Aucun  contrat 
     //
    
-    protected:
+protected:
+//----------------------------------------------------- Attributs protégés 
 	long double longitudeCentre;
     long double latitudeCentre;  
     long double latitudeMax; 
     long double latitudeMin; 
     long double longitudeMax; 
     long double longitudeMin;
-
 };
-
-//----------------------------------------- Types dépendants de <PorteeCapteur>
-
 #endif // PORTEECAPTEUR_H
