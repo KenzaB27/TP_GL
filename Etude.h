@@ -1,11 +1,12 @@
 /*************************************************************************
                            Etude  -  description
                              -------------------
-    début                : ${date}
-    copyright            : (C) ${year} par ${user}
+    début                : 04/06/2019
+    copyright            : (C) 2019 par BOUZID Kenza    - JEANNE Nathan 
+									    HAMIDOVIC David - CAVAGNA Margaux 
 *************************************************************************/
 
-//---------- Interface de la classe <Etude> (fichier ${file_name}) ------
+//---------- Interface de la classe <Etude> (Etude.h) ------
 #if ! defined (ETUDE_H)
 #define ETUDE_H
 
@@ -17,23 +18,20 @@
 #include "PorteeCapteur.h"
 #include "Catalogue.h"
 #include "Seuil.h"
+#include "ConcentrationIndice.h"
 
 using namespace std; 
 
-//------------------------------------------------------------- Constantes
-
-//------------------------------------------------------------------ Types
-
 //------------------------------------------------------------------------
 // Rôle de la classe <Etude>
-//
+// Cette classe implémente toutes les méthodes permettant d'évaluer la qualité 
+// de l'air à travers les calculs d'ATMO 
 //
 //------------------------------------------------------------------------
 
 class Etude 
 {
 //----------------------------------------------------------------- PUBLIC
-
 public:
 //----------------------------------------------------- Méthodes publiques
     // type Méthode ( liste de paramètres );
@@ -41,51 +39,82 @@ public:
     //
     // Contrat :
     //
-    vector<long double> Evaluer(Catalogue &cat, vector<Capteur> &listCapteur,
-                                long double latitude, long double longitude, Date dateDebut, Date dateFin = Date(), long double rayon = 2000);
-    int CalculAtmo(vector <long double>&mesures, unordered_map<int, vector<Seuil>>& tabSeuil);
+    vector<ConcentrationIndice> Evaluer(Catalogue &cat, vector<Capteur> &listCapteur,
+								unordered_map<int, vector<Seuil>>&mapSeuils , 
+                                long double latitude, long double longitude, Date dateDebut, 
+								Date dateFin = Date(), long double rayon = 2000);
+	// Mode d'emploi : Permet l'évaluation de la concentration des dofférents gaz O3 PM10 SO2
+	// et NO2 ainsi que leurs indices associés, et ce dans un territoire ou point précis, pendant 
+	// une durrée donnée délimitée par date de début et date de fin
+	// cat : correspond au catalogue stokant les différentes mesures
+	// listCapteur : correspond à la liste des capteusr du sysytème
+	// mapSeuils: regroupe les différents seuils déterminés par les oragnismes délimitanat les indices des gaz
+	// latitude: la latitude du point de calcul ou centre du territoire 
+	// longitude: la longitude du point de calcul ou centre du territoire 
+	// dateDebut: la date de début de l'évaluation 
+	// dateFin : la date de fin de l'évaluation = la date du jour suivant par défaut
+	// rayon : le rayon du territoire de calcul = 2000m par défaut
+	// Contrat : Aucun contrat 
+	//
+    int CalculAtmo(vector<ConcentrationIndice>&mesures);
+	// Mode d'emploi : renvoir l'indice Atmo correcpondant aux concentrations évaluées par la méthode Evaluer
+	// mesures: la lisite des concentrations avec leur indice associé
+	//
+	// Contrat : Aucun contrat
+	//
 	unordered_map <int, vector<int>> DetecterCapteursSimilaires(Catalogue &c, int nbCapteurs);
-//------------------------------------------------- Surcharge d'opérateursp
+	// Mode d'emploi : permet de détectet des capteurs à comprtement imilaires cad dont les mesures 
+	// sont similaires sur l'ensembles des données 
+	// c : le catalogue de mesures 
+	// nbCapteurs: le nombre de capteurs à évaluer
+	//
+	// Contrat : Aucun contrat 
+	//
 
-//-------------------------------------------- Constructeurs - destructeur
 //-------------------------------------------- Constructeurs - destructeur
 
     Etude ();
-    // Mode d'emploi :
+    // Mode d'emploi : Constructeur de la classe 
     //
-    // Contrat :
+    // Contrat : Aucun Contrat 
     //
 
     virtual ~Etude ( );
-    // Mode d'emploi :
+    // Mode d'emploi : destucteur de la classe 
     //
-    // Contrat :
+    // Contrat : Aucun contrat 
     //
 
 //------------------------------------------------------------------ PRIVE
 
-protected:
 //----------------------------------------------------- Méthodes protégées
-	vector<long double> evaluer(Catalogue &cat, vector<int>&listCapteur, Date dateD, Date dateF);
+protected: 
+
+	vector<ConcentrationIndice> evaluer(Catalogue &cat, vector<int>&listCapteur , 
+			unordered_map<int, vector<Seuil>>&mapSeuils, Date dateD, Date dateF);
+	// Mode d'emploi : Permet l'évaluation de la concentration des dofférents gaz O3 PM10 SO2
+	// et NO2 ainsi que leurs indices associés, et ce dans un territoire ou point précis, pendant 
+	// une durrée donnée délimitée par date de début et date de fin
+	// cat : correspond au catalogue stokant les différentes mesures
+	// listCapteur : correspond à la liste des capteusr du sysytème
+	// mapSeuils: regroupe les différents seuils déterminés par les oragnismes délimitanat les indices des gaz
+	// dateDebut: la date de début de l'évaluation 
+	// dateFin : la date de fin de l'évaluation = la date du jour suivant par défaut
+	// rayon : le rayon du territoire de calcul = 2000m par défaut
+	// Contrat : Aucun contrat 
+	//
 	vector<int> getCapteur(vector<Capteur>&listCapteur, long double latitude, long double longitude, long double rayon = 2000);
+	// Mode d'emploi: permet de récupérer la liste des id de scapteurs appartenant au territoire de calcul 
+	// listCapteur : correspond à la liste des capteurs du sysytème
+	// latitude: la latitude du point de calcul ou centre du territoire 
+	// longitude: la longitude du point de calcul ou centre du territoire 
+	// rayon : le rayon du territoire de calcul = 2000m par défaut
+	// Contrat : Aucun contrat 
+	// 
 	bool comparerMesures(vector<long double> &mes1, vector<long double>&mes2); 
-private:
-//------------------------------------------------------- Méthodes privées
-
-protected:
-//----------------------------------------------------- Attributs protégés
-
-private:
-//------------------------------------------------------- Attributs privés
-
-//---------------------------------------------------------- Classes amies
-
-//-------------------------------------------------------- Classes privées
-
-//----------------------------------------------------------- Types privés
-
+	// Mode d'emploi: permet de comparer 2 liste de mesures
+	// mes1 : la liste de mesure 1
+	// mes2 : la liste de mesure 2
+	// Contrat : Aucun contrat
 };
-
-//----------------------------------------- Types dépendants de <Etude>
-
 #endif // Etude

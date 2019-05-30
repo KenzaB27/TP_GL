@@ -105,6 +105,7 @@ void Gestion::ChangerUnSeuil(unordered_map<int, vector<Seuil>>& tabSeuil, int ga
 	(*it) = s;
 }
 
+
 void Gestion::MettreEnVeilleCapteur(int  numCapteur, vector <Capteur> &listeCapteurs) {
     bool capteurAbsent = true;
     for (vector<Capteur>::iterator it = listeCapteurs.begin(); it != listeCapteurs.end(); ++it) {

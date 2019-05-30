@@ -80,12 +80,7 @@ void Lecture::Parcourir(Catalogue* c, string fichier)
 			if (same)
 			{
 				IdCatalogue index(idCapteur, dateMesure);
-
-				//c.getMap()[index] = listeMesure;
-				
 				c->Ajouter(index, listeMesure);
-				
-
 			}
 		}
 	}
@@ -290,7 +285,7 @@ void Lecture::InitSeuils(unordered_map<int, vector<Seuil>> &l, string fichier)
 
 				Seuil s(min, max, indice);
 
-				liste.push_back(s);
+				liste.emplace_back(s);
 			}
 			l.emplace(make_pair(gazId, liste));
 		}

@@ -31,16 +31,16 @@ class Capteur
     friend class Gestion;
 public:
 //----------------------------------------------------- Méthodes publiques
-    int getCapteurId();
-    string getDescription();
-    PorteeCapteur getPortee();
-    int getEtat();
+    int getCapteurId() const ;
+    string getDescription() const ;
+    PorteeCapteur getPortee() const;
+    int getEtat() const;
 	void setEtat(int unEtat);
 //-------------------------------------------- Constructeurs - destructeur
 
     Capteur(int capteurid, string d, long double lat, long double lon);
-
-
+	friend ostream & operator<<(ostream &out, const Capteur &capteur); 
+	
 	friend bool operator==(const Capteur& capteur1, const Capteur& capteur2);
 
     Capteur();

@@ -1,11 +1,12 @@
 /*************************************************************************
-                           Etude  -  description
-                             -------------------
-    d�but                : ${date}
-    copyright            : (C) ${year} par ${user}
+						   Etude  -  description
+							 -------------------
+	début                : 04/06/2019
+	copyright            : (C) 2019 par BOUZID Kenza    - JEANNE Nathan
+										HAMIDOVIC David - CAVAGNA Margaux
 *************************************************************************/
 
-//---------- R�alisation de la classe <Etude> (fichier ${file_name}) --
+//---------- R�alisation de la classe <Etude> (Etude.cpp) --
 
 //---------------------------------------------------------------- INCLUDE
 
@@ -16,66 +17,18 @@ using namespace std;
 //------------------------------------------------------ Include personnel
 #include "Etude.h"
 
-//------------------------------------------------------------- Constantes
-
-//---------------------------------------------------- Variables de classe
-
-//----------------------------------------------------------- Types priv�s
-//----------------------------------------------------------------- PUBLIC
-//-------------------------------------------------------- Fonctions amies
-
 //----------------------------------------------------- M�thodes publiques
-// type Etude::M�thode ( liste de param�tres )
-// Algorithme :
-//
-//{
-//} //----- Fin de M�thode
 
-
-//-------------------------------------------- Constructeurs - destructeur
-
-vector<long double> Etude::Evaluer(Catalogue &cat, vector<Capteur> &listCapteur, long double latitude, long double longitude, Date dateDebut, Date dateFin, long double rayon)
+vector<ConcentrationIndice> Etude::Evaluer(Catalogue &cat, vector<Capteur> &listCapteur, unordered_map<int, vector<Seuil>>&mapSeuils,  long double latitude, long double longitude, Date dateDebut, Date dateFin, long double rayon)
 {
 	vector<int> listeCapteur = getCapteur(listCapteur, latitude, longitude, rayon); 
-	return evaluer(cat, listeCapteur, dateDebut, dateFin);
-}
+	return evaluer(cat, listeCapteur, mapSeuils, dateDebut, dateFin);
+}// Fin de Evaluer 
 
-int Etude::CalculAtmo(vector<long double>&mesures, unordered_map<int, vector<Seuil>>& tabSeuil)
+int Etude::CalculAtmo(vector<ConcentrationIndice>&mesures)
 {
-	int indiceO3 = 0;
-	int indiceSO2 = 0;
-	int indiceNO2 = 0;
-	int indicePM10 = 0;
-
-	for (auto it = tabSeuil[O3].begin(); it != tabSeuil[O3].end(); ++it)
-	{
-		if (mesures[O3] >= it->getMin() && mesures[O3] <= it->getMax()) {
-			indiceO3 = it->getIndice();
-		}
-	}
-
-	for (auto it = tabSeuil[SO2].begin(); it != tabSeuil[SO2].end(); ++it)
-	{
-		if (mesures[SO2] >= it->getMin() && mesures[SO2] <= it->getMax()) {
-			indiceSO2 = it->getIndice();
-		}
-	}
-
-	for (auto it = tabSeuil[NO2].begin(); it != tabSeuil[NO2].end(); ++it)
-	{
-		if (mesures[NO2] >= it->getMin() && mesures[NO2] <= it->getMax()) {
-			indiceNO2 = it->getIndice();
-		}
-	}
-
-	for (auto it = tabSeuil[PM10].begin(); it != tabSeuil[PM10].end(); ++it)
-	{
-		if (mesures[PM10] >= it->getMin() && mesures[PM10] <= it->getMax()) {
-			indicePM10 = it->getIndice();
-		}
-	}
-	return max(max(indiceNO2, indiceO3), max(indicePM10, indiceSO2));
-}
+	return max(max(mesures[NO2].indice, mesures[O3].indice), max(mesures[PM10].indice, mesures[SO2].indice));
+}//Fin de calcul Atmo 
 
 unordered_map<int,vector<int>> Etude::DetecterCapteursSimilaires(Catalogue & c, int nbCapteurs)
 {	
@@ -107,12 +60,9 @@ unordered_map<int,vector<int>> Etude::DetecterCapteursSimilaires(Catalogue & c, 
 		}
 	}
 	return capteursSimilaires; 
-}
+}//fin de DetecterCapteursSimilaires
 
-
-
-
-
+//-------------------------------------------- Constructeurs - destructeur
 Etude::Etude ( )
 // Algorithme :
 //
@@ -132,17 +82,17 @@ Etude::~Etude ( )
 #endif
 } //----- Fin de ~Etude
 
-
 //------------------------------------------------------------------ PRIVE
 
 //----------------------------------------------------- M�thodes prot�g�es
-vector<long double> Etude::evaluer(Catalogue &cat, vector<int>&listCapteur, Date dateD, Date dateF)
+vector<ConcentrationIndice> Etude::evaluer(Catalogue &cat, vector<int>&listCapteur,
+	unordered_map<int, vector<Seuil>>&mapSeuils, Date dateD, Date dateF)
 {
 	if (dateF == Date())
 	{
 		dateF = dateD.suivant(); 
 	}
-	vector<long double>concentrations;
+	vector<ConcentrationIndice>concentrations;
 	int compteur = 0;
 
 	for (auto it = cat.getMap().begin(); it != cat.getMap().end(); it++)
@@ -152,17 +102,20 @@ vector<long double> Etude::evaluer(Catalogue &cat, vector<int>&listCapteur, Date
 			if (it->first.getCapteurId() == *l && it->second[03].getDate() >= dateD && it->second[03].getDate() <= dateF)
 			{
 				compteur++;
-				concentrations[O3] += it->second[O3].getValeur();
-				concentrations[SO2] += it->second[SO2].getValeur();
-				concentrations[NO2] += it->second[NO2].getValeur();
-				concentrations[PM10] += it->second[PM10].getValeur();
+				concentrations[O3].concentration += it->second[O3].getValeur();
+				concentrations[SO2].concentration += it->second[SO2].getValeur();
+				concentrations[NO2].concentration += it->second[NO2].getValeur();
+				concentrations[PM10].concentration += it->second[PM10].getValeur();
 			}
 		}
 	}
-	for (auto l = concentrations.begin(); l != concentrations.end(); *l /= compteur, l++);
-
-	return vector<long double>();
-}
+	for (auto l = concentrations.begin(); l != concentrations.end(); l->concentration /= compteur, l++);
+	concentrations[O3].setIndice(mapSeuils[O3]); 
+	concentrations[SO2].setIndice(mapSeuils[SO2]);
+	concentrations[NO2].setIndice(mapSeuils[NO2]); 
+	concentrations[PM10].setIndice(mapSeuils[PM10]);
+	return concentrations;
+}// fin de evaluer 
 
 
 vector<int> Etude::getCapteur(vector<Capteur>&listCapteur, long double latitude, long double longitude, long double rayon) {
@@ -171,11 +124,12 @@ vector<int> Etude::getCapteur(vector<Capteur>&listCapteur, long double latitude,
 	for (auto it = listCapteur.begin(); it != listCapteur.end(); it++)
 	{
 		if (territoire.contient(it->getPortee())) {
+			cout << "capteurAJoutee" << endl; 
 			capteurTerritoire.push_back(it->getCapteurId());
 		}
 	}
 	return capteurTerritoire;
-}
+}// fin de getCapteur
 
 bool Etude::comparerMesures(vector<long double>&mes1, vector<long double>&mes2)
 {
@@ -184,8 +138,5 @@ bool Etude::comparerMesures(vector<long double>&mes1, vector<long double>&mes2)
 		return true; 
 	}
 	return false;
-}
+}// fin de comparerMesures
 
-
-
-//------------------------------------------------------- M�thodes priv�es
