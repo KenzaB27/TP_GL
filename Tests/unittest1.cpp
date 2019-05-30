@@ -6,6 +6,7 @@
 #include "../Gestion.h"
 #include "../MesureGaz.h"
 #include "../Catalogue.h"
+#include "../IdCatalogue.h"
 
 #include <iterator> 
 #include <list>
@@ -92,7 +93,7 @@ namespace TestUnitaire
 		}
 
 	};
-	/*
+	
 	TEST_CLASS(TestUnitaireMesureGaz)
 	{
 	public:
@@ -102,23 +103,27 @@ namespace TestUnitaire
    			MesureGaz m = MesureGaz(O3, d, 10.95, 12, "Capteur12");
 			MesureGaz m1 = MesureGaz(0, d, 10, 13, "Capteur13");
 			MesureGaz m2 = MesureGaz();
+
 			Logger::WriteMessage("Test des valeurs du mesuresGaz");
 			Assert::IsTrue(m.gazId == 0);
 			Assert::IsTrue(m1.gazId == O3);
+
 			Logger::WriteMessage("Test du bon fonctionnement des dates");
 			Assert::IsTrue(m.date == d);
+
 			Logger::WriteMessage("Test methode setValeur");
 			m.setValeur(23);
 			Assert::IsTrue(m.valeur==23);
+
 			Logger::WriteMessage("Test methode setDescription");
 			m.setDescription("test");
 			Assert::IsFalse(m.description=="Capteur12");
+
 			Logger::WriteMessage("Test methode setUnite");
 			m.setUnite("test");
 			Assert::IsFalse(m.unite.compare("µg/m3")==0);
 		}
 	};
-	*/
 
 	TEST_CLASS(TestUnitaireSeuil)
 	{
@@ -411,7 +416,7 @@ namespace TestUnitaire
 	TEST_CLASS(TestUnitaireCatalogue)
 	{
 	public:
-		/* normale que ça marche po ?
+	
 		TEST_METHOD(TestConstructionCatalogue)
 		{
 			Date d = Date(2019, 02, 01, 10, 12, 55);
@@ -425,24 +430,27 @@ namespace TestUnitaire
    			liste.push_back(m1);
 			
 			Catalogue c;
+
     		c.getMap().emplace(id, liste);
 
 			Logger::WriteMessage("Test idCatalogue dans le catalogue");
 			Assert::IsTrue(c.getMap()->first.capteurId==id.capteurId);
+
 			Logger::WriteMessage("Test liste mesure dans le catalogue");
 			Assert::IsTrue(c.getMap()->second.begin().gazId==0);//checker si le second.begin() fonctionne correctement	
 				
-		}*/
+		}
 
 		TEST_METHOD(TestIdCatalogue)
 		{
 			Date d = Date(2019, 02, 01, 10, 12, 55);
 			IdCatalogue id = IdCatalogue(12,d);
+
 			Logger::WriteMessage("Test fonctionnement date IdCatalogue");
 			Assert::IsTrue(id.dateMesure==d);
+		
 			Logger::WriteMessage("Test fonctionnement id IdCatalogue");
 			Assert::IsTrue(id.capteurId==12);
-			
 		}
 
 		
