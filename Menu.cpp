@@ -125,12 +125,12 @@ bool Menu::traitement(string input)
 		if (commande(argList, "-s"))
 		{
 			//TODO : Affichage valeurs mesure
-			e.Evaluer(c, listeCapteurs, lat, lon, dateD, dateF);
+			//e.Evaluer(c, listeCapteurs, lat, lon, dateD, dateF);
 		}
 		else
 		{
-			vector<long double> mesures = e.Evaluer(c, listeCapteurs, lat, lon, dateD, dateF);
-			cout << "[atmo] " << e.CalculAtmo(mesures, tabSeuils) << endl;
+			vector<ConcentrationIndice> mesures = e.Evaluer(c, listeCapteurs, lat, lon, dateD, dateF);
+			//cout << "[atmo] " << e.CalculAtmo(mesures, tabSeuils) << endl;
 		}
 	}
 
