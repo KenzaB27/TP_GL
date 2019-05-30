@@ -19,7 +19,7 @@ int main()
 
 	for (int i = 0; i < listeCapteurs.size(); ++i)
 	{
-		//cout << listeCapteurs[i] << endl;
+		cout << listeCapteurs[i] << endl;
 	}
 
 	system("pause");

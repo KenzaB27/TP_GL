@@ -18,20 +18,20 @@ using namespace std;
 
 //---------------------------------------------Methodes publiques
 
-int Capteur::getCapteurId()
+int Capteur::getCapteurId()const
 {
     return capteurId;
 }
 
-string Capteur::getDescription()
+string Capteur::getDescription()const
 {
     return description;
 }
 
-PorteeCapteur Capteur::getPortee(){
+PorteeCapteur Capteur::getPortee()const {
     return portee; 
 }
-int Capteur::getEtat()
+int Capteur::getEtat()const 
 {
     return etat;
 }
@@ -39,6 +39,13 @@ int Capteur::getEtat()
 void Capteur::setEtat(int unEtat)
 {
 	etat = unEtat;
+}
+
+ostream & operator<<(ostream & out, const Capteur & capteur)
+{
+	out << capteur.getCapteurId(); 
+	//" " << mesureGaz.description << " " << mesureGaz.idCapteur << " " <<mesureGaz.date << endl;
+	return out;
 }
 
 bool operator==(const Capteur& capteur1, const Capteur& capteur2)

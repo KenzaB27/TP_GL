@@ -39,8 +39,8 @@ public:
 //-------------------------------------------- Constructeurs - destructeur
 
     Capteur(int capteurid, string d, long double lat, long double lon);
-
-
+	friend ostream & operator<<(ostream &out, const Capteur &capteur); 
+	
 	friend bool operator==(const Capteur& capteur1, const Capteur& capteur2);
 
     Capteur();
