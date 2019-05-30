@@ -38,19 +38,9 @@ bool operator==(const IdCatalogue & unIdCatalogue1, const IdCatalogue & unIdCata
 
 ostream & operator<<(ostream &out, const IdCatalogue &idCatalogue)
 {
-	out << idCatalogue.capteurId << " " << idCatalogue.dateMesure<< endl;
+	out << idCatalogue.capteurId << " " << idCatalogue.dateMesure << endl;
 	return out; 
 }
-
-//-------------------------------------------- Constructeurs - destructeur
-IdCatalogue::IdCatalogue ( const IdCatalogue & unIdCatalogue )
-// Algorithme :
-//
-{
-    #ifdef MAP
-        cout << "Appel au constructeur de copie de <IdCatalogue>" << endl;
-    #endif
-} //----- Fin de IdCatalogue (constructeur de copie)
 
 
 IdCatalogue::IdCatalogue(int cI, Date dm)

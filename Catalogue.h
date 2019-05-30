@@ -39,10 +39,12 @@ public:
 //----------------------------------------------------- Méthodes publiques
 
 	unordered_map<IdCatalogue, vector<MesureGaz>> getMap() const; 
+
+	void Ajouter(IdCatalogue i, vector<MesureGaz> m);
 		
 //----------------------------------------------------- Surcharges d'opérateurs
 	friend ostream &operator<<(ostream &out, const Catalogue &catalogue);
-	operator unordered_multimap<int, vector<long double>>()const;
+	operator unordered_multimap<int, vector<long double>>() const;
 //-------------------------------------------- Constructeurs - destructeur
     Catalogue ( const Catalogue & unCatalogue );
 

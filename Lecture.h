@@ -77,7 +77,7 @@ public:
     // Contrat :
     //
 
-    void Parcourir(Catalogue &c, string fichier);
+    void Parcourir(Catalogue* c, string fichier);
     // Mode d'emploi : Parcours tout le fichier en ne prenant en compte que les capteurs et la date passés en paramètre
     //
     // Contrat :
