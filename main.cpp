@@ -13,15 +13,10 @@ int main()
 	Lecture l;
 
 	l.InitTypeGaz("../Fichiers/gazTest.csv");
-	l.Parcourir(c, "../Fichiers/valuesTest.csv");
+	l.Parcourir(c, "../Fichiers/fichierComplet.csv");
 
 	unordered_map<IdCatalogue, vector<MesureGaz>> map;
-	map = c->getMap();
-
 	
-
-
-
 	cout << *c << endl;
 	
 	system("pause");
