@@ -21,28 +21,33 @@ using namespace std;
 
 //---------------------------------------------Methodes publiques
 
-int MesureGaz ::getGazId(){
+int MesureGaz ::getGazId() const
+{
     return gazId;
 }
 
-string MesureGaz::getUnite(){
+string MesureGaz::getUnite() const
+{
     return unite;
 }
 
-string MesureGaz::getDescription()
+string MesureGaz::getDescription() const
 {
     return description;
 }
 
-Date MesureGaz::getDate(){
+Date MesureGaz::getDate()const
+{
     return date;
 }
 
-int MesureGaz::getIdCapteur(){
+int MesureGaz::getIdCapteur() const
+{
     return idCapteur;
 }
 
-long double MesureGaz::getValeur(){
+long double MesureGaz::getValeur()const 
+{
     return valeur;
 }
 void MesureGaz::setGazId(int val){
@@ -72,7 +77,8 @@ void MesureGaz::setDescription(string d)
 
 ostream & operator<<(ostream &out, const MesureGaz &mesureGaz)
 {
-	out << mesureGaz.gazId << " " << mesureGaz.valeur << " " << mesureGaz.unite << " " << mesureGaz.description << " " << mesureGaz.idCapteur << " " <<mesureGaz.date << endl;
+	out << " Gaz : " << mesureGaz.getGazId() << " Valeur :  " << mesureGaz.getValeur() << " " << mesureGaz.getUnite() << endl;
+    //" " << mesureGaz.description << " " << mesureGaz.idCapteur << " " <<mesureGaz.date << endl;
 	return out; 
 
 }MesureGaz::operator long double() const
