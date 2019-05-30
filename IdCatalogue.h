@@ -35,9 +35,9 @@ public:
 
 //-------------------------------------------- Constructeurs - destructeur
 
-    int getCapteurId();
+    int getCapteurId() const;
 
-    Date getDateMesure();
+    Date getDateMesure() const;
     IdCatalogue ( const IdCatalogue & unIdCatalogue );
 
     IdCatalogue(int cI, Date dm);
