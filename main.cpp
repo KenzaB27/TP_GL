@@ -1,6 +1,4 @@
-#include <iostream>
-#include "Catalogue.h"
-#include "Lecture.h"
+#include <stdlib.h>
 
 int main()
 {

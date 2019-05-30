@@ -21,6 +21,7 @@ using namespace std;
 #include "MesureGaz.h"
 #include "Capteur.h"
 #include "Catalogue.h"
+#include "Seuil.h"
 
 //------------------------------------------------------------------ Types
 /*enum id
@@ -59,12 +60,6 @@ public:
     //
 
     //-------------------------------------------- Constructeurs - destructeur
-    Lecture(const Lecture & unLecture);
-    // Mode d'emploi (constructeur de copie) :
-    //
-    // Contrat :
-    //
-
     Lecture();
     // Mode d'emploi :
     //
@@ -84,13 +79,19 @@ public:
     //
 
     void InitCapteur(vector<Capteur> &l, string fichier);
-    // Mode d'emploi :
+    // Mode d'emploi : Remplis le vecteur de capteur à partir du fichier passé en paramètre
     //
     // Contrat :
     //
 
     void InitTypeGaz(string fichier);
-    // Mode d'emploi :
+    // Mode d'emploi : Initialise la liste des gaz et leur description à partir du fichier passé en paramètre
+    //
+    // Contrat :
+    //
+
+    void InitSeuils(unordered_map<string, list<Seuil>> &l, string fichier);
+    // Mode d'emploi : Initialise la liste des gaz et leur description à partir du fichier passé en paramètre
     //
     // Contrat :
     //
