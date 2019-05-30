@@ -66,7 +66,7 @@ Date Date::precedent()
 	array<int, 7> normal = {4, 6, 9, 11}; //mois de 30 jours
 	Date jourPrecedent = *this;
 
-	if(this->jour == 1) // Si on est le premier fois d'un mois on repasse au mois précédent
+	if(this->jour == 1) // Si on est le premier jour d'un mois on repasse au mois précédent
 	{
 		if(this->mois != 1)
 		{
@@ -76,7 +76,7 @@ Date Date::precedent()
 			}
 			else if (find(normal.begin(), normal.end(), this->mois - 1) != normal.end()) // Si c'est un mois de 30 jours
 			{
-				jourPrecedent.jour = 31;
+				jourPrecedent.jour = 30;
 			}
 			else if(this->mois-1 == 2)
 			{
@@ -100,7 +100,6 @@ Date Date::precedent()
 	else
 	{
 		jourPrecedent.jour--;
-		jourPrecedent.mois--;
 	}
 
 	return jourPrecedent;

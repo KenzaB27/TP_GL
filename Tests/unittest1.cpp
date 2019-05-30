@@ -78,6 +78,28 @@ namespace TestUnitaire
 			d1 = Date(2016, 12, 31, 0, 25, 25.3);
 			Assert::IsTrue(d1.suivant()==Date(2017, 1, 1, 0, 25, 25.3));
 		}
+
+		TEST_METHOD(TestJourPrecedent)
+		{
+			Logger::WriteMessage("Test basic du jour precedent");
+			Date d1(2017, 1, 13, 0, 25, 25.3);
+			Assert::IsTrue(d1.precedent() == Date(2017, 1, 12, 0, 25, 25.3));
+			Logger::WriteMessage("Test jour suivant 1 mars 2016");
+			d1 = Date(2016, 3, 1, 0, 25, 25.3);
+			Assert::IsTrue(d1.precedent() == Date(2016, 2, 29, 0, 25, 25.3));
+			Logger::WriteMessage("Test jour suivant 1 mars 2019");
+			d1 = Date(2019, 3, 1, 0, 25, 25.3);
+			Assert::IsTrue(d1.precedent() == Date(2019, 2, 28, 0, 25, 25.3));
+			Logger::WriteMessage("Test jour suivant 1 mai 2016");
+			d1 = Date(2016, 5, 1, 0, 25, 25.3);
+			Assert::IsTrue(d1.precedent() == Date(2016, 4, 30, 0, 25, 25.3));
+			Logger::WriteMessage("Test jour suivant 1 avril 2016");
+			d1 = Date(2016, 4, 1, 0, 25, 25.3);
+			Assert::IsTrue(d1.precedent() == Date(2016, 3, 31, 0, 25, 25.3));
+			Logger::WriteMessage("Test jour suivant 1 janvier 2017");
+			d1 = Date(2017, 1, 1, 0, 25, 25.3);
+			Assert::IsTrue(d1.precedent() == Date(2016, 12, 31, 0, 25, 25.3));
+		}
 		TEST_METHOD(TestOperateurEgalite)
 		{
 			Date d1(2017, 1, 1, 0, 25, 25.3);
@@ -468,7 +490,7 @@ namespace TestUnitaire
 
 			vector<Capteur> liste;
 			Lecture l;
-			l.InitCapteur(liste , "../Fichiers/capteurs.csv");
+			l.InitCapteur(liste , "../../Fichiers/capteurs.csv");
 
 			Capteur c1(0, "abba", -19.4789835505555, -35.2425725968753);
 			Capteur c2(1, "", -38.3884286616875, -24.9593580676985);
