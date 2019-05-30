@@ -2,6 +2,7 @@
 #include "../PorteeCapteur.h"
 #include "../Date.h"
 #include "../Seuil.h"
+#include "../Lecture.h"
 #include "../Capteur.h"
 #include "../Gestion.h"
 #include "../MesureGaz.h"
@@ -461,8 +462,80 @@ namespace TestUnitaire
 	{
 	public:
 
-		
+		TEST_METHOD(TestInitCapteur)
+		{
+			Logger::WriteMessage("Test fonctionnement initialisation des capteurs");
 
+			vector<Capteur> liste;
+			Lecture l;
+			l.InitCapteur(liste , "../Fichiers/capteurs.csv");
+
+			Capteur c1(0, "abba", -19.4789835505555, -35.2425725968753);
+			Capteur c2(1, "", -38.3884286616875, -24.9593580676985);
+
+			vector<Capteur> capteurTest;
+			capteurTest.push_back(c1);
+			capteurTest.push_back(c2);
+
+			for (unsigned int i = 0; i < capteurTest.size(); i++)
+			{
+				Assert::AreEqual(c1.getCapteurId(), liste.front().getCapteurId());
+				Assert::AreEqual(c1.getDescription().c_str(), liste.front().getDescription().c_str());
+				Assert::AreEqual(c1.getEtat(), liste.front().getEtat());
+			}
+			
+
+			Logger::WriteMessage("Fin Test fonctionnement initialisation des capteurs");
+		}
+		
+		/*TEST_METHOD(TestParcourirFichier)
+		{
+			Logger::WriteMessage("Test fonctionnement parcours fichier de mesures");
+
+			Catalogue c;
+			Lecture l;
+
+			l.InitTypeGaz("../Fichiers/gazTest.csv");
+			l.Parcourir(c, "../Fichiers/valuesTest.csv");
+
+			Date d = Date(2017, 01, 01, 0, 20, 20.6090000);
+			MesureGaz m = MesureGaz(O3, d, 17.8902017543936, 0, "concentration d'ozone");
+			MesureGaz m1 = MesureGaz(SO2, d, 42.4807462361763, 0, "concentration de dioxyde de soufre");
+			MesureGaz m2 = MesureGaz(NO2, d, 13.6449094925285, 0, "concentration de dioxyde d'azote");
+			MesureGaz m3 = MesureGaz(PM10, d, 1.55796479844986, 0, "concentration de particules fines");
+
+			IdCatalogue id = IdCatalogue(0, d);
+
+			vector<MesureGaz> liste;
+			liste.push_back(m);
+			liste.push_back(m1);
+			liste.push_back(m2);
+			liste.push_back(m3);
+
+			Catalogue cTest;
+
+			cTest.getMap().emplace(make_pair(id, liste));
+
+			auto it = (c.getMap()).begin();
+
+			//Assert::AreEqual(it->first.getCapteurId(), 0);
+			Assert::IsTrue(it->first.getDateMesure()==d);
+
+			/*
+			auto ll = liste.begin();
+			for (auto l = it->second.begin(); l != it->second.end(); ++l)
+			{
+				//Assert::AreEqual(l->getValeur(), ll->getValeur());
+				//Assert::AreEqual(l->getDescription(), ll->getDescription());
+				//Assert::AreEqual(l->getGazId(), ll->getGazId());
+				//Assert::AreEqual(l->getIdCapteur(), ll->getIdCapteur());
+				//Assert::AreEqual(l->getUnite(), ll->getUnite());
+				//Assert::IsTrue(l->getDate() == ll->getDate());
+			}
+
+
+			Logger::WriteMessage("Fin test fonctionnement parcours fichier de mesures");
+		}*/
 
 	};
 
