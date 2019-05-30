@@ -30,6 +30,11 @@ using namespace std;
 
 //------------------------------------------------- Surcharge d'op�rateurs
 
+ostream & operator<<(ostream &out, const ConcentrationIndice &concentration)
+{
+	out << concentration.concentration << " ug/m3 - indice ATMO : " << concentration.indice << endl; 
+	return out; 
+}
 
 void ConcentrationIndice::setIndice(vector<Seuil>& listeSeuils)
 {

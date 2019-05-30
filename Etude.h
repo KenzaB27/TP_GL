@@ -67,7 +67,7 @@ public:
 
 //------------------------------------------------------------------ PRIVE
 
-protected:
+
 //----------------------------------------------------- Méthodes protégées
 	vector<ConcentrationIndice> evaluer(Catalogue &cat, vector<int>&listCapteur , unordered_map<int, vector<Seuil>>&mapSeuils, Date dateD, Date dateF);
 	vector<int> getCapteur(vector<Capteur>&listCapteur, long double latitude, long double longitude, long double rayon = 2000);

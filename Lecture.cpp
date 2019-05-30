@@ -258,7 +258,7 @@ void Lecture::LectureMesure(ifstream &ifs, MesureGaz &mesure)
 
 } //--- Fin de LectureMesure
 
-void Lecture::InitSeuils(unordered_map<int, list<Seuil>> &l, string fichier)
+void Lecture::InitSeuils(unordered_map<int, vector<Seuil>> &l, string fichier)
 {
 	ifstream monFlux(fichier.c_str());
 

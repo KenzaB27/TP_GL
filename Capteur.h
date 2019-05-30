@@ -31,10 +31,10 @@ class Capteur
     friend class Gestion;
 public:
 //----------------------------------------------------- Méthodes publiques
-    int getCapteurId();
-    string getDescription();
-    PorteeCapteur getPortee();
-    int getEtat();
+    int getCapteurId() const ;
+    string getDescription() const ;
+    PorteeCapteur getPortee() const;
+    int getEtat() const;
 	void setEtat(int unEtat);
 //-------------------------------------------- Constructeurs - destructeur
 

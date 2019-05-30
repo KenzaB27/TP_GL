@@ -142,6 +142,7 @@ vector<int> Etude::getCapteur(vector<Capteur>&listCapteur, long double latitude,
 	for (auto it = listCapteur.begin(); it != listCapteur.end(); it++)
 	{
 		if (territoire.contient(it->getPortee())) {
+			cout << "capteurAJoutee" << endl; 
 			capteurTerritoire.push_back(it->getCapteurId());
 		}
 	}

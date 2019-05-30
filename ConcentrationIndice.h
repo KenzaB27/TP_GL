@@ -38,7 +38,7 @@ public:
 
 //------------------------------------------------- Surcharge d'opérateurs
     
-
+	friend ostream & operator<<(ostream &out, const ConcentrationIndice &concentration); 
 
 //-------------------------------------------- Constructeurs - destructeur
 	ConcentrationIndice(long double constra );
