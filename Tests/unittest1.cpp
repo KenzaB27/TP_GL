@@ -437,7 +437,7 @@ namespace TestUnitaire
 			Assert::IsTrue(c.getMap().find(id)->first.getCapteurId()==id.getCapteurId());
 
 			Logger::WriteMessage("Test liste mesure dans le catalogue");
-			Assert::IsTrue(c.getMap().find()->second.getGazId()==0);//checker si le second.begin() fonctionne correctement	
+			Assert::IsTrue(c.getMap().find(id)->second.getGazId()==0);//checker si le second.begin() fonctionne correctement	
 				
 		}
 
