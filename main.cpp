@@ -4,20 +4,6 @@
 
 int main()
 {
-	/*
-
-	TESTS EN COURS ----------- */
-
-
-	Catalogue* c = new Catalogue();
-	Lecture l;
-
-	l.InitTypeGaz("../Fichiers/gazTest.csv");
-	l.Parcourir(c, "../Fichiers/fichierComplet.csv");
-
-	unordered_map<IdCatalogue, vector<MesureGaz>> map;
-	
-	cout << *c << endl;
 	
 	system("pause");
 	
