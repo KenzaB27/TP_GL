@@ -40,13 +40,16 @@ public:
 //
 //void supprimerUtilisateur(Utilisateur unUtilisateur);
 //void creerUtilisateur(Utilisateur unUtilisateur);
-void supprimerCapteur(int numCapteur, vector<Capteur> &listeCapteurs);
-int evaluerCapteur(Catalogue &c, int num);
-void ajouterCapteur(Capteur unCapteur, vector<Capteur> &listeCapteurs);
-void mettreEnVeilleCapteur(int numCapteur, vector<Capteur>& listeCapteurs);
-void restaurerCapteur(int numCapteur, vector<Capteur>& listeCapteurs);
-void changerSeuil(unordered_map<string,list<Seuil>> &tabSeuil, list<Seuil> PM10, list<Seuil> SO2, list<Seuil> NO2, list<Seuil> O3);
-void changerUnSeuil(unordered_map<string, list<Seuil>>& tabSeuil, string gaz, int num, Seuil s);
+void SupprimerCapteur(int numCapteur, vector<Capteur> &listeCapteurs);
+int EvaluerCapteur(Catalogue &c, int num);
+void AjouterCapteur(Capteur unCapteur, vector<Capteur> &listeCapteurs);
+void MettreEnVeilleCapteur(int numCapteur, vector<Capteur>& listeCapteurs);
+void RestaurerCapteur(int numCapteur, vector<Capteur>& listeCapteurs);
+void ChangerSeuil(unordered_map<int, vector<Seuil>> &tabSeuil, vector<Seuil> pm10,
+	vector<Seuil> so2, vector<Seuil> no2, vector<Seuil> o3);
+void ChangerUnSeuil(unordered_map<int, vector<Seuil>>& tabSeuil, int gaz, int num, Seuil s);
+
+
 
 
 
@@ -69,8 +72,7 @@ Gestion ( const Gestion & unGestion );
 Gestion ( );
 // Mode d'emploi :
 //
-// Contrat :
-//
+// Contrat ://
 
 virtual ~Gestion ( );
 // Mode d'emploi :

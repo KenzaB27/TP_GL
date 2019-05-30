@@ -12,8 +12,8 @@ int main()
 	Catalogue* c = new Catalogue();
 	Lecture l;
 
-	l.InitTypeGaz("../Fichiers/gazTest.csv");
-	l.Parcourir(c, "../Fichiers/fichierComplet.csv");
+	l.InitTypeGaz("../../Fichiers/gazTest.csv");
+	l.Parcourir(c, "../../Fichiers/fichier1000.csv");
 
 	unordered_map<IdCatalogue, vector<MesureGaz>> map;
 	

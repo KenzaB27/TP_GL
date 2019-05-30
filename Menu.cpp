@@ -179,17 +179,17 @@ bool Menu::traitement(string input)
 
 		if (argList[1].compare("remove"))
 		{
-			g.supprimerCapteur(atoi(argList[2].c_str()), listeCapteurs);
+			g.SupprimerCapteur(atoi(argList[2].c_str()), listeCapteurs);
 		}
 
 		if (argList[1].compare("exclude"))
 		{
-			g.mettreEnVeilleCapteur(atoi(argList[2].c_str()), listeCapteurs);
+			g.MettreEnVeilleCapteur(atoi(argList[2].c_str()), listeCapteurs);
 		}
 
 		if (argList[1].compare("include"))
 		{
-			g.restaurerCapteur(atoi(argList[2].c_str()), listeCapteurs);
+			g.RestaurerCapteur(atoi(argList[2].c_str()), listeCapteurs);
 		}
 	}
 
