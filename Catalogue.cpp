@@ -45,7 +45,7 @@ Catalogue::operator unordered_multimap<int, vector<long double>>() const
 		{
 			valeurMesures.emplace_back((long double)*i);
 		}
-		nouvelleMap.emplace(make_pair(it->first.capteurId, valeurMesures));
+		nouvelleMap.emplace(make_pair(it->first.getCapteurId(), valeurMesures));
 	}
 	return nouvelleMap;
 }

@@ -18,6 +18,15 @@ using namespace std;
 
 
 //---------------------------------------------Methodes publiques
+
+int IdCatalogue::getCapteurId(){
+    return capteurId;
+}
+
+Date IdCatalogue::getDateMesure(){
+    return dateMesure;
+}
+
 bool operator==(const IdCatalogue & unIdCatalogue1, const IdCatalogue & unIdCatalogue2)
 {
 	if (unIdCatalogue1.capteurId == unIdCatalogue2.capteurId && unIdCatalogue1.dateMesure == unIdCatalogue2.dateMesure)
