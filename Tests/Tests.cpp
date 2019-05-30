@@ -98,32 +98,47 @@ void Tests::TestCatalogue(){
 
 }*/
 
-
 void Tests::TestChangerSeuil()
 
 {
-    unordered_map<string,list<Seuil>> umap;
-    list<Seuil> PM10;
-    list<Seuil> SO2;
-    list<Seuil> NO2;
-    list<Seuil> O3;
+    unordered_map<int,list<Seuil>> umap;
+    list<Seuil> pm10;
+    list<Seuil> so2;
+    list<Seuil> no2;
+    list<Seuil> o3;
 
     for(int i=0;i<10;i++)
     {
-        PM10.push_back(Seuil(i,i,i));
-        SO2.push_back(Seuil(i,i,i));
-        NO2.push_back(Seuil(i,i,i));
-        O3.push_back(Seuil(i,i,i));
+        pm10.push_back(Seuil(i,i,i));
+        so2.push_back(Seuil(i,i,i));
+        no2.push_back(Seuil(i,i,i));
+        o3.push_back(Seuil(i,i,i));
     }
 
-    umap.insert(make_pair("PM10",PM10));
-    umap.insert(make_pair("SO2",SO2));
-    umap.insert(make_pair("NO2",NO2));
-    umap.insert(make_pair("O3",O3));
+    umap.insert(make_pair(PM10,pm10));
+    umap.insert(make_pair(SO2,so2));
+    umap.insert(make_pair(NO2,no2));
+    umap.insert(make_pair(O3,o3));
 
-    for (list<Seuil>::iterator it = umap["PM10"].begin(); it != umap["PM10"].end(); ++it) {
-        cout <<"d"<<endl;
-    }
+	cout << "Indice   |   SO2   |   NO2  |   O3   |   PM   |" << endl;
+
+	auto itPM10 = umap[PM10].rbegin();
+	auto itSO2 = umap[SO2].rbegin();
+	auto itNO2 = umap[NO2].rbegin();
+	auto itO3 = umap[O3].rbegin();
+
+	for (int i = 10; i >=1; i--)
+	{
+		cout <<i<<"        |   "<< itSO2->getMin() << "-" << itSO2->getMax() << "   |   "
+			<< itNO2->getMin() << "-" << itNO2->getMax() <<"   |   "
+			<<itO3->getMin()<<"-"<<itO3->getMax() << "   |   " 
+			<<itPM10->getMin() << "-" << itPM10->getMax() << "   |   " << endl;
+		++itPM10;
+		++itSO2;
+		++itNO2;
+		++itO3;
+
+	}
 }
 
 
