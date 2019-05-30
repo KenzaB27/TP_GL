@@ -94,7 +94,15 @@ void Gestion::changerSeuil(unordered_map<string,list<Seuil>> &tabSeuil, list<Seu
         ++itGaz;
     }
 }
-
+void Gestion::changerUnSeuil(unordered_map<string, list<Seuil>>& tabSeuil, string gaz, int num,Seuil s)
+{
+	list<Seuil>::iterator it = tabSeuil[gaz].begin();
+	for (int i = 1; i < num; i++)
+	{
+		++it;
+	}
+	(*it) = s;
+}
 
 void Gestion::mettreEnVeilleCapteur(int  numCapteur, vector <Capteur> &listeCapteurs) {
     bool capteurAbsent = true;
