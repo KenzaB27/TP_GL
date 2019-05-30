@@ -40,10 +40,10 @@ public:
 //void supprimerUtilisateur(Utilisateur unUtilisateur);
 //void creerUtilisateur(Utilisateur unUtilisateur);
 void supprimerCapteur(int numCapteur, vector<Capteur> &listeCapteurs);
+int evaluerCapteur(Catalogue& c, int num);
 void ajouterCapteur(Capteur unCapteur, vector<Capteur> &listeCapteurs);
 void mettreEnVeilleCapteur(int numCapteur, vector<Capteur>& listeCapteurs);
 void restaurerCapteur(int numCapteur, vector<Capteur>& listeCapteurs);
-int evaluerCapteur(Capteur unCapteur);
 void changerSeuil(unordered_map<string,list<Seuil>> &tabSeuil, list<Seuil> PM10, list<Seuil> SO2, list<Seuil> NO2, list<Seuil> O3);
 void changerUnSeuil(unordered_map<string, list<Seuil>>& tabSeuil, string gaz, int num, Seuil s);
 
