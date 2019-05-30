@@ -55,6 +55,18 @@ unordered_map<IdCatalogue, vector<MesureGaz>> Catalogue::getMap() const
 	return map;
 }
 
+void Catalogue::Ajouter(IdCatalogue i, vector<MesureGaz> m)
+{
+	for (int i = 0; i < m.size(); i++)
+	{
+		cout << m[i] << endl;
+	}
+	cout << i << endl;
+
+	bool r = map.emplace(make_pair(i, m)).second;
+	
+	cout << "insertion : " << r << endl;
+}
 
 
 //-------------------------------------------- Constructeurs - destructeur

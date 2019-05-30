@@ -68,7 +68,7 @@ Menu::Menu()
 	string fichierMesures = "";
 	l.InitCapteur(listeCapteurs ,fichierCapteurs);
 	l.InitTypeGaz(fichierGaz);
-	l.Parcourir(c, fichierMesures);
+	//l.Parcourir(c, fichierMesures);
 
 } //----- Fin de Menu
 

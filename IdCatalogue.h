@@ -65,8 +65,11 @@ namespace std {
           size_t h1 = hash<int>()(k.getCapteurId());
           size_t h2 = hash<int>()(k.getDateMesure().annee)^hash<int>()(k.getDateMesure().mois) 
 					^ hash<int>()(k.getDateMesure().jour)^hash<int>()(k.getDateMesure().heure) 
-					^ hash<int>()(k.getDateMesure().minutes)^hash<long double>()(k.getDateMesure().secondes);
-          return h1 ^ ( h2 << 1 );
+					^ hash<int>()(k.getDateMesure().minutes)^hash<int>()((int)k.getDateMesure().secondes);
+          
+		  cout << "hashage" << (h1 ^ (h2 << 1)) << endl;
+		return h1 ^ ( h2 << 1 );
+
       }
   };
 }

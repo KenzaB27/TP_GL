@@ -33,7 +33,7 @@ using namespace std;
 //-------------------------------------------------------- Fonctions amies
 
 //----------------------------------------------------- M�thodes publiques
-void Lecture::Parcourir(Catalogue &c, string fichier)
+void Lecture::Parcourir(Catalogue* c, string fichier)
 {
 	//Catalogue c;
 
@@ -82,7 +82,10 @@ void Lecture::Parcourir(Catalogue &c, string fichier)
 				IdCatalogue index(idCapteur, dateMesure);
 
 				//c.getMap()[index] = listeMesure;
-				c.getMap().emplace(make_pair(index, listeMesure));
+				
+				c->Ajouter(index, listeMesure);
+				
+
 			}
 		}
 	}
