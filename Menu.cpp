@@ -93,108 +93,134 @@ void Menu::init()
 
 
 bool Menu::traitement(string input)
-{
-	string delimiter =  " ";
+{	
+	vector<string> argList;
+	unordered_map<string,string> valueList;
 
-	string s = input;
-	size_t pos = 0;
-	string token;
-	
-	string argList[MAX_PARAM_COMMAND]; 
-	int i = 0;
-
-	while ((pos = s.find(delimiter)) != std::string::npos)
-	{
-		token = s.substr(0, pos);
-		argList[i] = token;
-		s.erase(0, pos + delimiter.length());
-		i++;
-	}
-	argList[i] = token;
+	split(argList, valueList, input);
 
 
-	if (argList[0].compare("")) //Cas ou acune commande n'est insérée
+	if (argList.empty()) //Cas ou acune commande n'est insérée
 	{
 		return true;
 	}
 
-	if(argList[0].compare("atmo"))
+	if(commande(argList, "atmo"))
 	{
 		//On a toujours lat et long 
 		//La date si elle n'est pas mise est celle d'hier
-		//Param a mettre -r -d si date et rayon, sinon que latitude et longitude
-		//Ordre lat(1) long(2) -r(3) -d(4) rayon(5) dateD(6) dateF(7)
-		long double lat;
-		long double lon;
-		double rayon;
+		//Param a mettre -r -d si date et rayon, sinon que latitude et longitude 
+		// -s si valeurs a afficher
+		
+		long double lat = atof(valueList.find("-lat")->second.c_str());
+		long double lon = atof(valueList.find("-long")->second.c_str());;
+		
+		double rayon = commande(argList, "-r") ? atof(valueList.find("-r")->second.c_str()) : 2000;
+		
 		Date dateD;
 		Date dateF;
-		dateF = dateF.now();
-		dateD = dateF.precedent();
-
-		lat = atof(argList[1].c_str());
-		lon = atof(argList[2].c_str());
-
-		if (argList[3].compare("-r"))
+		dateF = commande(argList, "-d") ? Date(valueList.find("-dateF")->second.c_str()) : dateF.precedent();
+		dateD = commande(argList, "-d") ? Date(valueList.find("-dateD")->second.c_str()) : dateF.now();
+			
+		if (commande(argList, "-s"))
 		{
-			if (argList[4].compare("-d"))
-			{
-				rayon = atof(argList[5].c_str());
-				dateD = Date(argList[6]);
-				dateF = Date(argList[7]);
-
-				e.Evaluer(c, listeCapteurs, lat, lon, dateD, dateF, rayon);
-			}
-			else
-			{
-				rayon = atof(argList[4].c_str());
-				e.Evaluer(c, listeCapteurs, lat, lon, dateD, dateF, rayon);
-			}
-		}
-		else if (argList[3].compare("-d"))
-		{
-			dateD = Date(argList[4]);
-			dateF = Date(argList[5]);
-
+			//TODO : Affichage valeurs mesure
 			e.Evaluer(c, listeCapteurs, lat, lon, dateD, dateF);
 		}
-		else 
+		else
 		{
-			e.Evaluer(c, listeCapteurs, lat, lon, dateD, dateF);
+			vector<long double> mesures = e.Evaluer(c, listeCapteurs, lat, lon, dateD, dateF);
+			cout << "[atmo] " << e.CalculAtmo(mesures, tabSeuils) << endl;
 		}
 	}
 
 
-	if (argList[0].compare("stats"))
+	if (commande(argList, "stats"))
 	{
 		//TODO : capteurs similaires
 	}
 
-	if (argList[0].compare("sensor"))
+	if (commande(argList, "sensor"))
 	{
-		if (argList[1].compare("add"))
+		if (commande(argList, "add"))
 		{
 			//g.ajouterCapteur(atoi(argList[2].c_str()), listeCapteurs);
 		}
 
-		if (argList[1].compare("remove"))
-		{
-			g.SupprimerCapteur(atoi(argList[2].c_str()), listeCapteurs);
+		if (commande(argList, "remove"))		{
+			//g.supprimerCapteur(atoi(argList[2].c_str()), listeCapteurs);
 		}
 
-		if (argList[1].compare("exclude"))
+		if (commande(argList, "exclude"))
 		{
-			g.MettreEnVeilleCapteur(atoi(argList[2].c_str()), listeCapteurs);
+			//g.mettreEnVeilleCapteur(atoi(argList[2].c_str()), listeCapteurs);
 		}
 
-		if (argList[1].compare("include"))
+		if (commande(argList, "include"))
 		{
-			g.RestaurerCapteur(atoi(argList[2].c_str()), listeCapteurs);
+			//g.restaurerCapteur(atoi(argList[2].c_str()), listeCapteurs);
 		}
 	}
 
-	if (argList[0].compare("seuil"))
+	if (commande(argList, "seuil"))
 	{
 		//TODO : gestion modification des seuils
+	}
+}
+
+bool Menu::commande(vector<string> c, string s) 
+{
+	return find(c.begin(), c.end(), s) != c.end();
+}
+
+void Menu::split(vector<string> &argList, unordered_map<string, string> valueList, string s)
+{
+	string delimiter = " ";
+	size_t pos = 0;
+	string token;
+	char prefix = '-';
+
+	while ((pos = s.find(delimiter)) != std::string::npos)
+	{
+		token = s.substr(0, pos);
+
+		if (token[0] == prefix) //si forme -a ou -aa=555
+		{
+			size_t pos1 = token.find("=");
+
+			if (pos1 != std::string::npos) // forme -a=66
+			{
+				string t = token.substr(0, pos1);
+				token.erase(0, pos1 + delimiter.length());
+				argList.push_back(t);
+				valueList.emplace(make_pair(t, token));
+			}
+			else {
+				argList.push_back(token);
+			}
+		}
+		else {
+			argList.push_back(token);
+		}
+
+		s.erase(0, pos + delimiter.length());
+	}
+	if (s[0] == prefix) //si forme -a ou -aa=555
+	{
+		size_t pos1 = s.find("=");
+
+		if (pos1 != std::string::npos) // forme -a=66
+		{
+			string t = s.substr(0, pos1);
+			s.erase(0, pos1 + delimiter.length());
+			argList.push_back(t);
+			valueList.emplace(make_pair(t, s));
+		}
+		else {
+			argList.push_back(s);
+		}
+	}
+	else {
+		argList.push_back(s);
 	}
 }

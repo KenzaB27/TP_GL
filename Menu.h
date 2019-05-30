@@ -80,6 +80,13 @@ private:
     // Contrat :
     //
 
+	bool commande(vector<string> c, string s);
+	// Mode d'emploi : Verifie si la commande appartient au vecteur de paramètres passés 
+	//
+
+	void split(vector<string> &argList, unordered_map<string, string> valueList, string s);
+	// Mode d'emploi : split un string de commande en paramètres et valeurs (les -r et -val=value)
+
     void init();
 
 protected:
@@ -92,6 +99,7 @@ private:
     Etude e;
     Lecture l;
     vector<Capteur> listeCapteurs;
+	unordered_map<int, vector<Seuil>> tabSeuils;
 
     //---------------------------------------------------------- Classes amies
 
