@@ -1,41 +1,28 @@
 /*************************************************************************
-                           ConcentrationIndice  -  description
-                             -------------------
-    d�but                : ${date}
-    copyright            : (C) ${year} par ${user}
+						   ConcentrationIndice  -  description
+							 -------------------
+	début                : 04/06/2019
+	copyright            : (C) 2019 par BOUZID Kenza    - JEANNE Nathan
+										HAMIDOVIC David - CAVAGNA Margaux
 *************************************************************************/
 
-//---------- R�alisation de la classe <ConcentrationIndice> (fichier ${file_name}) --
+//---------- R�alisation de la classe <ConcentrationIndice> (ConcentrationIndice.cpp) --
 
 //---------------------------------------------------------------- INCLUDE
 
 //-------------------------------------------------------- Include syst�me
 using namespace std;
 #include <iostream>
-
 //------------------------------------------------------ Include personnel
 #include "ConcentrationIndice.h"
-
 //------------------------------------------------------------- Constantes
 
-//---------------------------------------------------- Variables de classe
-
-//----------------------------------------------------------- Types priv�s
 
 
 //----------------------------------------------------------------- PUBLIC
 //-------------------------------------------------------- Fonctions amies
 
 //----------------------------------------------------- M�thodes publiques
-
-//------------------------------------------------- Surcharge d'op�rateurs
-
-ostream & operator<<(ostream &out, const ConcentrationIndice &concentration)
-{
-	out << concentration.concentration << " ug/m3 - indice ATMO : " << concentration.indice << endl; 
-	return out; 
-}
-
 void ConcentrationIndice::setIndice(vector<Seuil>& listeSeuils)
 {
 	for (auto it = listeSeuils.begin(); it != listeSeuils.end(); ++it)
@@ -44,7 +31,14 @@ void ConcentrationIndice::setIndice(vector<Seuil>& listeSeuils)
 			indice = it->getIndice();
 		}
 	}
-}
+}// fin de setIndice
+//------------------------------------------------- Surcharge d'op�rateurs
+
+ostream & operator<<(ostream &out, const ConcentrationIndice &concentration)
+{
+	out << concentration.concentration << " ug/m3 - indice ATMO : " << concentration.indice << endl; 
+	return out; 
+}// fin de operator<< 
 
 //-------------------------------------------- Constructeurs - destructeur
 ConcentrationIndice::ConcentrationIndice(long double constra):concentration(constra)
@@ -54,7 +48,7 @@ ConcentrationIndice::ConcentrationIndice(long double constra):concentration(cons
 #ifdef MAP
     cout << "Appel au constructeur de <Utilisateur>" << endl;
 #endif
-} //----- Fin de Utilisateur
+} //----- Fin de ConcentrationIndice
 
 
 ConcentrationIndice::~ConcentrationIndice( )
@@ -64,6 +58,6 @@ ConcentrationIndice::~ConcentrationIndice( )
 #ifdef MAP
     cout << "Appel au destructeur de <Utilisateur>" << endl;
 #endif
-} //----- Fin de ~Utilisateur
+} //----- Fin de ~ConcentrationIndice
 
 

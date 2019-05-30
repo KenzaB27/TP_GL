@@ -1,11 +1,12 @@
 /*************************************************************************
-                           Etude  -  description
-                             -------------------
-    d�but                : ${date}
-    copyright            : (C) ${year} par ${user}
+						   Etude  -  description
+							 -------------------
+	début                : 04/06/2019
+	copyright            : (C) 2019 par BOUZID Kenza    - JEANNE Nathan
+										HAMIDOVIC David - CAVAGNA Margaux
 *************************************************************************/
 
-//---------- R�alisation de la classe <Etude> (fichier ${file_name}) --
+//---------- R�alisation de la classe <Etude> (Etude.cpp) --
 
 //---------------------------------------------------------------- INCLUDE
 
@@ -16,34 +17,18 @@ using namespace std;
 //------------------------------------------------------ Include personnel
 #include "Etude.h"
 
-//------------------------------------------------------------- Constantes
-
-//---------------------------------------------------- Variables de classe
-
-//----------------------------------------------------------- Types priv�s
-//----------------------------------------------------------------- PUBLIC
-//-------------------------------------------------------- Fonctions amies
-
 //----------------------------------------------------- M�thodes publiques
-// type Etude::M�thode ( liste de param�tres )
-// Algorithme :
-//
-//{
-//} //----- Fin de M�thode
-
-
-//-------------------------------------------- Constructeurs - destructeur
 
 vector<ConcentrationIndice> Etude::Evaluer(Catalogue &cat, vector<Capteur> &listCapteur, unordered_map<int, vector<Seuil>>&mapSeuils,  long double latitude, long double longitude, Date dateDebut, Date dateFin, long double rayon)
 {
 	vector<int> listeCapteur = getCapteur(listCapteur, latitude, longitude, rayon); 
 	return evaluer(cat, listeCapteur, mapSeuils, dateDebut, dateFin);
-}
+}// Fin de Evaluer 
 
 int Etude::CalculAtmo(vector<ConcentrationIndice>&mesures)
 {
 	return max(max(mesures[NO2].indice, mesures[O3].indice), max(mesures[PM10].indice, mesures[SO2].indice));
-}
+}//Fin de calcul Atmo 
 
 unordered_map<int,vector<int>> Etude::DetecterCapteursSimilaires(Catalogue & c, int nbCapteurs)
 {	
@@ -75,12 +60,9 @@ unordered_map<int,vector<int>> Etude::DetecterCapteursSimilaires(Catalogue & c, 
 		}
 	}
 	return capteursSimilaires; 
-}
+}//fin de DetecterCapteursSimilaires
 
-
-
-
-
+//-------------------------------------------- Constructeurs - destructeur
 Etude::Etude ( )
 // Algorithme :
 //
@@ -100,11 +82,11 @@ Etude::~Etude ( )
 #endif
 } //----- Fin de ~Etude
 
-
 //------------------------------------------------------------------ PRIVE
 
 //----------------------------------------------------- M�thodes prot�g�es
-vector<ConcentrationIndice> Etude::evaluer(Catalogue &cat, vector<int>&listCapteur, unordered_map<int, vector<Seuil>>&mapSeuils, Date dateD, Date dateF)
+vector<ConcentrationIndice> Etude::evaluer(Catalogue &cat, vector<int>&listCapteur,
+	unordered_map<int, vector<Seuil>>&mapSeuils, Date dateD, Date dateF)
 {
 	if (dateF == Date())
 	{
@@ -133,7 +115,7 @@ vector<ConcentrationIndice> Etude::evaluer(Catalogue &cat, vector<int>&listCapte
 	concentrations[NO2].setIndice(mapSeuils[NO2]); 
 	concentrations[PM10].setIndice(mapSeuils[PM10]);
 	return concentrations;
-}
+}// fin de evaluer 
 
 
 vector<int> Etude::getCapteur(vector<Capteur>&listCapteur, long double latitude, long double longitude, long double rayon) {
@@ -147,7 +129,7 @@ vector<int> Etude::getCapteur(vector<Capteur>&listCapteur, long double latitude,
 		}
 	}
 	return capteurTerritoire;
-}
+}// fin de getCapteur
 
 bool Etude::comparerMesures(vector<long double>&mes1, vector<long double>&mes2)
 {
@@ -156,8 +138,5 @@ bool Etude::comparerMesures(vector<long double>&mes1, vector<long double>&mes2)
 		return true; 
 	}
 	return false;
-}
+}// fin de comparerMesures
 
-
-
-//------------------------------------------------------- M�thodes priv�es
