@@ -95,7 +95,8 @@ bool Menu::traitement(string input)
 
 	if (commande(argList, "exit")) return true;
 
-	if(commande(argList, "atmo"))
+
+	if(commande(argList, "atmo")) //------------------------------------- Etude de l'ATMO
 	{
 		// On a toujours -lat= et -long= 
 		// La date si elle n'est pas mise est celle d'hier
@@ -121,18 +122,24 @@ bool Menu::traitement(string input)
 		}
 		else
 		{
+			//TODO : Affichage ATMO
 			//vector<ConcentrationIndice> mesures = e.Evaluer(c, listeCapteurs, lat, lon, dateD, dateF);
 			//cout << "[atmo] " << e.CalculAtmo(mesures, tabSeuils) << endl;
 		}
 	}
 
 
-	if (commande(argList, "stats"))
+	if (commande(argList, "stats")) //----------------------------------- Etude des statistiques
 	{
-		//TODO : capteurs similaires
+		// Commande de la forme : stats -n=3 pour l'etude de 3 capteurs
+
+		int n = atoi(valueList.find("-n")->second.c_str());
+		e.DetecterCapteursSimilaires(*c, n);
+		//TODO : appel et affichage capteurs similaires
+
 	}
 
-	if (commande(argList, "sensor"))
+	if (commande(argList, "sensor")) //---------------------------------- Gestion des capteurs
 	{
 		if (commande(argList, "add"))
 		{
@@ -164,7 +171,7 @@ bool Menu::traitement(string input)
 		}
 	}
 
-	if (commande(argList, "seuil"))
+	if (commande(argList, "seuil")) //----------------------------------- Gestion du seuil
 	{
 		if (commande(argList, "print"))
 		{
