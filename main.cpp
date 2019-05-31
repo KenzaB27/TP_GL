@@ -37,7 +37,7 @@ int main()
 	cout << "NO2: " << listeConcIndice[NO2];
 	cout << "O3: " << listeConcIndice[O3];
 
-	cout << "L'atmo du point souhaité au 01-01-2017 est : " << e.CalculAtmo(listeConcIndice) << endl; 
+	cout << "L'atmo au point au 01-01-2017 est : " << e.CalculAtmo(listeConcIndice) << endl; 
 	
 	system("pause");
 

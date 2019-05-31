@@ -171,16 +171,6 @@ namespace TestUnitaire
 			Assert::IsTrue(s1 != s3);
 			Assert::IsFalse(s1 != s2);
 		}
-
-
-	};
-	TEST_CLASS(TestUnitaireEtude)
-	{
-		TEST_METHOD(TestCalculAtmo)
-		{
-			//Etude e; 
-		}
-
 	};
 	TEST_CLASS(TestUnitaireGestion)
 	{

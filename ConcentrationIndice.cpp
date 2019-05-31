@@ -49,6 +49,15 @@ ConcentrationIndice::ConcentrationIndice(long double constra):concentration(cons
 #endif
 } //----- Fin de ConcentrationIndice
 
+ConcentrationIndice::ConcentrationIndice() 
+// Algorithme :
+//
+{
+#ifdef MAP
+	cout << "Appel au constructeur de <Utilisateur>" << endl;
+#endif
+} //----- Fin de ConcentrationIndice
+
 
 ConcentrationIndice::~ConcentrationIndice( )
 // Algorithme :

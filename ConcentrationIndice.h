@@ -50,6 +50,11 @@ public:
 	//
     // Contrat : Aucun contrat 
     //
+	ConcentrationIndice();
+	// Mode d'emploi : Constructeur par défaut de ConcentrationIndice
+	//
+	// Contrat : Aucun contrat 
+	//
 
     virtual ~ConcentrationIndice( );
     // Mode d'emploi : Destrucuteur de ConcentrationIndice
