@@ -93,9 +93,13 @@ vector<ConcentrationIndice> Etude::evaluer(Catalogue &cat, vector<int>&listCapte
 		dateF = dateD.suivant(); 
 	}
 	vector<ConcentrationIndice>concentrations;
+	concentrations.emplace_back(ConcentrationIndice(0)); 
+	concentrations.emplace_back(ConcentrationIndice(0));
+	concentrations.emplace_back(ConcentrationIndice(0));
+	concentrations.emplace_back(ConcentrationIndice(0));
 	int compteur = 0;
-
-	for (auto it = cat.getMap().begin(); it != cat.getMap().end(); it++)
+	unordered_map<IdCatalogue, vector<MesureGaz>> map = cat.getMap();
+	for (auto it = map.begin(); it != map.end(); it++)
 	{
 		for (auto l = listCapteur.begin(); l != listCapteur.end(); l++)
 		{
@@ -124,7 +128,7 @@ vector<int> Etude::getCapteur(vector<Capteur>&listCapteur, long double latitude,
 	for (auto it = listCapteur.begin(); it != listCapteur.end(); it++)
 	{
 		if (territoire.contient(it->getPortee())) {
-			cout << "capteurAJoutee" << endl; 
+			cout << "capteurAjoute" << endl; 
 			capteurTerritoire.push_back(it->getCapteurId());
 		}
 	}
