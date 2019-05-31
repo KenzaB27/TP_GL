@@ -274,3 +274,78 @@ void Menu::split(vector<string> &argList, unordered_map<string, string> &valueLi
 		argList.push_back(s);
 	}
 }
+void Menu::afficheMatSimilarite(bool**matSimilarite , int nbCapteurs) {
+	cout << "Matrices de similarite des capteurs " << endl << endl;
+	cout << "     |";
+	for (int i = 0; i < nbCapteurs; i++)
+	{
+		cout << i << "    |";
+	}
+	cout << endl;
+	cout << "------------------------------------------------------------------" << endl;
+	for (int i = 0; i < nbCapteurs; i++)
+	{
+		cout << i << "    |";
+		for (int j = 0; j < nbCapteurs; j++)
+		{
+			cout << matSimilarite[i][j] << "    |";
+		}
+		cout << endl;
+	}
+	cout << endl;
+}
+void Menu::afficheMatMoyenne(unordered_map<int, vector<long double> >moyenneCapteur) {
+	cout << "Moyennes des messures de capteurs par gaz" << endl;
+	cout << "Capteur n |    O3    |   PM10   |    SO2    |    NO2    |" << endl;
+	cout << "---------------------------------------------------------" << endl;
+	for (auto x : moyenneCapteur)
+	{
+		cout << x.first << "         |" <<
+			x.second[O3] << "   | " <<
+			x.second[PM10] << "  | " <<
+			x.second[SO2] << "   | " <<
+			x.second[NO2] << "   | " << endl;
+	}
+	cout << endl;
+}
+void Menu::afficheMatEcart(string gaz, long double** matriceEcartGaz, int nbCapteurs ) {
+
+	cout << "Matrices des ecarts de mesures capteurs pour le gaz " << gaz << endl << endl;
+	cout << "    |";
+	for (int i = 0; i < nbCapteurs; i++)
+	{
+		cout << i << "      |";
+	}
+	cout << endl;
+	cout << "-------------------------------------------------------------------------------------" << endl;
+	for (int i = 0; i < nbCapteurs; i++)
+	{
+		cout << i << "   |";
+		for (int j = 0; j < nbCapteurs; j++)
+		{
+
+			if (i == j)
+			{
+				cout << matriceEcartGaz[i][j] << "      |";
+			}
+			else
+			{
+				cout << matriceEcartGaz[i][j] << '|';
+			}
+		}
+		cout << endl;
+	}
+	cout << endl;
+}
+
+void Menu::afficherSousIndiceAtmo(vector<ConcentrationIndice> listeConcIndice)
+{
+	int atmo = e.CalculAtmo(listeConcIndice);
+	if (atmo != 0)
+	{
+		cout << "PM10: " << listeConcIndice[PM10];
+		cout << "SO2: " << listeConcIndice[SO2];
+		cout << "NO2: " << listeConcIndice[NO2];
+		cout << "O3: " << listeConcIndice[O3];
+	}
+}

@@ -105,10 +105,10 @@ int main()
 	unordered_map<int , vector<long double> >moyenneCapteur = e.MesuresTotParCapteurs(*c, 10);
 	afficheMatMoyenne(moyenneCapteur); 
 	unordered_map<int, long double**> matriceEcart = e.EcartCapteurs(moyenneCapteur);
-	//afficheMatEcart("O3", matriceEcart[O3]); 
-	//afficheMatEcart("PM10", matriceEcart[PM10]);
-	//afficheMatEcart("SO2", matriceEcart[SO2]);
-	//afficheMatEcart("NO2", matriceEcart[NO2]);
+	afficheMatEcart("O3", matriceEcart[O3]); 
+	afficheMatEcart("PM10", matriceEcart[PM10]);
+	afficheMatEcart("SO2", matriceEcart[SO2]);
+	afficheMatEcart("NO2", matriceEcart[NO2]);
 	bool ** matSimilarite = e.DeterminerCapteursSimilaires(matriceEcart, 10); 
 	afficheMatSimilarite(matSimilarite);
 	system("pause"); 
