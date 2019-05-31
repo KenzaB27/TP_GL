@@ -12,11 +12,14 @@
 
 //--------------------------------------------------- Interfaces utilisées
 #include <math.h>
+#include <iostream>
+
+using namespace std;
 //------------------------------------------------------------- Constantes
 #define _USE_MATH_DEFINES
-#ifndef M_PI
+//#ifndef M_PI
 #define M_PI 3.14159265358979323846
-#endif
+//#endif
 //------------------------------------------------------------------ Types
 //------------------------------------------------------------------------
 // Rôle de la classe <PorteeCapteur>
@@ -71,7 +74,7 @@ public:
 
 //------------------------------------------------- Surcharge d'opérateurs
 
-	friend ostream & operator<<(ostream &out, const PorteeCapteur &portee);
+	friend ostream & operator <<(ostream &out, const PorteeCapteur &portee);
 	// Mode d'emploi : surcharge de l'opérateur << pour la sortie standard 
 	//
 	// Contrat : Acun contrat

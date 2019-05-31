@@ -8,7 +8,7 @@
 #include "../MesureGaz.h"
 #include "../Catalogue.h"
 #include "../IdCatalogue.h"
-#include "../Etude.h"
+//#include "../Etude.h"
 
 #include <iterator> 
 #include <list>
@@ -178,7 +178,7 @@ namespace TestUnitaire
 	{
 		TEST_METHOD(TestCalculAtmo)
 		{
-			Etude e; 
+			//Etude e; 
 		}
 
 	};
@@ -570,6 +570,21 @@ namespace TestUnitaire
 
 			Logger::WriteMessage("Fin test fonctionnement parcours fichier de mesures");
 		}
+
+		/*
+		TEST_METHOD(TestGenerationSeuils)
+		{
+			Logger::WriteMessage("Test fonctionnement parcours et génération des seuils à partir du csv");
+
+			Lecture l;
+			unordered_map<int, vector<Seuil>> listeSeuils;
+
+			l.InitSeuils(listeSeuils, "../Fichiers/Seuils.csv");
+
+			Assert::IsTrue(listeSeuils.size() != 0);
+
+			Logger::WriteMessage("Fin test fonctionnement génération et lecture seuils");
+		}*/
 
 	};
 
