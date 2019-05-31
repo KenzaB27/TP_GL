@@ -53,5 +53,25 @@ int main()
     cout << g << endl;
     */
 
+	Date d = Date(2019, 02, 01, 10, 12, 55);
+	MesureGaz m = MesureGaz(O3, d, 10.95, 12, "Capteur12");
+	MesureGaz m1 = MesureGaz(PM10, d, 10, 12, "Capteur12");
+
+	IdCatalogue id = IdCatalogue(12, d);
+
+	vector<MesureGaz> liste;
+	liste.push_back(m);
+	liste.push_back(m1);
+
+	Catalogue c;
+	c.Ajouter(id, liste);
+
+	int capteur = c.getMap().find(id)->first.getCapteurId();
+	Date dateMesu = c.getMap().find(id)->first.getDateMesure();
+	int gaz = c.getMap().find(id)->second[0].getGazId();
+	int gaz1 = c.getMap().find(id)->second[1].getGazId();
+	cout << gaz << endl; 
+	cout << gaz1 << endl; 
+	system("pause"); 
 	return 0;
 }
