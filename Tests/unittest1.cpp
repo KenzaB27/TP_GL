@@ -8,7 +8,7 @@
 #include "../MesureGaz.h"
 #include "../Catalogue.h"
 #include "../IdCatalogue.h"
-//#include "../Etude.h"
+#include "../Etude.h"
 
 #include <iterator> 
 #include <list>
@@ -178,7 +178,7 @@ namespace TestUnitaire
 	{
 		TEST_METHOD(TestCalculAtmo)
 		{
-			//Etude e; 
+			Etude e; 
 		}
 
 	};
@@ -498,7 +498,7 @@ namespace TestUnitaire
 
 			vector<Capteur> liste;
 			Lecture l;
-			l.InitCapteur(liste , "../../Fichiers/capteurs.csv");
+			l.InitCapteur(liste , "../Fichiers/capteurs.csv");
 
 			Capteur c1(0, "abba", -19.4789835505555, -35.2425725968753);
 			Capteur c2(1, "", -38.3884286616875, -24.9593580676985);
@@ -525,8 +525,8 @@ namespace TestUnitaire
 			Catalogue* c = new Catalogue();
 			Lecture l;
 
-			l.InitTypeGaz("../../Fichiers/gazTest.csv");
-			l.Parcourir(c, "../../Fichiers/valuesTest.csv");
+			l.InitTypeGaz("../Fichiers/gazTest.csv");
+			l.Parcourir(c, "../Fichiers/valuesTest.csv");
 
 			Date d = Date(2017, 01, 01, 0, 1, 20.6090000);
 			MesureGaz m = MesureGaz(O3, d, 17.8902017543936, 0, "concentration d'ozone");
@@ -571,7 +571,7 @@ namespace TestUnitaire
 			Logger::WriteMessage("Fin test fonctionnement parcours fichier de mesures");
 		}
 
-		/*
+		
 		TEST_METHOD(TestGenerationSeuils)
 		{
 			Logger::WriteMessage("Test fonctionnement parcours et génération des seuils à partir du csv");
@@ -581,10 +581,20 @@ namespace TestUnitaire
 
 			l.InitSeuils(listeSeuils, "../Fichiers/Seuils.csv");
 
-			Assert::IsTrue(listeSeuils.size() != 0);
+			Assert::IsTrue(listeSeuils.size() == 4);
+
+			for (auto x : listeSeuils)
+			{
+				Assert::IsTrue(x.second.size() == 10);
+				for (int i = 0; i < 10; i++)
+				{
+					Assert::IsTrue(x.second[i].getMin() >= 0 && x.second[i].getMin() <= 200000);
+					Assert::IsTrue(x.second[i].getMax() >= 0 && x.second[i].getMax() <= 200000);
+				}
+			}
 
 			Logger::WriteMessage("Fin test fonctionnement génération et lecture seuils");
-		}*/
+		}
 
 	};
 
