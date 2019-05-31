@@ -88,10 +88,10 @@ public:
 //------------------------------------------------------------------ PRIVE
 
 //----------------------------------------------------- Méthodes protégées
-protected: 
+//protected: 
 
 	vector<ConcentrationIndice> evaluer(Catalogue &cat, vector<int>&listCapteur , 
-			unordered_map<int, vector<Seuil>>&mapSeuils, Date dateD, Date dateF);
+			unordered_map<int, vector<Seuil>>&mapSeuils, Date dateD, Date dateF = Date());
 	// Mode d'emploi : Permet l'évaluation de la concentration des dofférents gaz O3 PM10 SO2
 	// et NO2 ainsi que leurs indices associés, et ce dans un territoire ou point précis, pendant 
 	// une durrée donnée délimitée par date de début et date de fin

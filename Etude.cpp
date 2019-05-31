@@ -21,13 +21,34 @@ using namespace std;
 
 vector<ConcentrationIndice> Etude::Evaluer(Catalogue &cat, vector<Capteur> &listCapteur, unordered_map<int, vector<Seuil>>&mapSeuils,  long double latitude, long double longitude, Date dateDebut, Date dateFin, long double rayon)
 {
-	vector<int> listeCapteur = getCapteur(listCapteur, latitude, longitude, rayon); 
-	return evaluer(cat, listeCapteur, mapSeuils, dateDebut, dateFin);
+	vector<int>listIdCapteurs = getCapteur(listCapteur, latitude, longitude, rayon);
+	vector<ConcentrationIndice> mesures (0);
+	if (listIdCapteurs.size()==0)
+	{
+		cout << "Ce territoire n'est pas couvert par le reseau de capteurs" << endl;
+	}
+	else
+	{
+		mesures = evaluer(cat, listIdCapteurs, mapSeuils, dateDebut, dateFin);
+		if (mesures.size() == 0)
+		{
+			cout << "Aucune mesure pour la date choisie" << endl;
+		}
+	}
+	return mesures;
 }// Fin de Evaluer 
 
 int Etude::CalculAtmo(vector<ConcentrationIndice>&mesures)
 {
-	return max(max(mesures[NO2].indice, mesures[O3].indice), max(mesures[PM10].indice, mesures[SO2].indice));
+	
+	if (mesures.size()>0)
+	{
+		return max(max(mesures[NO2].indice, mesures[O3].indice), max(mesures[PM10].indice, mesures[SO2].indice));
+	}
+	else
+	{
+		return 0; 
+	}
 }//Fin de calcul Atmo 
 
 unordered_map<int,vector<int>> Etude::DetecterCapteursSimilaires(Catalogue & c, int nbCapteurs)
@@ -113,24 +134,34 @@ vector<ConcentrationIndice> Etude::evaluer(Catalogue &cat, vector<int>&listCapte
 			}
 		}
 	}
-	for (auto l = concentrations.begin(); l != concentrations.end(); l->concentration /= compteur, l++);
-	cout << compteur << endl; 
-	concentrations[O3].setIndice(mapSeuils[O3]); 
-	concentrations[SO2].setIndice(mapSeuils[SO2]);
-	concentrations[NO2].setIndice(mapSeuils[NO2]); 
-	concentrations[PM10].setIndice(mapSeuils[PM10]);
+	if (compteur == 0)
+	{
+		concentrations = vector<ConcentrationIndice>(0);
+	}
+	else
+	{
+		cout << "Le fichier comporte " << compteur << "mesures" << endl; 
+		for (auto l = concentrations.begin(); l != concentrations.end(); l->concentration /= compteur, l++);
+		concentrations[O3].setIndice(mapSeuils[O3]);
+		concentrations[SO2].setIndice(mapSeuils[SO2]);
+		concentrations[NO2].setIndice(mapSeuils[NO2]);
+		concentrations[PM10].setIndice(mapSeuils[PM10]);
+	}
+	
 	return concentrations;
 }// fin de evaluer 
 
 
 vector<int> Etude::getCapteur(vector<Capteur>&listCapteur, long double latitude, long double longitude, long double rayon) {
 	PorteeCapteur territoire(latitude, longitude, rayon);
-	vector<int> capteurTerritoire;
+	vector<int> capteurTerritoire = {};
+	bool capteurFound = false; 
 	for (auto it = listCapteur.begin(); it != listCapteur.end(); it++)
 	{
 		if (territoire.contient(it->getPortee())) {
 			cout << "capteurAjoute" << endl; 
 			capteurTerritoire.push_back(it->getCapteurId());
+			capteurFound = true; 
 		}
 	}
 	return capteurTerritoire;

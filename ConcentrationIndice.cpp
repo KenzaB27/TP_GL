@@ -59,7 +59,7 @@ ConcentrationIndice::ConcentrationIndice()
 } //----- Fin de ConcentrationIndice
 
 
-ConcentrationIndice::~ConcentrationIndice( )
+ConcentrationIndice::~ConcentrationIndice()
 // Algorithme :
 //
 {

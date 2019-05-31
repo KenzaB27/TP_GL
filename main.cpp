@@ -18,60 +18,51 @@ int main()
 	m.init();
 	m.run();*/
 
-    /*
-    Date d = Date(2019, 02, 01, 10, 12, 55);
-    MesureGaz m = MesureGaz(O3, d, 10.95, 12, "Capteur12");
-    MesureGaz m1 = MesureGaz(0, d, 10, 12, "Capteur12");
-    //MesureGaz m2 = MesureGaz();
+    
+	Catalogue* c = new Catalogue();
+	Lecture l;
+	vector<Capteur> listeCapteurs;
+	unordered_map <int, vector<Seuil>> mapSeuil;
+	l.InitCapteur(listeCapteurs, "../../Fichiers/capteurComplet.csv");
+	l.InitTypeGaz("../../Fichiers/gazTest.csv");
+	l.Parcourir(c, "../../Fichiers/fichier1000.csv");
+	l.InitSeuils(mapSeuil, "../../Fichiers/Seuils.csv");
 
-    vector<MesureGaz> liste;
-    liste.push_back(m);
-	liste.push_back(m1);
+	cout << mapSeuil.size() << endl;
+	/*for (auto x : mapSeuil)
+	{
+		cout << x.first;
+		for (int i = 0; i < 10; i++)
+		{
+			cout << x.second[i] << endl;
+		}
 
-	for(int i = 0; i < 2; i++){
-		cout << liste[i] << endl;
+	}*/
+	unordered_map<IdCatalogue, vector<MesureGaz>> map;
+	Date dateD(2019, 01, 01, 0, 1, 20.6090000);
+	Etude e;
+	vector<int> listeIdCapteur = e.getCapteur(listeCapteurs, 11.9072994016611, 18.2016632092193, 1000000);
+	vector<ConcentrationIndice> listeConcIndice = e.evaluer(*c, listeIdCapteur,mapSeuil,dateD);
+	int atmo = e.CalculAtmo(listeConcIndice); 
+	if (atmo!=0)
+	{
+		cout << "PM10: " << listeConcIndice[PM10];
+		cout << "SO2: " << listeConcIndice[SO2];
+		cout << "NO2: " << listeConcIndice[NO2];
+		cout << "O3: " << listeConcIndice[O3];
+
+
+		cout << "L'atmo au point au 01-01-2017 est : " << atmo << endl;
 	}
+
 	
-    IdCatalogue id = IdCatalogue(12,d);
-    //cout << id;
+	/*for (int i = 0; i < listeIdCapteur.size(); i++)
+	{
+		cout << listeIdCapteur[i]; 
+	}*/
+	system("pause");
+   
 
-    Catalogue c;
-
-    c.Ajouter(id, liste);
-
-	//cout << "Reussi l'emplace" <<endl;
-
-	int capteur = c.getMap().find(id)->first.getCapteurId();
-    Date dateMesu=c.getMap().find(id)->first.getDateMesure();
-
-	cout<< capteur <<endl;
-
-    cout << dateMesu <<endl;
-
-    int g = c.getMap().find(id)->second[1].getGazId();
-
-    cout << g << endl;
-    */
-
-	Date d = Date(2019, 02, 01, 10, 12, 55);
-	MesureGaz m = MesureGaz(O3, d, 10.95, 12, "Capteur12");
-	MesureGaz m1 = MesureGaz(PM10, d, 10, 12, "Capteur12");
-
-	IdCatalogue id = IdCatalogue(12, d);
-
-	vector<MesureGaz> liste;
-	liste.push_back(m);
-	liste.push_back(m1);
-
-	Catalogue c;
-	c.Ajouter(id, liste);
-
-	int capteur = c.getMap().find(id)->first.getCapteurId();
-	Date dateMesu = c.getMap().find(id)->first.getDateMesure();
-	int gaz = c.getMap().find(id)->second[0].getGazId();
-	int gaz1 = c.getMap().find(id)->second[1].getGazId();
-	cout << gaz << endl; 
-	cout << gaz1 << endl; 
-	system("pause"); 
+	
 	return 0;
 }
