@@ -22,7 +22,10 @@ void ConcentrationIndice::setIndice(vector<Seuil>& listeSeuils)
 {
 	for (auto it = listeSeuils.begin(); it != listeSeuils.end(); ++it)
 	{
+		/*cout << "debugindice"  << it->getMin() << endl; 
+		cout << "debugConcentration" << concentration << endl; */
 		if (concentration >= it->getMin() && concentration <= it->getMax()) {
+			/*cout << "debugindice" << it->getIndice() << endl;*/ 
 			indice = it->getIndice();
 		}
 	}
