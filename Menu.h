@@ -44,10 +44,16 @@ public:
     //
     
     void run();
-    // Mode d'emploi :
+    // Mode d'emploi : Lance le programme et lis les commandes
     //
     // Contrat :
     //
+
+	void init();
+	// Mode d'emploi : Initialise le Menu et les classes de gaz, capteur, seuils et le parcousr
+	//
+	// Contrat :
+	//
 
     //------------------------------------------------- Surcharge d'opérateursp
 
@@ -75,7 +81,7 @@ private:
     //------------------------------------------------------- Méthodes privées
 
     bool traitement(string c);
-    // Mode d'emploi : Split la chaine passé en paramètre et lance la fonction adaptée
+    // Mode d'emploi : lance la fonction adaptée à la commande passée
     //
     // Contrat :
     //
@@ -83,11 +89,15 @@ private:
 	bool commande(vector<string> c, string s);
 	// Mode d'emploi : Verifie si la commande appartient au vecteur de paramètres passés 
 	//
+	// Contrat :
+	//
 
-	void split(vector<string> &argList, unordered_map<string, string> valueList, string s);
+	void split(vector<string> &argList, unordered_map<string, string> &valueList, string s);
 	// Mode d'emploi : split un string de commande en paramètres et valeurs (les -r et -val=value)
-
-    void init();
+	//
+	// Contrat :
+	//
+    
 
 
 protected:
@@ -95,7 +105,7 @@ protected:
 
 private:
     //------------------------------------------------------- Attributs privés
-    Catalogue c;
+    Catalogue* c;
     Gestion g;
     Etude e;
     Lecture l;
