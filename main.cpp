@@ -16,7 +16,7 @@ int main()
 	l.InitCapteur(listeCapteurs, "../Fichiers/capteurComplet.csv");
 	l.InitTypeGaz("../Fichiers/gazTest.csv");
 	l.Parcourir(c, "../Fichiers/fichier1000.csv");
-	l.InitSeuils(mapSeuil,"../Seuils.csv");
+	l.InitSeuils(mapSeuil,"../Fichiers/Seuils.csv");
 	cout << mapSeuil.size() << endl;
 	for (auto x : mapSeuil)
 	{
