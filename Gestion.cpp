@@ -48,7 +48,10 @@ void Gestion::supprimerUtilisateur(Utilisateur unUtilisateur)
 
 }*/
 
-void Gestion::AjouterCapteur(Capteur unCapteur, vector <Capteur> &listeCapteurs) {
+void Gestion::AjouterCapteur(Capteur unCapteur, vector <Capteur> &listeCapteurs) 
+// Algorithme : Parcours le vector pour savoir si le capteur est déjà présent.
+// S'il ne l'est pas alors la méthode l'ajoute au vector.
+{
     bool dejaPresent = false;
     for (vector<Capteur>::iterator it = listeCapteurs.begin(); it != listeCapteurs.end(); ++it) {
         if (it->getCapteurId() == unCapteur.getCapteurId()) {
@@ -66,6 +69,8 @@ void Gestion::AjouterCapteur(Capteur unCapteur, vector <Capteur> &listeCapteurs)
 }
 
 void Gestion::ChangerSeuil(unordered_map<int,vector<Seuil>> &tabSeuil, vector<Seuil> pm10, vector<Seuil> so2, vector<Seuil> no2, vector<Seuil> o3)
+// Algorithme : Fait une copie en profondeur de tout les seuils passés en paramètre
+// dans l'unorder map
 {
     vector<Seuil>::iterator itGaz = pm10.begin(); 
     for (vector<Seuil>::iterator it = tabSeuil[PM10].begin(); it != tabSeuil[PM10].end(); ++it)
@@ -96,6 +101,8 @@ void Gestion::ChangerSeuil(unordered_map<int,vector<Seuil>> &tabSeuil, vector<Se
     }
 }
 void Gestion::ChangerUnSeuil(unordered_map<int, vector<Seuil>>& tabSeuil, int gaz, Seuil s)
+// Algorithme : Fait une copie en profondeur du Seuil passé en paramètre
+// associé au numéro du gaz passé en paramètre.
 {
 	vector<Seuil>::iterator it = tabSeuil[gaz].begin();
 	for (int i = 1; i < s.getIndice(); i++)
@@ -106,7 +113,11 @@ void Gestion::ChangerUnSeuil(unordered_map<int, vector<Seuil>>& tabSeuil, int ga
 }
 
 
-void Gestion::MettreEnVeilleCapteur(int  numCapteur, vector <Capteur> &listeCapteurs) {
+void Gestion::MettreEnVeilleCapteur(int  numCapteur, vector <Capteur> &listeCapteurs) 
+// Algorithme : Parcours le vector pour voir si le capteur 
+// est présent et voir son état. Affiche si le capteur est
+// absent ou déjà en veille et le met en veille sinon.
+{
     bool capteurAbsent = true;
     for (vector<Capteur>::iterator it = listeCapteurs.begin(); it != listeCapteurs.end(); ++it) {
         if (it->getCapteurId() == numCapteur) {
@@ -129,7 +140,11 @@ void Gestion::MettreEnVeilleCapteur(int  numCapteur, vector <Capteur> &listeCapt
     }
 }
 
-void Gestion::RestaurerCapteur(int numCapteur, vector <Capteur> &listeCapteurs) {
+void Gestion::RestaurerCapteur(int numCapteur, vector <Capteur> &listeCapteurs) 
+// Algorithme : Parcours le vector pour voir si le capteur 
+// est présent et voir son état. Affiche si le capteur est
+// absent ou déjà en fonctionnement et le restaure sinon.
+{
     bool capteurAbsent = true;
     for (vector<Capteur>::iterator it = listeCapteurs.begin(); it != listeCapteurs.end(); ++it) {
         if (it->getCapteurId() == numCapteur) {
@@ -152,7 +167,10 @@ void Gestion::RestaurerCapteur(int numCapteur, vector <Capteur> &listeCapteurs) 
     }
 }
 
-void Gestion::SupprimerCapteur(int numCapteur, vector <Capteur> &listeCapteurs) {
+void Gestion::SupprimerCapteur(int numCapteur, vector <Capteur> &listeCapteurs)
+// Algorithme : Parcours le vector pour savoir si le capteur est présent.
+// Si il l'est alors la méthode le supprime du vector.
+{
     bool capteurAbsent = true;
     for (vector<Capteur>::iterator it = listeCapteurs.begin(); it != listeCapteurs.end(); ++it) {
         if (it->getCapteurId() == numCapteur) {

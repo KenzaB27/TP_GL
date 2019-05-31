@@ -92,13 +92,6 @@ void ChangerUnSeuil(unordered_map<int, vector<Seuil>>& tabSeuil, int gaz, Seuil 
 
 
 //------------------------------------------------- Surcharge d'opérateurs
-/*
-Gestion & operator = ( const Gestion & unGestion );
-// Mode d'emploi :
-//
-// Contrat :
-//
-*/
 
 //-------------------------------------------- Constructeurs - destructeur
 Gestion ( const Gestion & unGestion );
