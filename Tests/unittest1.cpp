@@ -488,8 +488,8 @@ namespace TestUnitaire
 
 			vector<Capteur> liste;
 			Lecture l;
-			//l.InitCapteur(liste , "../Fichiers/capteurs.csv");
-			l.InitCapteur(liste, "../../Fichiers/capteurs.csv");
+			l.InitCapteur(liste , "../Fichiers/capteurs.csv");
+			//l.InitCapteur(liste, "../../Fichiers/capteurs.csv");
 
 			Capteur c1(0, "abba", -19.4789835505555, -35.2425725968753);
 			Capteur c2(1, "", -38.3884286616875, -24.9593580676985);
@@ -516,10 +516,10 @@ namespace TestUnitaire
 			Catalogue* c = new Catalogue();
 			Lecture l;
 
-			//l.InitTypeGaz("../Fichiers/gazTest.csv");
-			//l.Parcourir(c, "../Fichiers/valuesTest.csv");
-			l.InitTypeGaz("../../Fichiers/gazTest.csv");
-			l.Parcourir(c, "../../Fichiers/valuesTest.csv");
+			l.InitTypeGaz("../Fichiers/gazTest.csv");
+			l.Parcourir(c, "../Fichiers/valuesTest.csv");
+			//l.InitTypeGaz("../../Fichiers/gazTest.csv");
+			//l.Parcourir(c, "../../Fichiers/valuesTest.csv");
 
 			Date d = Date(2017, 01, 01, 0, 1, 20.6090000);
 			MesureGaz m = MesureGaz(O3, d, 17.8902017543936, 0, "concentration d'ozone");
@@ -572,8 +572,8 @@ namespace TestUnitaire
 			Lecture l;
 			unordered_map<int, vector<Seuil>> listeSeuils;
 
-			//l.InitSeuils(listeSeuils, "../Fichiers/Seuils.csv");
-			l.InitSeuils(listeSeuils, "../../Fichiers/Seuils.csv");
+			l.InitSeuils(listeSeuils, "../Fichiers/Seuils.csv");
+			//l.InitSeuils(listeSeuils, "../../Fichiers/Seuils.csv");
 			Assert::IsTrue(listeSeuils.size() == 4);
 
 			for (auto x : listeSeuils)

@@ -24,15 +24,8 @@ using namespace std;
 #include "Seuil.h"
 
 //------------------------------------------------------------------ Types
-/*enum id
-{
-    O3,
-    SO2,
-    NO2,
-    PM10
-};*/
 
-struct gazInfos
+struct gazInfos // Informations d'un gaz : sont id, son unité et sa description
 {
     int id;
     string unit;
@@ -43,7 +36,11 @@ struct gazInfos
 
 //------------------------------------------------------------------------
 // Rôle de la classe <Lecture>
-//
+// Cette classe permet de parcourir un fichier et de remplir la structure adapatée : 
+//    - Remplissage d'un Catalogue pour la liste des mesures 
+//    - Remplissage d'un vector pour la liste des Capteurs
+//    - Remplissage d'une map pour la descriptions des gazs
+//    - Remplissage d'une map pour les seuils des différents gazs
 //
 //------------------------------------------------------------------------
 
@@ -73,7 +70,7 @@ public:
     //
 
     void Parcourir(Catalogue* c, string fichier);
-    // Mode d'emploi : Parcours tout le fichier en ne prenant en compte que les capteurs et la date passés en paramètre
+    // Mode d'emploi : Parcours tout le fichier et le stocke dans le Catalogue passé en paramètre
     //
     // Contrat :
     //
@@ -97,10 +94,6 @@ public:
     //
 
     //------------------------------------------------------------------ PRIVE
-
-protected:
-    //----------------------------------------------------- Méthodes protégées
-
 private:
     //------------------------------------------------------- Méthodes privées
     void LectureMesure(ifstream &ifs, MesureGaz &mesure);
@@ -110,19 +103,11 @@ private:
     //
     
 
-protected:
-    //----------------------------------------------------- Attributs protégés
-
 private:
     //------------------------------------------------------- Attributs privés
-    unordered_map<string, id> gazMap;
-    gazInfos gazDescription[4];
+    unordered_map<string, id> gazMap; // Permet de gérer le cast des string de nom de gaz en leur ID
+    gazInfos gazDescription[4]; //Description des 4 gazs étudiés
 
-    //---------------------------------------------------------- Classes amies
-
-    //-------------------------------------------------------- Classes privées
-
-    //----------------------------------------------------------- Types privés
 };
 
     //----------------------------------------- Types dépendants de <Lecture>

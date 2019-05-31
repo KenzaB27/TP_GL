@@ -22,21 +22,12 @@ using namespace std;
 #include "MesureGaz.h"
 #include "Date.h"
 
-//------------------------------------------------------------- Constantes
-
-
-//---------------------------------------------------- Variables de classe
-
-//----------------------------------------------------------- Types priv�s
-
 //----------------------------------------------------------------- PUBLIC
 //-------------------------------------------------------- Fonctions amies
 
 //----------------------------------------------------- M�thodes publiques
 void Lecture::Parcourir(Catalogue* c, string fichier)
 {
-	//Catalogue c;
-
 	ifstream monFlux(fichier.c_str());
 
 #ifdef MAP
@@ -85,19 +76,11 @@ void Lecture::Parcourir(Catalogue* c, string fichier)
 		}
 	}
 
-		
-
-
-	
-
-	//return c;
-
 } //--- Fin de Parcourir
 
 void Lecture::InitCapteur(vector<Capteur> &liste, string fichierCapteurs)
 {
 	ifstream monFlux(fichierCapteurs.c_str());
-	//vector<Capteur> liste;
 
 	if (monFlux)
 	{
@@ -131,9 +114,7 @@ void Lecture::InitCapteur(vector<Capteur> &liste, string fichierCapteurs)
 			i++;
 		}
 	}
-
-	//return liste;
-} //---- Fin de initCapteur
+} //---- Fin de InitCapteur
 
 void Lecture::InitTypeGaz(string fichierGaz)
 {
@@ -162,101 +143,7 @@ void Lecture::InitTypeGaz(string fichierGaz)
 			gazDescription[gazId] = g;
 		}
 	}
-}//-- Fin initTypeGaz
-
-unordered_map<string, id> Lecture::getGazName()
-{
-	return gazMap;
-}
-
-//-------------------------------------------- Constructeurs - destructeur
-Lecture::Lecture()
-// Algorithme :
-//
-{
-#ifdef MAP
-	cout << "Appel au constructeur de <Lecture>" << endl;
-#endif
-
-	gazMap["O3"] = O3;
-	gazMap["SO2"] = SO2;
-	gazMap["NO2"] = NO2;
-	gazMap["PM10"] = PM10;
-
-} //----- Fin de Lecture
-
-Lecture::~Lecture()
-// Algorithme :
-//
-{
-#ifdef MAP
-	cout << "Appel au destructeur de <Lecture>" << endl;
-#endif
-} //----- Fin de ~Lecture
-
-//------------------------------------------------------------------ PRIVE
-
-//----------------------------------------------------- M�thodes prot�g�es
-
-//------------------------------------------------------- M�thodes priv�es
-
-void Lecture::LectureMesure(ifstream &ifs, MesureGaz &mesure)
-{
-
-	string dateS;
-	int annee;
-	int mois;
-	int jour;
-	int heure;
-	int minute;
-	long double seconde;
-
-	string heureS;
-	string sensor;
-	string gaz;
-	string valueString;
-	long double value;
-
-	getline(ifs, dateS, 'T');  //La Date
-	getline(ifs, heureS, ';'); //L'heure
-
-	//La date
-	string temp = dateS.substr(5, 5);
-	mois = atoi((temp.substr(0, 2)).c_str());
-	annee = atoi((dateS.substr(0, 4)).c_str());
-	jour = atoi((dateS.substr(8, 10)).c_str());
-
-	//L'heure
-	heure = atoi((heureS.substr(0, 2)).c_str());
-
-	string temp1 = heureS.substr(3, 3);
-	minute = atoi((temp1.substr(0, 2)).c_str());
-	seconde = atof((heureS.substr(6, heureS.length())).c_str());
-
-	Date d(annee, mois, jour, heure, minute, seconde);
-
-	//L'id du capteur
-	getline(ifs, sensor, ';');
-	int sensorid = atoi((sensor.substr(sensor.length() - 1, sensor.length())).c_str());
-
-	getline(ifs, gaz, ';');
-
-	getline(ifs, valueString); // value
-	valueString = valueString.substr(0, valueString.length());
-	value = atof(valueString.c_str());
-
-	//On remplit la mesureGaz
-	mesure.setGazId(gazMap[gaz]);
-
-	mesure.setDate(d);
-	mesure.setValeur(value);
-
-	mesure.setIdCapteur(sensorid);
-
-	mesure.setDescription(gazDescription[gazMap[gaz]].description);
-	mesure.setUnite(gazDescription[gazMap[gaz]].unit);
-
-} //--- Fin de LectureMesure
+}//-- Fin InitTypeGaz
 
 void Lecture::InitSeuils(unordered_map<int, vector<Seuil>> &l, string fichier)
 {
@@ -286,7 +173,7 @@ void Lecture::InitSeuils(unordered_map<int, vector<Seuil>> &l, string fichier)
 				min = atoi(temp.c_str());
 
 				getline(monFlux, temp);
-				max = atoi(temp.substr(0, temp.length()-1).c_str());
+				max = atoi(temp.substr(0, temp.length() - 1).c_str());
 
 				Seuil s(min, max, indice);
 
@@ -295,5 +182,74 @@ void Lecture::InitSeuils(unordered_map<int, vector<Seuil>> &l, string fichier)
 			l.emplace(make_pair(gazId, liste));
 		}
 	}
-}
+} //--- Fin InitSeuils
 
+
+unordered_map<string, id> Lecture::getGazName()
+{
+	return gazMap;
+} //--- Fin de getGazName
+
+//-------------------------------------------- Constructeurs - destructeur
+Lecture::Lecture()
+// Algorithme :
+//
+{
+#ifdef MAP
+	cout << "Appel au constructeur de <Lecture>" << endl;
+#endif
+
+	gazMap["O3"] = O3;
+	gazMap["SO2"] = SO2;
+	gazMap["NO2"] = NO2;
+	gazMap["PM10"] = PM10;
+
+} //----- Fin de Lecture
+
+Lecture::~Lecture()
+// Algorithme :
+//
+{
+#ifdef MAP
+	cout << "Appel au destructeur de <Lecture>" << endl;
+#endif
+} //----- Fin de ~Lecture
+
+//------------------------------------------------------------------ PRIVE
+
+//------------------------------------------------------- M�thodes priv�es
+
+void Lecture::LectureMesure(ifstream &ifs, MesureGaz &mesure)
+{
+
+	string dateS;
+	string sensor;
+	string gaz;
+	string valueString;
+	long double value;
+
+	// La date
+	getline(ifs, dateS, ';');
+	Date d(dateS);
+
+	//L'id du capteur
+	getline(ifs, sensor, ';');
+	int sensorid = atoi((sensor.substr(sensor.length() - 1, sensor.length())).c_str());
+
+	// Le nom du gaz
+	getline(ifs, gaz, ';');
+
+	// La valeur mesurée
+	getline(ifs, valueString); 
+	valueString = valueString.substr(0, valueString.length());
+	value = atof(valueString.c_str());
+
+	//On remplit la mesureGaz
+	mesure.setGazId(gazMap[gaz]);
+	mesure.setDate(d);
+	mesure.setValeur(value);
+	mesure.setIdCapteur(sensorid);
+	mesure.setDescription(gazDescription[gazMap[gaz]].description);
+	mesure.setUnite(gazDescription[gazMap[gaz]].unit);
+
+} //--- Fin de LectureMesure
