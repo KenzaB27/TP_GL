@@ -41,7 +41,8 @@ void Menu::run()
 	{
 		// Lecture de la commande utlisateur 
 		cout << ">";
-		cin >> inputLine;
+		//cin >> inputLine;
+		getline(cin, inputLine);
 
 		//Traitement de la commande 
 		if(!traitement(inputLine)) 
@@ -49,6 +50,16 @@ void Menu::run()
 
 	} while (inputLine.compare("exit"));
 	
+}
+
+void Menu::init()
+{
+	Lecture l;
+	l.InitSeuils(tabSeuils, "../Fichiers/Seuils.csv");
+	l.InitCapteur(listeCapteurs, "../Fichiers/capteurComplet.csv");
+	l.InitTypeGaz("../Fichiers/gazTest.csv");
+
+	l.Parcourir(c, "../Fichiers/fichier1000.csv");
 }
 
 
@@ -62,12 +73,13 @@ Menu::Menu()
 #ifdef MAP
 	cout << "Appel au constructeur de <Menu>" << endl;
 #endif
-
+	c = new Catalogue();
+	/*
 	string fichierCapteurs = "";
 	string fichierGaz = "";
 	string fichierMesures = "";
 	l.InitCapteur(listeCapteurs ,fichierCapteurs);
-	l.InitTypeGaz(fichierGaz);
+	l.InitTypeGaz(fichierGaz);*/
 	//l.Parcourir(c, fichierMesures);
 
 } //----- Fin de Menu
@@ -79,6 +91,7 @@ Menu::~Menu()
 #ifdef MAP
 	cout << "Appel au destructeur de <Menu>" << endl;
 #endif
+	delete c;
 } //----- Fin de ~Menu
 
 //------------------------------------------------------------------ PRIVE
@@ -86,10 +99,7 @@ Menu::~Menu()
 //----------------------------------------------------- Méthodes protégées
 
 //------------------------------------------------------- Méthodes privées
-void Menu::init()
-{
 
-}
 
 
 bool Menu::traitement(string input)
@@ -100,10 +110,9 @@ bool Menu::traitement(string input)
 	split(argList, valueList, input);
 
 
-	if (argList.empty()) //Cas ou acune commande n'est insérée
-	{
-		return true;
-	}
+	if (argList.empty()) return true;
+
+	if (commande(argList, "exit")) return true;
 
 	if(commande(argList, "atmo"))
 	{
@@ -197,8 +206,9 @@ bool Menu::commande(vector<string> c, string s)
 	return find(c.begin(), c.end(), s) != c.end();
 }
 
-void Menu::split(vector<string> &argList, unordered_map<string, string> valueList, string s)
+void Menu::split(vector<string> &argList, unordered_map<string, string> &valueList, string s)
 {
+
 	string delimiter = " ";
 	size_t pos = 0;
 	string token;

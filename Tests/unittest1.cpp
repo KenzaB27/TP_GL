@@ -8,13 +8,13 @@
 #include "../MesureGaz.h"
 #include "../Catalogue.h"
 #include "../IdCatalogue.h"
-//#include "../Etude.h"
+#include "../Etude.h"
 
-#include <iterator> 
+#include <iterator>
 #include <list>
 #include <unordered_map>
 
-using namespace std; 
+using namespace std;
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
 namespace TestUnitaire
@@ -109,15 +109,15 @@ namespace TestUnitaire
 			Assert::IsTrue(d1==d1);
 			Assert::IsFalse(d1 == d2);
 			Logger::WriteMessage("Test de l'op�rateur >=");
-			Assert::IsTrue(d1 >= d2); 
+			Assert::IsTrue(d1 >= d2);
 			Logger::WriteMessage("Test de l'op�rateur <");
-			Assert::IsFalse(d1 < d2); 
+			Assert::IsFalse(d1 < d2);
 			Logger::WriteMessage("Test de l'op�rateur <=");
 			Assert::IsFalse(d1 <= d2);
 		}
 
 	};
-	
+
 	TEST_CLASS(TestUnitaireMesureGaz)
 	{
 	public:
@@ -192,7 +192,7 @@ namespace TestUnitaire
 
 			g.AjouterCapteur(c1, v);
 			int size = v.size();
-			Assert::AreEqual(1, size);			
+			Assert::AreEqual(1, size);
 		}
 		TEST_METHOD(TestSupprimerCapteur)
 		{
@@ -426,7 +426,7 @@ namespace TestUnitaire
 				++it;
 			}
 			bool ajoute = false;
-			if ((*it) == s) 
+			if ((*it) == s)
 			{
 				ajoute = true;
 			}
@@ -437,7 +437,7 @@ namespace TestUnitaire
 	TEST_CLASS(TestUnitaireCatalogue)
 	{
 	public:
-	
+
 		/*
 		TEST_METHOD(TestConstructionCatalogue)
 		{
@@ -450,7 +450,7 @@ namespace TestUnitaire
 			list<MesureGaz> liste;
     		liste.push_back(m);
    			liste.push_back(m1);
-			
+
 			Catalogue c;
 
     		c.getMap().emplace(id, liste);
@@ -459,8 +459,8 @@ namespace TestUnitaire
 			Assert::IsTrue(c.getMap().find(id)->first.getCapteurId()==id.getCapteurId());
 
 			Logger::WriteMessage("Test liste mesure dans le catalogue");
-			Assert::IsTrue(c.getMap().find(id)->second.getGazId()==0);//checker si le second.begin() fonctionne correctement	
-				
+			Assert::IsTrue(c.getMap().find(id)->second.getGazId()==0);//checker si le second.begin() fonctionne correctement
+
 		}*/
 
 		TEST_METHOD(TestIdCatalogue)
@@ -470,12 +470,12 @@ namespace TestUnitaire
 
 			Logger::WriteMessage("Test fonctionnement date IdCatalogue");
 			Assert::IsTrue(id.getDateMesure()==d);
-		
+
 			Logger::WriteMessage("Test fonctionnement id IdCatalogue");
 			Assert::IsTrue(id.getCapteurId()==12);
 		}
 
-		
+
 	};
 
 	TEST_CLASS(TestUnitaireLecture)
@@ -488,7 +488,7 @@ namespace TestUnitaire
 
 			vector<Capteur> liste;
 			Lecture l;
-			l.InitCapteur(liste , "../../Fichiers/capteurs.csv");
+			l.InitCapteur(liste , "../Fichiers/capteurs.csv");
 
 			Capteur c1(0, "abba", -19.4789835505555, -35.2425725968753);
 			Capteur c2(1, "", -38.3884286616875, -24.9593580676985);
@@ -503,11 +503,11 @@ namespace TestUnitaire
 				Assert::AreEqual(c1.getDescription().c_str(), liste.front().getDescription().c_str());
 				Assert::AreEqual(c1.getEtat(), liste.front().getEtat());
 			}
-			
+
 
 			Logger::WriteMessage("Fin Test fonctionnement initialisation des capteurs");
 		}
-		
+
 		TEST_METHOD(TestParcourirFichier)
 		{
 			Logger::WriteMessage("Test fonctionnement parcours fichier de mesures");
@@ -515,8 +515,8 @@ namespace TestUnitaire
 			Catalogue* c = new Catalogue();
 			Lecture l;
 
-			l.InitTypeGaz("../../Fichiers/gazTest.csv");
-			l.Parcourir(c, "../../Fichiers/valuesTest.csv");
+			l.InitTypeGaz("../Fichiers/gazTest.csv");
+			l.Parcourir(c, "../Fichiers/valuesTest.csv");
 
 			Date d = Date(2017, 01, 01, 0, 1, 20.6090000);
 			MesureGaz m = MesureGaz(O3, d, 17.8902017543936, 0, "concentration d'ozone");
@@ -544,7 +544,7 @@ namespace TestUnitaire
 
 			Assert::IsTrue(it->first.getDateMesure()==d);
 
-			
+
 			auto ll = liste.begin();
 			for (auto l = it->second.begin(); l != it->second.end(); ++l)
 			{
@@ -561,7 +561,7 @@ namespace TestUnitaire
 			Logger::WriteMessage("Fin test fonctionnement parcours fichier de mesures");
 		}
 
-		/*
+
 		TEST_METHOD(TestGenerationSeuils)
 		{
 			Logger::WriteMessage("Test fonctionnement parcours et génération des seuils à partir du csv");
@@ -571,12 +571,21 @@ namespace TestUnitaire
 
 			l.InitSeuils(listeSeuils, "../Fichiers/Seuils.csv");
 
-			Assert::IsTrue(listeSeuils.size() != 0);
+			Assert::IsTrue(listeSeuils.size() == 4);
+
+			for (auto x : listeSeuils)
+			{
+				Assert::IsTrue(x.second.size() == 10);
+				for (int i = 0; i < 10; i++)
+				{
+					Assert::IsTrue(x.second[i].getMin() >= 0 && x.second[i].getMin() <= 200000);
+					Assert::IsTrue(x.second[i].getMax() >= 0 && x.second[i].getMax() <= 200000);
+				}
+			}
 
 			Logger::WriteMessage("Fin test fonctionnement génération et lecture seuils");
-		}*/
+		}
 
 	};
 
 }
-
