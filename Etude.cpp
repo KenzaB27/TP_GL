@@ -51,37 +51,70 @@ int Etude::CalculAtmo(vector<ConcentrationIndice>&mesures)
 	}
 }//Fin de calcul Atmo 
 
-unordered_map<int,vector<int>> Etude::DetecterCapteursSimilaires(Catalogue & c, int nbCapteurs)
+unordered_map<int,vector<int>> Etude::MesuresTotParCapteurs(Catalogue & c, int nbCapteurs)
 {	
-	unordered_map<int, vector<int>> capteursSimilaires;
+	unordered_map<int, vector<int>> mesuresCapteurs;
 	unordered_multimap<int,vector<long double>> catalogueReduit = (unordered_multimap<int, vector<long double>>) c;
 	for (int i = 0; i < nbCapteurs-1; i++)
 	{	
+		vector<int> mesuresTotales = { 0,0,0,0,0 };
+		mesuresCapteurs.emplace(make_pair(i, mesuresTotales));
 		auto range1= catalogueReduit.equal_range(i);
-		int size1 = distance(range1.first, range1.second);
-		for (int j = i + 1; j < nbCapteurs; j++)
+		for (auto it = range1.first ; it!= range1.second ; it++)
 		{
-			auto range2 = catalogueReduit.equal_range(j);
-			int size2 = distance(range1.first, range1.second);
-			if (size1 == size2)
+			
+			mesuresCapteurs[i][O3] += it->second[03]; 
+			mesuresCapteurs[i][SO2] += it->second[SO2];
+			mesuresCapteurs[i][NO2] += it->second[NO2];
+			mesuresCapteurs[i][PM10] += it->second[PM10];
+			mesuresCapteurs[i][4] ++; // compteur
+		}
+	}
+	return mesuresCapteurs; 
+}
+unordered_map<int, int**> Etude::EcartCapteurs(unordered_map<int, vector<int>> mapMoyenne, int nbCapteurs)
+{
+	unordered_map<int, int**>mapEcartCapteurs; 
+	for (int j = 0; j < 4; j++)
+	{
+		int ** matriceEcartGaz = new int *[nbCapteurs];
+		for (int i = 0; i < nbCapteurs; i++)
+		{
+			matriceEcartGaz[i] = new int[nbCapteurs];
+		}
+		mapEcartCapteurs.emplace(make_pair(j, matriceEcartGaz));
+	}
+	for (int i = 0; i < nbCapteurs; i++){
+		for (int k = 0; k < nbCapteurs; k++)
+		{
+			mapEcartCapteurs[O3][i][k] = abs(mapMoyenne[k][03] - mapMoyenne[i][03]);
+			mapEcartCapteurs[PM10][i][k] = abs(mapMoyenne[k][PM10] - mapMoyenne[i][PM10]);
+			mapEcartCapteurs[NO2][i][k] = abs(mapMoyenne[k][NO2] - mapMoyenne[i][NO2]);
+			mapEcartCapteurs[SO2][i][k] = abs(mapMoyenne[k][SO2] - mapMoyenne[i][SO2]);
+		}
+			
+	}
+	return mapEcartCapteurs; 
+}
+bool ** Etude::DeterminerCapteursSimilaires(unordered_map<int, int**> matriceEcart, double ecart , int nbCapteurs)
+{
+	bool ** matSimilarite = new bool *[nbCapteurs];
+	for (int i = 0; i < nbCapteurs; i++)
+	{
+		matSimilarite[i] = new bool[nbCapteurs];
+	}
+	for (int i = 0; i < nbCapteurs; i++) {
+		for (int k = 0; k < nbCapteurs; k++)
+		{
+			if (matriceEcart[O3][i][k] + matriceEcart[PM10][i][k] + matriceEcart[NO2][i][k] + matriceEcart[SO2][i][k] <= 4 * ecart)
 			{
-				int count = 0; 
-				for (auto it1 = range1.first , it2 = range2.first; it1 != range1.second && it2 != range2.second; ++it1 , ++it2)
-				{
-					if (comparerMesures(it1->second, it2->second))
-					{
-						count++; 
-					}
-				}
-				if (count == size1)
-				{
-					capteursSimilaires[i].emplace_back(j); 
-				}
+				matSimilarite[i][k] = 1; 
 			}
 		}
 	}
-	return capteursSimilaires; 
-}//fin de DetecterCapteursSimilaires
+	return matSimilarite; 
+}
+//fin de DetecterCapteursSimilaires
 
 //-------------------------------------------- Constructeurs - destructeur
 Etude::Etude ( )

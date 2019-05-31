@@ -135,7 +135,7 @@ bool Menu::traitement(string input)
 		// Commande de la forme : stats -n=3 pour l'etude de 3 capteurs
 
 		int n = atoi(valueList.find("-n")->second.c_str());
-		e.DetecterCapteursSimilaires(*c, n);
+		//e.DetecterCapteursSimilaires(*c, n);
 		//TODO : appel et affichage capteurs similaires
 
 	}

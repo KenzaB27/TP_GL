@@ -62,14 +62,27 @@ public:
 	//
 	// Contrat : Aucun contrat
 	//
-	unordered_map <int, vector<int>> DetecterCapteursSimilaires(Catalogue &c, int nbCapteurs);
-	// Mode d'emploi : permet de détectet des capteurs à comprtement imilaires cad dont les mesures 
-	// sont similaires sur l'ensembles des données 
+	unordered_map <int, vector<int>> MesuresTotParCapteurs(Catalogue &c, int nbCapteurs=10);
+	// Mode d'emploi : permet de calculer la moyenne des mesures des capteurs pour chacun des gazs
 	// c : le catalogue de mesures 
 	// nbCapteurs: le nombre de capteurs à évaluer
 	//
 	// Contrat : Aucun contrat 
 	//
+
+	unordered_map < int , int** >  EcartCapteurs(unordered_map <int, vector<int>> mapMoyenne , int nbCapteurs=10);
+	// Mode d'emploi : permet de calculer l'ecart entre les mesures des capteurs pour chacun des gazs
+	// mapMoyenne : la map des moyennes 
+	// Contrat : Aucun contrat 
+	//
+
+	bool** DeterminerCapteursSimilaires(unordered_map < int, int** > matriceEcart , double ecart , int nbCappteurs=10 );
+	// Mode d'emploi : permet determiner les capteurs similaires selon la precision déterminée par le client
+	// matriceEcart : la matrice des ecarts par gaz
+	// ecart : l'ecart de tolérance
+	// Contrat : Aucun contrat 
+	//
+	
 
 //-------------------------------------------- Constructeurs - destructeur
 

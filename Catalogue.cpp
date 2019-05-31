@@ -47,15 +47,16 @@ ostream & operator <<(ostream &out, const Catalogue &catalogue)
 	return out;
 }
 
+
 Catalogue::operator unordered_multimap<int, vector<long double>>() const
 {
 	unordered_multimap<int, vector<long double>> nouvelleMap;
 
 	for (auto it = map.begin(); it != map.end(); it++) {
 		vector<long double > valeurMesures;
-		for (auto i = it->second.begin(); i != it->second.begin(); i++)
+		for (int i = 0 ; i < 4 ; i++)
 		{
-			valeurMesures.emplace_back((long double)*i);
+			valeurMesures.emplace_back(it->second[i]);
 		}
 		nouvelleMap.emplace(make_pair(it->first.getCapteurId(), valeurMesures));
 	}

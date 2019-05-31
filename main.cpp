@@ -38,30 +38,19 @@ int main()
 		}
 
 	}*/
-	unordered_map<IdCatalogue, vector<MesureGaz>> map;
-	Date dateD(2017, 01, 01, 0, 1, 20.6090000);
-	Etude e;
-	vector<ConcentrationIndice> listeConcIndice = e.Evaluer(*c, listeCapteurs, mapSeuil, 11.9072994016611, 18.2016632092193, dateD , dateD.suivant(), 1000000);
-	int atmo = e.CalculAtmo(listeConcIndice); 
-	if (atmo!=0)
+	Etude e; 
+	unordered_map<int , vector<int> >capteursSimilaires = e.MesuresTotParCapteurs(*c, 10);
+	cout << capteursSimilaires.size() << endl; 
+	for (auto x : capteursSimilaires)
 	{
-		cout << "PM10: " << listeConcIndice[PM10];
-		cout << "SO2: " << listeConcIndice[SO2];
-		cout << "NO2: " << listeConcIndice[NO2];
-		cout << "O3: " << listeConcIndice[O3];
-
-
-		cout << "L'atmo au point au 01-01-2017 est : " << atmo << endl;
+		cout << "Capteur n:" << x.first   << " Compteur de mesures: " << x.second[4]<< endl ; 
+		cout << "O3 " <<(double) x.second[O3]/ x.second[4] << "-";
+		cout << "PM10 " << (double)x.second[PM10] / x.second[4] << "-";
+		cout << "SO2 " << (double)x.second[SO2] / x.second[4] << "-";
+		cout << "NO2 " << (double)x.second[NO2] / x.second[4] << endl;
 	}
-	cout << "L'atmo au point au 01-01-2017 est : " << atmo << endl;
-	vector<int> listeIdCapteur = e.getCapteur(listeCapteurs, 11.9072994016611, 18.2016632092193, 1000000); 
-	for (int i = 0; i < listeIdCapteur.size(); i++)
-	{
-		cout << listeIdCapteur[i]; 
-	}
-	system("pause");
-    
 
-	
+
+	system("pause"); 
 	return 0;
 }
