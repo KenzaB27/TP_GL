@@ -53,7 +53,7 @@ class Lecture
 
 public:    
     //----------------------------------------------------- Méthodes publiques
-    // type Méthode ( liste de paramètres );
+    unordered_map<string, id> getGazName();
     // Mode demploi
     //
     // Contrat :

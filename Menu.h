@@ -27,7 +27,7 @@ using namespace std;
 
 //------------------------------------------------------------------------
 // Rôle de la classe <Menu>
-//
+// Gère l'affichage,a la récupération et le traitement des demande de l'utilisateur 
 //
 //------------------------------------------------------------------------
 
@@ -36,13 +36,7 @@ class Menu
     //----------------------------------------------------------------- PUBLIC
 
 public:
-    //----------------------------------------------------- Méthodes publiques
-    // type Méthode ( liste de paramètres );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
-    
+    //----------------------------------------------------- Méthodes publiques    
     void run();
     // Mode d'emploi : Lance le programme et lis les commandes
     //
@@ -55,13 +49,10 @@ public:
 	// Contrat :
 	//
 
-    //------------------------------------------------- Surcharge d'opérateursp
-
-    //-------------------------------------------- Constructeurs - destructeur
     //-------------------------------------------- Constructeurs - destructeur
 
     Menu();
-    // Mode d'emploi :
+    // Mode d'emploi : Créer un nouveau menu
     //
     // Contrat :
     //
@@ -73,9 +64,6 @@ public:
     //
 
     //------------------------------------------------------------------ PRIVE
-
-protected:
-    //----------------------------------------------------- Méthodes protégées
 
 private:
     //------------------------------------------------------- Méthodes privées
@@ -98,10 +86,12 @@ private:
 	// Contrat :
 	//
     
+	void AfficherSeuils(unordered_map<int, vector<Seuil>>& umap);
+	// Mode d'emploi : Affiche les seuils de calcul de l'ATMO
+	//
+	// Contrat :
+	//
 
-
-protected:
-    //----------------------------------------------------- Attributs protégés
 
 private:
     //------------------------------------------------------- Attributs privés
@@ -112,11 +102,6 @@ private:
     vector<Capteur> listeCapteurs;
 	unordered_map<int, vector<Seuil>> tabSeuils;
 
-    //---------------------------------------------------------- Classes amies
-
-    //-------------------------------------------------------- Classes privées
-
-    //----------------------------------------------------------- Types privés
 };
 
 //----------------------------------------- Types dépendants de <Menu>

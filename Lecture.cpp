@@ -164,6 +164,11 @@ void Lecture::InitTypeGaz(string fichierGaz)
 	}
 }//-- Fin initTypeGaz
 
+unordered_map<string, id> Lecture::getGazName()
+{
+	return gazMap;
+}
+
 //-------------------------------------------- Constructeurs - destructeur
 Lecture::Lecture()
 // Algorithme :

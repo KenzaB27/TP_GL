@@ -20,19 +20,9 @@ using namespace std;
 #include "Seuil.h"
 //------------------------------------------------------------- Constantes
 
-//---------------------------------------------------- Variables de classe
-
-//----------------------------------------------------------- Types privés
 //----------------------------------------------------------------- PUBLIC
-//-------------------------------------------------------- Fonctions amies
 
 //----------------------------------------------------- Méthodes publiques
-// type Menu::Méthode ( liste de paramètres )
-// Algorithme :
-//
-//{
-//} //----- Fin de Méthode
-
 void Menu::run()
 {
 	string inputLine = "";
@@ -73,14 +63,8 @@ Menu::Menu()
 #ifdef MAP
 	cout << "Appel au constructeur de <Menu>" << endl;
 #endif
+
 	c = new Catalogue();
-	/*
-	string fichierCapteurs = "";
-	string fichierGaz = "";
-	string fichierMesures = "";
-	l.InitCapteur(listeCapteurs ,fichierCapteurs);
-	l.InitTypeGaz(fichierGaz);*/
-	//l.Parcourir(c, fichierMesures);
 
 } //----- Fin de Menu
 
@@ -96,16 +80,13 @@ Menu::~Menu()
 
 //------------------------------------------------------------------ PRIVE
 
-//----------------------------------------------------- Méthodes protégées
-
 //------------------------------------------------------- Méthodes privées
-
 
 
 bool Menu::traitement(string input)
 {	
-	vector<string> argList;
-	unordered_map<string,string> valueList;
+	vector<string> argList; //Liste des arguments passés dans la commande (les -s)
+	unordered_map<string,string> valueList; //Liste des valeurs des paramètres passés dans la commande (les -r=X)
 
 	split(argList, valueList, input);
 
@@ -116,9 +97,11 @@ bool Menu::traitement(string input)
 
 	if(commande(argList, "atmo"))
 	{
-		//On a toujours lat et long 
-		//La date si elle n'est pas mise est celle d'hier
-		//Param a mettre -r -d si date et rayon, sinon que latitude et longitude 
+		// On a toujours -lat= et -long= 
+		// La date si elle n'est pas mise est celle d'hier
+		// Param a mettre -r -d si date et rayon, sinon que latitude et longitude 
+		// -dateF=  pour date de fin & -dateD= pour date début
+		// Format de date : YYYY-MM-DDTHH:MM:SS.SSSSSSSS
 		// -s si valeurs a afficher
 		
 		long double lat = atof(valueList.find("-lat")->second.c_str());
@@ -153,32 +136,57 @@ bool Menu::traitement(string input)
 	{
 		if (commande(argList, "add"))
 		{
-			//g.ajouterCapteur(atoi(argList[2].c_str()), listeCapteurs);
+			long double lat = atof(valueList.find("-lat")->second.c_str());
+			long double lon = atof(valueList.find("-long")->second.c_str());;
+			string description = valueList.find("-d")->second;
+			int cId = atoi(valueList.find("-id")->second.c_str());
+
+			Capteur c(cId, description, lat, lon);
+			g.AjouterCapteur(c, listeCapteurs);
 		}
 
-		if (commande(argList, "remove"))		{
-			//g.supprimerCapteur(atoi(argList[2].c_str()), listeCapteurs);
+		if (commande(argList, "remove"))		
+		{
+			int cId = atoi(valueList.find("-id")->second.c_str());
+			g.SupprimerCapteur(cId, listeCapteurs);
 		}
 
 		if (commande(argList, "exclude"))
 		{
-			//g.mettreEnVeilleCapteur(atoi(argList[2].c_str()), listeCapteurs);
+			int cId = atoi(valueList.find("-id")->second.c_str());
+			g.MettreEnVeilleCapteur(cId, listeCapteurs);
 		}
 
 		if (commande(argList, "include"))
 		{
-			//g.restaurerCapteur(atoi(argList[2].c_str()), listeCapteurs);
+			int cId = atoi(valueList.find("-id")->second.c_str());
+			g.RestaurerCapteur(cId, listeCapteurs);
 		}
 	}
 
 	if (commande(argList, "seuil"))
 	{
-		//TODO : gestion modification des seuils
+		if (commande(argList, "print"))
+		{
+			cout << "[seuils]" << "\n" << endl;
+			AfficherSeuils(tabSeuils);
+		}
+		else
+		{
+			int gazId = l.getGazName()[valueList.find("-gazId")->second];
+			int min = atoi(valueList.find("-min")->second.c_str());
+			int max = atoi(valueList.find("-max")->second.c_str());
+			int indice = atoi(valueList.find("-indice")->second.c_str());
+
+			Seuil s(min, max, indice);
+
+			g.ChangerUnSeuil(tabSeuils, gazId, s);
+		}
 	}
 
 }
 
-void AfficherSeuils(unordered_map<int, list<Seuil>>& umap)
+void Menu::AfficherSeuils(unordered_map<int, vector<Seuil>> &umap)
 {
 	cout << "Indice   |   SO2   |   NO2  |   O3   |   PM   |" << endl;
 
