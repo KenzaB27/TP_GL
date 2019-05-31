@@ -13,12 +13,12 @@
 
 int main()
 {
-
+/*
 	Menu m;
 	m.init();
-	m.run();
+	m.run();*/
 
-/*
+    /*
     Date d = Date(2019, 02, 01, 10, 12, 55);
     MesureGaz m = MesureGaz(O3, d, 10.95, 12, "Capteur12");
     MesureGaz m1 = MesureGaz(0, d, 10, 12, "Capteur12");
@@ -42,8 +42,11 @@ int main()
 	//cout << "Reussi l'emplace" <<endl;
 
 	int capteur = c.getMap().find(id)->first.getCapteurId();
+    Date dateMesu=c.getMap().find(id)->first.getDateMesure();
 
 	cout<< capteur <<endl;
+
+    cout << dateMesu <<endl;
 
     int g = c.getMap().find(id)->second[1].getGazId();
 

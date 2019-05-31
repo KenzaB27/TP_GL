@@ -454,14 +454,14 @@ namespace TestUnitaire
     		c.Ajouter(id, liste);
 			
 			int capteur = c.getMap().find(id)->first.getCapteurId();
-			int dateMesu=c.getMap().find(id)->first.getDateMesure()
+			Date dateMesu=c.getMap().find(id)->first.getDateMesure();
 			int gaz = c.getMap().find(id)->second[1].getGazId();
 			int gaz1 = c.getMap().find(id)->second[2].getGazId();
 
 			Logger::WriteMessage("Test de l'id de l'idCatalogue dans le catalogue");
 			Assert::IsTrue(capteur==id.getCapteurId());
 			Logger::WriteMessage("Test de la date de l'idCatalogue dans le catalogue");
-			Assert::IsTrue(dateMesu==d);
+			Assert::IsTrue(dateMesu==id.getDateMesure());
 
 			Logger::WriteMessage("Test de la liste de MesureGaz dans le catalogue");
 			Assert::IsTrue(gaz==0);
