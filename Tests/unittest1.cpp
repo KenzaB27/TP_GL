@@ -438,8 +438,8 @@ namespace TestUnitaire
 	{
 	public:
 
-		/*
-		TEST_METHOD(TestConstructionCatalogue)
+		
+		/*TEST_METHOD(TestConstructionCatalogue)
 		{
 			Date d = Date(2019, 02, 01, 10, 12, 55);
     		MesureGaz m = MesureGaz(O3, d, 10.95, 12, "Capteur12");
@@ -453,13 +453,13 @@ namespace TestUnitaire
 
 			Catalogue c;
 
-    		c.getMap().emplace(id, liste);
+    		c.getMap().emplace(make_pair(id, liste));
 
-			Logger::WriteMessage("Tes  idCatalogue dans le catalogue");
+			Logger::WriteMessage("Test  idCatalogue dans le catalogue");
 			Assert::IsTrue(c.getMap().find(id)->first.getCapteurId()==id.getCapteurId());
 
 			Logger::WriteMessage("Test liste mesure dans le catalogue");
-			Assert::IsTrue(c.getMap().find(id)->second.getGazId()==0);//checker si le second.begin() fonctionne correctement
+			Assert::IsTrue(c.getMap().find(id)->second[1].getGazId()==0);//checker si le second.begin() fonctionne correctement
 
 		}*/
 
