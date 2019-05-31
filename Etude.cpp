@@ -51,13 +51,13 @@ int Etude::CalculAtmo(vector<ConcentrationIndice>&mesures)
 	}
 }//Fin de calcul Atmo 
 
-unordered_map<int,vector<int>> Etude::MesuresTotParCapteurs(Catalogue & c, int nbCapteurs)
+unordered_map<int,vector<long double>> Etude::MesuresTotParCapteurs(Catalogue & c, int nbCapteurs)
 {	
-	unordered_map<int, vector<int>> mesuresCapteurs;
+	unordered_map<int, vector<long double>> mesuresCapteurs;
 	unordered_multimap<int,vector<long double>> catalogueReduit = (unordered_multimap<int, vector<long double>>) c;
-	for (int i = 0; i < nbCapteurs-1; i++)
+	for (int i = 0; i < nbCapteurs; i++)
 	{	
-		vector<int> mesuresTotales = { 0,0,0,0,0 };
+		vector<long double> mesuresTotales = {0,0,0,0,0};
 		mesuresCapteurs.emplace(make_pair(i, mesuresTotales));
 		auto range1= catalogueReduit.equal_range(i);
 		for (auto it = range1.first ; it!= range1.second ; it++)
@@ -69,18 +69,19 @@ unordered_map<int,vector<int>> Etude::MesuresTotParCapteurs(Catalogue & c, int n
 			mesuresCapteurs[i][PM10] += it->second[PM10];
 			mesuresCapteurs[i][4] ++; // compteur
 		}
+		for (auto l = mesuresCapteurs[i].begin(); l != mesuresCapteurs[i].end(); *l /= mesuresCapteurs[i][4], l++);
 	}
 	return mesuresCapteurs; 
 }
-unordered_map<int, int**> Etude::EcartCapteurs(unordered_map<int, vector<int>> mapMoyenne, int nbCapteurs)
+unordered_map<int, long double**> Etude::EcartCapteurs(unordered_map<int, vector<long double>> mapMoyenne, int nbCapteurs)
 {
-	unordered_map<int, int**>mapEcartCapteurs; 
+	unordered_map<int, long double**>mapEcartCapteurs;
 	for (int j = 0; j < 4; j++)
 	{
-		int ** matriceEcartGaz = new int *[nbCapteurs];
+		long double ** matriceEcartGaz = new long double *[nbCapteurs];
 		for (int i = 0; i < nbCapteurs; i++)
 		{
-			matriceEcartGaz[i] = new int[nbCapteurs];
+			matriceEcartGaz[i] = new long double[nbCapteurs];
 		}
 		mapEcartCapteurs.emplace(make_pair(j, matriceEcartGaz));
 	}
@@ -96,7 +97,7 @@ unordered_map<int, int**> Etude::EcartCapteurs(unordered_map<int, vector<int>> m
 	}
 	return mapEcartCapteurs; 
 }
-bool ** Etude::DeterminerCapteursSimilaires(unordered_map<int, int**> matriceEcart, double ecart , int nbCapteurs)
+bool ** Etude::DeterminerCapteursSimilaires(unordered_map<int, long double**> matriceEcart, double ecart , int nbCapteurs)
 {
 	bool ** matSimilarite = new bool *[nbCapteurs];
 	for (int i = 0; i < nbCapteurs; i++)
@@ -110,9 +111,12 @@ bool ** Etude::DeterminerCapteursSimilaires(unordered_map<int, int**> matriceEca
 			{
 				matSimilarite[i][k] = 1; 
 			}
+			else {
+				matSimilarite[i][k] = 0;
+			}
 		}
 	}
-	return matSimilarite; 
+	return matSimilarite;
 }
 //fin de DetecterCapteursSimilaires
 
