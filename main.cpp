@@ -31,10 +31,12 @@ int main()
 	Date dateD(2017, 01, 01, 0, 1, 20.6090000); 
 	Etude e; 
 	vector<ConcentrationIndice> listeConcIndice = e.Evaluer(*c, listeCapteurs, mapSeuil, 11.9072994016611, 18.2016632092193, dateD); 
-	for (int i = 0; i < 4; i++)
-	{
-		cout << listeConcIndice[i]; 
-	}
+	cout << "PM10: " << listeConcIndice[PM10];
+	cout << "SO2: " << listeConcIndice[SO2];
+	cout << "NO2: " << listeConcIndice[NO2];
+	cout << "O3: " << listeConcIndice[O3];
+
+	
 	system("pause");
 
 	return 0;

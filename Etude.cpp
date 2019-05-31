@@ -114,6 +114,7 @@ vector<ConcentrationIndice> Etude::evaluer(Catalogue &cat, vector<int>&listCapte
 		}
 	}
 	for (auto l = concentrations.begin(); l != concentrations.end(); l->concentration /= compteur, l++);
+	cout << compteur << endl; 
 	concentrations[O3].setIndice(mapSeuils[O3]); 
 	concentrations[SO2].setIndice(mapSeuils[SO2]);
 	concentrations[NO2].setIndice(mapSeuils[NO2]); 
