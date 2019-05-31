@@ -129,7 +129,7 @@ bool Menu::traitement(string input)
 		}
 		else
 		{
-			vector<ConcentrationIndice> mesures = e.Evaluer(c, listeCapteurs, lat, lon, dateD, dateF);
+			//vector<ConcentrationIndice> mesures = e.Evaluer(c, listeCapteurs, lat, lon, dateD, dateF);
 			//cout << "[atmo] " << e.CalculAtmo(mesures, tabSeuils) << endl;
 		}
 	}

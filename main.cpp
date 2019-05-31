@@ -6,17 +6,17 @@ int main()
 {
 	/*
 
-	TESTS EN COURS ----------- */
+	TESTS EN COURS -----------  */
 
 
 	Catalogue* c = new Catalogue();
 	Lecture l;
 	vector<Capteur> listeCapteurs;
 	unordered_map <int, vector<Seuil>> mapSeuil; 
-	l.InitCapteur(listeCapteurs, "../../Fichiers/capteurComplet.csv");
-	l.InitTypeGaz("../../Fichiers/gazTest.csv");
-	l.Parcourir(c, "../../Fichiers/fichier1000.csv");
-	l.InitSeuils(mapSeuil,"../../Seuils.csv");
+	l.InitCapteur(listeCapteurs, "../Fichiers/capteurComplet.csv");
+	l.InitTypeGaz("../Fichiers/gazTest.csv");
+	l.Parcourir(c, "../Fichiers/fichier1000.csv");
+	l.InitSeuils(mapSeuil,"../Seuils.csv");
 	cout << mapSeuil.size() << endl;
 	for (auto x : mapSeuil)
 	{
