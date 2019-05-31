@@ -1,5 +1,5 @@
 /*************************************************************************
-                           PorteeCapteur  -  description
+                           PorteeCapteur 
                              -------------------
 	début                : 04/06/2019
 	copyright            : (C) 2019 par BOUZID Kenza    - JEANNE Nathan

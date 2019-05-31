@@ -1,8 +1,9 @@
 /*************************************************************************
-                           ${Capteur}  -  description
+                           Capteur 
                              -------------------
-    début                : ${date}
-    copyright            : (C) ${year} par ${user}
+	début                : 04/06/2019
+	copyright            : (C) 2019 par BOUZID Kenza    - JEANNE Nathan
+										HAMIDOVIC David - CAVAGNA Margaux
 *************************************************************************/
 
 //---------- Interface de la classe <Capteur> (fichier ${file_name}) ------

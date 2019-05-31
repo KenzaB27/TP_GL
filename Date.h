@@ -1,11 +1,10 @@
-/******************************************************************************
-		Date - Conteneur pour une date (ici HH:MM)
-
-	debut		: 2019-01-16
-	copyright	: (C) 2018 par K. BOUZID et P-Y. GENEST
-	e-mail		: kenza.bouzid@insa-lyon.fr
-			  pierre-yves.genest@insa-lyon.fr
-******************************************************************************/
+/*************************************************************************
+                           Date 
+                             -------------------
+	début                : 04/06/2019
+	copyright            : (C) 2019 par BOUZID Kenza    - JEANNE Nathan
+										HAMIDOVIC David - CAVAGNA Margaux
+*************************************************************************/
 //---------- Interface de la classe <Date> ----------
 #ifndef DATE_H
 #define DATE_H

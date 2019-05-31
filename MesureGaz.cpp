@@ -1,10 +1,10 @@
 /*************************************************************************
-                           MesureGaz  -  description
+                           MesureGaz 
                              -------------------
-    d�but                : ${date}
-    copyright            : (C) ${year} par ${user}
+	début                : 04/06/2019
+	copyright            : (C) 2019 par BOUZID Kenza    - JEANNE Nathan
+										HAMIDOVIC David - CAVAGNA Margaux
 *************************************************************************/
-
 //---------- R�alisation de la classe <MesureGaz> (fichier ${file_name}) --
 
 //---------------------------------------------------------------- INCLUDE

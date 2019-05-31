@@ -1,10 +1,10 @@
 /*************************************************************************
-                           idCatalogue
+                           IdCatalogue 
                              -------------------
-    début                : 14/05/2019
-    copyright            : (C) 2019 par Margaux Cavagna
+	début                : 04/06/2019
+	copyright            : (C) 2019 par BOUZID Kenza    - JEANNE Nathan
+										HAMIDOVIC David - CAVAGNA Margaux
 *************************************************************************/
-
 #if ! defined ( IdCatalogue_H )
 #define IdCatalogue_H
 

@@ -1,8 +1,9 @@
 /*************************************************************************
-						   Lecture  -  description
-							 -------------------
-	d�but                : ${date}
-	copyright            : (C) ${year} par ${user}
+                           Lecture 
+                             -------------------
+	début                : 04/06/2019
+	copyright            : (C) 2019 par BOUZID Kenza    - JEANNE Nathan
+										HAMIDOVIC David - CAVAGNA Margaux
 *************************************************************************/
 
 //---------- R�alisation de la classe <Lecture> (fichier ${file_name}) --
