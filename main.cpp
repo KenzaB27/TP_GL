@@ -39,10 +39,9 @@ int main()
 
 	}*/
 	unordered_map<IdCatalogue, vector<MesureGaz>> map;
-	Date dateD(2019, 01, 01, 0, 1, 20.6090000);
+	Date dateD(2017, 01, 01, 0, 1, 20.6090000);
 	Etude e;
-	vector<int> listeIdCapteur = e.getCapteur(listeCapteurs, 11.9072994016611, 18.2016632092193, 1000000);
-	vector<ConcentrationIndice> listeConcIndice = e.evaluer(*c, listeIdCapteur,mapSeuil,dateD);
+	vector<ConcentrationIndice> listeConcIndice = e.Evaluer(*c, listeCapteurs, mapSeuil, 11.9072994016611, 18.2016632092193, dateD , dateD.suivant(), 1000000);
 	int atmo = e.CalculAtmo(listeConcIndice); 
 	if (atmo!=0)
 	{
@@ -54,14 +53,14 @@ int main()
 
 		cout << "L'atmo au point au 01-01-2017 est : " << atmo << endl;
 	}
-
-	
-	/*for (int i = 0; i < listeIdCapteur.size(); i++)
+	cout << "L'atmo au point au 01-01-2017 est : " << atmo << endl;
+	vector<int> listeIdCapteur = e.getCapteur(listeCapteurs, 11.9072994016611, 18.2016632092193, 1000000); 
+	for (int i = 0; i < listeIdCapteur.size(); i++)
 	{
 		cout << listeIdCapteur[i]; 
-	}*/
+	}
 	system("pause");
-   
+    
 
 	
 	return 0;

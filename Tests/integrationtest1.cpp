@@ -126,11 +126,16 @@ namespace TestIntegration
 			l.Parcourir(c, "../../Fichiers/fichier1000.csv");
 			l.InitSeuils(mapSeuil, "../../Fichiers/Seuils.csv");
 			unordered_map<IdCatalogue, vector<MesureGaz>> map;
-			Date dateD(2019, 01, 01, 0, 1, 20.6090000);
+			Date dateD(2017, 01, 01, 0, 1, 20.6090000);
 			Etude e;
-			vector<ConcentrationIndice> listeConcIndice = e.Evaluer(*c, listeCapteurs, mapSeuil, 11.9072994016611, 18.2016632092193, dateD);
+			vector<ConcentrationIndice> listeConcIndice = e.Evaluer(*c, listeCapteurs, mapSeuil, 11.9072994016611, 18.2016632092193, dateD , Date() , 1000000);
 
-			Assert::IsTrue(e.CalculAtmo(listeConcIndice) == 0);
+			Assert::IsTrue(listeConcIndice[PM10].indice == 4);
+			Assert::IsTrue(listeConcIndice[SO2].indice == 5);
+			Assert::IsTrue(listeConcIndice[NO2].indice == 8);
+			Assert::IsTrue(listeConcIndice[O3].indice == 5);
+
+			Assert::IsTrue(e.CalculAtmo(listeConcIndice) == 8);
 		}
 		/*TEST_METHOD(TestCapteursSimilaires)
 		{

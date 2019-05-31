@@ -120,12 +120,15 @@ vector<ConcentrationIndice> Etude::evaluer(Catalogue &cat, vector<int>&listCapte
 	concentrations.emplace_back(ConcentrationIndice(0));
 	int compteur = 0;
 	unordered_map<IdCatalogue, vector<MesureGaz>> map = cat.getMap();
+
 	for (auto it = map.begin(); it != map.end(); it++)
 	{
 		for (auto l = listCapteur.begin(); l != listCapteur.end(); l++)
 		{
-			if (it->first.getCapteurId() == *l && it->second[03].getDate() >= dateD && it->second[03].getDate() <= dateF)
+		
+			if (it->first.getCapteurId() == *l && it->second[03].getDate()>= dateD && it->second[03].getDate()< dateF)
 			{
+				
 				compteur++;
 				concentrations[O3].concentration += it->second[O3].getValeur();
 				concentrations[SO2].concentration += it->second[SO2].getValeur();
@@ -134,6 +137,7 @@ vector<ConcentrationIndice> Etude::evaluer(Catalogue &cat, vector<int>&listCapte
 			}
 		}
 	}
+	cout << compteur << endl; 
 	if (compteur == 0)
 	{
 		concentrations = vector<ConcentrationIndice>(0);
