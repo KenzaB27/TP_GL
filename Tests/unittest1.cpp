@@ -438,8 +438,7 @@ namespace TestUnitaire
 	{
 	public:
 
-		
-		/*TEST_METHOD(TestConstructionCatalogue)
+		TEST_METHOD(TestConstructionCatalogue)
 		{
 			Date d = Date(2019, 02, 01, 10, 12, 55);
     		MesureGaz m = MesureGaz(O3, d, 10.95, 12, "Capteur12");
@@ -447,21 +446,27 @@ namespace TestUnitaire
 
 			IdCatalogue id = IdCatalogue(12,d);
 
-			list<MesureGaz> liste;
+			vector<MesureGaz> liste;
     		liste.push_back(m);
    			liste.push_back(m1);
 
 			Catalogue c;
+    		c.Ajouter(id, liste);
+			
+			int capteur = c.getMap().find(id)->first.getCapteurId();
+			int dateMesu=c.getMap().find(id)->first.getDateMesure()
+			int gaz = c.getMap().find(id)->second[1].getGazId();
+			int gaz1 = c.getMap().find(id)->second[2].getGazId();
 
-    		c.getMap().emplace(make_pair(id, liste));
+			Logger::WriteMessage("Test de l'id de l'idCatalogue dans le catalogue");
+			Assert::IsTrue(capteur==id.getCapteurId());
+			Logger::WriteMessage("Test de la date de l'idCatalogue dans le catalogue");
+			Assert::IsTrue(dateMesu==d);
 
-			Logger::WriteMessage("Test  idCatalogue dans le catalogue");
-			Assert::IsTrue(c.getMap().find(id)->first.getCapteurId()==id.getCapteurId());
-
-			Logger::WriteMessage("Test liste mesure dans le catalogue");
-			Assert::IsTrue(c.getMap().find(id)->second[1].getGazId()==0);//checker si le second.begin() fonctionne correctement
-
-		}*/
+			Logger::WriteMessage("Test de la liste de MesureGaz dans le catalogue");
+			Assert::IsTrue(gaz==0);
+			Assert::IsTrue(gaz1==0);
+		}
 
 		TEST_METHOD(TestIdCatalogue)
 		{
