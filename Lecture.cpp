@@ -262,7 +262,7 @@ void Lecture::InitSeuils(unordered_map<int, vector<Seuil>> &l, string fichier)
 		l.clear();
 		while (monFlux.good())
 		{
-			list<Seuil> liste;
+			vector<Seuil> liste;
 			int gazId;
 			for (int i = 0; i < 10; i++)
 			{
