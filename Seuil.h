@@ -26,34 +26,55 @@ class Seuil
 //----------------------------------------------------------------- PUBLIC
 
 public:
-	int getMin(); 
-	int getMax(); 
-	int getIndice();
 
-	void setMin(int mi);
-	void setMax( int ma);
-	void setIndice(int ind);
 
-	//------------------------------------------- Surcharge d'operateurs --
-	Seuil & operator = (const Seuil & Seuil );
-	friend ostream & operator << ( ostream & out, const Seuil & Seuil );
-	friend bool operator==(const Seuil& seuil1, const Seuil& seuil2);
-	friend bool operator!=(const Seuil& seuil1, const Seuil& seuil2);
 //----------------------------------------------------- Méthodes publiques
     // type Méthode ( liste de paramètres );
     // Mode d'emploi :
     //
     // Contrat :
     //
-void afficher();
+int getMin();
+int getMax();
+int getIndice();
+
+void setMin(int mi);
+void setMax(int ma);
+void setIndice(int ind);
+
 
 //------------------------------------------------- Surcharge d'opérateurs
-    /*Seuil & operator = ( const Seuil & unSeuil );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
-    */
+
+Seuil& operator = (const Seuil& Seuil);
+// Mode d'emploi :
+//	Operateur d'affectation de la classe
+//	seuil : le seuil est copié
+//	retour : reference sur la date qui a été affectée.
+// Contrat :
+//	Aucun contrat.
+friend ostream& operator << (ostream& out, const Seuil& Seuil);
+// Mode d'emploi :
+//	Operateur d'insertion de la classe
+//	seuil 
+//	retour : reference le flux de sortie
+// Contrat :
+//	Aucun contrat.
+friend bool operator==(const Seuil& seuil1, const Seuil& seuil2);
+// Mode d'emploi :
+//	Operateur d'égalité de la classe
+//	seuil 
+//	retour : le bool évaluant la réussite
+//	ou non du test.
+// Contrat :
+//	Aucun contrat.
+friend bool operator!=(const Seuil& seuil1, const Seuil& seuil2);
+// Mode d'emploi :
+//	Operateur différent de la classe
+//	seuil 
+//	retour : le bool évaluant la réussite
+//	ou non du test.
+// Contrat :
+//	Aucun contrat.
 
 
 //-------------------------------------------- Constructeurs - destructeur

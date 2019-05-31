@@ -30,10 +30,6 @@ using namespace std;
 
 //----------------------------------------------------- M�thodes publiques
 
-void Seuil::afficher() {
-	cout<<"min : "<<min<<"  max : "<<max<<" indice : "<<indice<<endl;
-}
-
 int Seuil::getMin()
 {
 	return min;
@@ -68,7 +64,8 @@ void Seuil::setIndice(int ind)
 
 //------------------------------------------------- Surcharge d'op�rateurs
 Seuil & Seuil::operator = ( const Seuil & unSeuil )
-// Algorithme :
+// Algorithme : Affecte tout les attributs du deuxième
+// Seuil dans le premier.
 //
 {
 	min=unSeuil.min;
@@ -79,25 +76,30 @@ Seuil & Seuil::operator = ( const Seuil & unSeuil )
 
 
 ostream & operator << ( ostream & out, const Seuil & unSeuil )
+// Algorithme : Affiche les attributs de Seuil
 {
 	out << "min : " <<unSeuil.min<<" max : "<<unSeuil.max<<" indice : "<<unSeuil.indice<<endl;
 	return out;
 }//--- Fin de operator <<
 
 bool operator==(const Seuil& seuil1, const Seuil& seuil2)
+// Algorithme : Test l'égalité entre tout les attributs et 
+// retourne vrai si les attributs sont égaux entre eux.
 {
 	return ((seuil1.max==seuil2.max) && (seuil1.min == seuil2.min) && (seuil1.indice == seuil2.indice));
-}
+}//--- Fin de operator ==
 
 bool operator!=(const Seuil& seuil1, const Seuil& seuil2)
+// Algorithme : Test l'égalité entre tout les attributs et 
+// retourne vrai aux moins 1 attribut est différent.
 {
 	return ((seuil1.max != seuil2.max) || (seuil1.min != seuil2.min) || (seuil1.indice != seuil2.indice));
-}
+}//--- Fin de operator !=
 
 //-------------------------------------------- Constructeurs - destructeur
 Seuil::Seuil ( const Seuil & unSeuil )
-// Algorithme :
-//
+// Algorithme : Constructeur de copie, fait une copie
+// en profondeur des attributs d'un Seuil à l'autre.
 {
 #ifdef MAP
     cout << "Appel au constructeur de copie de <Seuil>" << endl;
@@ -109,8 +111,8 @@ Seuil::Seuil ( const Seuil & unSeuil )
 } //----- Fin de Seuil (constructeur de copie)
 
 Seuil::Seuil()
-// Algorithme :
-//
+// Algorithme : Constructeur par défaut, tout les attributs 
+// sont mis à zéro.
 {
 	min = 0;
 	max = 0;
@@ -118,10 +120,10 @@ Seuil::Seuil()
 #ifdef MAP
     cout << "Appel au constructeur de <Seuil>" << endl;
 #endif
-} 
+}  //----- Fin de Seuil (constructeur par défaut)
 
 Seuil::Seuil(int unMin,int unMax,int unIndice)
-// Algorithme :
+// Algorithme : Constructeur de Seuil
 //
 {
 	min = unMin;
