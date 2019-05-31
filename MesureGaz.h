@@ -1,5 +1,5 @@
 /*************************************************************************
-                           PorteeCapteur  -  description
+                           MesureGaz  -  description
                              -------------------
     début                : ${date}
     copyright            : (C) ${year} par ${user}

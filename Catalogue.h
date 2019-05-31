@@ -55,6 +55,7 @@ public:
 //----------------------------------Attributs
 
     protected:
+    
     unordered_map<IdCatalogue,vector<MesureGaz>> map;
 
 

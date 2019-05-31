@@ -23,7 +23,7 @@ using namespace std;
 	
 
 
-ostream & operator<<(ostream &out, const Catalogue &catalogue)
+ostream & operator <<(ostream &out, const Catalogue &catalogue)
 {
 	unordered_map<IdCatalogue, vector<MesureGaz>> map = catalogue.getMap();
 
@@ -31,14 +31,14 @@ ostream & operator<<(ostream &out, const Catalogue &catalogue)
 
 	for (auto itr = map.begin(); itr != map.end(); ++itr)
 	{
-		out << "Page " << compteur << "du catalogue" <<endl;
+		out << "Page " << compteur << " du catalogue" <<endl;
+
 		out << itr->first;
 
 		for (int i = 0; i < itr->second.size(); i++)
 		{
 			out << itr->second[i];
 		}
-		out << endl;
 		out<< "---------------------------------------------------------------";
 		compteur++;
 	}
@@ -49,6 +49,7 @@ ostream & operator<<(ostream &out, const Catalogue &catalogue)
 Catalogue::operator unordered_multimap<int, vector<long double>>() const
 {
 	unordered_multimap<int, vector<long double>> nouvelleMap;
+
 	for (auto it = map.begin(); it != map.end(); it++) {
 		vector<long double > valeurMesures;
 		for (auto i = it->second.begin(); i != it->second.begin(); i++)
