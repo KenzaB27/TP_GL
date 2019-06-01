@@ -63,26 +63,19 @@ Catalogue::operator unordered_multimap<int, vector<long double>>() const
 	return nouvelleMap;
 }
 
+
 unordered_map<IdCatalogue, vector<MesureGaz>> Catalogue::getMap() const
 {
 	return map;
-}
+}//Fin de getMap
 
 void Catalogue::Ajouter(IdCatalogue i, vector<MesureGaz> m)
 {
 	bool r = map.emplace(make_pair(i, m)).second;
-}
+} //Fin de Ajouter
 
 
 //-------------------------------------------- Constructeurs - destructeur
-Catalogue::Catalogue ( const Catalogue & unCatalogue )
-// Algorithme :
-//
-{
-    #ifdef MAP
-        cout << "Appel au constructeur de copie de <Catalogue>" << endl;
-    #endif
-} //----- Fin de Catalogue (constructeur de copie)
 
 Catalogue::Catalogue(){
     //Constructeur par défaut ------ l'objet est vide
