@@ -1,5 +1,5 @@
 /*************************************************************************
-                           Menu 
+                           Menu
                              -------------------
 	début                : 04/06/2019
 	copyright            : (C) 2019 par BOUZID Kenza    - JEANNE Nathan
@@ -28,7 +28,7 @@ using namespace std;
 
 //------------------------------------------------------------------------
 // Rôle de la classe <Menu>
-// Gère l'affichage,a la récupération et le traitement des demande de l'utilisateur 
+// Gère l'affichage,a la récupération et le traitement des demande de l'utilisateur
 //
 //------------------------------------------------------------------------
 
@@ -37,7 +37,7 @@ class Menu
     //----------------------------------------------------------------- PUBLIC
 
 public:
-    //----------------------------------------------------- Méthodes publiques    
+    //----------------------------------------------------- Méthodes publiques
     void run();
     // Mode d'emploi : Lance le programme et lis les commandes
     //
@@ -70,19 +70,18 @@ private:
     //
 
 	bool commande(vector<string> c, string s);
-	// Mode d'emploi : Verifie si la commande appartient au vecteur de paramètres passés 
+	// Mode d'emploi : Verifie si la commande appartient au vecteur de paramètres passés
 	//
 	// Contrat :
 	//
 
 	void split(vector<string> &argList, unordered_map<string, string> &valueList, string s);
-	// Mode d'emploi : split un string de commande en paramètres et valeurs (les -r et -val=value)
+  // Mode d'emploi : split un string de commande en paramètres et valeurs (les -r et -val=value)
 	//
 	// Contrat :
 	//
-
-	void afficheMatSimilarite(bool ** matSimilarite, int nbCapteurs=10);
-
+  
+	void afficheMatSimilarite(bool**matSimilarite, string gaz, double precision);
 	void afficheMatMoyenne(unordered_map<int, vector<long double>> moyenneCapteur );
 
 	void afficheMatEcart(string gaz, long double ** matriceEcartGaz, int nbCapteurs =10);
@@ -91,9 +90,9 @@ private:
 	// Mode d'emploi : affiche les valeurs des indices de chacun des gazs prises
 	// en compte sur la période étudiée lors du calcul de l'ATMO
 	//
-	// Contrat : 
+	// Contrat :
 	//
-    
+
 	void AfficherSeuils(unordered_map<int, vector<Seuil>>& umap);
 	// Mode d'emploi : Affiche les seuils de calcul de l'ATMO
 	//

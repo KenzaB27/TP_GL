@@ -11,8 +11,8 @@
 #include <vector>
 #include <algorithm>
 
-void afficheMatSimilarite(bool**matSimilarite) {
-	cout << "Matrices de similarite des capteurs " << endl << endl;
+void afficheMatSimilarite(bool**matSimilarite , string gaz , double precision) {
+	cout << "Matrices de similarite des capteurs pour le gaz " << gaz  << "  avec un ecart tolere de: " << precision << endl << endl;
 	cout << "     |";
 	for (int i = 0; i < 10; i++)
 	{
@@ -109,8 +109,16 @@ int main()
 	afficheMatEcart("PM10", matriceEcart[PM10]);
 	afficheMatEcart("SO2", matriceEcart[SO2]);
 	afficheMatEcart("NO2", matriceEcart[NO2]);
-	bool ** matSimilarite = e.DeterminerCapteursSimilaires(matriceEcart, 10); 
-	afficheMatSimilarite(matSimilarite);
+	bool ** matSimilarite = e.DeterminerCapteursSimilaires(matriceEcart, 10);
+	bool ** matSimilariteO3 = e.DeterminerCapteursSimilairesParGaz(matriceEcart[O3],3.2);
+	bool ** matSimilaritePM10 = e.DeterminerCapteursSimilairesParGaz(matriceEcart[PM10],4.4);
+	bool ** matSimilariteSO2 = e.DeterminerCapteursSimilairesParGaz(matriceEcart[SO2], 6.5);
+	bool ** matSimilariteNO2 = e.DeterminerCapteursSimilairesParGaz(matriceEcart[NO2], 10);
+	afficheMatSimilarite(matSimilariteO3, "O3" , 3.2);
+	afficheMatSimilarite(matSimilaritePM10, "PM10",4.4);
+	afficheMatSimilarite(matSimilariteSO2, "SO2",6.5);
+	afficheMatSimilarite(matSimilariteNO2,"NO2",10);
+	afficheMatSimilarite(matSimilarite,"Tous",10);
 	system("pause"); 
 	return 0;
 }
