@@ -42,7 +42,7 @@ void SupprimerCapteur(int numCapteur, vector<Capteur> &listeCapteurs);
 // Contrat :
 //	Aucun contrat 
 
-int EvaluerCapteur(Catalogue &c, int num);
+int EvaluerCapteur(Catalogue &c, int idCapteur);
 // Mode d'emploi :
 //	Evalue un capteur et renvoie un entier
 //	selon si le capteur est défaillant
