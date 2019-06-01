@@ -191,6 +191,23 @@ unordered_map<string, id> Lecture::getGazName()
 	return gazMap;
 } //--- Fin de getGazName
 
+
+void Lecture::getCommandes(vector<string> &v, string fichier)
+{
+	ifstream monFlux(fichier.c_str());
+
+	if (monFlux)
+	{
+		while (monFlux.good())
+		{
+			string temp;
+			getline(monFlux, temp);
+			v.push_back(temp);
+		}
+	}
+}
+
+
 //-------------------------------------------- Constructeurs - destructeur
 Lecture::Lecture()
 // Algorithme :
