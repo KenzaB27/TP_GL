@@ -274,19 +274,19 @@ void Menu::split(vector<string> &argList, unordered_map<string, string> &valueLi
 		argList.push_back(s);
 	}
 }
-void Menu::afficheMatSimilarite(bool**matSimilarite , int nbCapteurs) {
-	cout << "Matrices de similarite des capteurs " << endl << endl;
+void Menu::afficheMatSimilarite(bool**matSimilarite, string gaz, double precision) {
+	cout << "Matrices de similarite des capteurs pour le gaz " << gaz << "  avec un ecart tolere de: " << precision << endl << endl;
 	cout << "     |";
-	for (int i = 0; i < nbCapteurs; i++)
+	for (int i = 0; i < 10; i++)
 	{
 		cout << i << "    |";
 	}
 	cout << endl;
 	cout << "------------------------------------------------------------------" << endl;
-	for (int i = 0; i < nbCapteurs; i++)
+	for (int i = 0; i < 10; i++)
 	{
 		cout << i << "    |";
-		for (int j = 0; j < nbCapteurs; j++)
+		for (int j = 0; j < 10; j++)
 		{
 			cout << matSimilarite[i][j] << "    |";
 		}

@@ -75,7 +75,12 @@ public:
 	// mapMoyenne : la map des moyennes 
 	// Contrat : Aucun contrat 
 	//
-
+	bool ** DeterminerCapteursSimilairesParGaz(long double ** matriceEcartGaz, double ecart, int nbCapteurs=10);
+	// Mode d'emploi : permet determiner les capteurs similaires selon la precision déterminée par le client pour chacun des gazs
+	// matriceEcart : la matrice des ecarts par gaz
+	// ecart : l'ecart de tolérance
+	// Contrat : Aucun contrat 
+	//
 	bool** DeterminerCapteursSimilaires(unordered_map < int, long double** > matriceEcart , double ecart , int nbCappteurs=10 );
 	// Mode d'emploi : permet determiner les capteurs similaires selon la precision déterminée par le client
 	// matriceEcart : la matrice des ecarts par gaz

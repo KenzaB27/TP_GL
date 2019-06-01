@@ -82,7 +82,7 @@ private:
 	//
 
 	void split(vector<string> &argList, unordered_map<string, string> &valueList, string s);
-	void afficheMatSimilarite(bool ** matSimilarite, int nbCapteurs=10);
+	void afficheMatSimilarite(bool**matSimilarite, string gaz, double precision);
 	void afficheMatMoyenne(unordered_map<int, vector<long double>> moyenneCapteur );
 	void afficheMatEcart(string gaz, long double ** matriceEcartGaz, int nbCapteurs =10);
 	void afficherSousIndiceAtmo(vector<ConcentrationIndice> listeConcIndice);

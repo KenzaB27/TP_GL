@@ -97,6 +97,27 @@ unordered_map<int, long double**> Etude::EcartCapteurs(unordered_map<int, vector
 	}
 	return mapEcartCapteurs; 
 }
+bool ** Etude::DeterminerCapteursSimilairesParGaz(long double** matriceEcartGaz, double ecart, int nbCapteurs)
+{
+	bool ** matSimilarite = new bool *[nbCapteurs];
+	for (int i = 0; i < nbCapteurs; i++)
+	{
+		matSimilarite[i] = new bool[nbCapteurs];
+	}
+	for (int i = 0; i < nbCapteurs; i++) {
+		for (int k = 0; k < nbCapteurs; k++)
+		{
+			if (matriceEcartGaz[i][k]  <= ecart)
+			{
+				matSimilarite[i][k] = 1;
+			}
+			else {
+				matSimilarite[i][k] = 0;
+			}
+		}
+	}
+	return matSimilarite;
+}
 bool ** Etude::DeterminerCapteursSimilaires(unordered_map<int, long double**> matriceEcart, double ecart , int nbCapteurs)
 {
 	bool ** matSimilarite = new bool *[nbCapteurs];
@@ -199,7 +220,7 @@ vector<int> Etude::getCapteur(vector<Capteur>&listCapteur, long double latitude,
 	bool capteurFound = false; 
 	for (auto it = listCapteur.begin(); it != listCapteur.end(); it++)
 	{
-		if (territoire.contient(it->getPortee())) {
+		if (territoire.contient(it->getPortee()) && it->getEtat()==1 ) {
 			cout << "capteurAjoute" << endl; 
 			capteurTerritoire.push_back(it->getCapteurId());
 			capteurFound = true; 
