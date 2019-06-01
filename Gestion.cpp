@@ -187,17 +187,16 @@ void Gestion::SupprimerCapteur(int numCapteur, vector <Capteur> &listeCapteurs)
     }
 }
 
-int Gestion::EvaluerCapteur(Catalogue &c, int num) {
+int Gestion::EvaluerCapteur(Catalogue &c, int idCapteur) {
 
-	bool defectueux = false;
 
 	unordered_map<IdCatalogue, vector<MesureGaz>> map = c.getMap();
 	list<list<pair<long double, Date>>> liste;
 	for (auto it = map.begin(); it != map.end(); it++) {
 		list<pair<long double, Date>> valeursMesures;
-		if (it->first.getCapteurId()==num)
+		if (it->first.getCapteurId()== idCapteur)
 		{
-			for (auto i = it->second.begin(); i != it->second.begin(); i++)
+			for (auto i = it->second.begin(); i != it->second.end(); i++)
 			{
 				valeursMesures.emplace_back(i->getValeur(),i->getDate());
 			}
@@ -205,8 +204,57 @@ int Gestion::EvaluerCapteur(Catalogue &c, int num) {
 		}
 	}
 
+	int taille = (int)liste.size();
 
-    return 0;
+	if (taille == 0)
+	{
+		return 2;
+	}
+	else
+	{
+		auto it = liste.begin();
+		auto itGaz = it->begin();
+		Date date = itGaz->second;
+		for (; itGaz != it->end(); itGaz++)
+		{
+			if (!(date == itGaz->second))
+			{
+				return 0;
+			}
+			else if (itGaz->first < 0) {
+				return 0;
+			}
+		}
+		it++;
+		auto itPrecedent = liste.begin();
+		for (; it != liste.end(); it++)
+		{
+			auto itGaz = it->begin();
+			Date date = itGaz->second;
+			if (date < itPrecedent->begin()->second) {
+				return 0;
+			}
+
+			for (; itGaz != it->end(); itGaz++)
+			{
+				if (!(date == itGaz->second))
+				{
+					return 0;
+				}
+				else if (itGaz->first < 0) {
+					return 0;
+				}
+			}
+
+			itPrecedent++;
+			
+		}
+		
+	}
+
+
+
+    return 1;
 }
 
 //-------------------------------------------- Constructeurs - destructeur
