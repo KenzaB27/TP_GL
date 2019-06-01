@@ -101,23 +101,26 @@ int main()
 		}
 
 	}*/
+
 	Etude e; 
 	unordered_map<int , vector<long double> > moyenneCapteur = e.MesuresTotParCapteurs(*c, 10);
 	afficheMatMoyenne(moyenneCapteur); 
 	unordered_map<int, long double**> matriceEcart = e.EcartCapteurs(moyenneCapteur);
-	afficheMatEcart("O3", matriceEcart[O3]); 
-	afficheMatEcart("PM10", matriceEcart[PM10]);
-	afficheMatEcart("SO2", matriceEcart[SO2]);
-	afficheMatEcart("NO2", matriceEcart[NO2]);
 	bool ** matSimilarite = e.DeterminerCapteursSimilaires(matriceEcart, 10);
-	bool ** matSimilariteO3 = e.DeterminerCapteursSimilairesParGaz(matriceEcart[O3],3.2);
-	bool ** matSimilaritePM10 = e.DeterminerCapteursSimilairesParGaz(matriceEcart[PM10],4.4);
+	bool ** matSimilariteO3 = e.DeterminerCapteursSimilairesParGaz(matriceEcart[O3], 3.2);
+	bool ** matSimilaritePM10 = e.DeterminerCapteursSimilairesParGaz(matriceEcart[PM10], 4.4);
 	bool ** matSimilariteSO2 = e.DeterminerCapteursSimilairesParGaz(matriceEcart[SO2], 6.5);
 	bool ** matSimilariteNO2 = e.DeterminerCapteursSimilairesParGaz(matriceEcart[NO2], 10);
-	afficheMatSimilarite(matSimilariteO3, "O3" , 3.2);
-	afficheMatSimilarite(matSimilaritePM10, "PM10",4.4);
-	afficheMatSimilarite(matSimilariteSO2, "SO2",6.5);
-	afficheMatSimilarite(matSimilariteNO2,"NO2",10);
+	
+	afficheMatEcart("O3", matriceEcart[O3]);
+	afficheMatSimilarite(matSimilariteO3, "O3", 3.2);
+	afficheMatEcart("PM10", matriceEcart[PM10]);
+	afficheMatSimilarite(matSimilaritePM10, "PM10", 4.4);
+	afficheMatEcart("SO2", matriceEcart[SO2]);
+	afficheMatSimilarite(matSimilariteSO2, "SO2", 6.5);
+	afficheMatEcart("NO2", matriceEcart[NO2]);
+	afficheMatSimilarite(matSimilariteNO2, "NO2", 10);
+
 	afficheMatSimilarite(matSimilarite,"Tous",10);
 	system("pause"); 
 	return 0;
