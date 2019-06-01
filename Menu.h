@@ -44,12 +44,6 @@ public:
     // Contrat :
     //
 
-	void init();
-	// Mode d'emploi : Initialise le Menu et les classes de gaz, capteur, seuils et le parcousr
-	//
-	// Contrat :
-	//
-
     //-------------------------------------------- Constructeurs - destructeur
 
     Menu();
@@ -82,13 +76,22 @@ private:
 	//
 
 	void split(vector<string> &argList, unordered_map<string, string> &valueList, string s);
-	void afficheMatSimilarite(bool ** matSimilarite, int nbCapteurs=10);
-	void afficheMatMoyenne(unordered_map<int, vector<long double>> moyenneCapteur );
-	void afficheMatEcart(string gaz, long double ** matriceEcartGaz, int nbCapteurs =10);
-	void afficherSousIndiceAtmo(vector<ConcentrationIndice> listeConcIndice);
 	// Mode d'emploi : split un string de commande en paramètres et valeurs (les -r et -val=value)
 	//
 	// Contrat :
+	//
+
+	void afficheMatSimilarite(bool ** matSimilarite, int nbCapteurs=10);
+
+	void afficheMatMoyenne(unordered_map<int, vector<long double>> moyenneCapteur );
+
+	void afficheMatEcart(string gaz, long double ** matriceEcartGaz, int nbCapteurs =10);
+
+	void afficherSousIndiceAtmo(vector<ConcentrationIndice> listeConcIndice);
+	// Mode d'emploi : affiche les valeurs des indices de chacun des gazs prises
+	// en compte sur la période étudiée lors du calcul de l'ATMO
+	//
+	// Contrat : 
 	//
     
 	void AfficherSeuils(unordered_map<int, vector<Seuil>>& umap);

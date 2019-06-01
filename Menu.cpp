@@ -43,17 +43,6 @@ void Menu::run()
 	
 }
 
-void Menu::init()
-{
-	Lecture l;
-	l.InitSeuils(tabSeuils, "../Fichiers/Seuils.csv");
-	l.InitCapteur(listeCapteurs, "../Fichiers/capteurComplet.csv");
-	l.InitTypeGaz("../Fichiers/gazTest.csv");
-
-	l.Parcourir(c, "../Fichiers/fichier1000.csv");
-}
-
-
 
 //-------------------------------------------- Constructeurs - destructeur
 
@@ -116,17 +105,20 @@ bool Menu::traitement(string input)
 		dateF = commande(argList, "-d") ? Date(valueList.find("-dateF")->second.c_str()) : dateF.precedent();
 		dateD = commande(argList, "-d") ? Date(valueList.find("-dateD")->second.c_str()) : dateF.now();
 			
+		cout << "[atmo] " << endl;
 		if (commande(argList, "-s"))
 		{
-			//TODO : Affichage valeurs mesure
-			//e.Evaluer(c, listeCapteurs, lat, lon, dateD, dateF);
+			vector<ConcentrationIndice> result = e.Evaluer(*c, listeCapteurs, tabSeuils, lat, lon, dateD, dateF);
+			afficherSousIndiceAtmo(result);
 		}
 		else
 		{
-			//TODO : Affichage ATMO
-			//vector<ConcentrationIndice> mesures = e.Evaluer(c, listeCapteurs, lat, lon, dateD, dateF);
-			//cout << "[atmo] " << e.CalculAtmo(mesures, tabSeuils) << endl;
+			vector<ConcentrationIndice> mesures = e.Evaluer(*c, listeCapteurs, tabSeuils, lat, lon, dateD, dateF);
+			int atmo = e.CalculAtmo(mesures);
+			cout << "L'indice ATMO à la date " << dateF << "est " << atmo <<  endl;
 		}
+
+		return true;
 	}
 
 
@@ -135,9 +127,20 @@ bool Menu::traitement(string input)
 		// Commande de la forme : stats -n=3 pour l'etude de 3 capteurs
 
 		int n = atoi(valueList.find("-n")->second.c_str());
-		//e.DetecterCapteursSimilaires(*c, n);
-		//TODO : appel et affichage capteurs similaires
+		
+		cout << "[stats] " << endl;
 
+		unordered_map<int, vector<long double> > moyenneCapteur = e.MesuresTotParCapteurs(*c, n);
+		afficheMatMoyenne(moyenneCapteur);
+		unordered_map<int, long double**> matriceEcart = e.EcartCapteurs(moyenneCapteur);
+		afficheMatEcart("O3", matriceEcart[O3]);
+		afficheMatEcart("PM10", matriceEcart[PM10]);
+		afficheMatEcart("SO2", matriceEcart[SO2]);
+		afficheMatEcart("NO2", matriceEcart[NO2]);
+		bool ** matSimilarite = e.DeterminerCapteursSimilaires(matriceEcart, 10);
+		afficheMatSimilarite(matSimilarite);
+
+		return true;
 	}
 
 	if (commande(argList, "sensor")) //---------------------------------- Gestion des capteurs
@@ -149,7 +152,7 @@ bool Menu::traitement(string input)
 			string description = valueList.find("-d")->second;
 			int cId = atoi(valueList.find("-id")->second.c_str());
 
-			Capteur c(cId, description, lat, lon);
+			Capteur c(cId, description, lat, lon); // Creation d'un nouveau capteur à partir des paramètres passés
 			g.AjouterCapteur(c, listeCapteurs);
 		}
 
@@ -170,6 +173,8 @@ bool Menu::traitement(string input)
 			int cId = atoi(valueList.find("-id")->second.c_str());
 			g.RestaurerCapteur(cId, listeCapteurs);
 		}
+
+		return true;
 	}
 
 	if (commande(argList, "seuil")) //----------------------------------- Gestion du seuil
@@ -190,8 +195,38 @@ bool Menu::traitement(string input)
 
 			g.ChangerUnSeuil(tabSeuils, gazId, s);
 		}
+
+		return true;
 	}
 
+	if (commande(argList, "run")) //------------ Gestion de la lecture et de l'initialisation 
+	{
+		string fichierMesures = "../Fichiers/fichier1000.csv";
+		string fichierCapteurs = "../Fichiers/capteurComplet.csv";
+		string fichierGaz = "../Fichiers/gazTest.csv";
+		string fichierSeuils = "../Fichiers/Seuils.csv";
+
+		if (commande(argList, "-define")) 
+		{
+			fichierMesures = valueList.find("-m")->second;
+			fichierCapteurs = valueList.find("-c")->second;
+			fichierGaz = valueList.find("-g")->second;
+			fichierSeuils = valueList.find("-s")->second;
+		}
+		
+		cout << "[run] Lecture des fichiers" << endl;
+
+		// Initialisation des seuils, capteurs et gaz
+		l.InitSeuils(tabSeuils, fichierSeuils); 
+		l.InitCapteur(listeCapteurs, fichierCapteurs);
+		l.InitTypeGaz(fichierGaz);
+
+		l.Parcourir(c, fichierMesures); //Remplissage du catalogue
+
+		return true;
+	}
+
+	return false;
 }
 
 void Menu::AfficherSeuils(unordered_map<int, vector<Seuil>> &umap)

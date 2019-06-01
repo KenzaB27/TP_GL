@@ -102,7 +102,7 @@ int main()
 
 	}*/
 	Etude e; 
-	unordered_map<int , vector<long double> >moyenneCapteur = e.MesuresTotParCapteurs(*c, 10);
+	unordered_map<int , vector<long double> > moyenneCapteur = e.MesuresTotParCapteurs(*c, 10);
 	afficheMatMoyenne(moyenneCapteur); 
 	unordered_map<int, long double**> matriceEcart = e.EcartCapteurs(moyenneCapteur);
 	afficheMatEcart("O3", matriceEcart[O3]); 
