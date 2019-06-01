@@ -10,7 +10,7 @@
 #include "PorteeCapteur.h"
 #include <vector>
 #include <algorithm>
-
+/*
 void afficheMatSimilarite(bool**matSimilarite , string gaz , double precision) {
 	cout << "Matrices de similarite des capteurs pour le gaz " << gaz  << "  avec un ecart tolere de: " << precision << endl << endl;
 	cout << "     |";
@@ -73,15 +73,15 @@ void afficheMatEcart( string gaz, long double** matriceEcartGaz , int nbCapteurs
 		cout << endl;
 	}
 	cout << endl; 
-}
+}*/
 int main()
 {
-/*
-	Menu m;
-	m.init();
-	m.run();*/
 
-    
+	Menu m;
+	//m.init();
+	m.run();
+
+    /*
 	Catalogue* c = new Catalogue();
 	Lecture l;
 	vector<Capteur> listeCapteurs;
@@ -100,7 +100,7 @@ int main()
 			cout << x.second[i] << endl;
 		}
 
-	}*/
+	}
 
 	Etude e; 
 	unordered_map<int , vector<long double> > moyenneCapteur = e.MesuresTotParCapteurs(*c, 10);
@@ -121,7 +121,7 @@ int main()
 	afficheMatEcart("NO2", matriceEcart[NO2]);
 	afficheMatSimilarite(matSimilariteNO2, "NO2", 10);
 
-	afficheMatSimilarite(matSimilarite,"Tous",10);
+	afficheMatSimilarite(matSimilarite,"Tous",10); */
 	system("pause"); 
 	return 0;
 }
