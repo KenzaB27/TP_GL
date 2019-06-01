@@ -46,6 +46,10 @@ int EvaluerCapteur(Catalogue &c, int idCapteur);
 // Mode d'emploi :
 //	Evalue un capteur et renvoie un entier
 //	selon si le capteur est défaillant
+// Valeur de retour :
+//	 2 : Pas de capteurs correspondants
+//	 0 : Capteur défaillant
+//   1 : Capteur fonctionnel
 // Contrat :
 //	Aucun contrat
 
