@@ -135,13 +135,11 @@ bool Menu::traitement(string input)
 		afficheMatMoyenne(moyenneCapteur);
 		unordered_map<int, long double**> matriceEcart = e.EcartCapteurs(moyenneCapteur);
 
-		if (strcmp(valueList.find("-gaz")->second.c_str(), "a")) //On étudie tous les gaz
+		if (valueList.find("-gaz")->second == "a") //On étudie tous les gaz
 		{
 			bool ** matSimilarite = e.DeterminerCapteursSimilaires(matriceEcart, 10);
 			afficheMatSimilarite(matSimilarite, "Tous", 10);
-		}
-		else // On étudie qu'un seul gaz
-		{
+		} else {
 			double ecart = atof(valueList.find("-e")->second.c_str());
 			bool ** matSimilarite = e.DeterminerCapteursSimilairesParGaz(matriceEcart[l.getGazName()[gaz]], ecart);
 
