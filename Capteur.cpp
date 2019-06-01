@@ -44,8 +44,7 @@ void Capteur::setEtat(int unEtat)
 
 ostream & operator<<(ostream & out, const Capteur & capteur)
 {
-	out << capteur.getCapteurId(); 
-	//" " << mesureGaz.description << " " << mesureGaz.idCapteur << " " <<mesureGaz.date << endl;
+	out << "Id du Capteur : " << capteur.getCapteurId() << " Portée du capteur : " <<capteur.getPortee() << " Etat du capteur : "<<capteur.getEtat()<<" Description du capteur : " <<capteur.getDescription()<<endl;
 	return out;
 }
 
