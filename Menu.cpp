@@ -126,19 +126,29 @@ bool Menu::traitement(string input)
 	{
 		// Commande de la forme : stats -n=3 pour l'etude de 3 capteurs
 
-		int n = atoi(valueList.find("-n")->second.c_str());
+		int n = commande(argList, "-n") ? atoi(valueList.find("-n")->second.c_str()) : 10;
+		string gaz = valueList.find("-gaz")->second;
 		
-		cout << "[stats] " << endl;
+		cout << "[stats] Calculs en cours..." << endl;
 
 		unordered_map<int, vector<long double> > moyenneCapteur = e.MesuresTotParCapteurs(*c, n);
 		afficheMatMoyenne(moyenneCapteur);
 		unordered_map<int, long double**> matriceEcart = e.EcartCapteurs(moyenneCapteur);
-		afficheMatEcart("O3", matriceEcart[O3]);
-		afficheMatEcart("PM10", matriceEcart[PM10]);
-		afficheMatEcart("SO2", matriceEcart[SO2]);
-		afficheMatEcart("NO2", matriceEcart[NO2]);
-		bool ** matSimilarite = e.DeterminerCapteursSimilaires(matriceEcart, 10);
-		afficheMatSimilarite(matSimilarite);
+
+		if (strcmp(valueList.find("-gaz")->second.c_str(), "a")) //On étudie tous les gaz
+		{
+			bool ** matSimilarite = e.DeterminerCapteursSimilaires(matriceEcart, 10);
+			afficheMatSimilarite(matSimilarite, "Tous", 10);
+		}
+		else // On étudie qu'un seul gaz
+		{
+			double ecart = atof(valueList.find("-e")->second.c_str());
+			bool ** matSimilarite = e.DeterminerCapteursSimilairesParGaz(matriceEcart[l.getGazName()[gaz]], ecart);
+
+			afficheMatEcart(gaz, matriceEcart[l.getGazName()[gaz]]);
+			afficheMatSimilarite(matSimilarite, gaz, ecart);
+
+		}
 
 		return true;
 	}
