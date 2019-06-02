@@ -1,5 +1,5 @@
 /*************************************************************************
-                           Menu 
+                           Menu
                              -------------------
 	début                : 04/06/2019
 	copyright            : (C) 2019 par BOUZID Kenza    - JEANNE Nathan
@@ -30,17 +30,17 @@ void Menu::run()
 
 	do
 	{
-		// Lecture de la commande utlisateur 
+		// Lecture de la commande utlisateur
 		cout << ">";
 		//cin >> inputLine;
 		getline(cin, inputLine);
 
-		//Traitement de la commande 
-		if(!traitement(inputLine)) 
+		//Traitement de la commande
+		if(!traitement(inputLine))
 			cout << "commande inexistante, tapez 'help' pour la liste des commandes" << endl;
 
 	} while (inputLine.compare("exit"));
-	
+
 }
 
 
@@ -74,7 +74,7 @@ Menu::~Menu()
 
 
 bool Menu::traitement(string input)
-{	
+{
 	vector<string> argList; //Liste des arguments passés dans la commande (les -s)
 	unordered_map<string,string> valueList; //Liste des valeurs des paramètres passés dans la commande (les -r=X)
 
@@ -102,7 +102,7 @@ bool Menu::traitement(string input)
 		{
 			cout << "[help] erreur lors de l'affichage de la liste des commandes" << endl;
 		}
-		
+
 
 		return true;
 	}
@@ -110,24 +110,24 @@ bool Menu::traitement(string input)
 
 	if(commande(argList, "atmo")) //------------------------------------- Etude de l'ATMO
 	{
-		// On a toujours -lat= et -long= 
+		// On a toujours -lat= et -long=
 		// La date si elle n'est pas mise est celle d'hier
-		// Param a mettre -r -d si date et rayon, sinon que latitude et longitude 
+		// Param a mettre -r -d si date et rayon, sinon que latitude et longitude
 		// -dateF=  pour date de fin & -dateD= pour date début
 		// Format de date : YYYY-MM-DDTHH:MM:SS.SSSSSSSS
 		// -s si valeurs a afficher
-		
+
 
 		long double lat = atof(valueList.find("-lat")->second.c_str());
 		long double lon = atof(valueList.find("-long")->second.c_str());;
-		
+
 		double rayon = commande(argList, "-r") ? atof(valueList.find("-r")->second.c_str()) : 2000;
-		
+
 		Date dateD;
 		Date dateF;
 		dateF = commande(argList, "-d") ? Date(valueList.find("-dateF")->second.c_str()) : dateF.precedent();
 		dateD = commande(argList, "-d") ? Date(valueList.find("-dateD")->second.c_str()) : dateF.now();
-			
+
 		if (commande(argList, "-s"))
 		{
 			try
@@ -140,7 +140,7 @@ bool Menu::traitement(string input)
 			{
 				cout << "[atmo] erreur lors de l'affichage des valeurs" << endl;
 			}
-			
+
 		}
 		else
 		{
@@ -154,7 +154,7 @@ bool Menu::traitement(string input)
 			{
 				cout << "[atmo] erreur lors du calcul de l'atmo" << endl;
 			}
-			
+
 		}
 
 		return true;
@@ -193,7 +193,7 @@ bool Menu::traitement(string input)
 		{
 			cout << "[stats] erreur lors des calculs de statistique" << endl;
 		}
-		
+
 
 		return true;
 	}
@@ -217,10 +217,10 @@ bool Menu::traitement(string input)
 			{
 				cout << "[sensor] erreur lors de l'ajout du capteur" << endl;
 			}
-			
+
 		}
 
-		if (commande(argList, "remove"))		
+		if (commande(argList, "remove"))
 		{
 			try
 			{
@@ -232,7 +232,7 @@ bool Menu::traitement(string input)
 			{
 				cout << "[sensor] erreur lors de la suppression du capteur" << endl;
 			}
-			
+
 		}
 
 		if (commande(argList, "exclude"))
@@ -261,7 +261,7 @@ bool Menu::traitement(string input)
 			{
 				cout << "[sensor] erreur lors de l'inclusion du capteur" << endl;
 			}
-			
+
 		}
 
 		if (commande(argList, "evaluate"))
@@ -276,12 +276,12 @@ bool Menu::traitement(string input)
 			{
 				cout << "[sensor] erreur lors de l'évaluation du capteur" << endl;
 			}
-			
+
 		}
 
 		if (commande(argList, "print"))
 		{
-			
+
 			if (listeCapteurs.size()==0)
 			{
 				cout << "[sensor] aucun capteurs disponibles" << endl;
@@ -294,7 +294,7 @@ bool Menu::traitement(string input)
 					cout << listeCapteurs[i] << endl;
 				}
 			}
-			
+
 		}
 		return true;
 	}
@@ -325,18 +325,18 @@ bool Menu::traitement(string input)
 			{
 				cout << "[seuils] erreur lors de la mise à jour des seuils" << endl;
 			}
-				
+
 		}
 
 		return true;
 	}
 
-	if (commande(argList, "run")) //------------ Gestion de la lecture et de l'initialisation 
+	if (commande(argList, "run")) //------------ Gestion de la lecture et de l'initialisation
 	{
-		string fichierMesures = "../Fichiers/fichier1000.csv";
-		string fichierCapteurs = "../Fichiers/capteurComplet.csv";
-		string fichierGaz = "../Fichiers/gazTest.csv";
-		string fichierSeuils = "../Fichiers/Seuils.csv";
+		string fichierMesures = "Fichiers/fichier1000.csv";
+		string fichierCapteurs = "Fichiers/capteurComplet.csv";
+		string fichierGaz = "Fichiers/gazTest.csv";
+		string fichierSeuils = "Fichiers/Seuils.csv";
 
 		if (!firstRun) //Si ça n'est pas le premier lancement on vide les listes pour les reremplir
 		{
@@ -345,15 +345,15 @@ bool Menu::traitement(string input)
 			tabSeuils.clear();
 		}
 
-		if (commande(argList, "-define")) 
+		if (commande(argList, "-define"))
 		{
 			fichierMesures = valueList.find("-m")->second;
 			fichierCapteurs = valueList.find("-c")->second;
 			fichierGaz = valueList.find("-g")->second;
 			fichierSeuils = valueList.find("-s")->second;
 		}
-		
-		
+
+
 
 		if(firstRun) firstRun = false; //On est passé au moins 1 fois
 
@@ -371,7 +371,7 @@ bool Menu::traitement(string input)
 		{
 			cout << "[run] erreur lors de la lecture des fichiers" << endl;
 		}
-		
+
 
 		return true;
 	}
@@ -402,7 +402,7 @@ void Menu::AfficherSeuils(unordered_map<int, vector<Seuil>> &umap)
 	}
 }
 
-bool Menu::commande(vector<string> c, string s) 
+bool Menu::commande(vector<string> c, string s)
 {
 	return find(c.begin(), c.end(), s) != c.end();
 }
