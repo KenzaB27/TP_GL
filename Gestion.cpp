@@ -33,21 +33,7 @@ using namespace std;
 //-------------------------------------------------------- Fonctions amies
 
 //----------------------------------------------------- M�thodes publiques
-// type Gestion::M�thode ( liste de param�tres )
-// Algorithme :
-//
-//{
-//} //----- Fin de M�thode
 
-/*void Gestion::creerUtilisateur(Utilisateur unUtilisateur)
-{
-
-}
-
-void Gestion::supprimerUtilisateur(Utilisateur unUtilisateur)
-{
-
-}*/
 
 void Gestion::AjouterCapteur(Capteur unCapteur, vector <Capteur> &listeCapteurs) 
 // Algorithme : Parcours le vector pour savoir si le capteur est déjà présent.
