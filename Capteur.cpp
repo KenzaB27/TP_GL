@@ -44,7 +44,9 @@ void Capteur::setEtat(int unEtat)
 
 ostream & operator<<(ostream & out, const Capteur & capteur)
 {
-	out << "Id du Capteur : " << capteur.getCapteurId() << " Portée du capteur : " <<capteur.getPortee() << " Etat du capteur : "<<capteur.getEtat()<<" Description du capteur : " <<capteur.getDescription()<<endl;
+	out << "Id du Capteur : " << capteur.getCapteurId() << endl << " Portee du capteur : " << capteur.getPortee() << "Etat du capteur : ";
+	(capteur.getEtat() == 1) ? out << "Fonctionnel" <<endl : out << "En veille" << endl; 
+	out << "Description du capteur : " << capteur.getDescription() << endl;
 	return out;
 }
 

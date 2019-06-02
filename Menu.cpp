@@ -90,7 +90,7 @@ bool Menu::traitement(string input)
 		try
 		{
 			vector<string> listeCommandes;
-			l.getCommandes(listeCommandes, "../../Fichiers/commandes.csv");
+			l.getCommandes(listeCommandes, "Fichiers/commandes.csv");
 
 			cout << "[help] Liste des commandes disponibles : " << endl;
 			for (unsigned int i = 0; i < listeCommandes.size(); i++)
@@ -333,10 +333,10 @@ bool Menu::traitement(string input)
 
 	if (commande(argList, "run")) //------------ Gestion de la lecture et de l'initialisation 
 	{
-		string fichierMesures = "../Fichiers/fichier1000.csv";
-		string fichierCapteurs = "../Fichiers/capteurComplet.csv";
-		string fichierGaz = "../Fichiers/gazTest.csv";
-		string fichierSeuils = "../Fichiers/Seuils.csv";
+		string fichierMesures = "Fichiers/fichier1000.csv";
+		string fichierCapteurs = "Fichiers/capteurComplet.csv";
+		string fichierGaz = "Fichiers/gazTest.csv";
+		string fichierSeuils = "Fichiers/Seuils.csv";
 
 		if (!firstRun) //Si ça n'est pas le premier lancement on vide les listes pour les reremplir
 		{
