@@ -85,12 +85,12 @@ bool Menu::traitement(string input)
 
 	if (commande(argList, "exit")) return true;
 
-	if (commande(argList, "help"))
+	if (commande(argList, "help")) //------------------------------------- Page d'aide des commandes
 	{
 		try
 		{
 			vector<string> listeCommandes;
-			l.getCommandes(listeCommandes, "../../Fichiers/commandes.csv");
+			l.getCommandes(listeCommandes, "../Fichiers/commandes.csv");
 
 			cout << "[help] Liste des commandes disponibles : " << endl;
 			for (unsigned int i = 0; i < listeCommandes.size(); i++)

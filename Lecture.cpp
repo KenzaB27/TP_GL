@@ -75,6 +75,8 @@ void Lecture::Parcourir(Catalogue* c, string fichier)
 				c->Ajouter(index, listeMesure);
 			}
 		}
+	}else {
+		cerr << "[error] " << "Aucun fichier de mesure correspondant a " << fichier << endl;
 	}
 
 } //--- Fin de Parcourir
@@ -114,6 +116,8 @@ void Lecture::InitCapteur(vector<Capteur> &liste, string fichierCapteurs)
 			liste.push_back(c);
 			i++;
 		}
+	} else {
+		cerr << "[error] " << "Aucun fichier de capteurs correspondant a " << fichierCapteurs << endl;
 	}
 } //---- Fin de InitCapteur
 
@@ -143,6 +147,9 @@ void Lecture::InitTypeGaz(string fichierGaz)
 
 			gazDescription[gazId] = g;
 		}
+	}
+	else {
+		cerr << "[error] " << "Aucun fichier d'information de gaz correspondant a " << fichierGaz << endl;
 	}
 }//-- Fin InitTypeGaz
 
@@ -182,6 +189,8 @@ void Lecture::InitSeuils(unordered_map<int, vector<Seuil>> &l, string fichier)
 			}
 			l.emplace(make_pair(gazId, liste));
 		}
+	}else{
+		cerr << "[error] " << "Aucun fichier d'information des seuils correspondant a " << fichier << endl;
 	}
 } //--- Fin InitSeuils
 
@@ -204,6 +213,8 @@ void Lecture::getCommandes(vector<string> &v, string fichier)
 			getline(monFlux, temp);
 			v.push_back(temp);
 		}
+	}else{
+		cerr << "[error] " << "Aucun fichier de commande trouvé correspondant a " << fichier << endl;
 	}
 }
 
