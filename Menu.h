@@ -17,6 +17,7 @@
 #include "Etude.h"
 #include "Lecture.h"
 #include <vector>
+#include <iomanip>
 #include "Capteur.h"
 
 using namespace std;

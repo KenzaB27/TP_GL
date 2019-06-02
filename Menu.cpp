@@ -381,19 +381,37 @@ bool Menu::traitement(string input)
 
 void Menu::AfficherSeuils(unordered_map<int, vector<Seuil>> &umap)
 {
-	cout << "Indice   |   SO2   |   NO2  |   O3   |   PM   |" << endl;
+	char sep = '|';
+	int width = 14;
+	cout << setw(8) << "Indice"
+		<< setw(width) << "SO2"
+		<< setw(width) << "NO2"
+		<< setw(width) << "O3"
+		<< setw(width) << "PM"<<endl;
 
 	auto itPM10 = umap[PM10].rbegin();
 	auto itSO2 = umap[SO2].rbegin();
 	auto itNO2 = umap[NO2].rbegin();
 	auto itO3 = umap[O3].rbegin();
 
-	for (int i = 10; i >= 1; i--)
+	cout << setw(8) << 10
+		<< setw(width) << (">" + to_string(itSO2->getMin()))
+		<< setw(width) << (">" + to_string(itNO2->getMin()))
+		<< setw(width) << (">" + to_string(itO3->getMin()))
+		<< setw(width) << (">" + to_string(itPM10->getMin())) << endl;
+	++itPM10;
+	++itSO2;
+	++itNO2;
+	++itO3;
+
+	
+	for (int i = 9; i >= 1; i--)
 	{
-		cout << i << "        |   " << itSO2->getMin() << "-" << itSO2->getMax() << "   |   "
-			<< itNO2->getMin() << "-" << itNO2->getMax() << "   |   "
-			<< itO3->getMin() << "-" << itO3->getMax() << "   |   "
-			<< itPM10->getMin() << "-" << itPM10->getMax() << "   |   " << endl;
+		cout << setw(8) << i
+			<< setw(width) << (to_string(itSO2->getMin()) + "-" + to_string(itSO2->getMax())) 
+			<< setw(width) << (to_string(itNO2->getMin()) + "-" + to_string(itNO2->getMax()))
+			<< setw(width) << (to_string(itO3->getMin()) + "-" + to_string(itO3->getMax()))
+			<< setw(width) << (to_string(itPM10->getMin()) + "-" + to_string(itPM10->getMax())) << endl;
 		++itPM10;
 		++itSO2;
 		++itNO2;
