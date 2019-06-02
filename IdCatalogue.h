@@ -31,21 +31,46 @@ struct IdCatalogue
 public:
 //----------------------------------------------------- Méthodes publiques
 	friend bool operator == (const IdCatalogue & unIdCatalogue1, const IdCatalogue & unIdCatalogue2);
+  // Mode d'emploi : permet d'afficher de comparer deux idCatalogue
+  //unIdCatalogue1 : le premier IdCatalogue à comparer
+  //unIdCatalogue2 : le deuxième IdCatalogue à comparer
+  //Retour : dépend si les IdCatalogue sont identiques
+  // Contrat : Aucun contrat
+  
 	friend ostream &operator<<(ostream &out, const IdCatalogue &idCatalogue);
+  // Mode d'emploi : affiche un IdCatalogue sur la sortie
+  //out : le flux sur lequel afficher l'IdCatalogue
+  //idCatalogue : l'IdCatalogue à afficher
+  //Retour : out, le flux de sortie
+  // Contrat : Aucun contrat
 
 	int getCapteurId() const;
+  // Mode d'emploi : récupère le capteurId de l'idCatalogue
+  //Retour : un int correspondant au capteurId
+  // Contrat : Aucun contrat
 
 	Date getDateMesure() const;
-
+  // Mode d'emploi : récupère la date de mesure de l'IdCatalogue
+  //Retour : la dateMesure de l'IdCatalogue
+  // Contrat : Aucun contrat
 //-------------------------------------------- Constructeurs - destructeur
 
-    //IdCatalogue ( const IdCatalogue & unIdCatalogue );
-
     IdCatalogue(int cI, Date dm);
+  // Mode d'emploi : constructeur d'un IdCatalogue
+  //cI : le capteurId de l'IdCatalogue
+  //dm : la DateMesure de l'IdCatalogue
+  // Contrat : Aucun contrat
 	
     IdCatalogue();
+  // Mode d'emploi : constructeur d'un IdCatalogue
+  //cI : le capteurId de l'IdCatalogue
+  //dm : la DateMesure de l'IdCatalogue
+  // Contrat : Aucun contrat
 
     virtual ~IdCatalogue ( );
+    // Mode d'emploi : destructeur d'un IdCatalogue
+    //Contrat : aucun contrat
+  
 
 //----------------------------------Attributs
 
@@ -72,4 +97,8 @@ namespace std {
       }
   };
 }
+
+// Mode d'emploi : fonction de hachage des idCatalogue
+//Contrat : aucun contrat
+
 #endif // IdCatalogue_H

@@ -85,6 +85,28 @@ bool Menu::traitement(string input)
 
 	if (commande(argList, "exit")) return true;
 
+	if (commande(argList, "help"))
+	{
+		try
+		{
+			vector<string> listeCommandes;
+			l.getCommandes(listeCommandes, "../Fichiers/commandes.csv");
+
+			cout << "[help] Liste des commandes disponibles : " << endl;
+			for (int i = 0; i < listeCommandes.size(); i++)
+			{
+				cout << "\t" << listeCommandes[i] << endl;
+			}
+		}
+		catch (const std::exception&)
+		{
+			cout << "[help] erreur lors de l'affichage de la liste des commandes" << endl;
+		}
+		
+
+		return true;
+	}
+
 
 	if(commande(argList, "atmo")) //------------------------------------- Etude de l'ATMO
 	{
@@ -95,6 +117,7 @@ bool Menu::traitement(string input)
 		// Format de date : YYYY-MM-DDTHH:MM:SS.SSSSSSSS
 		// -s si valeurs a afficher
 		
+
 		long double lat = atof(valueList.find("-lat")->second.c_str());
 		long double lon = atof(valueList.find("-long")->second.c_str());;
 		
@@ -105,17 +128,33 @@ bool Menu::traitement(string input)
 		dateF = commande(argList, "-d") ? Date(valueList.find("-dateF")->second.c_str()) : dateF.precedent();
 		dateD = commande(argList, "-d") ? Date(valueList.find("-dateD")->second.c_str()) : dateF.now();
 			
-		cout << "[atmo] " << endl;
 		if (commande(argList, "-s"))
 		{
-			vector<ConcentrationIndice> result = e.Evaluer(*c, listeCapteurs, tabSeuils, lat, lon, dateD, dateF);
-			afficherSousIndiceAtmo(result);
+			try
+			{
+				cout << "[atmo] " << endl;
+				vector<ConcentrationIndice> result = e.Evaluer(*c, listeCapteurs, tabSeuils, lat, lon, dateD, dateF);
+				afficherSousIndiceAtmo(result);
+			}
+			catch (const std::exception&)
+			{
+				cout << "[atmo] erreur lors de l'affichage des valeurs" << endl;
+			}
+			
 		}
 		else
 		{
-			vector<ConcentrationIndice> mesures = e.Evaluer(*c, listeCapteurs, tabSeuils, lat, lon, dateD, dateF);
-			int atmo = e.CalculAtmo(mesures);
-			cout << "L'indice ATMO à la date " << dateF << "est " << atmo <<  endl;
+			try
+			{
+				vector<ConcentrationIndice> mesures = e.Evaluer(*c, listeCapteurs, tabSeuils, lat, lon, dateD, dateF);
+				int atmo = e.CalculAtmo(mesures);
+				cout << "L'indice ATMO à la date " << dateF << "est " << atmo << endl;
+			}
+			catch (const std::exception&)
+			{
+				cout << "[atmo] erreur lors du calcul de l'atmo" << endl;
+			}
+			
 		}
 
 		return true;
@@ -125,28 +164,36 @@ bool Menu::traitement(string input)
 	if (commande(argList, "stats")) //----------------------------------- Etude des statistiques
 	{
 		// Commande de la forme : stats -n=3 pour l'etude de 3 capteurs
-
-		int n = commande(argList, "-n") ? atoi(valueList.find("-n")->second.c_str()) : 10;
-		string gaz = valueList.find("-gaz")->second;
-		
-		cout << "[stats] Calculs en cours..." << endl;
-
-		unordered_map<int, vector<long double> > moyenneCapteur = e.MesuresTotParCapteurs(*c, n);
-		afficheMatMoyenne(moyenneCapteur);
-		unordered_map<int, long double**> matriceEcart = e.EcartCapteurs(moyenneCapteur);
-
-		if (valueList.find("-gaz")->second == "a") //On étudie tous les gaz
+		try
 		{
-			bool ** matSimilarite = e.DeterminerCapteursSimilaires(matriceEcart, 10);
-			afficheMatSimilarite(matSimilarite, "Tous", 10);
-		} else {
-			double ecart = atof(valueList.find("-e")->second.c_str());
-			bool ** matSimilarite = e.DeterminerCapteursSimilairesParGaz(matriceEcart[l.getGazName()[gaz]], ecart);
+			int n = commande(argList, "-n") ? atoi(valueList.find("-n")->second.c_str()) : 10;
+			string gaz = valueList.find("-gaz")->second;
 
-			afficheMatEcart(gaz, matriceEcart[l.getGazName()[gaz]]);
-			afficheMatSimilarite(matSimilarite, gaz, ecart);
+			cout << "[stats] Calculs en cours..." << endl;
 
+			unordered_map<int, vector<long double> > moyenneCapteur = e.MesuresTotParCapteurs(*c, n);
+			afficheMatMoyenne(moyenneCapteur);
+			unordered_map<int, long double**> matriceEcart = e.EcartCapteurs(moyenneCapteur);
+
+			if (valueList.find("-gaz")->second == "a") //On étudie tous les gaz
+			{
+				bool ** matSimilarite = e.DeterminerCapteursSimilaires(matriceEcart, 10);
+				afficheMatSimilarite(matSimilarite, "Tous", 10);
+			}
+			else {
+				double ecart = atof(valueList.find("-e")->second.c_str());
+				bool ** matSimilarite = e.DeterminerCapteursSimilairesParGaz(matriceEcart[l.getGazName()[gaz]], ecart);
+
+				afficheMatEcart(gaz, matriceEcart[l.getGazName()[gaz]]);
+				afficheMatSimilarite(matSimilarite, gaz, ecart);
+
+			}
 		}
+		catch (const std::exception&)
+		{
+			cout << "[stats] erreur lors des calculs de statistique" << endl;
+		}
+		
 
 		return true;
 	}
@@ -155,33 +202,100 @@ bool Menu::traitement(string input)
 	{
 		if (commande(argList, "add"))
 		{
-			long double lat = atof(valueList.find("-lat")->second.c_str());
-			long double lon = atof(valueList.find("-long")->second.c_str());;
-			string description = valueList.find("-d")->second;
-			int cId = atoi(valueList.find("-id")->second.c_str());
+			try
+			{
+				long double lat = atof(valueList.find("-lat")->second.c_str());
+				long double lon = atof(valueList.find("-long")->second.c_str());;
+				string description = valueList.find("-d")->second;
+				int cId = atoi(valueList.find("-id")->second.c_str());
 
-			Capteur c(cId, description, lat, lon); // Creation d'un nouveau capteur à partir des paramètres passés
-			g.AjouterCapteur(c, listeCapteurs);
+				Capteur c(cId, description, lat, lon); // Creation d'un nouveau capteur à partir des paramètres passés
+				cout << "[sensor] Ajout d'un nouveau capteur" << "..." << endl;
+				g.AjouterCapteur(c, listeCapteurs);
+			}
+			catch (const std::exception&)
+			{
+				cout << "[sensor] erreur lors de l'ajout du capteur" << endl;
+			}
+			
 		}
 
 		if (commande(argList, "remove"))		
 		{
-			int cId = atoi(valueList.find("-id")->second.c_str());
-			g.SupprimerCapteur(cId, listeCapteurs);
+			try
+			{
+				int cId = atoi(valueList.find("-id")->second.c_str());
+				cout << "[sensor] Suppresion du capteur numero " << cId << "..." << endl;
+				g.SupprimerCapteur(cId, listeCapteurs);
+			}
+			catch (const std::exception&)
+			{
+				cout << "[sensor] erreur lors de la suppression du capteur" << endl;
+			}
+			
 		}
 
 		if (commande(argList, "exclude"))
 		{
-			int cId = atoi(valueList.find("-id")->second.c_str());
-			g.MettreEnVeilleCapteur(cId, listeCapteurs);
+			try
+			{
+				int cId = atoi(valueList.find("-id")->second.c_str());
+				cout << "[sensor] Mise en quarantaine du capteur numero " << cId << "..." << endl;
+				g.MettreEnVeilleCapteur(cId, listeCapteurs);
+			}
+			catch (const std::exception&)
+			{
+				cout << "[sensor] erreur lors de l'exclusion du capteur" << endl;
+			}
 		}
 
 		if (commande(argList, "include"))
 		{
-			int cId = atoi(valueList.find("-id")->second.c_str());
-			g.RestaurerCapteur(cId, listeCapteurs);
+			try
+			{
+				int cId = atoi(valueList.find("-id")->second.c_str());
+				cout << "[sensor] Inclusion du capteur numero " << cId << "..." << endl;
+				g.RestaurerCapteur(cId, listeCapteurs);
+			}
+			catch (const std::exception&)
+			{
+				cout << "[sensor] erreur lors de l'inclusion du capteur" << endl;
+			}
+			
 		}
 
+		if (commande(argList, "evaluate"))
+		{
+			try
+			{
+				int cId = atoi(valueList.find("-id")->second.c_str());
+				cout << "[sensor] Evaluation du capteur numero " << cId << "..." << endl;
+				g.EvaluerCapteur(*c, cId);
+			}
+			catch (const std::exception&)
+			{
+				cout << "[sensor] erreur lors de l'évaluation du capteur" << endl;
+			}
+			
+		}
+
+		if (commande(argList, "print"))
+		{
+			
+			if (listeCapteurs.size()==0)
+			{
+				cout << "[sensor] aucun capteurs disponibles" << endl;
+			}
+			else
+			{
+				cout << "[sensor]" << endl;
+				for (int i = 0; i < listeCapteurs.size(); i++)
+				{
+					cout << listeCapteurs[i] << endl;
+				}
+			}
+			
+		}
 		return true;
 	}
 
@@ -194,14 +308,24 @@ bool Menu::traitement(string input)
 		}
 		else
 		{
-			int gazId = l.getGazName()[valueList.find("-gazId")->second];
-			int min = atoi(valueList.find("-min")->second.c_str());
-			int max = atoi(valueList.find("-max")->second.c_str());
-			int indice = atoi(valueList.find("-indice")->second.c_str());
+			try
+			{
+				int gazId = l.getGazName()[valueList.find("-gazId")->second];
+				int min = atoi(valueList.find("-min")->second.c_str());
+				int max = atoi(valueList.find("-max")->second.c_str());
+				int indice = atoi(valueList.find("-indice")->second.c_str());
 
-			Seuil s(min, max, indice);
+				Seuil s(min, max, indice);
 
-			g.ChangerUnSeuil(tabSeuils, gazId, s);
+				cout << "[seuils] Modification du seuil de " << gazId << " en cours..." << endl;
+
+				g.ChangerUnSeuil(tabSeuils, gazId, s);
+			}
+			catch (const std::exception&)
+			{
+				cout << "[seuils] erreur lors de la mise à jour des seuils" << endl;
+			}
+				
 		}
 
 		return true;
@@ -214,6 +338,13 @@ bool Menu::traitement(string input)
 		string fichierGaz = "../Fichiers/gazTest.csv";
 		string fichierSeuils = "../Fichiers/Seuils.csv";
 
+		if (!firstRun) //Si ça n'est pas le premier lancement on vide les listes pour les reremplir
+		{
+			listeCapteurs.clear();
+			c->getMap().clear();
+			tabSeuils.clear();
+		}
+
 		if (commande(argList, "-define")) 
 		{
 			fichierMesures = valueList.find("-m")->second;
@@ -222,14 +353,25 @@ bool Menu::traitement(string input)
 			fichierSeuils = valueList.find("-s")->second;
 		}
 		
-		cout << "[run] Lecture des fichiers" << endl;
+		
 
-		// Initialisation des seuils, capteurs et gaz
-		l.InitSeuils(tabSeuils, fichierSeuils); 
-		l.InitCapteur(listeCapteurs, fichierCapteurs);
-		l.InitTypeGaz(fichierGaz);
+		if(firstRun) firstRun = false; //On est passé au moins 1 fois
 
-		l.Parcourir(c, fichierMesures); //Remplissage du catalogue
+		try
+		{
+			cout << "[run] Lecture des fichiers" << endl;
+			// Initialisation des seuils, capteurs et gaz
+			l.InitSeuils(tabSeuils, fichierSeuils);
+			l.InitCapteur(listeCapteurs, fichierCapteurs);
+			l.InitTypeGaz(fichierGaz);
+
+			l.Parcourir(c, fichierMesures); //Remplissage du catalogue
+		}
+		catch (const std::exception&)
+		{
+			cout << "[run] erreur lors de la lecture des fichiers" << endl;
+		}
+		
 
 		return true;
 	}

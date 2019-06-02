@@ -1,5 +1,5 @@
 /*************************************************************************
-                           Catalogue 
+                           Catalogue
                              -------------------
 	début                : 04/06/2019
 	copyright            : (C) 2019 par BOUZID Kenza    - JEANNE Nathan
@@ -21,7 +21,7 @@ using namespace std;
 #include <utility>
 
 //---------------------------------------------Methodes publiques
-	
+
 
 
 ostream & operator <<(ostream &out, const Catalogue &catalogue)
@@ -63,10 +63,11 @@ Catalogue::operator unordered_multimap<int, vector<long double>>() const
 	return nouvelleMap;
 }
 
+
 unordered_map<IdCatalogue, vector<MesureGaz>> Catalogue::getMap() const
 {
 	return map;
-}
+}//Fin de getMap
 
 void Catalogue::Ajouter(IdCatalogue i, vector<MesureGaz> m)
 {

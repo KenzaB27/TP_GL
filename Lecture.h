@@ -1,7 +1,7 @@
 /*************************************************************************
                            Lecture 
                              -------------------
-	début                : 04/06/2019
+	début                : 01/06/2019
 	copyright            : (C) 2019 par BOUZID Kenza    - JEANNE Nathan
 										HAMIDOVIC David - CAVAGNA Margaux
 *************************************************************************/
@@ -26,7 +26,7 @@ using namespace std;
 
 //------------------------------------------------------------------ Types
 
-struct gazInfos // Informations d'un gaz : sont id, son unité et sa description
+struct gazInfos // Informations d'un gaz : son id, son unité et sa description
 {
     int id;
     string unit;
@@ -52,7 +52,7 @@ class Lecture
 public:    
     //----------------------------------------------------- Méthodes publiques
     unordered_map<string, id> getGazName();
-    // Mode demploi
+    // Mode demploi : Renvoi une map contenant les informations des gaz étudiés
     //
     // Contrat :
     //
@@ -72,33 +72,50 @@ public:
 
     void Parcourir(Catalogue* c, string fichier);
     // Mode d'emploi : Parcours tout le fichier et le stocke dans le Catalogue passé en paramètre
+	//				   c : Pointeur sur le Catalogue à remplir
+	//				   fichier : fichier contenant les valeurs
     //
     // Contrat :
     //
 
     void InitCapteur(vector<Capteur> &l, string fichier);
     // Mode d'emploi : Remplis le vecteur de capteur à partir du fichier passé en paramètre
+	//				   l : vecteur de capteurs à remplir
+	//				   fichier : fichier contenant les capteurs
     //
     // Contrat :
     //
 
     void InitTypeGaz(string fichier);
     // Mode d'emploi : Initialise la liste des gaz et leur description à partir du fichier passé en paramètre
+	//				   fichier : fichier contenant les capteurs
     //
     // Contrat :
     //
 
     void InitSeuils(unordered_map<int, vector<Seuil>> &l, string fichier);
     // Mode d'emploi : Initialise la liste des gaz et leur description à partir du fichier passé en paramètre
+	//				   l : map de seuils par gaz à remplir
+	//				   fichier : fichier contenant les seuils
     //
     // Contrat :
     //
+
+	void getCommandes(vector<string> &v, string fichier);
+	// Mode d'emploi : Recupère la liste des commande et les insère dans le vecteur
+	//				   v : vecteur de commandes possibles
+	//				   fichier : fichier contenant les seuils
+	//
+	// Contrat :
+	//
 
     //------------------------------------------------------------------ PRIVE
 private:
     //------------------------------------------------------- Méthodes privées
     void LectureMesure(ifstream &ifs, MesureGaz &mesure);
     // Mode d'emploi : Parcours tout le fichier et le stocke dans un catalogue
+	//				   ifs : flux entrant du fichier à lire et traiter
+	//				   mesure : mesure gaz à remplir avec les informations du flux
     //
     // Contrat :
     //
