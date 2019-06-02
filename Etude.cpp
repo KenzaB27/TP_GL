@@ -217,13 +217,10 @@ vector<ConcentrationIndice> Etude::evaluer(Catalogue &cat, vector<int>&listCapte
 vector<int> Etude::getCapteur(vector<Capteur>&listCapteur, long double latitude, long double longitude, long double rayon) {
 	PorteeCapteur territoire(latitude, longitude, rayon);
 	vector<int> capteurTerritoire = {};
-	bool capteurFound = false; 
 	for (auto it = listCapteur.begin(); it != listCapteur.end(); it++)
 	{
 		if (territoire.contient(it->getPortee()) && it->getEtat()==1 ) {
-			cout << "capteurAjoute" << endl; 
 			capteurTerritoire.push_back(it->getCapteurId());
-			capteurFound = true; 
 		}
 	}
 	return capteurTerritoire;

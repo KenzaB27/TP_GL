@@ -47,8 +47,6 @@ public:
 	friend ostream &operator<<(ostream &out, const Catalogue &catalogue);
 	operator unordered_multimap<int, vector<long double>>() const;
 //-------------------------------------------- Constructeurs - destructeur
-    Catalogue ( const Catalogue & unCatalogue );
-
     Catalogue();
 
     virtual ~Catalogue ( );

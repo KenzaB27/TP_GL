@@ -92,7 +92,7 @@ int main()
 	l.InitSeuils(mapSeuil, "../../Fichiers/Seuils.csv");
 
 	cout << mapSeuil.size() << endl;
-	/*for (auto x : mapSeuil)
+	for (auto x : mapSeuil)
 	{
 		cout << x.first;
 		for (int i = 0; i < 10; i++)

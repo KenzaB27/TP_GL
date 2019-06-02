@@ -36,7 +36,7 @@ ostream & operator <<(ostream &out, const Catalogue &catalogue)
 
 		out << itr->first;
 
-		for (int i = 0; i < itr->second.size(); i++)
+		for (unsigned int i = 0; i < itr->second.size(); i++)
 		{
 			out << itr->second[i];
 		}
@@ -70,21 +70,17 @@ unordered_map<IdCatalogue, vector<MesureGaz>> Catalogue::getMap() const
 
 void Catalogue::Ajouter(IdCatalogue i, vector<MesureGaz> m)
 {
-	bool r = map.emplace(make_pair(i, m)).second;
+	map.emplace(make_pair(i, m));
 }
 
 
 //-------------------------------------------- Constructeurs - destructeur
-Catalogue::Catalogue ( const Catalogue & unCatalogue )
-// Algorithme :
-//
-{
-    #ifdef MAP
-        cout << "Appel au constructeur de copie de <Catalogue>" << endl;
-    #endif
-} //----- Fin de Catalogue (constructeur de copie)
 
-Catalogue::Catalogue(){
+Catalogue::Catalogue()
+{
+	#ifdef MAP
+		cout << "Appel au constructeur par défaut de <Catalogue>" << endl;
+	#endif
     //Constructeur par défaut ------ l'objet est vide
 }
 

@@ -113,9 +113,9 @@ public :
 	//	Aucun contrat.
 
 	//----------------------------------------------- Attributs publics --
+	int annee;
+	int mois;
 	int jour; 
-	int mois; 
-	int annee; 
 	int heure;		
 	int minutes;
 	long double secondes; 	
