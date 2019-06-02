@@ -173,7 +173,19 @@ void Gestion::SupprimerCapteur(int numCapteur, vector <Capteur> &listeCapteurs)
     }
 }
 
-int Gestion::EvaluerCapteur(Catalogue &c, int idCapteur) {
+int Gestion::EvaluerCapteur(Catalogue &c, int idCapteur)
+// Algorithme : la méthode transforme l'unordeed_map pour
+// garder que les infos utiles et en gardant que les informations
+// du capteur à évaluer. Ensuite on check si la taille de la liste 
+// est nulle, c'est à dire qu'on a aucune donnée du capteur voulue.
+// On renvoie 2 le cas échéant. Le programme vérifie ensuite la cohérence
+// des valeurs (non négative), et des dates (la même pour chaque MesureGaz,
+// et des dates chronoliquement cohérentes).
+// Valeur de retour :
+//	 2 : Pas de capteurs correspondants
+//	 0 : Capteur défaillant
+//   1 : Capteur fonctionnel
+{
 
 
 	unordered_map<IdCatalogue, vector<MesureGaz>> map = c.getMap();
@@ -207,7 +219,8 @@ int Gestion::EvaluerCapteur(Catalogue &c, int idCapteur) {
 			{
 				return 0;
 			}
-			else if (itGaz->first < 0) {
+			
+			if (itGaz->first < 0) {
 				return 0;
 			}
 		}

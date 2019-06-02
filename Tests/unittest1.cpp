@@ -252,6 +252,98 @@ namespace TestUnitaire
 			Assert::AreEqual(it->getEtat(), 1);
 		}
 
+		TEST_METHOD(TestEvaluerCapteur)
+		{
+			Gestion g;
+			Catalogue c;
+			Catalogue cc;
+			Catalogue ccc;
+			Catalogue cccc;
+			Capteur c1 = Capteur(1, "d", 12.012, 32.002);
+			Capteur c2 = Capteur(2, "d", 12.012, 32.002);
+			Date d1 = Date(2019, 02, 01, 10, 12, 55);
+			Date d2 = Date(2019, 03, 01, 10, 12, 55);
+			Date d3 = Date(2019, 01, 01, 10, 12, 55);
+			IdCatalogue id1 = IdCatalogue(1, d1);
+			IdCatalogue id2 = IdCatalogue(1, d2);
+			IdCatalogue id3 = IdCatalogue(1, d3);
+			IdCatalogue id21 = IdCatalogue(2, d1);
+			IdCatalogue id22 = IdCatalogue(2, d2);
+			IdCatalogue id23 = IdCatalogue(2, d3);
+			vector<MesureGaz> v1;
+			vector<MesureGaz> v2;
+			vector<MesureGaz> v3;
+			vector<MesureGaz> v4;
+			vector<MesureGaz> v21;
+			vector<MesureGaz> v22;
+			vector<MesureGaz> v23;
+			for (int i = 0; i < 4; i++)
+			{
+				v1.emplace_back(MesureGaz(1, d1, 3.24, 1, "ds"));
+			}
+			for (int i = 0; i < 3; i++)
+			{
+				v2.emplace_back(MesureGaz(1, d2, 3.24, 1, "ds"));
+			}
+			v2.emplace_back(MesureGaz(1, d1, 3.24, 1, "ds"));
+			for (int i = 0; i < 3; i++)
+			{
+				v3.emplace_back(MesureGaz(1, d2, 3.24, 1, "ds"));
+			}
+			v3.emplace_back(MesureGaz(1, d2, -3.24, 1, "ds"));
+
+			for (int i = 0; i < 4; i++)
+			{
+				v4.emplace_back(MesureGaz(1, d3, 3.24, 1, "ds"));
+			}
+
+			for (int i = 0; i < 4; i++)
+			{
+				v21.emplace_back(MesureGaz(1, d1, -3.24, 1, "ds"));
+			}
+			for (int i = 0; i < 4; i++)
+			{
+				v22.emplace_back(MesureGaz(1, d2, -3.24, 1, "ds"));
+			}
+			for (int i = 0; i < 4; i++)
+			{
+				v23.emplace_back(MesureGaz(1, d3, -3.24, 1, "ds"));
+			}
+			c.Ajouter(id1, v1);
+			int i = g.EvaluerCapteur(c, 1);
+			Assert::AreEqual(i, 1);
+			i = g.EvaluerCapteur(c, 2);
+			Assert::AreEqual(i, 2);
+		
+			c.Ajouter(id2, v2);
+			i = g.EvaluerCapteur(c, 1);
+			Assert::AreEqual(i, 0);
+
+			cc.Ajouter(id1, v1);
+			cc.Ajouter(id2, v3);
+			i = g.EvaluerCapteur(cc, 1);
+			Assert::AreEqual(i, 0);
+
+			ccc.Ajouter(id1, v1);
+			ccc.Ajouter(id3, v4);
+			i = g.EvaluerCapteur(ccc, 1);
+
+			Assert::AreEqual(i, 0);
+			cccc.Ajouter(id1, v1);
+			i = g.EvaluerCapteur(cccc, 1);
+			Assert::AreEqual(1, i);
+			i = g.EvaluerCapteur(cccc, 2);
+			Assert::AreEqual(2, i);
+			cccc.Ajouter(id21, v21);
+			cccc.Ajouter(id21, v22);
+			cccc.Ajouter(id21, v23);
+			i = g.EvaluerCapteur(cccc, 1);
+			Assert::AreEqual(1, i);
+			i = g.EvaluerCapteur(cccc, 2);
+			Assert::AreEqual(0, i);
+
+			
+		}
 		TEST_METHOD(TestChangerSeuil)
 		{
 
