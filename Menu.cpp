@@ -133,7 +133,7 @@ bool Menu::traitement(string input)
 			try
 			{
 				cout << "[atmo] " << endl;
-				vector<ConcentrationIndice> result = e.Evaluer(*c, listeCapteurs, tabSeuils, lat, lon, dateD, dateF);
+				vector<ConcentrationIndice> result = e.Evaluer(*c, listeCapteurs, tabSeuils, lat, lon, dateD, dateF, rayon);
 				afficherSousIndiceAtmo(result);
 			}
 			catch (const std::exception&)
@@ -146,7 +146,7 @@ bool Menu::traitement(string input)
 		{
 			try
 			{
-				vector<ConcentrationIndice> mesures = e.Evaluer(*c, listeCapteurs, tabSeuils, lat, lon, dateD, dateF);
+				vector<ConcentrationIndice> mesures = e.Evaluer(*c, listeCapteurs, tabSeuils, lat, lon, dateD, dateF, rayon);
 				int atmo = e.CalculAtmo(mesures);
 				cout << "L'indice ATMO à la date " << dateF << "est " << atmo << endl;
 			}
