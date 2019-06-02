@@ -51,7 +51,7 @@ ostream & operator<<(ostream & out, const Capteur & capteur)
 bool operator==(const Capteur& capteur1, const Capteur& capteur2)
 {
 	return (capteur1.capteurId == capteur2.capteurId);
-};
+}
 
 //-------------------------------------------- Constructeurs - destructeur
 

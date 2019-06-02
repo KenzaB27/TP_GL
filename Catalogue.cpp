@@ -1,5 +1,5 @@
 /*************************************************************************
-                           Catalogue 
+                           Catalogue
                              -------------------
 	début                : 04/06/2019
 	copyright            : (C) 2019 par BOUZID Kenza    - JEANNE Nathan
@@ -21,7 +21,7 @@ using namespace std;
 #include <utility>
 
 //---------------------------------------------Methodes publiques
-	
+
 
 
 ostream & operator <<(ostream &out, const Catalogue &catalogue)
@@ -36,7 +36,7 @@ ostream & operator <<(ostream &out, const Catalogue &catalogue)
 
 		out << itr->first;
 
-		for (int i = 0; i < itr->second.size(); i++)
+		for (unsigned int i = 0; i < itr->second.size(); i++)
 		{
 			out << itr->second[i];
 		}
@@ -54,7 +54,7 @@ Catalogue::operator unordered_multimap<int, vector<long double>>() const
 
 	for (auto it = map.begin(); it != map.end(); it++) {
 		vector<long double > valeurMesures;
-		for (int i = 0 ; i < 4 ; i++)
+		for (unsigned int i = 0 ; i < 4 ; i++)
 		{
 			valeurMesures.emplace_back(it->second[i]);
 		}
@@ -71,13 +71,17 @@ unordered_map<IdCatalogue, vector<MesureGaz>> Catalogue::getMap() const
 
 void Catalogue::Ajouter(IdCatalogue i, vector<MesureGaz> m)
 {
-	bool r = map.emplace(make_pair(i, m)).second;
-} //Fin de Ajouter
+	map.emplace(make_pair(i, m));
+}
 
 
 //-------------------------------------------- Constructeurs - destructeur
 
-Catalogue::Catalogue(){
+Catalogue::Catalogue()
+{
+	#ifdef MAP
+		cout << "Appel au constructeur par défaut de <Catalogue>" << endl;
+	#endif
     //Constructeur par défaut ------ l'objet est vide
 }
 

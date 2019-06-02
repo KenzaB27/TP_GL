@@ -7,6 +7,6 @@ int main()
 	Menu m;
 	m.run();
 
-	system("pause"); 
+	system("pause");
 	return 0;
 }

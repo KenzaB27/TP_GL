@@ -38,7 +38,7 @@ namespace TestUnitaire
 			PorteeCapteur portee3(-44.5357010278551, -40.5272071485069, 20000);
 			PorteeCapteur portee4(18.9026808524051, -60.4696149986561, 20000);
 			PorteeCapteur listPortees[] = {portee1,portee2,portee3,portee4};
-			for (int i = 0; i < 4; i++) {
+			for (unsigned int i = 0; i < 4; i++) {
 				Assert::IsTrue(listPortees[i].getLatitudeCentre() > listPortees[i].getLatitudeMin() &&
 					listPortees[i].getLatitudeCentre() < listPortees[i].getLatitudeMax());
 			}
@@ -262,7 +262,7 @@ namespace TestUnitaire
 			vector<Seuil> o3;
 			Gestion g;
 
-			for (int i = 0; i < 10; i++)
+			for (unsigned int i = 0; i < 10; i++)
 			{
 				pm10.push_back(Seuil(0, 0, 0));
 				so2.push_back(Seuil(0, 0, 0));
@@ -280,7 +280,7 @@ namespace TestUnitaire
 			vector<Seuil> unNO2;
 			vector<Seuil> unO3;
 
-			for (int i = 0; i < 10; i++)
+			for (unsigned int i = 0; i < 10; i++)
 			{
 				unPM10.push_back(Seuil(i, i, i));
 				unSO2.push_back(Seuil(i, i, i));
@@ -404,7 +404,7 @@ namespace TestUnitaire
 			vector<Seuil> o3;
 			Gestion g;
 
-			for (int i = 0; i < 10; i++)
+			for (unsigned int i = 0; i < 10; i++)
 			{
 				pm10.push_back(Seuil(0, 0, 0));
 				so2.push_back(Seuil(0, 0, 0));
@@ -503,7 +503,7 @@ namespace TestUnitaire
 			capteurTest.push_back(c1);
 			capteurTest.push_back(c2);
 
-			for (unsigned int i = 0; i < capteurTest.size(); i++)
+			for (unsigned unsigned int i = 0; i < capteurTest.size(); i++)
 			{
 				Assert::AreEqual(c1.getCapteurId(), liste.front().getCapteurId());
 				Assert::AreEqual(c1.getDescription().c_str(), liste.front().getDescription().c_str());
@@ -584,7 +584,7 @@ namespace TestUnitaire
 			for (auto x : listeSeuils)
 			{
 				Assert::IsTrue(x.second.size() == 10);
-				for (int i = 0; i < 10; i++)
+				for (unsigned int i = 0; i < 10; i++)
 				{
 					Assert::IsTrue(x.second[i].getMin() >= 0 && x.second[i].getMin() <= 200000);
 					Assert::IsTrue(x.second[i].getMax() >= 0 && x.second[i].getMax() <= 200000);

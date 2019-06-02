@@ -90,10 +90,10 @@ bool Menu::traitement(string input)
 		try
 		{
 			vector<string> listeCommandes;
-			l.getCommandes(listeCommandes, "../Fichiers/commandes.csv");
+			l.getCommandes(listeCommandes, "../../Fichiers/commandes.csv");
 
 			cout << "[help] Liste des commandes disponibles : " << endl;
-			for (int i = 0; i < listeCommandes.size(); i++)
+			for (unsigned int i = 0; i < listeCommandes.size(); i++)
 			{
 				cout << "\t" << listeCommandes[i] << endl;
 			}
@@ -289,7 +289,7 @@ bool Menu::traitement(string input)
 			else
 			{
 				cout << "[sensor]" << endl;
-				for (int i = 0; i < listeCapteurs.size(); i++)
+				for (unsigned int i = 0; i < listeCapteurs.size(); i++)
 				{
 					cout << listeCapteurs[i] << endl;
 				}
@@ -462,13 +462,13 @@ void Menu::split(vector<string> &argList, unordered_map<string, string> &valueLi
 void Menu::afficheMatSimilarite(bool**matSimilarite, string gaz, double precision) {
 	cout << "Matrices de similarite des capteurs pour le gaz " << gaz << "  avec un ecart tolere de: " << precision << endl << endl;
 	cout << "     |";
-	for (int i = 0; i < 10; i++)
+	for (unsigned int i = 0; i < 10; i++)
 	{
 		cout << i << "    |";
 	}
 	cout << endl;
 	cout << "------------------------------------------------------------------" << endl;
-	for (int i = 0; i < 10; i++)
+	for (unsigned int i = 0; i < 10; i++)
 	{
 		cout << i << "    |";
 		for (int j = 0; j < 10; j++)
@@ -497,13 +497,13 @@ void Menu::afficheMatEcart(string gaz, long double** matriceEcartGaz, int nbCapt
 
 	cout << "Matrices des ecarts de mesures capteurs pour le gaz " << gaz << endl << endl;
 	cout << "    |";
-	for (int i = 0; i < nbCapteurs; i++)
+	for ( int i = 0; i < nbCapteurs; i++)
 	{
 		cout << i << "      |";
 	}
 	cout << endl;
 	cout << "-------------------------------------------------------------------------------------" << endl;
-	for (int i = 0; i < nbCapteurs; i++)
+	for ( int i = 0; i < nbCapteurs; i++)
 	{
 		cout << i << "   |";
 		for (int j = 0; j < nbCapteurs; j++)

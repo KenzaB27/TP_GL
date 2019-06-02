@@ -41,7 +41,7 @@ void Lecture::Parcourir(Catalogue* c, string fichier)
 		while (monFlux.good())
 		{
 			vector<MesureGaz> listeMesure;
-			for (int i = 0; i < 4; i++)
+			for (unsigned int i = 0; i < 4; i++)
 			{
 				MesureGaz m;
 				LectureMesure(monFlux, m);
@@ -86,7 +86,7 @@ void Lecture::InitCapteur(vector<Capteur> &liste, string fichierCapteurs)
 	if (monFlux)
 	{
 		string line;
-		int i = 0;
+		unsigned int i = 0;
 		while (monFlux.good())
 		{
 			int capteurId;
@@ -157,7 +157,7 @@ void Lecture::InitSeuils(unordered_map<int, vector<Seuil>> &l, string fichier)
 		{
 			vector<Seuil> liste;
 			int gazId;
-			for (int i = 0; i < 10; i++)
+			for (unsigned int i = 0; i < 10; i++)
 			{
 				int indice;
 				int min;

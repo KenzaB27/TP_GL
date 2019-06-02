@@ -1,5 +1,5 @@
 /*************************************************************************
-                           Catalogue 
+                           Catalogue
                              -------------------
 	début                : 04/06/2019
 	copyright            : (C) 2019 par BOUZID Kenza    - JEANNE Nathan
@@ -12,7 +12,7 @@
 #include <iostream>
 #include <string>
 #include <unordered_map>
-#include <iterator> 
+#include <iterator>
 #include <vector>
 #include <functional>
 using namespace std;
@@ -24,13 +24,13 @@ using namespace std;
 
 //--------------------------------------------------- Interfaces utilisées
 
-//------------------------------------------------------------- Constantes 
-//------------------------------------------------------------------ Types 
-//------------------------------------------------------------------------ 
+//------------------------------------------------------------- Constantes
+//------------------------------------------------------------------ Types
+//------------------------------------------------------------------------
 // Rôle de la classe <Catalogue>
 //
 //
-//------------------------------------------------------------------------ 
+//------------------------------------------------------------------------
 
 class Catalogue
 {
@@ -39,7 +39,7 @@ class Catalogue
 public:
 //----------------------------------------------------- Méthodes publiques
 
-	unordered_map<IdCatalogue, vector<MesureGaz>> getMap() const; 
+	unordered_map<IdCatalogue, vector<MesureGaz>> getMap() const;
     // Mode d'emploi : Permet de récuperer la map du catalogue
     //Retour : une unordered map de IdCatalogue et mesuresGaz
 	// Contrat : aucun contrat
@@ -62,12 +62,11 @@ public:
 	//
 
 	operator unordered_multimap<int, vector<long double>>() const;
-    // Mode d'emploi : 
+    // Mode d'emploi :
 	//
 	// Contrat :
 	//
 //-------------------------------------------- Constructeurs - destructeur
-
     Catalogue();
     // Mode d'emploi : Crée un catalogue vide : par définition, un catalogue n'a aucune donnée quand on l'initialise.
 	//
@@ -82,7 +81,7 @@ public:
 //----------------------------------Attributs
 
     protected:
-    
+
     unordered_map<IdCatalogue,vector<MesureGaz>> map;
 
 
