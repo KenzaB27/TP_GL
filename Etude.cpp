@@ -55,7 +55,7 @@ unordered_map<int,vector<long double>> Etude::MesuresTotParCapteurs(Catalogue & 
 {	
 	unordered_map<int, vector<long double>> mesuresCapteurs;
 	unordered_multimap<int,vector<long double>> catalogueReduit = (unordered_multimap<int, vector<long double>>) c;
-	for (int i = 0; i < nbCapteurs; i++)
+	for ( int i = 0; i < nbCapteurs; i++)
 	{	
 		vector<long double> mesuresTotales = {0,0,0,0,0};
 		mesuresCapteurs.emplace(make_pair(i, mesuresTotales));
@@ -79,13 +79,13 @@ unordered_map<int, long double**> Etude::EcartCapteurs(unordered_map<int, vector
 	for (int j = 0; j < 4; j++)
 	{
 		long double ** matriceEcartGaz = new long double *[nbCapteurs];
-		for (int i = 0; i < nbCapteurs; i++)
+		for ( int i = 0; i < nbCapteurs; i++)
 		{
 			matriceEcartGaz[i] = new long double[nbCapteurs];
 		}
 		mapEcartCapteurs.emplace(make_pair(j, matriceEcartGaz));
 	}
-	for (int i = 0; i < nbCapteurs; i++){
+	for ( int i = 0; i < nbCapteurs; i++){
 		for (int k = 0; k < nbCapteurs; k++)
 		{
 			mapEcartCapteurs[O3][i][k] = abs(mapMoyenne[k][03] - mapMoyenne[i][03]);

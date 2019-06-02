@@ -258,16 +258,6 @@ int Gestion::EvaluerCapteur(Catalogue &c, int idCapteur) {
 }
 
 //-------------------------------------------- Constructeurs - destructeur
-Gestion::Gestion(const Gestion &unGestion)
-// Algorithme :
-//
-{
-#ifdef MAP
-    cout << "Appel au constructeur de copie de <Gestion>" << endl;
-#endif
-} //----- Fin de Gestion (constructeur de copie)
-
-
 Gestion::Gestion()
 // Algorithme :
 //

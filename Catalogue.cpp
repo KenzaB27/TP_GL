@@ -54,7 +54,7 @@ Catalogue::operator unordered_multimap<int, vector<long double>>() const
 
 	for (auto it = map.begin(); it != map.end(); it++) {
 		vector<long double > valeurMesures;
-		for (int i = 0 ; i < 4 ; i++)
+		for (unsigned int i = 0 ; i < 4 ; i++)
 		{
 			valeurMesures.emplace_back(it->second[i]);
 		}
