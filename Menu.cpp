@@ -125,8 +125,8 @@ bool Menu::traitement(string input)
 
 		Date dateD;
 		Date dateF;
-		dateF = commande(argList, "-d") ? Date(valueList.find("-dateF")->second.c_str()) : dateF.precedent();
-		dateD = commande(argList, "-d") ? Date(valueList.find("-dateD")->second.c_str()) : dateF.now();
+		dateF = commande(argList, "-dateF") ? Date(valueList.find("-dateF")->second.c_str()) : dateF.now();
+		dateD = commande(argList, "-dateD") ? Date(valueList.find("-dateD")->second.c_str()) : dateF.precedent();
 
 		if (commande(argList, "-s"))
 		{
@@ -404,11 +404,11 @@ void Menu::AfficherSeuils(unordered_map<int, vector<Seuil>> &umap)
 	++itNO2;
 	++itO3;
 
-	
+
 	for (int i = 9; i >= 1; i--)
 	{
 		cout << setw(8) << i
-			<< setw(width) << (to_string(itSO2->getMin()) + "-" + to_string(itSO2->getMax())) 
+			<< setw(width) << (to_string(itSO2->getMin()) + "-" + to_string(itSO2->getMax()))
 			<< setw(width) << (to_string(itNO2->getMin()) + "-" + to_string(itNO2->getMax()))
 			<< setw(width) << (to_string(itO3->getMin()) + "-" + to_string(itO3->getMax()))
 			<< setw(width) << (to_string(itPM10->getMin()) + "-" + to_string(itPM10->getMax())) << endl;
@@ -505,7 +505,7 @@ void Menu::afficheMatMoyenne(unordered_map<int, vector<long double> >moyenneCapt
 	cout.precision(4);
 	for (auto x : moyenneCapteur)
 	{
-		
+
 		cout << x.first << "         |" <<
 			x.second[O3] << "   | " <<
 			x.second[PM10] << "  | " <<
