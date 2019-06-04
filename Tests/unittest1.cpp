@@ -116,6 +116,20 @@ namespace TestUnitaire
 			Assert::IsFalse(d1 <= d2);
 		}
 
+		TEST_METHOD(TestJourActuel)
+		{
+			Logger::WriteMessage("Test de la date actuelle");
+			// Compte tenu de l'incertitude du jour et de l'heure d'éxécution des tests on ne 
+			//peu tester que le mois et l'année mais en ajoutant 2 lignes le jour et l'heure peuvent être testés
+			Date d;
+			d = d.now();
+			Assert::IsTrue(d.annee == 2019);
+			Assert::IsTrue(d.mois == 6);
+			Assert::IsTrue(d.jour == 4);
+			Assert::IsTrue(d.heure == 9);
+			//Assert::IsTrue(d.minutes == 21);
+		}
+
 	};
 
 	TEST_CLASS(TestUnitaireMesureGaz)
@@ -585,8 +599,8 @@ namespace TestUnitaire
 
 			vector<Capteur> liste;
 			Lecture l;
-			//l.InitCapteur(liste , "../Fichiers/capteurs.csv");
-			l.InitCapteur(liste, "../../Fichiers/capteurs.csv");
+			l.InitCapteur(liste , "../Fichiers/capteurs.csv");
+			//l.InitCapteur(liste, "../../Fichiers/capteurs.csv");
 
 			Capteur c1(0, "abba", -19.4789835505555, -35.2425725968753);
 			Capteur c2(1, "", -38.3884286616875, -24.9593580676985);
@@ -613,10 +627,10 @@ namespace TestUnitaire
 			Catalogue* c = new Catalogue();
 			Lecture l;
 
-			//l.InitTypeGaz("../Fichiers/gazTest.csv");
-			//l.Parcourir(c, "../Fichiers/valuesTest.csv");
-			l.InitTypeGaz("../../Fichiers/gazTest.csv");
-			l.Parcourir(c, "../../Fichiers/valuesTest.csv");
+			l.InitTypeGaz("../Fichiers/gazTest.csv");
+			l.Parcourir(c, "../Fichiers/valuesTest.csv");
+			//l.InitTypeGaz("../../Fichiers/gazTest.csv");
+			//l.Parcourir(c, "../../Fichiers/valuesTest.csv");
 
 			Date d = Date(2017, 01, 01, 0, 1, 20.6090000);
 			MesureGaz m = MesureGaz(O3, d, 17.8902017543936, 0, "concentration d'ozone");
@@ -669,8 +683,8 @@ namespace TestUnitaire
 			Lecture l;
 			unordered_map<int, vector<Seuil>> listeSeuils;
 
-			//l.InitSeuils(listeSeuils, "../Fichiers/Seuils.csv");
-			l.InitSeuils(listeSeuils, "../../Fichiers/Seuils.csv");
+			l.InitSeuils(listeSeuils, "../Fichiers/Seuils.csv");
+			//l.InitSeuils(listeSeuils, "../../Fichiers/Seuils.csv");
 			Assert::IsTrue(listeSeuils.size() == 4);
 
 			for (auto x : listeSeuils)

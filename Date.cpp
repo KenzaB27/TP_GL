@@ -20,7 +20,7 @@ using namespace std;
 #include "Date.h"
 
 //------------------------------------------------------------------ CONSTANTES
-
+#define FUSEAU_HORAIRE 2
 
 //////////////////////////////////////////////////////////////////////// PUBLIC
 //------------------------------------------------------- Methodes publiques --
@@ -107,16 +107,16 @@ Date Date::precedent()
 
 Date Date::now()
 {
-	Date nowDate = *this;
+	Date nowDate;
 	time_t now = time(0);
 	tm *gmtm = gmtime(&now);
 
-	this->annee = gmtm->tm_year+1970;
-	this->mois = gmtm->tm_mon+1;
-	this->jour = gmtm->tm_mday;
-	this->heure = gmtm->tm_hour;
-	this->minutes = gmtm->tm_min;
-	this->secondes = (double)gmtm->tm_sec;
+	nowDate.annee = gmtm->tm_year+1900;
+	nowDate.mois = gmtm->tm_mon+1;
+	nowDate.jour = gmtm->tm_mday;
+	nowDate.heure = gmtm->tm_hour + FUSEAU_HORAIRE;
+	nowDate.minutes = gmtm->tm_min;
+	nowDate.secondes = (double)gmtm->tm_sec;
 
 	return nowDate;
 }
