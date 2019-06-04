@@ -202,7 +202,7 @@ vector<ConcentrationIndice> Etude::evaluer(Catalogue &cat, vector<int>&listCapte
 	}
 	else
 	{
-		cout << "Le fichier comporte " << compteur << "mesures" << endl; 
+		cout << "Le fichier comporte " << compteur << " mesures" << endl; 
 		for (auto l = concentrations.begin(); l != concentrations.end(); l->concentration /= compteur, l++);
 		concentrations[O3].setIndice(mapSeuils[O3]);
 		concentrations[SO2].setIndice(mapSeuils[SO2]);
