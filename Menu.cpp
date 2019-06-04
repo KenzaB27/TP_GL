@@ -125,8 +125,8 @@ bool Menu::traitement(string input)
 
 		Date dateD;
 		Date dateF;
-		dateF = commande(argList, "-d") ? Date(valueList.find("-dateF")->second.c_str()) : dateF.precedent();
-		dateD = commande(argList, "-d") ? Date(valueList.find("-dateD")->second.c_str()) : dateF.now();
+		dateF = commande(argList, "-dateF") ? Date(valueList.find("-dateF")->second.c_str()) : dateF.now();
+		dateD = commande(argList, "-dateD") ? Date(valueList.find("-dateD")->second.c_str()) : dateF.precedent();
 
 		if (commande(argList, "-s"))
 		{
@@ -333,10 +333,10 @@ bool Menu::traitement(string input)
 
 	if (commande(argList, "run")) //------------ Gestion de la lecture et de l'initialisation
 	{
-		string fichierMesures = "Fichiers/fichier1000.csv";
-		string fichierCapteurs = "Fichiers/capteurComplet.csv";
-		string fichierGaz = "Fichiers/gazTest.csv";
-		string fichierSeuils = "Fichiers/Seuils.csv";
+		string fichierMesures = "../Fichiers/fichier1000.csv";
+		string fichierCapteurs = "../Fichiers/capteurComplet.csv";
+		string fichierGaz = "../Fichiers/gazTest.csv";
+		string fichierSeuils = "../Fichiers/Seuils.csv";
 
 		if (!firstRun) //Si ça n'est pas le premier lancement on vide les listes pour les reremplir
 		{
