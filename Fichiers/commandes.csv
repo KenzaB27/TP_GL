@@ -2,7 +2,7 @@ help
 exit
 run [-define -m=fichierMesures -c=fichierCapteurs -g=fichierGaz -s=fichierSeuils]
 atmo -lat=lattitude -long=longitude [-s] [-r=rayon] [-d -dateD=date(YYYY-MM-DDTHH:MM:SS.SSSSSS) -dateF=date]
-stats -e=ecart -gaz=GazAEtudier [-n=nbCapteurs]
+stats -gaz=GazAEtudier [-s] [-e=ecart] [-n=nbCapteurs]
 sensor add -lat=lattitude -long=longitude -d=description -id=CapteurId
 sensor remove | exclude | include | evaluate -id=CapteurId 
 sensor print

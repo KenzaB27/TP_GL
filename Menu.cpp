@@ -167,27 +167,49 @@ bool Menu::traitement(string input)
 		try
 		{
 			int n = commande(argList, "-n") ? atoi(valueList.find("-n")->second.c_str()) : 10;
-			string gaz = valueList.find("-gaz")->second;
 
 			cout << "[stats] Calculs en cours..." << endl;
 
 			unordered_map<int, vector<long double> > moyenneCapteur = e.MesuresTotParCapteurs(*c, n);
 			afficheMatMoyenne(moyenneCapteur);
 			unordered_map<int, long double**> matriceEcart = e.EcartCapteurs(moyenneCapteur);
-
+			string gaz = valueList.find("-gaz")->second;
 			if (valueList.find("-gaz")->second == "a") //On étudie tous les gaz
 			{
-				bool ** matSimilarite = e.DeterminerCapteursSimilaires(matriceEcart, 10);
-				afficheMatSimilarite(matSimilarite, "Tous", 10);
+				afficheMatEcart("O3", matriceEcart[O3]);
+				afficheMatEcart("PM10", matriceEcart[PM10]);
+				afficheMatEcart("NO2", matriceEcart[NO2]);
+				afficheMatEcart("SO2", matriceEcart[SO2]);
 			}
 			else {
-				double ecart = atof(valueList.find("-e")->second.c_str());
-				bool ** matSimilarite = e.DeterminerCapteursSimilairesParGaz(matriceEcart[l.getGazName()[gaz]], ecart);
-
 				afficheMatEcart(gaz, matriceEcart[l.getGazName()[gaz]]);
-				afficheMatSimilarite(matSimilarite, gaz, ecart);
+			}
+			
+
+			if (commande(argList, "-s"))
+			{
+				cout << "[stats] Calculs des matrices de similarite..." << endl;
+				try
+				{
+					double ecart = atof(valueList.find("-e")->second.c_str());
+					if (valueList.find("-gaz")->second == "a") //On étudie tous les gaz
+					{
+						bool ** matSimilarite = e.DeterminerCapteursSimilaires(matriceEcart, ecart,n);
+						afficheMatSimilarite(matSimilarite, "Tous", 10);
+					}
+					else {
+						
+						bool ** matSimilarite = e.DeterminerCapteursSimilairesParGaz(matriceEcart[l.getGazName()[gaz]], ecart,n);
+						afficheMatSimilarite(matSimilarite, gaz, ecart);
+					}
+				}
+				catch (const std::exception&)
+				{
+					cout << "[stats] erreur lors de l'affichage des matrices de similarite" << endl;
+				}
 
 			}
+			
 		}
 		catch (const std::exception&)
 		{
@@ -479,66 +501,63 @@ void Menu::split(vector<string> &argList, unordered_map<string, string> &valueLi
 }
 void Menu::afficheMatSimilarite(bool**matSimilarite, string gaz, double precision) {
 	cout << "Matrices de similarite des capteurs pour le gaz " << gaz << "  avec un ecart tolere de: " << precision << endl << endl;
-	cout << "     |";
-	cout.precision(4);
-	for (unsigned int i = 0; i < 10; i++)
+	char sep = '|';
+	int width = 6;
+	for (int i = 0; i < 10; i++)
 	{
-		cout << i << "    |";
+		cout << setw(width) << i;
 	}
 	cout << endl;
-	cout << "------------------------------------------------------------------" << endl;
+	cout << "-------------------------------------------------------------" << endl;
 	for (unsigned int i = 0; i < 10; i++)
 	{
-		cout << i << "    |";
 		for (int j = 0; j < 10; j++)
 		{
-			cout << matSimilarite[i][j] << "    |";
+			cout << setw(width) << matSimilarite[i][j] ;
 		}
 		cout << endl;
 	}
 	cout << endl;
 }
 void Menu::afficheMatMoyenne(unordered_map<int, vector<long double> >moyenneCapteur) {
-	cout << "Moyennes des messures de capteurs par gaz" << endl;
-	cout << "Capteur n |    O3    |   PM10   |    SO2    |    NO2    |" << endl;
-	cout << "---------------------------------------------------------" << endl;
-	cout.precision(4);
+	
+	char sep = '|';
+	int width =14;
+	cout << setw(width) << "Capteur n "
+		<< setw(width) << "SO2"
+		<< setw(width) << "NO2"
+		<< setw(width) << "O3"
+		<< setw(width) << "PM10" << endl;
+	cout << "-----------------------------------------------------------------------" << endl;
+	int i = 1;
 	for (auto x : moyenneCapteur)
 	{
 
-		cout << x.first << "         |" <<
-			x.second[O3] << "   | " <<
-			x.second[PM10] << "  | " <<
-			x.second[SO2] << "   | " <<
-			x.second[NO2] << "   | " << endl;
+		cout << setw(width) << i
+			<< setw(width) << x.second[O3]
+			<< setw(width) << x.second[PM10]
+			<< setw(width) << x.second[SO2]
+			<< setw(width) << x.second[NO2] << endl;
+		i++; 
 	}
 	cout << endl;
 }
 void Menu::afficheMatEcart(string gaz, long double** matriceEcartGaz, int nbCapteurs ) {
 
 	cout << "Matrices des ecarts de mesures capteurs pour le gaz " << gaz << endl << endl;
-	cout << "    |";
-	cout.precision(4);
+	char sep = '|';
+	int width = 10;
 	for ( int i = 0; i < nbCapteurs; i++)
 	{
-		cout << i << "      |";
+		cout << setw(width) << i;
 	}
 	cout << endl;
-	cout << "-------------------------------------------------------------------------------------" << endl;
+	cout << "----------------------------------------------------------------------------------------------------" << endl;
 	for ( int i = 0; i < nbCapteurs; i++)
 	{
-		cout << i << "   |";
 		for (int j = 0; j < nbCapteurs; j++)
 		{
-
-			if (i == j)
-			{
-				cout << matriceEcartGaz[i][j] << "      |";
-			}
-			else
-			{
-				cout << matriceEcartGaz[i][j] << '|';
-			}
+			cout << setw(width) << matriceEcartGaz[i][j];
 		}
 		cout << endl;
 	}
@@ -551,8 +570,9 @@ void Menu::afficherSousIndiceAtmo(vector<ConcentrationIndice> listeConcIndice)
 	if (atmo != 0)
 	{
 		cout << "PM10: " << listeConcIndice[PM10];
-		cout << "SO2: " << listeConcIndice[SO2];
-		cout << "NO2: " << listeConcIndice[NO2];
-		cout << "O3: " << listeConcIndice[O3];
+		cout << "SO2 : " << listeConcIndice[SO2];
+		cout << "NO2 : " << listeConcIndice[NO2];
+		cout << "O3  : " << listeConcIndice[O3];
 	}
+	cout<<endl; 
 }
