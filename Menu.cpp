@@ -90,7 +90,7 @@ bool Menu::traitement(string input)
 		try
 		{
 			vector<string> listeCommandes;
-			l.getCommandes(listeCommandes, "../Fichiers/commandes.csv");
+			l.getCommandes(listeCommandes, "../../Fichiers/commandes.csv");
 
 			cout << "[help] Liste des commandes disponibles : " << endl;
 			for (unsigned int i = 0; i < listeCommandes.size(); i++)
@@ -333,10 +333,10 @@ bool Menu::traitement(string input)
 
 	if (commande(argList, "run")) //------------ Gestion de la lecture et de l'initialisation
 	{
-		string fichierMesures = "Fichiers/fichier1000.csv";
-		string fichierCapteurs = "Fichiers/capteurComplet.csv";
-		string fichierGaz = "Fichiers/gazTest.csv";
-		string fichierSeuils = "Fichiers/Seuils.csv";
+		string fichierMesures = "../../Fichiers/fichier1000.csv";
+		string fichierCapteurs = "../../Fichiers/capteurComplet.csv";
+		string fichierGaz = "../../Fichiers/gazTest.csv";
+		string fichierSeuils = "../../Fichiers/Seuils.csv";
 
 		if (!firstRun) //Si ça n'est pas le premier lancement on vide les listes pour les reremplir
 		{
@@ -480,6 +480,7 @@ void Menu::split(vector<string> &argList, unordered_map<string, string> &valueLi
 void Menu::afficheMatSimilarite(bool**matSimilarite, string gaz, double precision) {
 	cout << "Matrices de similarite des capteurs pour le gaz " << gaz << "  avec un ecart tolere de: " << precision << endl << endl;
 	cout << "     |";
+	cout.precision(4);
 	for (unsigned int i = 0; i < 10; i++)
 	{
 		cout << i << "    |";
@@ -501,8 +502,10 @@ void Menu::afficheMatMoyenne(unordered_map<int, vector<long double> >moyenneCapt
 	cout << "Moyennes des messures de capteurs par gaz" << endl;
 	cout << "Capteur n |    O3    |   PM10   |    SO2    |    NO2    |" << endl;
 	cout << "---------------------------------------------------------" << endl;
+	cout.precision(4);
 	for (auto x : moyenneCapteur)
 	{
+		
 		cout << x.first << "         |" <<
 			x.second[O3] << "   | " <<
 			x.second[PM10] << "  | " <<
@@ -515,6 +518,7 @@ void Menu::afficheMatEcart(string gaz, long double** matriceEcartGaz, int nbCapt
 
 	cout << "Matrices des ecarts de mesures capteurs pour le gaz " << gaz << endl << endl;
 	cout << "    |";
+	cout.precision(4);
 	for ( int i = 0; i < nbCapteurs; i++)
 	{
 		cout << i << "      |";
