@@ -90,7 +90,7 @@ bool Menu::traitement(string input)
 		try
 		{
 			vector<string> listeCommandes;
-			l.getCommandes(listeCommandes, "../../Fichiers/commandes.csv");
+			l.getCommandes(listeCommandes, "../Fichiers/commandes.csv");
 
 			cout << "[help] Liste des commandes disponibles : " << endl;
 			for (unsigned int i = 0; i < listeCommandes.size(); i++)
@@ -355,10 +355,10 @@ bool Menu::traitement(string input)
 
 	if (commande(argList, "run")) //------------ Gestion de la lecture et de l'initialisation
 	{
-		string fichierMesures = "../../Fichiers/fichier1000.csv";
-		string fichierCapteurs = "../../Fichiers/capteurComplet.csv";
-		string fichierGaz = "../../Fichiers/gazTest.csv";
-		string fichierSeuils = "../../Fichiers/Seuils.csv";
+		string fichierMesures = "../Fichiers/fichier1000.csv";
+		string fichierCapteurs = "../Fichiers/capteurComplet.csv";
+		string fichierGaz = "../Fichiers/gazTest.csv";
+		string fichierSeuils = "../Fichiers/Seuils.csv";
 
 		if (!firstRun) //Si ça n'est pas le premier lancement on vide les listes pour les reremplir
 		{
@@ -369,10 +369,10 @@ bool Menu::traitement(string input)
 
 		if (commande(argList, "-define"))
 		{
-			fichierMesures = valueList.find("-m")->second;
-			fichierCapteurs = valueList.find("-c")->second;
-			fichierGaz = valueList.find("-g")->second;
-			fichierSeuils = valueList.find("-s")->second;
+			if(commande(argList, "-m")) fichierMesures = valueList.find("-m")->second;
+			if (commande(argList, "-c")) fichierCapteurs = valueList.find("-c")->second;
+			if (commande(argList, "-g")) fichierGaz = valueList.find("-g")->second;
+			if (commande(argList, "-s")) fichierSeuils = valueList.find("-s")->second;
 		}
 
 
@@ -403,7 +403,6 @@ bool Menu::traitement(string input)
 
 void Menu::AfficherSeuils(unordered_map<int, vector<Seuil>> &umap)
 {
-	char sep = '|';
 	int width = 14;
 	cout << setw(8) << "Indice"
 		<< setw(width) << "SO2"
@@ -501,7 +500,6 @@ void Menu::split(vector<string> &argList, unordered_map<string, string> &valueLi
 }
 void Menu::afficheMatSimilarite(bool**matSimilarite, string gaz, double precision) {
 	cout << "Matrices de similarite des capteurs pour le gaz " << gaz << "  avec un ecart tolere de: " << precision << endl << endl;
-	char sep = '|';
 	int width = 6;
 	for (int i = 0; i < 10; i++)
 	{
@@ -521,7 +519,6 @@ void Menu::afficheMatSimilarite(bool**matSimilarite, string gaz, double precisio
 }
 void Menu::afficheMatMoyenne(unordered_map<int, vector<long double> >moyenneCapteur) {
 	
-	char sep = '|';
 	int width =14;
 	cout << setw(width) << "Capteur n "
 		<< setw(width) << "SO2"
@@ -545,7 +542,6 @@ void Menu::afficheMatMoyenne(unordered_map<int, vector<long double> >moyenneCapt
 void Menu::afficheMatEcart(string gaz, long double** matriceEcartGaz, int nbCapteurs ) {
 
 	cout << "Matrices des ecarts de mesures capteurs pour le gaz " << gaz << endl << endl;
-	char sep = '|';
 	int width = 10;
 	for ( int i = 0; i < nbCapteurs; i++)
 	{

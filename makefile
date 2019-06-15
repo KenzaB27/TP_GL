@@ -1,91 +1,58 @@
-.SILENT:
-.PHONY : compil run clean suppr valgrind gdb
-# Fichier Makefile generique
-SHELL := /bin/bash
+COMPIL=g++
+EXT_SRC=cpp
+CFLAGS=-Wall -g
+LDFLAGS=-lm
+SRC_FOLDER=src
+SRC=$(wildcard *.$(EXT_SRC))
+OBJ_FOLDER=./obj
+O_FILES=$(addprefix $(OBJ_FOLDER)/, $(SRC:.$(EXT_SRC)=.o))
+EXEC_FOLDER_NAME=bin
+EXEC_FOLDER=../$(EXEC_FOLDER_NAME)
+EXEC_NAME=flexisensor
+EXEC=$(EXEC_FOLDER)/$(EXEC_NAME)
+
+# On n'affiche pas leurs commandes
+.SILENT: $(EXEC) $(OBJ_FOLDER) $(EXEC_FOLDER) valgrind clean cleanfull run
+# On ne cree pas de fichier apres
+.PHONY: clean valgrind run
+
+#### --- EDITION DES LIENS --- ###
+$(EXEC) : $(EXEC_FOLDER) $(OBJ_FOLDER) $(O_FILES)
+	echo "Edition des liens de <$@>"
+	$(COMPIL) -o $(EXEC) $(O_FILES) $(LDFLAGS)
+
+### --- COMPILATION SEPAREE --- ###
+%.o : ../%.$(EXT_SRC) ../%.h
+	@ echo "Compilation de <$@>"
+	@ $(COMPIL) $(CFLAGS) -o $@ -c $<
+
+$(OBJ_FOLDER) :
+	echo "Creation du dossier <$@> pour stocker les fichiers .o."
+	mkdir $(OBJ_FOLDER)
+
+$(EXEC_FOLDER) :
+	echo "Creation du dossier <$@> pour stocker l'executable $(EXEC)."
+	mkdir ../$(EXEC_FOLDER_NAME)
+
+### --- OUTILS --- ###
+clean:
+	echo Nettoyage ...
+	rm -f $(O_FILES) $(EXEC)
+
+cleanfull:
+	echo Nettoyage complet...
+	rm -f $(O_FILES) $(EXEC)
+	rm $(OBJ_FOLDER)/* -f
+	rm $(EXEC_FOLDER)/* -f
+	rmdir $(OBJ_FOLDER)
+	rmdir $(EXEC_FOLDER)
 
 
-#--- VARIABLES ---
-#Fichiers
-DIR = bin
-FICHIER_SORTIE := $(DIR)/analog
-CPP := $(wildcard *.cpp)
-LIBRAIRIES :=
-CMD =
+valgrind: $(EXEC)
+	echo Lancement de Valgrind ...
+	valgrind --leak-check=full ./$(EXEC)
 
-O := $(patsubst %,$(DIR)/%,$(CPP:.cpp=.o))
-DEP :=$(O:.o=.d)
-
-#Variables de compilation
-COMPILATEUR := g++
-COMPILATEUR_FLAGS := -Wall -W -ansi -pedantic -std=c++11
-DEBUG := -g
-DEPENDANCES := -MMD
-
-
-#Variables d'edition de liens
-EDITION_DE_LIENS := g++
-EDITION_FLAGS :=
-
-
-#Variables de commande
-ECHO := echo
-RM := rm
-RM_FLAGS := -f -r
-CLEAN := clean
-MAKE := make
-VALGRIND := valgrind --leak-check=yes
-GDB := gdb
-
-
-
-#--- COMMANDES ---
-compil : $(FICHIER_SORTIE)
-
-test : $(FICHIER_SORTIE)
-	cd Tests; ./mktest.sh; cd ..
-
-#Edition de Lien
-$(FICHIER_SORTIE) : $(O)
-	@echo "Edition de lien de $(FICHIER_SORTIE)"
-	$(EDITION_DE_LIENS) -o $(FICHIER_SORTIE) $(EDITION_FLAGS) $(O) $(LIBRAIRES)
-
-#Execution
-run : $(FICHIER_SORTIE)
-	@echo "Execution ..."
-	./$(FICHIER_SORTIE) $(CMD)
-
-#Nettoyage
-clean :
-	$(MAKE) suppr
-	$(MAKE) compil
-
-#Suppression
-suppr :
-	@echo "Nettoyage ..."
-	$(RM) $(RM_FLAGS) $(FICHIER_SORTIE) $(DIR)
-
-#Valgrind
-valgrind :
-	$(MAKE) suppr
-	$(MAKE) compil
-	@echo "Valgrind de $(FICHIER_SORTIE) ..."
-	$(VALGRIND) ./$(FICHIER_SORTIE)
-
-#GDB
-gdb :
-	$(MAKE) suppr
-	$(MAKE) compil
-	@echo "GdB de $(FICHIER_SORTIE) ..."
-	$(GDB) ./$(FICHIER_SORTIE) -x input.gdb
-
-#on inclut toutes les dependances des fichiers .cpp
--include $(DEP)
-
-#Pattern de Compilation
-$(DIR)/%.o : %.cpp | $(DIR)
-	@echo "    Compilation de $<"
-	$(COMPILATEUR) $(COMPILATEUR_FLAGS) $(DEBUG) $(DEPENDANCES) -o $@ -c $<
-
-#Creation du repertoire d'objets au besoin
-$(DIR) :
-	mkdir -p $@
+run: $(EXEC)
+	echo Lancement ...
+	cd $(EXEC_FOLDER)
+	./$(EXEC)
